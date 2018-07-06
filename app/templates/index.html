@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es-ES" 
+  clientes="{{clientes_url}}" 
+  assets="{{static_url}}" 
+  endpoint="{{api_url}}">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <title>MercedesBenz</title>
+  <link rel="home" href="/">
+
+  <!-- Page Meta -->
+  <meta name="description" content="Cotizá y gestioná tus seguros con MercedesBenz.com.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="manifest" href="/manifest.json">
+
+  <!-- Icons -->
+  <link rel="shortcut icon" href="/favicon.png" type="image/x-icon">
+  <link rel="apple-touch-icon" href="/img/apple-touch-icon.png" type="image/x-icon">
+
+  <!-- Styles -->
+  {% if localhost == false %}
+  <link href="{{static_url}}/dist/css/app.css?_={{rev_parse}}" rel="stylesheet" type="text/css">
+  {% else %}   
+  <link rel="stylesheet" href="{{static_url}}/css/bulma.css">
+  <link rel="stylesheet" href="{{static_url}}/css/app.css">
+  <link rel="stylesheet" href="{{static_url}}/css/sweetalert.css">
+  <link rel="stylesheet" href="{{static_url}}/css/custom/app.css">
+  {% endif %}
+
+  {% if params.webfont %}
+  <link href="https://fonts.googleapis.com/css?family={{params.webfont}}" rel="stylesheet">
+  <style>
+    body {
+      font-family: "{{params.webfont}}";
+    }
+  </style>
+  {% endif %}
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-118678125-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-118678125-1');
+  </script>
+</head>
+<body>
+  <div id="app">
+    <nav class="navbar is-fixed-top loading" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <router-link to="/" active-class="active" class="navbar-item navbar-brand" :class="{ 'hidden': $route.path==='/' }" tag="a">MercedesBenz.com</router-link>
+        <div class="navbar-burger" data-target="navMenu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+
+      <div class="navbar-menu" id="navMenu">
+        <div class="navbar-start">
+          <router-link to="/cotizacion" active-class="active" class="navbar-item" tag="a">Cotización online</router-link>
+          <router-link to="/atencion" active-class="active" class="navbar-item" tag="a">Atención al cliente</router-link>
+          <router-link to="/beneficios" active-class="active" class="navbar-item" tag="a">Beneficios</router-link>
+        </div>
+        <div class="navbar-end">
+          <a href="{{clientes_url}}/registro" class="navbar-item">Registro</a>
+          <a href="{{clientes_url}}" class="navbar-item navbar-button">Clientes</a>
+        </div>
+      </div>
+      <div class="topright phone">
+        <a href="tel:08006660896">0800 666 0896</a>
+      </div>
+    </nav>
+  	
+ 		<router-view :key="$route.fullPath"><div class="spinner-outer"><div class="spinner" data-layer="4"><div class="spinner-container"><div class="spinner-rotator"><div class="spinner-left"><div class="spinner-circle"></div></div><div class="spinner-right"><div class="spinner-circle"></div></div></div></div><div class="spinner-message">Si la reproducción no empieza en breve, prueba a reiniciar el dispositivo.</div></div></div></router-view>
+
+    <div class="footer__partners loading">
+      <h6>Presentes en</h6>
+      <div class="footer__partners--row">
+        <div class="footer__partners--item">
+          <img src="{{static_url}}/img/chevrolet@3x.png">
+        </div>
+        <div class="footer__partners--item">
+          <img src="{{static_url}}/img/mercedes@3x.png">
+        </div>
+        <div class="footer__partners--item">
+          <img src="{{static_url}}/img/hyundai@3x.png">
+        </div>
+        <div class="footer__partners--item">
+          <img src="{{static_url}}/img/ypf@3x.png">
+        </div>
+        <div class="footer__partners--item">
+          <img src="{{static_url}}/img/lanacion@3x.png">
+        </div>
+        <div class="footer__partners--item">
+          <img src="{{static_url}}/img/mercantil@3x.png">
+        </div>
+      </div>      
+      <div class="footer__partners--row">
+        <p class=""><router-link to="/terminos" tag="a">Términos y condiciones</router-link> &copy; 2018 <router-link to="/" tag="a">MercedesBenz.com</router-link> </p>
+      </div>
+    </div> 
+  </div>
+  
+  <script type="text/x-template" id="splash">
+    <div>
+      <div class="container">
+        <div class="section splash">
+          <div class="bottomright fadeInUp is-block-desktop">
+            <a href="https://m.me/MercedesBenz" target="_blank"><img :src="settings.assets + '/img/messenger.svg'"></a>
+          </div>
+          <div class="bottomright fadeInUp is-block-touch">
+            <a href="https://api.whatsapp.com/send?phone={{app_whatsapp}}" target="_blank"><img :src="settings.assets + '/img/whatsapp2.svg'"></a>
+          </div>       
+          <article class="message is-success is-hidden">
+            <div class="message-header">
+              <p></p>
+              <button class="delete" aria-label="delete"></button>
+            </div>
+            <div class="message-body"></div>
+          </article> 
+          <h1 class="brand">{{token}} MercedesBenz de 
+          <a href="#" class="first-section__title--link">
+            <span data-typer-targets="Larralde, Wincar, AutoTeam, Cigliutti Guerini, tu concesionario" class="typer">Klasse</span>
+          </a>
+          </h1> 
+          <h2>Cotizá y ahorrá en el seguro de tu auto</h2>
+          <p>El mejor precio. La mejor atención. Beneficios únicos.</p>
+          <div class="container has-text-centered">
+            <router-link to="/cotizacion" class="button rounded-button rounded-button-green" tag="a">Cotizar ahora</router-link>
+            <router-link to="/atencion" class="button rounded-button" tag="a">Quiero contactarme</router-link>
+          </div>
+          <div class="container has-text-centered">
+            <a :href="settings.clientes + '/ingresar'" class="link">Ya soy cliente</a>
+          </div>
+
+          <div class="hero">
+            <div class="hero-body">
+              <div class="container">
+                <div class="columns">
+                  <div class="column">
+                    <div class="card">
+                      <div class="card-content">
+                        <div class="media">
+                          <div class="media-left">
+                            <figure class="image is-48x48">
+                              <img :src="settings.assets + '/img/seguros-user.png'" alt="Placeholder image">
+                            </figure>
+                          </div>
+                          <div class="media-content">
+                            <p class="title is-6">Tomás Francisco Maxera</p>
+                            <p class="subtitle is-6">Fiat Punto 2015<br><small>cliente desde 2015</small></p>
+                          </div>
+                        </div>
+
+                        <div class="content">
+                          <h4>“Con MercedesBenz tengo la tranquilidad que siempre busqué a la hora de contratar un seguro.”</h4>
+                        </div>
+                      </div>
+                    </div>              
+                  </div>
+                  <div class="column">
+                    <div class="card">
+                      <div class="card-content">
+                        <div class="media">
+                          <div class="media-left">
+                            <figure class="image is-48x48">
+                              <img :src="settings.assets + '/img/usuario-2.png'" alt="Placeholder image">
+                            </figure>
+                          </div>
+                          <div class="media-content">
+                            <p class="title is-6">Ezequiel Rigali</p>
+                            <p class="subtitle is-6">Jeep Wrangler 2008<br><small>cliente desde 2016</small></p>
+                          </div>
+                        </div>
+
+                        <div class="content">
+                          <h4>“Lo asegure por teléfono y nunca más tuve que hacer nada. Es espectacular.”</h4>
+                        </div>
+                      </div>
+                    </div> 
+                  </div>
+                  <div class="column">
+                    <div class="card">
+                      <div class="card-content">
+                        <div class="media">
+                          <div class="media-left">
+                            <figure class="image is-48x48">
+                              <img :src="settings.assets + '/img/usuario-3.png'" alt="Placeholder image">
+                            </figure>
+                          </div>
+                          <div class="media-content">
+                            <p class="title is-6">Sebastián Karagozlu</p>
+                            <p class="subtitle is-6">Chevrolet Onix 2015<br><small>cliente desde 2015</small></p>
+                          </div>
+                        </div>
+                        <div class="content">
+                          <h4>“Recomiendo MercedesBenz, me da servicios como taller de chapa y pintura.”</h4>
+                        </div>
+                      </div>
+                    </div> 
+                  </div>            
+                </div>
+              </div>
+            </div>
+          </div>     
+        </div>
+      </div> 
+      <div class="hero is-info">
+        <div class="hero-body">
+          <div class="container has-text-centered">
+            <div class="columns is-vcentered">
+              <div class="column">
+                <p class="title"><strong>¿Sos dueño de un concesionario?</strong></p>
+                <p class="subtitle">Tenemos propuestas para vos.</p>
+                <router-link to="/contacto#concesionarios" class="button rounded-button is-primary" tag="a">Contactanos</router-link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>        
+    </div>  
+  </script>
+
+  <script type="text/x-template" id="cotizacion">
+    <div class="container">
+      <div class="section cotizacion" ajax-prefix="app">
+        <div class="container has-text-centered">
+          <div class="rounded">
+            <div class="badge">
+              <img :src="candidato.picture">
+            </div>
+            <div class="columns pills is-mobile">
+              <div class="column fill"></div>
+              <div class="column grey">
+                <p>1/3</p>
+              </div>
+              <div class="column grey"></div>
+            </div>
+            <p>¡Hola! Soy <span v-html="candidato.first_name"></span> y estoy para ayudarte a ahorrar en el seguro de tu auto.<br>Para ofrecerte el mejor servicio te pido que respondas estas breves preguntas.</p>
+            <h2>¿Tu nombre y contacto?</h2>
+            <div class="field is-horizontal">
+              <div class="field-body">
+                <div class="field">
+                  <label class="label">Nombre completo</label>
+                  <div class="control">
+                    <input name="gestor_id" type="hidden" optional="true">
+                    <input name="first_name" type="hidden" optional="true">
+                    <input name="last_name" type="hidden" optional="true">
+                    <input name="full_name" class="input rounded-input is-large" type="text" v-model="cotizacion.full_name">
+                  </div>
+                </div>
+                <div class="field">
+                  <label class="label">E-mail</label>
+                  <div class="control">
+                    <input name="email" class="input rounded-input is-large" type="email" v-model="cotizacion.email">
+                  </div>
+                </div>
+                <div class="field">
+                  <label class="label">Teléfono</label>
+                  <div class="control">
+                    <input name="tel" class="input rounded-input is-large" type="text" v-model="cotizacion.tel">
+                  </div>
+                </div>                
+              </div>
+            </div>
+            <div class="container">
+              <a to="/cotizacion/2" class="button rounded-button rounded-button-grey disabled submitable" disabled>Siguiente</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>  
+  </script>
+
+  <script type="text/x-template" id="cotizacion2">
+    <div class="container">
+      <div class="section cotizacion" ajax-prefix="app">
+        <div class="container has-text-centered">
+          <div class="rounded">
+            <div class="badge">
+              <img :src="candidato.picture">
+            </div>
+            <div class="columns pills is-mobile">
+              <div class="column grey"></div>
+              <div class="column fill">
+                <p>2/3</p>
+              </div>
+              <div class="column grey"></div>
+            </div>
+            <p>Un gusto saludarte <span v-html="cotizacion.full_name"></span>, Que bueno tenerte por acá.<br>Confirmame estos detalles.</p>
+            <h2>¿Qué auto querés asegurar?</h2>
+            <div class="field is-horizontal">
+              <div class="field-body">
+                <div class="field">
+                  <label class="label">Marca</label>
+                  <div class="select rounded-select is-large">
+                    <select name="brand_id" @change="brandChange" v-model="cotizacion.brand_id">
+                      <option value="">Marca</option>
+                      <option value="1">AGRALE</option>
+                      <option value="2">ALFA ROMEO</option>
+                      <option value="3">AUDI</option>
+                      <option value="4">BMW</option>
+                      <option value="5">CHERY</option>
+                      <option value="6">CHEVROLET</option>
+                      <option value="7">CHRYSLER</option>
+                      <option value="8">CITROEN</option>
+                      <option value="9">DAEWOO</option>
+                      <option value="10">DAIHATSU</option>
+                      <option value="11">DODGE</option>
+                      <option value="12">FERRARI</option>
+                      <option value="13">FIAT</option>
+                      <option value="14">FORD</option>
+                      <option value="47">GEELY</option>
+                      <option value="15">HONDA</option>
+                      <option value="16">HUMMER</option>
+                      <option value="17">HYUNDAI</option>
+                      <option value="18">ISUZU</option>
+                      <option value="19">JAGUAR</option>
+                      <option value="20">JEEP</option>
+                      <option value="21">KIA</option>
+                      <option value="22">LADA</option>
+                      <option value="23">LAND ROVER</option>
+                      <option value="24">LEXUS</option>
+                      <option value="25">LIFAN</option>
+                      <option value="26">MASERATI</option>
+                      <option value="27">MAZDA</option>
+                      <option value="28">MERCEDES BENZ</option>
+                      <option value="29">MINI COOPER</option>
+                      <option value="30">MITSUBISHI</option>
+                      <option value="31">NISSAN</option>
+                      <option value="32">PEUGEOT</option>
+                      <option value="33">PORSCHE</option>
+                      <option value="34">RENAULT</option>
+                      <option value="35">ROVER</option>
+                      <option value="36">SAAB</option>
+                      <option value="37">SEAT</option>
+                      <option value="38">SMART</option>
+                      <option value="39">SSANGYONG</option>
+                      <option value="40">SUBARU</option>
+                      <option value="41">SUZUKI</option>
+                      <option value="42">TATA</option>
+                      <option value="43">TOYOTA</option>
+                      <option value="44">VOLKSWAGEN</option>
+                      <option value="45">VOLVO</option>
+                      <option value="46">WULING</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="field">
+                  <label class="label">Modelo y Versión</label>
+                  <div class="select rounded-select is-large">
+                    <select name="version_id" v-model="cotizacion.version_id">
+                      <option value="">Modelo y Versión</option>
+                      <option v-for="option in versiones" :value="option.id" v-html="option.text" :selected="option.id == cotizacion.version_id"></option>
+                    </select>
+                  </div>
+                </div>
+                <div class="field">
+                  <label class="label">Año</label>
+                  <div class="select rounded-select is-large">
+                    <select name="mt_year" v-model="cotizacion.mt_year">
+                      <option value="">Año matric</option>
+                      <option value="2018">2018</option>
+                      <option value="2017">2017</option>
+                      <option value="2016">2016</option>
+                      <option value="2015">2015</option>
+                      <option value="2014">2014</option>
+                      <option value="2013">2013</option>
+                      <option value="2012">2012</option>
+                      <option value="2011">2011</option>
+                      <option value="2010">2010</option>
+                      <option value="2009">2009</option>
+                      <option value="2008">2008</option>
+                      <option value="2007">2007</option>
+                      <option value="2006">2006</option>
+                      <option value="2005">2005</option>
+                      <option value="2004">2004</option>
+                      <option value="2003">2003</option>
+                      <option value="2002">2002</option>
+                      <option value="2001">2001</option>
+                      <option value="2000">2000</option>
+                      <option value="1999">1999</option>
+                      <option value="1998">1998</option>
+                      <option value="1997">1997</option>
+                      <option value="1996">1996</option>
+                      <option value="1995">1995</option>
+                      <option value="1994">1994</option>
+                      <option value="1993">1993</option>
+                      <option value="1992">1992</option>
+                      <option value="1991">1991</option>
+                      <option value="1990">1990</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="field is-horizontal">
+              <div class="field-body">
+                <div class="field">
+                  <label class="label">¿Tiene equipo de gas?</label>
+                  <div class="control">
+                    <label class="checkbox">
+                      <input type="checkbox" name="gas" optional="true" v-model="cotizacion.gas">
+                      Sí, tiene equipo de gas.
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="container">
+              <a to="/cotizacion/3" class="button rounded-button rounded-button-grey disabled submitable" disabled>Siguiente</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>  
+  </script>
+
+  <script type="text/x-template" id="cotizacion3">
+    <div class="container">
+      <div class="section cotizacion" ajax-prefix="app">
+        <div class="container has-text-centered">
+          <div class="rounded">
+            <div class="badge">
+              <img :src="candidato.picture">
+            </div>
+            <div class="columns pills is-mobile">
+              <div class="column grey"></div>
+              <div class="column grey">
+                <p>3/3</p>
+              </div>
+              <div class="column fill"></div>
+            </div>
+            <p>¡Ya casi terminamos {{cotizacion.first_name}}! Analizaremos opciones y coberturas disponibles para<br> tu {{cotizacion.brand}} y así brindarte el mejor precio.
+            <h2>Completá los últimos detalles</h2>
+            <div class="field is-horizontal">
+              <div class="field-body">
+                <div class="field">
+                  <label class="label">Tipo de uso</label>
+                  <div class="select rounded-select is-large">
+                    <select name="use" v-model="cotizacion.use">
+                      <option>Particular</option>
+                      <option>Comercial</option>
+                      <option>Taxi / Remis</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="field">
+                  <label class="label">Dirección</label>
+                  <div class="control has-icons-left">
+                    <input type="hidden" name="lat" optional="true" v-model="cotizacion.lat">
+                    <input type="hidden" name="lng" optional="true" v-model="cotizacion.lng">
+                    <input type="hidden" name="locality" optional="true" v-model="cotizacion.locality">
+                    <input type="hidden" name="administrative_area_level_1" optional="true" v-model="cotizacion.administrative_area_level_1">
+                    <input type="hidden" name="administrative_area_level_2" optional="true" v-model="cotizacion.administrative_area_level_2">
+                    <input type="hidden" name="country" optional="true" v-model="cotizacion.country">
+                    <input type="hidden" name="vicinity" optional="true" v-model="cotizacion.vicinity">
+                    <input type="hidden" name="map_icon" optional="true" v-model="cotizacion.map_icon">
+                    <input type="hidden" name="map_url" optional="true" v-model="cotizacion.map_url">
+                    <input type="hidden" name="formatted_address" optional="true" v-model="cotizacion.formatted_address">
+                    <input type="hidden" name="utc" optional="true" v-model="cotizacion.utc">
+                    <input name="address" id="address" class="input rounded-input is-large" type="text" v-model="cotizacion.address">
+                    <span class="icon is-small is-left">
+                      <i class="fas fa-map-pin"></i>
+                    </span>                    
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="is-horizontal">
+              <div class="field-body">
+                <div class="field-body">
+                  <div class="field">
+                    <label class="label">¿Estás pagando algún tipo de financiación sobre tu modelo?</label>
+                    <div class="control">
+                      <label class="checkbox">
+                        <input type="checkbox" name="financing" optional="true" v-model="cotizacion.financing">
+                        Sí, estoy pagando.
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="is-horizontal">
+              <div class="field-body">
+                <div class="field-body">
+                  <div class="field">
+                    <div class="control">
+                      <label class="checkbox">
+                        <input type="checkbox" name="accept_terms">
+                        Acepto bases y condiciones
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="container">
+              <a href="#" class="button rounded-button rounded-button-grey disabled submitable" v-on:click="cotizarAhora()" disabled>Cotizar</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>  
+  </script>
+
+  <script type="text/x-template" id="cotizacionexito">
+    <div class="container">
+      <div class="section cotizacion">
+        <div class="container has-text-centered">
+          <div class="rounded">
+            <div class="badge">
+              <img :src="candidato.picture">
+            </div>
+
+            <h2>¡Felicitaciones <span v-html="cotizacion.first_name"></span>!</h2>
+            <p>Descubrimos el mejor precio para tu cobertura. Podés verla online ó comunicarte con nosotros para que un profesional te asesore.</p>
+            <div class="inline-background cotizacion-exito"></div>
+            <div class="container has-text-centered">
+              <a :href="settings.clientes + '/ingresar'" class="button rounded-button rounded-button-green">Ingresar</a>
+              <router-link to="/atencion" class="button rounded-button" tag="a">Quiero que me contacten</router-link>    
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>  
+  </script>
+
+  <script type="text/x-template" id="atencion">
+    <div class="container">
+      <div class="section atencion">
+        <h2>Elegí el medio más cómodo<br>para hablar ahora mismo</h2>
+        <div class="container has-text-centered">
+          <div class="columns">
+            <div class="column option">
+              <img :src="settings.assets + '/img/phone.svg'">
+              <h2>Atención telefónica</h2>
+              <a href="tel:+59 9 11 1111 1111" class="button rounded-button rounded-button-success" v-on:click="cotizarAhora()">+59 9 11 1111 1111</a>
+            </div>
+            <div class="column option option-main">
+              <img :src="settings.assets + '/img/whatsapp.svg'">
+              <h2>Whatsapp</h2>
+              <p>La manera más rápida de comunicarse<br>elegida por nuestros clientes.</p>
+              <a href="https://api.whatsapp.com/send?phone={{app_whatsapp}}" class="button rounded-button rounded-button-success">Empezar chat</a>
+            </div>
+            <div class="column option">
+              <img :src="settings.assets + '/img/email.svg'">
+              <h2>Atención vía mail</h2>
+              <a href="/contacto" class="button rounded-button rounded-button-success">Contactar</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>  
+  </script>
+
+  <script type="text/x-template" id="contacto">
+    <div class="container">
+      <div class="section contacto" ajax-prefix="app">
+        <div class="container has-text-centered">
+          <div class="rounded">
+            <div class="badge">
+              <img :src="settings.assets + '/img/timer.svg'">
+            </div>
+            <h2 v-if="cotizacion.first_name">Hola {{ cotizacion.first_name }}, dejanos tu consulta</h2>
+            <h2 v-if="!cotizacion.first_name">Dejanos tu consulta</h2>
+            <p>Quiero que me contacten</p>
+            <div class="columns">
+              <div class="column">
+                <p class="control is-expanded has-icons-left">
+                  <input class="input rounded-input is-large" type="text" name="full_name" placeholder="Nombre" autofocus>
+                  <span class="icon is-large is-left">
+                    <i class="fas fa-user"></i>
+                  </span>
+                </p>
+              </div>
+              <div class="column">
+                <p class="control is-expanded has-icons-left has-icons-right">
+                  <input class="input rounded-input is-large is-success" name="email" type="email" placeholder="Email">
+                  <span class="icon is-large is-left">
+                    <i class="fas fa-envelope"></i>
+                  </span>
+                  <span class="icon is-large is-right">
+                    <i class="fas fa-check"></i>
+                  </span>
+                </p>
+              </div>
+              <div class="column">
+                <p class="control is-expanded has-icons-left">
+                  <input class="input rounded-input is-large" type="text" name="tel" placeholder="Teléfono">
+                  <span class="icon is-large is-left">
+                    <i class="fas fa-phone"></i>
+                  </span>
+                </p>
+              </div>
+            </div>
+            <div class="columns">
+              <div class="column is-one-third">
+                <div class="control">
+                  <div class="select rounded-select is-large is-fullwidth">
+                    <select name="use">
+                      <option value="">Elija Motivo</option>
+                      <option value="consulta" :selected="hash == 'consulta'">Consulta</option>
+                      <option value="concesionarios" :selected="hash == 'concesionarios'">Concesionarios</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="column">
+                <div class="control">
+                  <textarea name="comment" class="textarea rounded-input" placeholder="Explain how we can help you"></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="container has-text-centered">
+              <button class="button rounded-button is-primary" v-on:click="enviar()">
+                Enviar mensaje
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>  
+  </script>
+
+  <script type="text/x-template" id="beneficios">
+    <div class="container has-text-centered">
+      <div class="section beneficios">
+        <h2>Elegí tu plan y empezá<br>a obtener beneficios</h2>
+        <div class="container has-text-centered">
+          <div class="columns line-vertical">
+            <div class="column option">
+              <h2>Particular</h2>
+              <ul>
+              <li>Mejor costo garantizado</li>
+              <li>Atención Directa 24hs</li>
+              <li>Reposición en 24hs</li>
+              <li>Talleres propios</li>
+              <li>15 sucursales</li>
+              <li>Sistema de referidos</li>
+              <li>Hasta 15 vehículos</li>
+              </ul>
+              <a href="/cotizacion" class="button rounded-button rounded-button-success disabled">Cotizar</a>
+            </div>
+            <div class="column option option-main">
+              <h2>Flota</h2>
+              <ul>
+              <li>Ahorrá $100.000 al año o más</li>
+              <li>Flotas empresariales y familiares</li>
+              <li>Control total sobre tus gastos </li>
+              <li>Reportes y comparativos mensuales</li>
+              <li>Atención premium</li>
+              <li>Beneficios particulares</li>
+              <li>Hasta 30 vehículos</li>
+              </ul>
+              <a href="/cotizacion" class="button rounded-button rounded-button-success">Cotizar</a>
+            </div>
+            <div class="column option">
+              <h2>Concesionario</h2>
+              <ul>
+              <li>Asesoramiento comercial</li>
+              <li>Generación de nuevas unidades de negocio</li>
+              <li>Api integral a CRM: Pilot, Tecnom, Sirena, Leadki, MercadoLibre, OLX.</li>
+              <li>Plataforma de gestión online</li>
+              <li>Control de incentivos y emisiones online</li>
+              <li>Sin límite de vehículos</li>
+              </ul>
+              <a href="/contacto" class="button rounded-button rounded-button-success">Contratar</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>  
+  </script>
+
+  <script type="text/x-template" id="terminos">
+    <div class="container">
+      <div class="section">
+        <div>
+          <div class="content">
+
+            <h1 class="garantia--h">Términos y Condiciones de uso</h1>
+            <h5 class="titlesection"></h5>
+            <p>A través del Sitio www.MercedesBenz.com (en adelante, el ”Sitio y/o MercedesBenz”), toda persona podrá encontrar diversos servicios y contenidos relacionados la búsqueda de automóviles y servicios relacionados (en adelante, los “Servicios”).</p>
+            <p>1. Toda persona que utilice el Sitio (en adelante, “Usuario”) acepta sin condicionamientos todos y cada uno de los presentes Términos y Condiciones de Uso (“Términos de Uso”), sus modificaciones y documentos complementarios y se obliga a cumplirlos sin objeciones. Si Ud. no está de acuerdo con alguno de los Términos de Uso, no utilice este Sitio. Se deja expresamente aclarado que los presentes Términos de Uso tienen carácter obligatorio y vinculante. Es responsabilidad de los Usuarios informarse y/o consultar periódicamente los T&C o Politicas de Privacidad.</p>
+            <p>2. El Sitio se reserva el derecho, a su sola discreción, de modificar, alterar o de otra manera actualizar, estos Términos de Uso en cualquier momento. Las modificaciones entrarán en vigencia desde el momento que se indique; en su defecto, se entenderá que su aplicación es inmediata. Usando este Sitio después dichas modificaciones, usted acepta estar sujeto a dichas modificaciones, alteraciones o actualizaciones de los Términos y Condiciones de Uso, sin derecho a efectuar reclamo alguno con relación a ello.</p>
+            <p>3. Ciertos contenidos accedidos a través del Sitio pueden estar alcanzados por normas específicas que reglamenten y complementen a los presentes Términos y Condiciones de Uso, razón por la cual se recomienda al Usuario tomar conocimiento específico de ellas.</p>
+            <p>4. Condiciones de acceso y utilización del Sitio:</p>
+            <p>4.1. La utilización de cualquier Servicio del Sitio atribuye la condición de Usuario del mismo.</p>
+            <p>4.2. El acceso y utilización del Sitio no exige la previa suscripción o registro del Usuario. Sin perjuicio de ello, la utilización de algunos Servicios que se ofrecen a través del Sitio requiere el registro del Usuario.</p>
+            <p>4.3. A fin de registrarse en el Sitio, el Usuario deberá completar el Formulario de Registración con su información personal, indicando además una dirección de correo electrónico y una contraseña. Será responsabilidad del usuario no compartir sus contraseñas.</p>
+            <p>4.4. Uso del Sitio y sus Servicios. El Usuario reconoce y acepta que el uso de los contenidos y/o Servicios ofrecidos por el Sitio será bajo su exclusivo riesgo y/o responsabilidad. El Usuario se compromete a utilizar el Sitio y todo su contenido y Servicios de conformidad con la ley, la moral, el orden público, los presentes Términos de Uso, en su caso, le sean de aplicación. Asimismo, se compromete hacer un uso adecuado de los Servicios y/o contenidos del Sitio y a no emplearlos para realizar actividades ilícitas o constitutivas de delito, que atenten contra los derechos de terceros y/o que infrinjan la regulación sobre propiedad intelectual e industrial, o cualesquiera otras normas del ordenamiento jurídico aplicable. En particular, el Usuario se compromete a no trasmitir, introducir, difundir y poner a disposición de terceros, cualquier tipo de material e información (datos contenidos, mensajes, dibujos, archivos de sonido e imagen, fotografías, software, etc.) que sean contrarios a la ley, la moral, el orden público, los presentes Términos de Uso y, en su caso, a las Condiciones Particulares que le sean de aplicación. A título enunciativo, y en ningún caso limitativo o excluyente, el Usuario se compromete a:</p>
+            <p>4.4.1. No ingresar o difundir contenidos o propaganda de carácter racista, xenófobo, pornográfico, de apología del terrorismo o que atenten contra los derechos humanos.</p>
+            <p>4.4.2. No ingresar o difundir en la red programas de datos (virus y software nocivo) susceptibles de provocar daños en los sistemas informáticos del proveedor de acceso, sus proveedores o terceros usuarios de la red Internet.</p>
+            <p>4.4.3. No ingresar, difundir, transmitir o poner a disposición de terceros cualquier tipo de información, elemento o contenido que constituya publicidad ilícita o desleal.</p>
+            <p>4.4.4. No transmitir publicidad no solicitada o no autorizada, material publicitario, "correo basura", "cartas en cadena", "estructuras piramidales", o cualquier otra forma de solicitación, excepto en aquellas áreas (tales como espacios comerciales) que hayan sido exclusivamente concebidas para ello.</p>
+            <p>4.4.5. No ingresar o difundir cualquier información y contenidos falsos, ambiguos, extemporáneos o inexactos de forma que induzca a error a los receptores de la información.</p>
+            <p>4.4.6. No suplantar a otros Usuarios utilizando sus claves de registro a los distintos Servicios y/o contenidos del Sitio.</p>
+            <p>4.4.7. No introducir o difundir contenidos que sean contrarios al honor, a la intimidad personal y familiar o a la propia imagen de las personas.</p>
+            <p>4.4.8. No ingresar, difundir, transmitir o poner a disposición de terceros cualquier tipo de información, elemento o contenido que suponga una violación de los derechos de propiedad intelectual e industrial, patentes, marcas o copyright que correspondan a los titulares del Sitio o a terceros.</p>
+            <p>4.4.9. No ingresar, difundir, transmitir o poner a disposición de terceros cualquier tipo de información, elemento o contenido que suponga una violación del secreto de las comunicaciones y la legislación de datos de carácter personal.</p>
+            <p>4.4.10. No dirigirse a los usuarios mediante el envío de Spam, o directamente ofrecer, publicar o crear, una base de datos personales de terceros.</p>
+            <p>4.4.11. Usar cualquier mecanismo, software o rutina para impedir o intentar impedir el adecuado funcionamiento de este Sitio o cualquier actividad que se esté realizando en este Sitio.</p>
+            <p>4.4.12. No realizar cualquier acción que imponga una carga desproporcionada o desmesurada sobre la infraestructura de este Sitio.</p>
+            <p>4.4.13. No revelar o compartir su contraseña con terceras personas o usar su contraseña para cualquier propósito no autorizado.</p>
+            <p>4.4.14. No intentar descifrar, descompilar u obtener el código fuente de cualquier programa de software que comprenda o constituya una parte de este Sitio.</p>
+            <p>5. Servicios en particular: Se deja aclarado que el Sitio cuenta, incluyendo pero no limitando, con los siguientes Servicios:</p>
+            <p>5.1. Búsqueda de automóviles, navegación y favoritos: Para buscar un automóvil el Usuario podrá utilizar el buscador que se encuentra en la página principal del Sitio. Los filtros responden a las características de los avisos que se muestran en el resultado. Al seleccionar un filtro, el resultado se actualizará automáticamente. El Usuario puede seleccionar cuantos filtros desee de esa forma y así encontrar los automóviles que mejor se ajusten a sus necesidades.</p>
+            <p>5.1.2.  Un Auto Para vos, EstoyCubierto y Garantía Mecánica. MercedesBenz proporcionará los datos necesarios  a MercedesBenz para hacer llegar propuestas y cotizaciones de seguros. En el caso de Garantía Mecáncia, la cobertura y garantía estará abalada por la compañia de seguros, no siendo un servicio directo de MercedesBenz. MercedesBenz no brinda garantía sobre los vehículos publicados. Un Auto para vos te brinda la posibilidad de marcar los filtros que te lleven a tu próximo vehículo según tus gustos y prioridades. </p>
+            <p>5.2. Intermediación de datos. MercedesBenz proporcionará a MercedesBenz los datos ingresados por los Usuarios para realizar cotizaciones en seguros, para proporcionar al usuario costos del mercado, para que los usuarios puedan contratar su seguro a través del Broker de Seguros.</p>
+            <p>5.2. Alertas: Las Alertas permiten que el Usuario reciba en su casilla de correo electrónico, las novedades de los Automóviles que cumplan con sus criterios guardados. De esta forma, le simplificamos el proceso de búsqueda enviando alertas automáticas al momento de publicación. Logrando dar con oportunidades antes de que otros las busquen en MercedesBenz. </p>
+            <p>5.3. Guardar Favoritos: Este servicio permite al Usuario guardar todos aquellos avisos que resulten de su interés. Para guardar el Usuario un aviso en sus favoritos, simplemente tiene que hacer clic en la estrella. Si el aviso fuese desactivado, desaparecerá automáticamente de su lista. Lo mismo si el Usuario lo elimina del mismo. Se deja aclarado que el Usuario deberá estar registrado para utilizar el Servicio de Alertas.</p>
+            <p>5.4 Buscar o contactar a un vendedor. Para contactar al Vendedor de un aviso, el Usuario debe hacer clic en el aviso, el Usuario deberá podrá escribir o ver directaemente los datos en pantalla. Podrán intercambiar mails o mensajes por inbox. Se deja expresamente aclarado que, los datos del Usuario y del Vendedor sólo podrán ser utilizados a efectos de concluir la operación originada en el Sitio o de publicaciones similares a la original, las cuales seran seleccionadas por el Sitio y no deberá ser empleada por ninguno de ellos con fines publicitarios o promocionales u otras actividades no relacionadas con el Sitio, salvo la expresa autorización del Usuario o del Vendedor al efecto. Por ello, el Usuario y los Vendedores declaran y garantizan que mantendrán indemne al Sitio por cualquier reclamo judicial y/o extrajudicial, en tal sentido. Será responsabilidad del comprador chequear que la operación sea segura, MercedesBenz no es responsable por el mal uso que se pueda llevar a cabo a través de la plataforma. </p>
+            <p>5.5. Recomendar avisos. Para recomendar un aviso, el Usuario debe seleccionar la opción Enviar, que se encuentra dentro del mismo. En el formulario que se desplegará, el Usuario debe ingresar dirección de correo electrónico de su amigo, el Sitio enviará un e-mail con la descripción del aviso a la casilla del correo electrónico de su amigo. También se pondrá recomendar vía whatsapp. Estas funciones están en proceso de desarrollo. </p>
+            <p>5.6. Publicación Online: Para publicar un aviso, el Usuario debe estar registrado en el Sitio. Si ya se encuentras registrado, puede ingresar desde la página principal del Sitio colocando su E-mail y contraseña. Luego, desde Publicar un aviso, deberá completar el formulario de publicación . La duración es de 60 días según aviso. Toda la información se encuentra detallada en www.MercedesBenz.com </p>
+            <p>6. Al registrarse y/o navegar el Sitio, el Usuario y/o el visitante brinda información personal, prestando su consentimiento para que la misma sea almacenada directamente en nuestra base de datos, encontrándose protegida electrónicamente, utilizando los mecanismos de seguridad informática de protección de la información más completos y eficaces para mantenerla en total confidencialidad. Podrán solicitar la eliminación de su información de la base de datos sin ningún inconveniente enviando un mail a contacto@sectorseguro.com con el asunto "Datos Personales" y allí mismo indicar su información completa. Toda la información de la base de datos, será procesada por el Broker de Seguros de MercedesBenz, para hacerle llegar a los usuarios las cotizaciones de seguros.</p>
+            <p>7. El Usuario es responsable por el buen uso del Sitio, comprometiéndose expresamente a evitar cualquier tipo de acción que pueda dañar a sistemas, equipos o servicios accesibles directa o indirectamente a través de Internet, incluyendo la congestión intencional de enlaces o sistemas y de acuerdo a los presentes Términos y Condiciones de Uso.</p>
+            <p>8. Se deja expresamente aclarado que el Sitio podrá ser utilizado única y exclusivamente por personas mayores de 18 años, debiendo abstenerse de utilizarlo las personas que no sean mayores de dicha edad.</p>
+            <p>9. Toda la información acerca de los automóviles publicados y/u ofrecidos por el Sitio es proporcionada por Usuarios, siendo responsabilidad exclusiva de los mismos dicha información como así también lo referente a su comercialización. De igual forma, al momento de compra venta , la responsabilidad es exclusivamente de las partes que llevan a cabo la operación. Para ello, le recomendamos leer atentamente las preguntas frecuentes para reducir las posibilidades de fraude. </p>
+            <p>10. MercedesBenz.com  no se responsabiliza por las publicaciones, veracidad o exactitud de la información presentada en el sitio. Ni de los cambios que sobre las mismas publicaciones pudieran acontecer.  MercedesBenz puede eliminar cualquier publicación en cualquier momento, suspender a un usuario o prohibirle el acceso si fuera necesario. </p>
+            <p>11. Se deja aclarado expresamente que el Sitio no revisa el contenido de los Avisos, proveyendo única y exclusivamente un espacio para su publicación. En tal sentido, el Usuario mantendrá indemne a MercedesBenz. </p>
+            <p>12. MercedesBenz podrá patrocinar o vender espacios publicitarios dentro de las publicaciones o en sus buscadores sin otorgar ninguna responsabilidad sobre las publicaciones mismas. El Usuario es responsable por el buen uso de del servicio, comprometiéndose expresamente a evitar cualquier tipo de acción que pueda dañar a sistemas, equipos o servicios accesibles directa o indirectamente a través de Internet, incluyendo la congestión intencional de enlaces o sistemas y de acuerdo a los presentes Términos y Condiciones.</p>
+            <p>13. El Usuario asume plena responsabilidad frente a MercedesBenz y a terceros por daños y perjuicios que se produjeran como consecuencia del accionar propio, de sus dependientes o de terceros conectados a través del Usuario y los que resulten de la inobservancia de las leyes o reglamentaciones de otros hechos ilícitos o del mal uso que se haga del servicio, debiendo el Usuario indemnizar y mantener indemne a MercedesBenz.com ante cualquier reclamo de pago que pudiera corresponder.</p>
+            <p>14. MercedesBenz.com  tendrá el derecho de ampliar o mejorar los servicios prestados sin necesidad de comunicación previa, así como de alterar los medios o rutas utilizados para la prestación del servicio. </p>
+            <p>15. La falta de ejercicio temporario por parte de MercedesBenz de los derechos que los presentes le confieren, no implicarán una renuncia a los mismos, los cuales podrán ser ejercidos en todo momento.</p>
+            <p>16. MercedesBenz no será responsable de la adecuación de los servicios que proporcione a las necesidades reales del Usuario.</p>
+            <p>17. MercedesBenz  no será responsable por los daños y perjuicios causados por culpa o dolo de los terceros por la prestación de los servicios de que de ellos dependen.</p>
+            <p>18. MercedesBenz no será responsable por los daños, alteración de información o interferencias al sistema o a las redes, producto del accionar de terceros.</p>
+            <p>19. MercedesBenz no será responsable por el resultado del servicio en tanto las instalaciones necesarias para su buen funcionamiento dependan de terceros. Esto incluye, pero no limita a, errores de encaminamiento, pérdida de información o datos, interrupciones del servicio no planificadas que no sean atribuibles a MercedesBenz.</p>
+            <p>20. MercedesBenz no será responsable de la calidad, exactitud, fiabilidad, corrección y utilidad de los datos, programas e información de cualquier tipo que se transmitan por sus redes. El contenido de dicha información será de exclusiva responsabilidad de quienes la intercambian (remitente y destinatario).</p>
+            <p>21. MercedesBenz no será responsable por el mal uso de las facilidades y servicios prestados, debidos a cortes de energía o interrupciones programadas o cualquier otra falla que no se atribuible a culpa grave o dolo de MercedesBenz.</p>
+            <p>22. MercedesBenz  no será responsable por los daños y perjuicios causados, incluyendo caso fortuito y fuerza mayor, que se produjeran a los equipos, instalaciones o personal del Usuario.</p>
+            <p>23.  MercedesBenz  no será responsable frente al Usuario por daños y perjuicios que se produjeran al Usuario como consecuencia del accionar de otros Usuario o terceros y los que resulten de la inobservancia -por parte de terceros u otros Usuarios- de las leyes o reglamentaciones o de otros hechos ilícitos o del mal uso que terceros o Usuarios hagan del servicio.</p>
+            <p>24. Los automóviles y/o servicios ofrecidos y/o publicados en el sitio no se encuentran garantizados por MercedesBenz, asumiendo quienes los proveen toda la responsabilidad respecto a la calidad, los vicios redhibitorios, evicción y/o cualquier pérdida o daño que pudiera sufrirse con relación a las contrataciones formalizadas sobre los mismos por los Usuarios de MercedesBenz.</p>
+            <p>25.  Declaraciones: El Usuario expresamente comprende, acepta y está de acuerdo en que:</p>
+            <p>25.1. El Sitio puede contener errores;</p>
+            <p>25.2. El Sitio MercedesBenz no será responsable por ningún daño o perjuicio, directo o indirecto, incluyendo, sin ningún tipo de limitación, daños producidos por la pérdida y/o deterioro de información y/o por el uso del Sitio;</p>
+            <p>25.3. La utilización del Sitio y de Internet en general implica la asunción de riesgos de potenciales daños al software y al hardware del Usuario. Por tal motivo, el equipo terminal desde el cual acceda al Sitio el Usuario estaría en condiciones de resultar atacado y dañado por la acción de hackers quienes podrían incluso acceder a la información contenida en el equipo terminal del Usuario, extraerla, sustraerla y/o dañarla. El Usuario renuncia a efectuar reclamos por estos motivos.</p>
+            <p>25.4. El intercambio de información a través de Internet tiene el riesgo de que tal información pueda ser captada por un tercero. El Sitio no se hace responsable de las consecuencias que pudiera acarrear al Usuario tal hipótesis.</p>
+            <p>25.5. El Sitio no guarda obligación alguna de conservar información que haya hecho disponible al Usuario, ni que le haya sido enviada por éstos últimos.</p>
+            <p>25.6. Los Usuarios Vendedores que publiquen avisos en el Sitio deberán cumplir con el artículo 7 de la Ley de Defensa del Consumidor e informar la fecha precisa de comienzo y finalización de la oferta, así como sus modalidades condiciones y limitaciones y, si el proveedor limita cuantitativamente su oferta, informar la cantidad con que cuenta para cubrirla; en caso de que se otorgue financiamiento deberá consignarse precio de contado, saldo de deuda, el total de los intereses a pagar, la tasa de interés efectiva anual, la forma de amortización de los intereses, otros gastos si los hubiere, cantidad de pagos a realizar y su periodicidad, gastos extras o adicionales si los hubiera y monto total financiado a pagar. En efecto, el Usuario Vendedor, será único y exclusivo responsable en tal sentido, manteniendo indemne a MercedesBenz.</p>
+            <p>26. Marcas registradas, Derechos de autor y restricciones:
+    Todo el material en este Sitio, incluyendo, pero sin limitación a, imágenes, ilustraciones, clips de audio, y clips de video, se encuentra protegido por derechos de autor.</p>
+            <p>26.1. El material de este Sitio no puede ser copiado, reproducido, republicado, cargado, exhibido, transmitido, o distribuido en forma alguna. El modificar los materiales o utilizar los materiales para cualquier propósito representa una violación de los derechos de autor y otros derechos de propiedad.</p>
+            <p>27. Páginas Enlazadas:</p>
+            <p>27.1. Esta página puede estar ligado a otras páginas en el Internet ("Páginas Enlazadas").</p>
+            <p>27.2. Aunque nosotros examinamos todas las páginas, antes de vincularlas, las páginas cambian regularmente.</p>
+            <p>27.3.Las Páginas Enlazadas son sólo para la conveniencia del Usuario, quien las contacta a su propia cuenta y riesgo.</p>
+            <p>27.4. l Sitio no es responsable por el contenido de ninguna Página Enlazada, aunque esa página esté afiliada con el Sitio.</p>
+            <p>28.Ley aplicable y tribunal competente:</p>
+            <p>28.1. Los presentes Términos de Uso y las normas que lo complementan se regirán por las leyes de la República Argentina, siendo competentes para cualquier controversia que pudiere llegar a suscitarse, los Tribunales Nacionales en lo Comercial, con asiento en la Capital Federal, sin reservas.</p>
+            <p>28.2. La utilización del Sitio está expresamente prohibida en toda jurisdicción en donde no puedan ser aplicados los presentes Términos y Condiciones de Uso.</p>
+            <p>28.3. Toda notificación u otra comunicación que deba efectuarse bajo estos Términos de Uso, deberá realizarse por mail a contacto@sectorseguro.com </p>
+            <p>29. Las personas que utilicen el Sitio www.MercedesBenz.com , por su sola utilización aceptarán de pleno derecho todas y cada una de las disposiciones previstas en los presentes Términos de Uso, sin reservas.</p>
+            <p></p>
+            <p><em>19 mar 2018 &mdash; &copy; MercedesBenz.com</em></p>​
+          </div>
+        </div>
+      </div>
+    </div>
+  </script>
+  
+  <script type="text/x-template" id="opener">
+    <div class="container">
+      <div class="section">
+        <h2>Redirigiendo a ...</h2> 
+        <p v-html="url"></p>
+        <p>Por favor aguarde...</p>
+      </div>
+    </div>  
+  </script>
+
+  <script type="text/x-template" id="pagenotfound">
+    <div class="container">
+      <div class="section pagenotfound">
+        <h2>No pudimos hallar la página</h2> 
+        <p>Por favor revisa la url. Si creés que es un error por favor contactanos</p>
+        <div class="container has-text-centered">
+          <a :href="clientes_url + '/registro'" class="button rounded-button rounded-button-green">Registrarme</a>
+          <router-link to="/atencion" class="button rounded-button" tag="a">Quiero contactarme</router-link>            
+        </div>        
+      </div>
+    </div>  
+  </script>
+
+  <script type="text/x-jsrender" id="breadcrumb">
+    <span class="icon has-text-success">
+      <i class="fas fa-[[:icon]]"></i>
+    </span>&nbsp;
+    <a>[[:name]]</a>
+  </script>
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnCpylsXEujI2Jb07gggRfcewyYwJSbqU&libraries=places"></script>
+  {% if localhost == false %}
+  <script src="{{static_url}}/dist/js/app.js?_={{rev_parse}}" type="text/javascript"></script>
+  {% else %}
+	<script src="{{static_url}}/js/vue.min.js" type="text/javascript"></script>  
+	<script src="{{static_url}}/js/vue-router.js" type="text/javascript"></script>  
+	<script src="{{static_url}}/js/vue-resource.min.js" type="text/javascript"></script>  
+  <script src="{{static_url}}/js/moment-with-locales.min.js"></script>  
+  <script src="{{static_url}}/js/jquery.min.js"></script>
+  <script src="{{static_url}}/js/jquery.typer.js"></script>
+  <script src="{{static_url}}/js/jsrender.min.js"></script>
+	<script src="{{static_url}}/js/sweetalert.min.js"></script>
+  <script src="{{static_url}}/js/fontawesome.js"></script>
+	<script src="{{static_url}}/js/app.js" type="text/javascript"></script>  
+  <script src="{{static_url}}/js/routes/app.js" type="text/javascript"></script>  
+  {% endif %}
+</body>
+</html>

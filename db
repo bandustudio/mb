@@ -1,0 +1,72 @@
+#!/usr/bin/env php
+<?php
+
+/*
+ * This file is part of the Slim API skeleton package
+ *
+ * Copyright (c) 2016 Mika Tuupola
+ *
+ * Licensed under the MIT license:
+ *   http://www.opensource.org/licenses/mit-license.php
+ *
+ * Project home:
+ *   https://github.com/tuupola/slim-api-skeleton
+ *
+ */
+
+date_default_timezone_set("UTC");
+
+#error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING);
+
+require __DIR__ . "/vendor/autoload.php";
+
+$dotenv = new Dotenv\Dotenv(__DIR__);
+$dotenv->load();
+
+/* Setup Slim */
+$app = new Slim\App();
+$container = $app->getContainer();
+
+require __DIR__ . "/api/config/dependencies.php";
+
+use Symfony\Component\Console\Application;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Output\OutputInterface;
+use App\Cron;
+
+$console = new Application();
+
+$console
+    ->register("migrate")
+    ->setDescription("Migrate database tables")
+    ->setCode(function (InputInterface $input, OutputInterface $output) use ($container) {
+        print "Migrating database...\n";
+        $container["spot"]->mapper("App\User")->migrate();
+        $container["spot"]->mapper("App\Message")->migrate();
+        $container["spot"]->mapper("App\Payment")->migrate();
+        $container["spot"]->mapper("App\Email")->migrate();
+        $container["spot"]->mapper("App\Lead")->migrate();
+        $container["spot"]->mapper("App\Plan")->migrate();
+        $container["spot"]->mapper("App\Gateway")->migrate();
+        $container["spot"]->mapper("App\Upload")->migrate();
+        $container["spot"]->mapper("App\Currency")->migrate();
+        $container["spot"]->mapper("App\Brand")->migrate();
+        $container["spot"]->mapper("App\Model")->migrate();
+        $container["spot"]->mapper("App\Version")->migrate();
+        $container["spot"]->mapper("App\Cron")->migrate();
+        $container["spot"]->mapper("App\History")->migrate();
+        $container["spot"]->mapper("App\UserRole")->migrate();
+        $container["spot"]->mapper("App\UserMessage")->migrate();
+    });
+
+$console
+    ->register("seed")
+    ->setDescription("Seed database")
+    ->setCode(function (InputInterface $input, OutputInterface $output) use ($container) {
+        print "Seeding database...\n";
+        Cron::seed();
+    });
+
+$console->run();

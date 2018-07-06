@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="157 1518 350 382">
+    <defs>
+        <style>
+            .cls-1{fill:#f7f7f7;stroke:#707070}.cls-2{stroke:none}.cls-3{fill:none}
+        </style>
+    </defs>
+    <g id="Rectangle_4" class="cls-1" data-name="Rectangle 4" transform="translate(157 1518)">
+        <rect width="350" height="382" class="cls-2" rx="35"/>
+        <rect width="349" height="381" x=".5" y=".5" class="cls-3" rx="34.5"/>
+    </g>
+</svg>

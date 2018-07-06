@@ -1,0 +1,150 @@
+body, .navbar, .spinner-outer {
+	background-color: whitesmoke;
+}
+
+.navbar-brand a, .item.active a, .navbar-item.active, .navbar-item.active a { 
+  color: #00cc00!important;
+}
+
+.notification {
+	background-color: white;
+}
+
+.splash {
+  background-image: url(/img/clientes.svg);
+}
+
+.registro, .ingresar { 
+  background-image: url(/img/ingresar.svg);
+}
+
+.ingresar .message {
+	margin-bottom: 6rem;
+}
+
+.polizas .columns, .cotizaciones .columns {
+	flex-direction: row;
+	flex-wrap: wrap;
+	flex-flow: row wrap;
+	align-content: flex-end;
+}
+
+.polizas .box, .polizas .columns .tile, 
+.cotizaciones .box, .cotizaciones .columns .tile {
+	border-radius: 10px;
+	min-height: 205px;
+}
+
+.cotizaciones .box .level, .polizas .box .level {
+	margin-bottom: 0;
+}
+
+.btn-action {
+	display: none;
+	padding-top: 3px;
+}
+
+.btn-action .icon {
+	top: 2px;
+	position: relative;
+}
+
+.polizas .box-content,  
+.cotizaciones .box-content {
+	min-height: 190px;
+}
+
+.box .picture {
+	position: relative;
+	min-height: 128px;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
+}
+
+.badge .picture {
+	display: inline-block;
+	cursor: pointer;
+	position: relative;
+	top: 12px;  
+	width: 120px;
+	height: 120px;
+	border-radius: 50%;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;	
+}
+
+.box .status {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+}
+
+.box .content {
+	position: relative;
+}
+
+.badge .picture {
+	display: inline-block;
+	cursor: pointer;
+	position: relative;
+	top: 12px;  
+	width: 120px;
+	height: 120px;
+	border-radius: 50%;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;	
+}
+
+.picture {
+	box-shadow: 0 0 4px rgba(0,0,0,0.1), 0 6px 0 inset rgba(0,0,0,0.1);	
+}
+
+.picture .icon {
+	position: absolute;
+	top: 10px;
+	left: 15px;
+	cursor: pointer;
+	opacity: 0;
+	transition: opacity .3s ease-in;
+}
+
+.badge .picture .icon {
+	top: 45px;
+	left: 50px;	
+	font-size: 50px !important;
+}
+
+.badge .picture:hover .icon,
+.box .picture:hover .icon {
+	opacity: 1;
+}
+
+.profile {
+	position: absolute;
+	top: 2px;
+	right: 2px;
+	width: 44px;
+	height: 44px;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
+	border-radius: 50%;
+	box-shadow: 0 0 4px rgba(0,0,0,0.1), 0 6px 0 inset rgba(0,0,0,0.1);
+}
+
+.prices {
+	background-color: white;
+	border-radius: 10px;
+	margin-top: 10px;
+	box-shadow: 2px 2px 2px #dfdfdf inset;
+	padding: 1em;
+}
+
+@media screen and (max-width: 768px) {
+	.box .media-left{
+		display: none;		
+	}
+}

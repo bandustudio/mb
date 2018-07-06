@@ -1,0 +1,30 @@
+{% extends "layouts/email.html" %}
+
+{% block body %}
+            <!-- START CENTERED WHITE CONTAINER -->
+            <span class="preheader">Recibiste un nuevo mensaje</span>
+            <table class="main">
+
+              <!-- START MAIN CONTENT AREA -->
+              <tr>
+                <td class="wrapper">
+                  <table border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td>
+                        <h2>{{recipient.first_name}}: Recibiste un mensaje</h2>
+                        <p><a href="{{app_url}}/{{item.code}}---{{item.title}}">{{item.brand.title}} {{item.model.title}}</a></p>
+                        <p>&nbsp;</p>
+                        <p><strong>{{created}}</p>
+                        <p><strong>{{sender.username}}</strong> dice:</p>
+                        <blockquote>{{content}}</blockquote>
+                        <p>&nbsp;</p>
+                        <p>Cordialmente, el equipo MercedesBenz.com</p>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+
+              <!-- END MAIN CONTENT AREA -->
+              </table>
+{% endblock %}              

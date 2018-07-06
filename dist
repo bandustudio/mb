@@ -1,0 +1,120 @@
+<?php
+
+print "Packing assets...\n";
+
+require __DIR__ . "/vendor/autoload.php";
+
+//use Patchwork\JSqueeze;
+use MatthiasMullie\Minify;
+
+$dest = __DIR__ . '/static';
+$head = substr(exec('git rev-parse HEAD'),0,7);
+
+// App 
+
+array_map('unlink', glob($dest . '/dist/js/*'));
+array_map('unlink', glob($dest . '/dist/css/*'));
+
+
+// js
+/*
+$jz = new JSqueeze();
+
+$singleLine = true;
+$keepImportantComments = false;
+$specialVarRx = true;
+$fatJs = [
+	file_get_contents(__DIR__ . '/js/vue.js'),
+	file_get_contents(__DIR__ . '/js/vue-router.js'),
+	file_get_contents(__DIR__ . '/js/vue-resource.min.js'),
+	file_get_contents(__DIR__ . '/js/jquery.min.js'),
+	file_get_contents(__DIR__ . '/js/jquery.typer.js'),
+	file_get_contents(__DIR__ . '/js/app.js'),
+	file_get_contents(__DIR__ . '/js/routes/app.js')
+];
+
+$minifiedJs = $jz->squeeze(
+    implode('',$fatJs),
+    $singleLine,
+    $keepImportantComments,
+    $specialVarRx
+);
+
+file_put_contents(__DIR__ . '/dist/js/app.js',$minifiedJs);
+*/
+
+// $minifier = new Minify\JS($dest . '/js/vue.js'); dev
+$minifier = new Minify\JS( $dest. '/js/vue.min.js');
+$minifier->add($dest . '/js/vue-router.js');
+$minifier->add($dest . '/js/vue-resource.min.js');
+$minifier->add($dest . '/js/jquery.min.js');
+$minifier->add($dest . '/js/jquery.typer.js');
+$minifier->add($dest . '/js/moment-with-locales.min.js');
+$minifier->add($dest . '/js/sweetalert.min.js');
+$minifier->add($dest . '/js/jsrender.min.js');
+$minifier->add($dest . '/js/fontawesome.js');
+$minifier->add($dest . '/js/app.js');
+$minifier->add($dest . '/js/routes/app.js');
+$minifier->minify($dest . '/dist/js/app.js');
+
+// css
+$minifier = new Minify\CSS($dest . '/css/bulma.css');
+$minifier->add($dest . '/css/app.css');
+$minifier->add($dest . '/css/sweetalert.css');
+$minifier->add($dest . '/css/custom/app.css');
+$minifier->minify($dest . '/dist/css/app.css');
+
+// Clientes
+
+// js
+// $minifier = new Minify\JS($dest . '/js/vue.js'); dev
+$minifier = new Minify\JS($dest . '/js/vue.min.js');
+$minifier->add($dest . '/js/vue-router.js');
+$minifier->add($dest . '/js/vue-resource.min.js');
+$minifier->add($dest . '/js/jquery.min.js');
+$minifier->add($dest . '/js/jquery.typer.js');
+$minifier->add($dest . '/js/moment-with-locales.min.js');
+$minifier->add($dest . '/js/jsrender.min.js');
+$minifier->add($dest . '/js/sweetalert.min.js');
+$minifier->add($dest . '/js/fontawesome.js');
+$minifier->add($dest . '/js/exif.js');
+$minifier->add($dest . '/js/binaryajax.js');
+$minifier->add($dest . '/js/app.js');
+$minifier->add($dest . '/js/routes/clientes.js');
+$minifier->minify($dest . '/dist/js/clientes.js');
+
+
+// css 
+$minifier = new Minify\CSS($dest . '/css/bulma.css');
+$minifier->add($dest . '/css/app.css');
+$minifier->add($dest . '/css/sweetalert.css');
+$minifier->add($dest . '/css/custom/clientes.css');
+$minifier->minify($dest . '/dist/css/clientes.css');
+
+
+// Gestion
+
+// js
+// $minifier = new Minify\JS($dest . '/js/vue.js'); dev
+$minifier = new Minify\JS($dest . '/js/vue.min.js');
+$minifier->add($dest . '/js/vue-router.js');
+$minifier->add($dest . '/js/vue-resource.min.js');
+$minifier->add($dest . '/js/jquery.min.js');
+$minifier->add($dest . '/js/jquery.typer.js');
+$minifier->add($dest . '/js/moment-with-locales.min.js');
+$minifier->add($dest . '/js/jsrender.min.js');
+$minifier->add($dest . '/js/sweetalert.js');
+$minifier->add($dest . '/js/Chart.bundle.js');
+$minifier->add($dest . '/js/jquery.serializejson.min.js');
+$minifier->add($dest . '/js/fontawesome.js');
+$minifier->add($dest . '/js/app.js');
+$minifier->add($dest . '/js/routes/gestion.js');
+$minifier->minify($dest . '/dist/js/gestion.js');
+
+
+// css 
+$minifier = new Minify\CSS($dest . '/css/bulma.css');
+$minifier->add($dest . '/css/app.css');
+$minifier->add($dest . '/css/sweetalert2.css');
+$minifier->add($dest . '/css/custom/gestion.css');
+$minifier->minify($dest . '/dist/css/gestion.css');

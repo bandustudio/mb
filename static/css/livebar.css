@@ -1,0 +1,20 @@
+.imso_li__live-ind-var {
+    width: 50%;
+    -webkit-transform-origin: left;
+    -webkit-transform: scaleX(0);
+    animation: live-indicator-length-animation 4s 1s infinite alternate cubic-bezier(.87,.01,.87,.5);
+}
+.imso_li__live-ind-var {
+    height: 2px;
+    float: left;
+    background-color: #259b24;
+}
+
+@keyframes live-indicator-length-animation {
+	0%{-webkit-transform:scaleX(0)}
+	60%{-webkit-transform:scaleX(0)}
+	80%{-webkit-transform:scaleX(1)}
+	100%{-webkit-transform:scaleX(1)}
+}
+
+

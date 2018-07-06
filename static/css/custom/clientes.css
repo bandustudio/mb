@@ -1,0 +1,141 @@
+.navbar-brand a, .item.active a, .navbar-item.active, .navbar-item.active a { 
+  color: #00cc00!important;
+}
+
+.notification {
+	background-color: white;
+}
+
+.splash {
+  background-image: url(/img/clientes.svg);
+}
+
+.cobertura {
+	background-image: url(/img/atencion.svg);
+	padding-bottom: 440px;
+}
+
+.registro, .ingresar { 
+  background-image: url(/img/ingresar.svg);
+}
+
+.ingresar .message {
+	margin-bottom: 6rem;
+}
+
+.cotizaciones .columns, 
+.polizas .columns {
+	flex-direction: row;
+	flex-wrap: wrap;
+	flex-flow: row wrap;
+	align-content: flex-end;
+}
+
+.cotizaciones .box:not(.bg-light), .polizas .box:not(.bg-light) {
+	position: relative;
+	transition: box-shadow .25s;
+	box-shadow: 0 2px 5px 0 rgba(0,0,0,.16),0 2px 10px 0 rgba(0,0,0,.12);
+	cursor: pointer;
+	min-height: 168px;
+}
+
+.cotizaciones .box .media-left span {
+	display: flex;
+	margin-bottom: 5px;
+	font-weight: 600;
+	clear: both;
+}
+
+.cotizaciones .box:not(.bg-light):hover, .polizas .box:not(.bg-light):hover {
+	box-shadow: 0 8px 17px 0 rgba(0,0,0,.2),0 6px 20px 0 rgba(0,0,0,.19);
+}
+
+.cotizaciones .box .close {
+	position: absolute;
+	top: 8px;
+	right: 8px;
+}
+
+.cotizaciones .box, .cotizaciones .columns .tile, 
+.polizas .box, .polizas .columns .tile {
+	border-radius: 10px;
+}
+
+.cotizaciones .box-content,
+.polizas .box-content {
+	min-height: 190px;
+}
+
+.box .picture {
+	position: relative;
+	min-height: 128px;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
+}
+
+.box .status {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+}
+
+.box .content {
+	position: relative;
+}
+
+.badge .picture {
+	display: inline-block;
+	cursor: pointer;
+	position: relative;
+	top: 12px;  
+	width: 120px;
+	height: 120px;
+	border-radius: 50%;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;	
+}
+
+.picture {
+	box-shadow: 0 0 4px rgba(0,0,0,0.1), 0 6px 0 inset rgba(0,0,0,0.1);	
+}
+
+.picture .icon {
+	position: absolute;
+	top: 10px;
+	left: 15px;
+	cursor: pointer;
+	opacity: 0;
+	transition: opacity .3s ease-in;
+}
+
+.badge .picture .icon {
+	top: 45px;
+	left: 50px;	
+	font-size: 50px !important;
+}
+
+.badge .picture:hover .icon,
+.box .picture:hover .icon {
+	opacity: 1;
+}
+
+.profile {
+	position: absolute;
+	top: 2px;
+	right: 2px;
+	width: 44px;
+	height: 44px;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
+	border-radius: 50%;
+	box-shadow: 0 0 4px rgba(0,0,0,0.1), 0 6px 0 inset rgba(0,0,0,0.1);
+}
+
+@media screen and (max-width: 768px) {
+	.box .media-left{
+		display: none;		
+	}
+}
