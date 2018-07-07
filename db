@@ -44,19 +44,12 @@ $console
     ->setCode(function (InputInterface $input, OutputInterface $output) use ($container) {
         print "Migrating database...\n";
         $container["spot"]->mapper("App\User")->migrate();
-        $container["spot"]->mapper("App\Message")->migrate();
-        $container["spot"]->mapper("App\Payment")->migrate();
-        $container["spot"]->mapper("App\Email")->migrate();
         $container["spot"]->mapper("App\Lead")->migrate();
-        $container["spot"]->mapper("App\Plan")->migrate();
-        $container["spot"]->mapper("App\Gateway")->migrate();
         $container["spot"]->mapper("App\Upload")->migrate();
         $container["spot"]->mapper("App\Currency")->migrate();
         $container["spot"]->mapper("App\Brand")->migrate();
         $container["spot"]->mapper("App\Model")->migrate();
         $container["spot"]->mapper("App\Version")->migrate();
-        $container["spot"]->mapper("App\Cron")->migrate();
-        $container["spot"]->mapper("App\History")->migrate();
         $container["spot"]->mapper("App\UserRole")->migrate();
         $container["spot"]->mapper("App\UserMessage")->migrate();
     });

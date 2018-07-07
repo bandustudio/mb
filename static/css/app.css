@@ -1,7 +1,9 @@
 body {
-  font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-family:"CorporateA",Helvetica,Arial,sans-serif;
   transition: all 0.5 linear;
   padding-top: 110px;
+  background-color: black;
+  color: white;
   /*background-image:url(/img/placeholder2.png);
   background-size: 1443px 895px;
   background-position: top center;
@@ -9,32 +11,9 @@ body {
 }
 
 @font-face{
-    font-family:AvenirNextLTW01Bold;
-    src:url(/fonts/avenir-next-bold.eot);
-    src:url(/fonts/avenir-next-bold.eot) format("embedded-opentype"),url(/fonts/avenir-next-bold.woff) format("woff"),url(/fonts/avenir-next-bold.ttf) format("truetype"),url(/fonts/avenir-next-bold.svg#AvenirNextLTW01BoldRegular) format("svg")
-}
-@font-face{
-    font-family:AvenirNextLTW01Italic;
-    src:url(/fonts/avenir-next-italic.eot);
-    src:url(/fonts/avenir-next-italic.eot) format("embedded-opentype"),url(/fonts/avenir-next-italic.woff) format("woff"),url(/fonts/avenir-next-italic.ttf) format("truetype"),url(/fonts/avenir-next-italic.svg#AvenirNextLTW01ItalicRegular) format("svg")
-}
-@font-face{
-    font-family:AvenirNextLTW01Regular;
-    src:url(/fonts/avenir-next-regular.eot);
-    src:url(/fonts/avenir-next-regular.eot) format("embedded-opentype"),url(/fonts/avenir-next-regular.woff) format("woff"),url(/fonts/avenir-next-regular.ttf) format("truetype"),url(/fonts/avenir-next-regular.svg#AvenirNextLTW01RegularRegular) format("svg")
-}
-@font-face{
-    font-family:AvenirNextW01Thin;
-    src:url(/fonts/avenir-next-thin.eot);
-    src:url(/fonts/avenir-next-thin.eot) format("embedded-opentype"),url(/fonts/avenir-next-thin.woff) format("woff"),url(/fonts/avenir-next-thin.ttf) format("truetype"),url(/fonts/avenir-next-thin.svg#AvenirNextW01ThinRegular) format("svg")
-}
-@font-face {
-  font-family: "helvetica-neue";
-  src: url("/fonts/helvetica-neue-webfont.eot?") format("embedded-opentype");
-}
-@font-face {
-  font-family: "helvetica-neue";
-  src: local("☺"), url("/fonts/helvetica-neue-webfont.woff") format("woff"), url("/fonts/helvetica-neue-webfont.ttf") format("opentype"), url("/fonts/helvetica-neue-webfont.eot"), url("/fonts/helvetica-neue-webfont.svg#helvetica-neue-webfont'") format("svg");
+    font-family:CorporateA;
+    src:url(/fonts/corporate_a_regular.eot);
+    src:url(/fonts/corporate_a_regular.eot) format("embedded-opentype"),url(/fonts/corporate_a_regular.woff) format("woff"),url(/fonts/corporate_a_regular.ttf) format("truetype"),url(/fonts/corporate_a_regular.svg#CorporateARegular) format("svg")
 }
 
 @keyframes fadeIn{
@@ -267,7 +246,7 @@ body {
 .spinner-outer {
   width: 100%;
   height:90vh;
-  background-color: white;
+  background-color: black;
   filter: none!important;
 }
 
@@ -525,7 +504,7 @@ body {
 }
 
 .rounded-input, .rounded-textarea, .rounded-select select {
-  border: 1px solid #707070;
+  border: 1px solid white;
   border-radius: 17px;
   height: 70px;
   padding: 18px 20px;
@@ -583,12 +562,15 @@ body {
 }
 
 .navbar {
-  background-color: transparent;
+  background-color: rgba(0,0,0,0.9);
   max-width: 1220px;
   padding-top: 58px;
   margin-left: auto;
   margin-right: auto;
-  background-color: white;
+  background-image: url(/img/índice.jpeg);
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: 140px;  
 }
 
 .navbar-item .svg-inline--fa{
@@ -615,6 +597,15 @@ body {
 
 
 @media screen and (min-width: 1024px) {
+  
+  body {
+    padding-top: 10em;
+  }
+
+  .navbar {
+    padding-top: 3.5em;
+    padding-bottom: 3.5em;
+  }
 
   .navbar-button.has-dropdown {
     border: solid 2px #08d184;
@@ -631,7 +622,7 @@ body {
     color: #08d184!important;
     border: solid 2px #08d184;
     background-color: #ffffff;
-    /*border: solid 1px #707070;*/
+    /*border: solid 1px white;*/
   }
 
   .navbar-button-green {
@@ -654,7 +645,7 @@ body {
   font-stretch: normal;
   line-height: 1.28;
   letter-spacing: normal;
-  color: #707070;
+  color: white;
 }
 
 .navbar-menu .navbar-item span {
@@ -677,7 +668,7 @@ body {
 }
 
 .navbar-item a {
-  color: #707070;
+  color: white;
 }
 
 a.navbar-item:hover, a.navbar-item.is-active, a.navbar-link:hover, a.navbar-link.is-active, .navbar-item.has-dropdown:hover .navbar-link, .navbar-item.has-dropdown.is-active .navbar-link {
@@ -695,16 +686,30 @@ a.navbar-item:hover, a.navbar-item.is-active, a.navbar-link:hover, a.navbar-link
 }
 
 .navbar-brand {
-  font-family: AvenirNextLTW01Bold;
+  justify-content: center;
+  flex-direction: column;
+  text-align: left;
+  padding-right: 1em;  
+  padding-left: 3.4em;
+  font-family: CorporateA;
   font-size: 28px;
   font-weight: 500;
   font-style: normal;
   font-stretch: normal;
   line-height: 1.36;
   letter-spacing: normal;
-  text-align: center;
+  text-align: left;
   color: #4088da;
-  margin-top: -4px;
+}
+
+.navbar-brand h1 {
+  font-size: 24px;
+  color: white;
+}
+
+.navbar-brand h2 {
+  font-size: 15px;
+  color: white;
 }
 
 .button, .button:hover {
@@ -726,7 +731,7 @@ a.navbar-item:hover, a.navbar-item.is-active, a.navbar-link:hover, a.navbar-link
 }
 
 a {
-  color: #707070;
+  color: white;
 }
 
 a:hover {
@@ -758,8 +763,7 @@ a:hover {
 
 .section {
   padding: 3rem 1rem;
-  padding-top: 50px;
-  padding-top: 0px;
+  padding-top: 10px;
   padding-bottom: 360px;
   background-position: bottom center;
   background-repeat: no-repeat;
@@ -790,7 +794,7 @@ a:hover {
   line-height: 1.21;
   letter-spacing: normal;
   text-align: center;
-  color: #707070;
+  color: white;
   margin: 30px 0;
 }
 
@@ -802,7 +806,7 @@ a:hover {
   line-height: 1.21;
   letter-spacing: normal;
   text-align: center;
-  color: #707070;
+  color: white;
   margin: 30px 0;
 }
 
@@ -814,7 +818,7 @@ a:hover {
   line-height: 1.21;
   letter-spacing: normal;
   text-align: center;
-  color: #707070;
+  color: white;
   margin: 30px 0;
   padding-bottom: 25px;
 }
@@ -922,7 +926,7 @@ a:hover {
 .rounded {
   border-radius: 31px;
   background-color: #ffffff;
-  border: solid 1px #707070;
+  border: solid 1px white;
   padding: 40px 30px;
   margin-top: 65px;
 }
@@ -945,7 +949,7 @@ a:hover {
 }
 
 .rounded .rounded-button.disabled:hover {
-  color: #707070;
+  color: white;
 }
 
 .rounded .select, .rounded .select select {
@@ -971,7 +975,7 @@ a:hover {
   line-height: 1.21;
   letter-spacing: normal;
   text-align: center;
-  color: #707070;
+  color: #666;
 }
 
 .rounded > p {
@@ -984,7 +988,7 @@ a:hover {
   line-height: 1.2;
   letter-spacing: normal;
   text-align: center;
-  color: #707070;
+  color: #777;
 }
 
 .rounded label {
@@ -1006,7 +1010,7 @@ a:hover {
 }
 
 .rounded .pills .column {
-  border-bottom: 10px solid #707070;
+  border-bottom: 10px solid white;
 }
 
 .rounded .pills .column.grey {
@@ -1026,7 +1030,7 @@ a:hover {
   font-size: 18px;
   padding-bottom: 5px;  
   text-align: center;
-  color: #707070;
+  color: #777;
 }
 
 .select:not(.is-multiple)::after {
@@ -1038,7 +1042,7 @@ a:hover {
 }
 
 .brand {
-  font-family: AvenirNextLTW01Bold;
+  font-family: CorporateA;
 }
 
 .container .rounded-button + .rounded-button {
@@ -1054,7 +1058,7 @@ a:hover {
   line-height: 1.21;
   letter-spacing: normal;
   text-align: center;
-  color: #707070;
+  color: white;
 }
 
 .rounded-button {
@@ -1065,14 +1069,14 @@ a:hover {
   padding-right: 25px;
   border-radius: 17px;
   background-color: #ffffff;
-  border: solid 1px #707070;
+  border: solid 1px white;
   font-size: 24px;
   font-weight: 500;
   font-style: normal;
   font-stretch: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #707070;
+  color: #dbdbdb;
 }
 
 .rounded-button-success {
@@ -1123,14 +1127,14 @@ a:hover {
 }
 
 .rounded-button-grey {
-  border: solid 2px #707070;
+  border: solid 2px white;
   background-color: #f7f7f7;
 }
 
 .option {
   border-radius: 35px;
   background-color: #f7f7f7;
-  border: solid 1px #707070;
+  border: solid 1px white;
   margin: 10px;
   margin-top: 30px;
   padding-top: 40px;
@@ -1144,7 +1148,7 @@ a:hover {
   line-height: 1.21;
   letter-spacing: normal;
   text-align: center;
-  color: #707070;
+  color: white;
   margin: 10px 0;
 }
 
@@ -1156,7 +1160,7 @@ a:hover {
   line-height: 1.21;
   letter-spacing: normal;
   text-align: center;
-  color: #707070;
+  color: white;
   margin: 10px 0;
 }
 
@@ -1205,7 +1209,7 @@ a:hover {
 }
 
 .option-main.line-vertical .column + .column {
-  border-left: 1px solid #707070;
+  border-left: 1px solid white;
 }
 
 .option-main.line-vertical .column h2 {
@@ -1524,7 +1528,6 @@ a:hover {
 }
 
 @media screen and (max-width: 768px) {
-  
   .inline-background {
     height: 200px;
   }
@@ -1608,28 +1611,22 @@ a:hover {
   .container .rounded-button + .rounded-button {
     margin-left: 0;
   }
-
   .splash .hero-body {
     padding-left: 0;
     padding-right: 0;
   }
-  
   .section > h1, .section > div > h1 {
     font-size: 32px;
   }
-
   .section > h2, .section > div > h2, .title{
     font-size: 20px;
   }
-
   .section > p, .section > div > p, .content h4{
     font-size: 14px;
   }
-
   .rounded {
     margin-top: 80px;
   }
-
   .rounded .rounded-button {
     min-width: auto;
     width: 100%;

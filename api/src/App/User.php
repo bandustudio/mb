@@ -63,7 +63,7 @@ class User extends \Spot\Entity
             "token" => ["type" => "text"],
             "facebook_id" => ["type" => "decimal", "precision" => "21", "unique" => true],
             "google_id" => ["type" => "decimal", "precision" => "21", "unique" => true],
-            "picture" => ["type" => "string", "length" => "255","value" => "https://static.sectorseguro.com/img/placeholder.png", "default" => "https://static.sectorseguro.com/img/placeholder.png"],
+            "picture" => ["type" => "string", "length" => "255","value" => "https://static.mercedesbenz.com/img/placeholder.png", "default" => "https://static.mercedesbenz.com/img/placeholder.png"],
             "background" => ["type" => "string", "length" => "255"],
             "newsletter" => ["type" => "boolean", "value" => false],
             "terms" => ["type" => "boolean", "value" => false],

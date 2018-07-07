@@ -1,18 +1,18 @@
 {
-    "name": "martin_fly/sectorseguro",
+    "name": "martin_fly/mercedesbenz",
     "description": "Cotizá y gestioná tus seguros con MercedesBenz.com",
     "type": "project",
     "keywords": [
         "seguros",
         "online"
     ],
-    "homepage": "https://martin_fly@bitbucket.org/martin_fly/sectorseguro.git",
+    "homepage": "https://martin_fly@bitbucket.org/martin_fly/mercedesbenz.git",
     "license": "MIT",
     "authors": [
         {
             "name": "Martin Frith",
             "email": "devmetasoft@gmail.com",
-            "homepage": "https://sectorseguro.com/",
+            "homepage": "https://mercedesbenz.com/",
             "role": "Developer"
         }
     ],
@@ -36,10 +36,7 @@
         "phpmailer/phpmailer": "~5.2",
         "guzzlehttp/guzzle": "^6.3.0",
         "patchwork/jsqueeze": "~2.0",
-        "matthiasmullie/minify": "^1.3",
-        "facebook/graph-sdk": "5.4",
-        "google/apiclient": "dev-master",
-        "twilio/sdk": "~5.16"
+        "matthiasmullie/minify": "^1.3"
     },
     "autoload": {
         "psr-4": {

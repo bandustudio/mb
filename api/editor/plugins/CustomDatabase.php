@@ -18,6 +18,6 @@ class CustomDatabase extends Adminer {
   }
 
   function database() {
-    return 'sectorseguro';
+    return 'mercedesbenz';
   }
 }

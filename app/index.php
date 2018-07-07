@@ -27,8 +27,6 @@ $container['view'] = function ($c) {
     $view->offsetSet('app_url', getenv('APP_URL'));
     $view->offsetSet('api_url', getenv('API_URL'));
     $view->offsetSet('static_url', getenv('STATIC_URL'));
-    $view->offsetSet('clientes_url', getenv('CLIENTES_URL'));
-    $view->offsetSet('gestion_url', getenv('GESTION_URL'));
     $view->offsetSet('app_phone', getenv('APP_PHONE'));
     $view->offsetSet('app_whatsapp', getenv('APP_WHATSAPP'));
     $view->offsetSet('app_facebook', getenv('APP_FACEBOOK'));

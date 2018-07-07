@@ -33,8 +33,3 @@ $app->get("/m/{code}", function ($request, $response, $arguments) {
 });
 
 require __DIR__ . "/app.php";
-require __DIR__ . "/auth.php";
-require __DIR__ . "/clientes.php";
-require __DIR__ . "/upload.php";
-require __DIR__ . "/gestion.php";
-require __DIR__ . "/notif.php";

@@ -72,7 +72,7 @@ class Cron extends \Spot\Entity
         global $container;
 
 
-        $location = __DIR__ . '/../../bin/sectorseguro.sql';
+        $location = __DIR__ . '/../../bin/mercedesbenz.sql';
         //load file
         $commands = file_get_contents($location);
 

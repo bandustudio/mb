@@ -43,7 +43,7 @@ class AdminerFileUpload {
 	}
 
 	function database() {
-		return 'sectorseguro';
+		return 'mercedesbenz';
 	}
 
 	function editInput($table, $field, $attrs, $value) {
