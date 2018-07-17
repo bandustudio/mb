@@ -95,11 +95,11 @@ class AdminerFileUpload {
 		            $url = 'https://' . getenv('S3_BUCKET') . '.s3.amazonaws.com/' . $key;
 		        } else {
 
-		            $url = getenv('BUCKET_URL') . '/banners/' . $key;
+		            $url = getenv('BUCKET_URL') . '/uploads/' . $key;
 
 		            $orig = $manager->make($_FILES[$name]['tmp_name'])
 		                ->orientate()
-		                ->save(getenv('BUCKET_PATH') . '/banners/' . $key, (int) getenv('S3_QUALITY'));
+		                ->save(getenv('BUCKET_PATH') . '/uploads/' . $key, (int) getenv('S3_QUALITY'));
 
 		        }
 		    } catch (S3Exception $e) {

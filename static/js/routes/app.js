@@ -159,6 +159,7 @@ const router = new VueRouter({
     {path: '/item', component: Item,  meta : { title: 'Item'}},
     {path: '/contacto', component: Contacto, meta : { title: 'Contacto'}},
     {path: '/terminos', component: Terminos, meta : { title: 'Términos y condiciones'}},
+    {path: '/atencion', component: Atencion, meta : { title: 'Atención'}},
     {path: "*", component: PageNotFound, meta : { title: 'Not found'}}
   ]
 });

@@ -1,7 +1,6 @@
 body {
   font-family:"CorporateA",Helvetica,Arial,sans-serif;
   transition: all 0.5 linear;
-  padding-top: 110px;
   background-color: black;
   color: white;
   /*background-image:url(/img/placeholder2.png);
@@ -562,7 +561,7 @@ body {
 }
 
 .navbar {
-  background-color: rgba(0,0,0,0.9);
+  background-color: black;
   max-width: 1220px;
   padding-top: 58px;
   margin-left: auto;
@@ -598,10 +597,6 @@ body {
 
 @media screen and (min-width: 1024px) {
   
-  body {
-    padding-top: 10em;
-  }
-
   .navbar {
     padding-top: 3.5em;
     padding-bottom: 3.5em;
@@ -1148,7 +1143,7 @@ a:hover {
   line-height: 1.21;
   letter-spacing: normal;
   text-align: center;
-  color: white;
+  color: #666;
   margin: 10px 0;
 }
 
@@ -1160,7 +1155,7 @@ a:hover {
   line-height: 1.21;
   letter-spacing: normal;
   text-align: center;
-  color: white;
+  color: #777;
   margin: 10px 0;
 }
 

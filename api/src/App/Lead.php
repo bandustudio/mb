@@ -33,13 +33,10 @@ class Lead extends \Spot\Entity
         return [
             "id" => ["type" => "integer", "unsigned" => true, "primary" => true, "autoincrement" => true],
             "user_id" => ["type" => "integer", "unsigned" => true, "default" => NULL, 'index' => true],
-            "gestor_id" => ["type" => "integer", "unsigned" => true, "default" => NULL, 'index' => true],
+            "post_id" => ["type" => "integer", "unsigned" => true, "default" => NULL, 'index' => true],
             "plan_id" => ["type" => "integer", "unsigned" => true, "default" => NULL, 'index' => true],
             "region_id" => ["type" => "integer", "unsigned" => true, "default" => NULL, 'index' => true],
             "city_id" => ["type" => "integer", "unsigned" => true, "default" => NULL, 'index' => true],
-            "brand_id" => ["type" => "integer", "unsigned" => true, "default" => NULL, 'index' => true],
-            "model_id" => ["type" => "integer", "unsigned" => true, "default" => NULL, 'index' => true],
-            "version_id" => ["type" => "integer", "unsigned" => true, "default" => NULL, 'index' => true],
             "code" => ["type" => "string", "length" => 255],            
             "origin" => ["type" => "string", "length" => 50],
             "picture" => ["type" => "string", "length" => 255],
@@ -93,14 +90,9 @@ class Lead extends \Spot\Entity
     {
         return [
             'user' => $mapper->belongsTo($entity, 'App\User', 'user_id'),
-            'gestor' => $mapper->belongsTo($entity, 'App\User', 'gestor_id'),
+            'post' => $mapper->belongsTo($entity, 'App\Post', 'post_id'),
             'region' => $mapper->belongsTo($entity, 'App\Region', 'region_id'),
             'city' => $mapper->belongsTo($entity, 'App\City', 'city_id'),
-            'brand' => $mapper->belongsTo($entity, 'App\Brand', 'brand_id'),
-            'model' => $mapper->belongsTo($entity, 'App\Model', 'model_id'),
-            'version' => $mapper->belongsTo($entity, 'App\Version', 'version_id'),
-            'plan' => $mapper->belongsTo($entity, 'App\Plan', 'plan_id'),
-            'plans' => $mapper->hasMany($entity, 'App\Plan', 'lead_id')->order(['price' => 'ASC']),
             'uploads' => $mapper->hasMany($entity, 'App\Upload', 'lead_id')->order(['created' => 'DESC'])
         ];
     }

@@ -50,7 +50,7 @@
 </head>
 <body>
   <div id="app">
-    <nav class="navbar is-fixed-top loading" role="navigation" aria-label="main navigation">
+    <nav class="navbar loading" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
         <router-link to="/" active-class="active" class="navbar-brand" :class="{ 'hidden': $route.path==='/404' }" tag="a"><h1>MercedesBenz</h1><br><h2>Cigliutti Guerini</h2></router-link>
         <div class="navbar-burger" data-target="navMenu">
@@ -64,7 +64,6 @@
         <div class="navbar-start">
           <router-link to="/item" active-class="active" class="navbar-item" tag="a">Cotización online</router-link>
           <router-link to="/atencion" active-class="active" class="navbar-item" tag="a">Atención al cliente</router-link>
-          <router-link to="/beneficios" active-class="active" class="navbar-item" tag="a">Beneficios</router-link>
         </div>
         <!--div class="navbar-end">
           <a href="{{clientes_url}}/registro" class="navbar-item">Registro</a>
@@ -232,7 +231,7 @@
         <div class="container has-text-centered">
           <div class="rounded">
             <div class="badge">
-              <img :src="candidato.picture">
+              <img :src="settings.assets + '/img/cynthia.jpg'">
             </div>
             <div class="columns pills is-mobile">
               <div class="column fill"></div>
@@ -241,8 +240,8 @@
               </div>
               <div class="column grey"></div>
             </div>
-            <p>¡Hola! Soy <span v-html="candidato.first_name"></span> y estoy para ayudarte a ahorrar en el seguro de tu auto.<br>Para ofrecerte el mejor servicio te pido que respondas estas breves preguntas.</p>
-            <h2>¿Tu nombre y contacto?</h2>
+            <p>¡Hola! Soy <span>Sofía</span> y estoy para ayudarte.<br>Para ofrecerte el mejor servicio te pido que respondas estas breves preguntas.</p>
+            <h2>Tu nombre y contacto</h2>
             <div class="field is-horizontal">
               <div class="field-body">
                 <div class="field">

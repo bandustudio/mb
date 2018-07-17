@@ -44,16 +44,12 @@ $console
     ->setCode(function (InputInterface $input, OutputInterface $output) use ($container) {
         print "Migrating database...\n";
         $container["spot"]->mapper("App\User")->migrate();
+        //$container["spot"]->mapper("App\Post")->migrate();
         $container["spot"]->mapper("App\Lead")->migrate();
         $container["spot"]->mapper("App\Upload")->migrate();
-        $container["spot"]->mapper("App\Currency")->migrate();
-        $container["spot"]->mapper("App\Brand")->migrate();
-        $container["spot"]->mapper("App\Model")->migrate();
-        $container["spot"]->mapper("App\Version")->migrate();
-        $container["spot"]->mapper("App\UserRole")->migrate();
-        $container["spot"]->mapper("App\UserMessage")->migrate();
     });
 
+/*  
 $console
     ->register("seed")
     ->setDescription("Seed database")
@@ -61,5 +57,6 @@ $console
         print "Seeding database...\n";
         Cron::seed();
     });
+*/
 
 $console->run();
