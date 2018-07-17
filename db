@@ -43,13 +43,12 @@ $console
     ->setDescription("Migrate database tables")
     ->setCode(function (InputInterface $input, OutputInterface $output) use ($container) {
         print "Migrating database...\n";
-        $container["spot"]->mapper("App\User")->migrate();
-        //$container["spot"]->mapper("App\Post")->migrate();
+        $container["spot"]->mapper("App\Vehicle")->migrate();
+        $container["spot"]->mapper("App\VehicleModel")->migrate();
+        $container["spot"]->mapper("App\VehicleType")->migrate();
         $container["spot"]->mapper("App\Lead")->migrate();
-        $container["spot"]->mapper("App\Upload")->migrate();
     });
 
-/*  
 $console
     ->register("seed")
     ->setDescription("Seed database")
@@ -57,6 +56,5 @@ $console
         print "Seeding database...\n";
         Cron::seed();
     });
-*/
 
 $console->run();

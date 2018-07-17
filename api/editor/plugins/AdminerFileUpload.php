@@ -28,6 +28,10 @@ class AdminerFileUpload {
 	}
 
 	function head() {
+
+		echo '';
+
+		/*
 		echo '
 		<link href="images/iso-automovilshop.png" rel="shortcut icon" type="image/x-icon">
 		<link href="images/iso-automovilshop-big.png" rel="apple-touch-icon">    
@@ -38,7 +42,7 @@ class AdminerFileUpload {
 		$(function(){
 			$("select").select2();	
 		})
-		</script>';
+		</script>';*/
 
 	}
 

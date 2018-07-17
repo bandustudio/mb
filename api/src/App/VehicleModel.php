@@ -24,15 +24,14 @@ use Tuupola\Base62;
 use Ramsey\Uuid\Uuid;
 use Psr\Log\LogLevel;
 
-class Model extends \Spot\Entity
+class VehicleModel extends \Spot\Entity
 {
-    protected static $table = "models";
+    protected static $table = "vehicles_models";
 
     public static function fields()
     {
         return [
             "id" => ["type" => "integer", "unsigned" => true, "primary" => true, "autoincrement" => true],
-            "brand_id" => ["type" => "integer", "unsigned" => true, "value" => 0, 'index' => true],
             "title" => ["type" => "string", "length" => 50],
             "enabled" => ["type" => "boolean", "value" => false],
             "created"   => ["type" => "datetime", "value" => new \DateTime()],
@@ -40,18 +39,11 @@ class Model extends \Spot\Entity
         ];
     }
 
-    public function transform(Model $model)
+    public function transform(VehicleModel $model)
     {
         return [
             "id" => (integer)$model->id ?: null,
             "title" => (string)$model->title ?: ""
-        ];
-    }
-
-    public static function relations(Mapper $mapper, Entity $entity)
-    {
-        return [
-            'brand' => $mapper->belongsTo($entity, 'App\Brand', 'brand_id'),
         ];
     }
 

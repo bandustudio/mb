@@ -32,11 +32,7 @@ class Lead extends \Spot\Entity
     {
         return [
             "id" => ["type" => "integer", "unsigned" => true, "primary" => true, "autoincrement" => true],
-            "user_id" => ["type" => "integer", "unsigned" => true, "default" => NULL, 'index' => true],
-            "post_id" => ["type" => "integer", "unsigned" => true, "default" => NULL, 'index' => true],
-            "plan_id" => ["type" => "integer", "unsigned" => true, "default" => NULL, 'index' => true],
-            "region_id" => ["type" => "integer", "unsigned" => true, "default" => NULL, 'index' => true],
-            "city_id" => ["type" => "integer", "unsigned" => true, "default" => NULL, 'index' => true],
+            "model_id" => ["type" => "integer", "unsigned" => true, "default" => NULL, 'index' => true],
             "code" => ["type" => "string", "length" => 255],            
             "origin" => ["type" => "string", "length" => 50],
             "picture" => ["type" => "string", "length" => 255],
@@ -46,6 +42,7 @@ class Lead extends \Spot\Entity
             "full_name" => ["type" => "string", "length" => 50],
             "tel" => ["type" => "string", "length" => 50],
             "use" => ["type" => "string", "length" => 50],
+            "reason" => ["type" => "string", "length" => 50],
             "email" => ["type" => "string", "length" => 50],
             "comment" => ["type" => "text"],
             "observations" => ["type" => "text"],
@@ -89,38 +86,12 @@ class Lead extends \Spot\Entity
     public static function relations(Mapper $mapper, Entity $entity)
     {
         return [
-            'user' => $mapper->belongsTo($entity, 'App\User', 'user_id'),
-            'post' => $mapper->belongsTo($entity, 'App\Post', 'post_id'),
-            'region' => $mapper->belongsTo($entity, 'App\Region', 'region_id'),
-            'city' => $mapper->belongsTo($entity, 'App\City', 'city_id'),
-            'uploads' => $mapper->hasMany($entity, 'App\Upload', 'lead_id')->order(['created' => 'DESC'])
+            'model' => $mapper->belongsTo($entity, 'App\VehicleModel', 'model_id')
         ];
     }
     
     public function transform(Lead $entity)
     {
-
-        $plans = [];
-        foreach($entity->plans as $item){
-            $plans[] = [
-                'id' => $item->id,
-                'name' => $item->name,
-                'price' => $item->price,
-                'text' => $item->text,
-                'currency' => $item->currency,
-                'updated' => $item->updated->format('U')
-            ];
-        }
-
-        $uploads = [];
-        foreach($entity->uploads as $item){
-            $uploads[] = [
-                'id' => $item->id,
-                'file_url' => $item->file_url,
-                'filesize' => $plan->filesize,
-                'updated' => $item->updated->format('U')
-            ];
-        }
 
         return [
             "id" => (integer) $entity->id ?: null,
@@ -138,8 +109,6 @@ class Lead extends \Spot\Entity
             "doc_poliza" => (string) $entity->doc_poliza ?: "",
             "comment" => (string) $entity->comment ?: "",
             "observations" => (string) $entity->observations ?: "",
-            "plan" => (object) $entity->plan ?: [],
-            "plans" => (array) $plans ?: [],
             "uploads" => (array) $uploads ?: [],
             "email" => (string) $entity->email ?: "",
             "code" => (string) $entity->code ?: "",
@@ -149,30 +118,17 @@ class Lead extends \Spot\Entity
             "gas" => !!$entity->gas,
             "model" => (string) $entity->model ?: "",
             "status" => (string) $entity->status ?: "",
-            "plan" => [
-                'id' => (integer) $entity->plan->id ?: null,
-                "name" => (string) $entity->plan->name ?: "",
-                "text" => (string) $entity->plan->text ?: "",
-                "price" => (string) $entity->plan->price ?: "",
-                "currency" => (string) $entity->plan->currency ?: ""
-            ],            
+            //"request_sent" => (string) $entity->request_sent ? $entity->request_sent->format('U') : "",
+            "product_since" => (string) $entity->product_since ? $entity->product_since->format('U') : "",
+            "created" => (string) $entity->created->format('U') ?: "",
+            "updated" => (string) $entity->updated->format('U') ?: "",
             "user" => [
                 'id' => (integer) $entity->user->id ?: null,
                 "username" => (string) $entity->user->username ?: "",
                 "first_name" => (string) $entity->user->first_name ?: "",
                 "last_name" => (string) $entity->user->last_name ?: "",
                 "picture" => (string) $entity->user->picture ?: ""
-            ],
-            "gestor" => [
-                'id' => (integer) $entity->gestor->id ?: null,
-                "username" => (string) $entity->gestor->username ?: "",
-                "first_name" => (string) $entity->gestor->first_name ?: "",
-                "last_name" => (string) $entity->gestor->last_name ?: "",
-                "picture" => (string) $entity->gestor->picture ?: ""
-            ],
-            //"request_sent" => (string) $entity->request_sent ? $entity->request_sent->format('U') : "",
-            "product_since" => (string) $entity->product_since ? $entity->product_since->format('U') : "",
-            "created" => (string) $entity->created->format('U') ?: ""
+            ]
         ];
     }
 

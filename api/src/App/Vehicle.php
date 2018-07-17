@@ -24,17 +24,24 @@ use Tuupola\Base62;
 use Ramsey\Uuid\Uuid;
 use Psr\Log\LogLevel;
 
-class Post extends \Spot\Entity
+class Vehicle extends \Spot\Entity
 {
-    protected static $table = "posts";
+    protected static $table = "vehicles";
 
     public static function fields()
     {
         return [
             "id" => ["type" => "integer", "unsigned" => true, "primary" => true, "autoincrement" => true],
-            "user_id" => ["type" => "integer", "unsigned" => true, "default" => NULL, 'index' => true],
-            "picture_url" => ["type" => "string", "length" => 255],
+            "model_id" => ["type" => "integer", "unsigned" => true, "default" => 0, 'index' => true],
+            "type_id" => ["type" => "integer", "unsigned" => true, "default" => 0, 'index' => true],
+            "picshare_url" => ["type" => "string", "length" => 255],
             "background_url" => ["type" => "string", "length" => 255],
+            "pic1_url" => ["type" => "string", "length" => 255],
+            "pic2_url" => ["type" => "string", "length" => 255],
+            "pic3_url" => ["type" => "string", "length" => 255],
+            "pic4_url" => ["type" => "string", "length" => 255],
+            "pic5_url" => ["type" => "string", "length" => 255],
+            "pic6_url" => ["type" => "string", "length" => 255],
             "title" => ["type" => "string", "length" => 250],
             "content" => ["type" => "text"],
             "fecha" => ["type" => "string", "length" => 50],
@@ -51,28 +58,13 @@ class Post extends \Spot\Entity
     public static function relations(Mapper $mapper, Entity $entity)
     {
         return [
-            'user' => $mapper->belongsTo($entity, 'App\User', 'user_id'),
-            //'region' => $mapper->belongsTo($entity, 'App\Region', 'region_id'),
-            //'city' => $mapper->belongsTo($entity, 'App\City', 'city_id'),
-            //'brand' => $mapper->belongsTo($entity, 'App\Brand', 'brand_id'),
-            //'model' => $mapper->belongsTo($entity, 'App\Model', 'model_id'),
-            //'version' => $mapper->belongsTo($entity, 'App\Version', 'version_id'),
-            'uploads' => $mapper->hasMany($entity, 'App\Upload', 'lead_id')->order(['created' => 'DESC'])
+            'type' => $mapper->belongsTo($entity, 'App\VehicleType', 'type_id'),
+            'model' => $mapper->belongsTo($entity, 'App\VehicleModel', 'model_id')
         ];
     }
     
-    public function transform(Post $entity)
+    public function transform(Vehicle $entity)
     {
-
-        $uploads = [];
-        foreach($entity->uploads as $item){
-            $uploads[] = [
-                'id' => $item->id,
-                'file_url' => $item->file_url,
-                'filesize' => $plan->filesize,
-                'updated' => $item->updated->format('U')
-            ];
-        }
 
         return [
             "id" => (integer) $entity->id ?: null,
@@ -90,6 +82,10 @@ class Post extends \Spot\Entity
                 "first_name" => (string) $entity->user->first_name ?: "",
                 "last_name" => (string) $entity->user->last_name ?: "",
                 "picture" => (string) $entity->user->picture ?: ""
+            ],
+            "model" => [
+                "id" => (integer) $entity->model_id ?: null,
+                "title" => (string) $entity->model->title ?: null
             ]
         ];
     }

@@ -24,27 +24,26 @@ use Tuupola\Base62;
 use Ramsey\Uuid\Uuid;
 use Psr\Log\LogLevel;
 
-class Region extends \Spot\Entity
+class VehicleType extends \Spot\Entity
 {
-    protected static $table = "regions";
+    protected static $table = "vehicles_types";
 
     public static function fields()
     {
         return [
             "id" => ["type" => "integer", "unsigned" => true, "primary" => true, "autoincrement" => true],
             "title" => ["type" => "string", "length" => 50],
-            "code" => ["type" => "string", "length" => 3],
             "enabled" => ["type" => "boolean", "value" => false],
             "created"   => ["type" => "datetime", "value" => new \DateTime()],
             "updated"   => ["type" => "datetime", "value" => new \DateTime()]
         ];
     }
 
-    public function transform(Region $region)
+    public function transform(VehicleType $entity)
     {
         return [
-            "id" => (integer) $region->id ?: null,
-            "title" => (string) $region->title ?: ""
+            "id" => (integer) $entity->id ?: null,
+            "title" => (string) $entity->title ?: ""
         ];
     }
 
@@ -57,7 +56,6 @@ class Region extends \Spot\Entity
     {
         $this->data([
             "title" => null,
-            "code" => null,
             "enabled" => null
         ]);
     }
