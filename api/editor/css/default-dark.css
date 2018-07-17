@@ -469,8 +469,8 @@ h1{
 h1 #h1{
     display:inline-block;
     padding:0;
-    background:url("../images/logo_Mercedes-Benz_149_.jpg?3") 10px center no-repeat;
-    background-size:120px;
+    background:url("../images/logo_Mercedes-Benz_149_.jpg?3") center no-repeat;
+    background-size:40px;
     text-indent:-100px;
     width:135px;
     height:40px
