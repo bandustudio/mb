@@ -28,22 +28,73 @@ class AdminerFileUpload {
 	}
 
 	function head() {
-
-		echo '';
-
-		/*
 		echo '
 		<link href="images/iso-automovilshop.png" rel="shortcut icon" type="image/x-icon">
 		<link href="images/iso-automovilshop-big.png" rel="apple-touch-icon">    
-		<link href="css/select2.min.css" type="text/css" rel="stylesheet" />
+		<link href="css/bootstrap.css" type="text/css" rel="stylesheet" />
+		<link href="css/bootstrap-datetimepicker.min.css" type="text/css" rel="stylesheet" />
+		<link href="css/font-awesome.min.css" type="text/css" rel="stylesheet" />
+		<link href="css/summernote.css" type="text/css" rel="stylesheet" />
 		<script type="text/javascript" src="js/jquery.min.js"></script>
-		<script type="text/javascript" src="js/select2.full.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/moment.js"></script>
+		<script type="text/javascript" src="js/bootstrap-datetimepicker.js"></script>
+		<script type="text/javascript" src="js/summernote.min.js"></script>
 		<script type="text/javascript">
 		$(function(){
-			$("select").select2();	
-		})
-		</script>';*/
+			$("input,textarea").each(function(){
+				var name = $(this).attr("name")||""
 
+				if(name.indexOf("_text") > -1){
+					$(this).summernote({
+					    height: 200,   
+					    minHeight: null,
+					    maxHeight: null,
+					    onImageUpload: function(files, editor, welEditable) {
+					      sendFile(files[0], editor, welEditable);
+					    }
+					  });
+				}
+				if(name.indexOf("_datetime") > -1){
+					$(this).datetimepicker()
+				}
+			})
+		})
+
+		function sendFile(file, editor, welEditable) {
+		    data = new FormData();
+		    data.append("file", file);
+		    $(".summernote-progress").removeClass("hide").hide().fadeIn();
+		    $.ajax({
+		        data: data,
+		        type: "POST",
+		        xhr: function() {
+		            var myXhr = $.ajaxSettings.xhr();
+		            if (myXhr.upload) myXhr.upload.addEventListener("progress",progressHandlingFunction, false);
+		            return myXhr;
+		        },        
+		        url: "/image/simpleupload",
+		        cache: false,
+		        contentType: false,
+		        processData: false,
+		        success: function(url) {
+		          $(".summernote-progress").fadeOut();
+		          editor.insertImage(welEditable, url);
+		        }
+		    });
+		}   
+
+		function progressHandlingFunction(e){
+		    if(e.lengthComputable){
+		        var perc = Math.floor((e.loaded/e.total)*100);
+		        $(".progress-bar").attr({"aria-valuenow":perc}).width(perc+"%");
+		        // reset progress on complete
+		        if (e.loaded == e.total) {
+		            $(".progress-bar").attr("aria-valuenow","0.0");
+		        }
+		    }
+		}		
+		</script>';
 	}
 
 	function database() {

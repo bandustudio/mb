@@ -141,6 +141,26 @@ const Opener = {
   }
 }
 
+const Resource = {
+  template: '#resource',
+  mounted : function(){
+    this.$http.post(helper.getAttributes($('html')).endpoint + '/app/resource', {}, {emulateJSON:true}).then(function(res){
+      candidato = res.data
+      this.candidato = candidato
+      $('input[name="gestor_id"]').val(res.data.id).trigger('change')
+    }, function(error){
+      console.log(error.statusText)
+    })    
+
+  },
+  data: function() {
+    return{
+      item: {},
+      settings: helper.getAttributes($('html'))
+    }
+  }
+}
+
 const PageNotFound = {
   template: '#pagenotfound',
   data: function() {
@@ -154,13 +174,14 @@ const PageNotFound = {
 const router = new VueRouter({
   mode: 'history',
   routes: [
-    {path: '/', component: Splash, meta : { title: 'MercedesBenz'}},
+    {path: '/', component: Splash, meta : { title: 'Mercedes-Benz'}},
     {path: '/opener', component: Opener, meta : { title: 'Redirigiendo...'}},
-    {path: '/item', component: Item,  meta : { title: 'Item'}},
+    {path: '/vehicles', component: Item,  meta : { title: 'Item'}},
+    {path: '/vehicles', component: Item,  meta : { title: 'Item'}},
     {path: '/contacto', component: Contacto, meta : { title: 'Contacto'}},
     {path: '/terminos', component: Terminos, meta : { title: 'Términos y condiciones'}},
     {path: '/atencion', component: Atencion, meta : { title: 'Atención'}},
-    {path: "*", component: PageNotFound, meta : { title: 'Not found'}}
+    {path: "*", component: Resource, meta : { title: ''}}
   ]
 });
 

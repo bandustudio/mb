@@ -5,11 +5,11 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-  <title>MercedesBenz</title>
+  <title>{{app_title}}</title>
   <link rel="home" href="/">
 
   <!-- Page Meta -->
-  <meta name="description" content="Cotizá y gestioná tus seguros con MercedesBenz.com.">
+  <meta name="description" content="{{app_text}}">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
@@ -74,7 +74,7 @@
       </div>
     </nav>
   	
- 		<router-view :key="$route.fullPath"><div class="spinner-outer"><div class="spinner" data-layer="4"><div class="spinner-container"><div class="spinner-rotator"><div class="spinner-left"><div class="spinner-circle"></div></div><div class="spinner-right"><div class="spinner-circle"></div></div></div></div><div class="spinner-message">Si la reproducción no empieza en breve, prueba a reiniciar el dispositivo.</div></div></div></router-view>
+ 		<router-view :key="$route.fullPath"><div class="spinner-outer fadeIn"><div class="spinner" data-layer="4"><div class="spinner-container"><div class="spinner-rotator"><div class="spinner-left"><div class="spinner-circle"></div></div><div class="spinner-right"><div class="spinner-circle"></div></div></div></div><div class="spinner-message">Si la reproducción no empieza en breve, prueba a reiniciar el dispositivo.</div></div></div></router-view>
 
     <div class="footer__partners loading">
       <h6>Presentes en</h6>
@@ -107,119 +107,7 @@
   <script type="text/x-template" id="splash">
     <div>
       <div class="container">
-        <div class="section splash">
-          <div class="bottomright fadeInUp is-block-desktop">
-            <a href="https://m.me/MercedesBenz" target="_blank"><img :src="settings.assets + '/img/messenger.svg'"></a>
-          </div>
-          <div class="bottomright fadeInUp is-block-touch">
-            <a href="https://api.whatsapp.com/send?phone={{app_whatsapp}}" target="_blank"><img :src="settings.assets + '/img/whatsapp2.svg'"></a>
-          </div>       
-          <article class="message is-success is-hidden">
-            <div class="message-header">
-              <p></p>
-              <button class="delete" aria-label="delete"></button>
-            </div>
-            <div class="message-body"></div>
-          </article> 
-          <h1 class="brand">{{token}} MercedesBenz de 
-          <a href="#" class="first-section__title--link">
-            <span data-typer-targets="Cigliutti Guerini" class="typer">Cigliutti Guerini</span>
-          </a>
-          </h1> 
-          <h2>Cotizá y ahorrá en el seguro de tu auto</h2>
-          <p>El mejor precio. La mejor atención. Beneficios únicos.</p>
-          <div class="container has-text-centered">
-            <router-link to="/item" class="button rounded-button rounded-button-green" tag="a">Cotizar ahora</router-link>
-            <router-link to="/atencion" class="button rounded-button" tag="a">Quiero contactarme</router-link>
-          </div>
-          <div class="container has-text-centered">
-            <a :href="settings.clientes + '/ingresar'" class="link">Ya soy cliente</a>
-          </div>
 
-          <div class="hero">
-            <div class="hero-body">
-              <div class="container">
-                <div class="columns">
-                  <div class="column">
-                    <div class="card">
-                      <div class="card-content">
-                        <div class="media">
-                          <div class="media-left">
-                            <figure class="image is-48x48">
-                              <img :src="settings.assets + '/img/seguros-user.png'" alt="Placeholder image">
-                            </figure>
-                          </div>
-                          <div class="media-content">
-                            <p class="title is-6">Tomás Francisco Maxera</p>
-                            <p class="subtitle is-6">Fiat Punto 2015<br><small>cliente desde 2015</small></p>
-                          </div>
-                        </div>
-
-                        <div class="content">
-                          <h4>“Con MercedesBenz tengo la tranquilidad que siempre busqué a la hora de contratar un seguro.”</h4>
-                        </div>
-                      </div>
-                    </div>              
-                  </div>
-                  <div class="column">
-                    <div class="card">
-                      <div class="card-content">
-                        <div class="media">
-                          <div class="media-left">
-                            <figure class="image is-48x48">
-                              <img :src="settings.assets + '/img/usuario-2.png'" alt="Placeholder image">
-                            </figure>
-                          </div>
-                          <div class="media-content">
-                            <p class="title is-6">Ezequiel Rigali</p>
-                            <p class="subtitle is-6">Jeep Wrangler 2008<br><small>cliente desde 2016</small></p>
-                          </div>
-                        </div>
-
-                        <div class="content">
-                          <h4>“Lo asegure por teléfono y nunca más tuve que hacer nada. Es espectacular.”</h4>
-                        </div>
-                      </div>
-                    </div> 
-                  </div>
-                  <div class="column">
-                    <div class="card">
-                      <div class="card-content">
-                        <div class="media">
-                          <div class="media-left">
-                            <figure class="image is-48x48">
-                              <img :src="settings.assets + '/img/usuario-3.png'" alt="Placeholder image">
-                            </figure>
-                          </div>
-                          <div class="media-content">
-                            <p class="title is-6">Sebastián Karagozlu</p>
-                            <p class="subtitle is-6">Chevrolet Onix 2015<br><small>cliente desde 2015</small></p>
-                          </div>
-                        </div>
-                        <div class="content">
-                          <h4>“Recomiendo MercedesBenz, me da servicios como taller de chapa y pintura.”</h4>
-                        </div>
-                      </div>
-                    </div> 
-                  </div>            
-                </div>
-              </div>
-            </div>
-          </div>     
-        </div>
-      </div> 
-      <div class="hero is-info">
-        <div class="hero-body">
-          <div class="container has-text-centered">
-            <div class="columns is-vcentered">
-              <div class="column">
-                <p class="title"><strong>¿Sos dueño de un concesionario?</strong></p>
-                <p class="subtitle">Tenemos propuestas para vos.</p>
-                <router-link to="/contacto#concesionarios" class="button rounded-button is-primary" tag="a">Contactanos</router-link>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>        
     </div>  
   </script>
@@ -228,48 +116,7 @@
     <div class="container">
       <div class="section item" ajax-prefix="app">
         <div class="container has-text-centered">
-          <div class="rounded">
-            <div class="badge">
-              <img :src="settings.assets + '/img/cynthia.jpg'">
-            </div>
-            <div class="columns pills is-mobile">
-              <div class="column fill"></div>
-              <div class="column grey">
-                <p>1/3</p>
-              </div>
-              <div class="column grey"></div>
-            </div>
-            <p>¡Hola! Soy <span>Sofía</span> y estoy para ayudarte.<br>Para ofrecerte el mejor servicio te pido que respondas estas breves preguntas.</p>
-            <h2>Tu nombre y contacto</h2>
-            <div class="field is-horizontal">
-              <div class="field-body">
-                <div class="field">
-                  <label class="label">Nombre completo</label>
-                  <div class="control">
-                    <input name="gestor_id" type="hidden" optional="true">
-                    <input name="first_name" type="hidden" optional="true">
-                    <input name="last_name" type="hidden" optional="true">
-                    <input name="full_name" class="input rounded-input is-large" type="text" v-model="item.full_name">
-                  </div>
-                </div>
-                <div class="field">
-                  <label class="label">E-mail</label>
-                  <div class="control">
-                    <input name="email" class="input rounded-input is-large" type="email" v-model="item.email">
-                  </div>
-                </div>
-                <div class="field">
-                  <label class="label">Teléfono</label>
-                  <div class="control">
-                    <input name="tel" class="input rounded-input is-large" type="text" v-model="item.tel">
-                  </div>
-                </div>                
-              </div>
-            </div>
-            <div class="container">
-              <a to="/item/2" class="button rounded-button rounded-button-grey disabled submitable" disabled>Siguiente</a>
-            </div>
-          </div>
+
         </div>
       </div>
     </div>  
@@ -372,56 +219,6 @@
     </div>  
   </script>
 
-  <script type="text/x-template" id="beneficios">
-    <div class="container has-text-centered">
-      <div class="section beneficios">
-        <h2>Elegí tu plan y empezá<br>a obtener beneficios</h2>
-        <div class="container has-text-centered">
-          <div class="columns line-vertical">
-            <div class="column option">
-              <h2>Particular</h2>
-              <ul>
-              <li>Mejor costo garantizado</li>
-              <li>Atención Directa 24hs</li>
-              <li>Reposición en 24hs</li>
-              <li>Talleres propios</li>
-              <li>15 sucursales</li>
-              <li>Sistema de referidos</li>
-              <li>Hasta 15 vehículos</li>
-              </ul>
-              <a href="/item" class="button rounded-button rounded-button-success disabled">Cotizar</a>
-            </div>
-            <div class="column option option-main">
-              <h2>Flota</h2>
-              <ul>
-              <li>Ahorrá $100.000 al año o más</li>
-              <li>Flotas empresariales y familiares</li>
-              <li>Control total sobre tus gastos </li>
-              <li>Reportes y comparativos mensuales</li>
-              <li>Atención premium</li>
-              <li>Beneficios particulares</li>
-              <li>Hasta 30 vehículos</li>
-              </ul>
-              <a href="/item" class="button rounded-button rounded-button-success">Cotizar</a>
-            </div>
-            <div class="column option">
-              <h2>Concesionario</h2>
-              <ul>
-              <li>Asesoramiento comercial</li>
-              <li>Generación de nuevas unidades de negocio</li>
-              <li>Api integral a CRM: Pilot, Tecnom, Sirena, Leadki, MercadoLibre, OLX.</li>
-              <li>Plataforma de gestión online</li>
-              <li>Control de incentivos y emisiones online</li>
-              <li>Sin límite de vehículos</li>
-              </ul>
-              <a href="/contacto" class="button rounded-button rounded-button-success">Contratar</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>  
-  </script>
-
   <script type="text/x-template" id="terminos">
     <div class="container">
       <div class="section">
@@ -507,16 +304,6 @@
         </div>
       </div>
     </div>
-  </script>
-  
-  <script type="text/x-template" id="opener">
-    <div class="container">
-      <div class="section">
-        <h2>Redirigiendo a ...</h2> 
-        <p v-html="url"></p>
-        <p>Por favor aguarde...</p>
-      </div>
-    </div>  
   </script>
 
   <script type="text/x-template" id="pagenotfound">

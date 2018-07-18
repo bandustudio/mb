@@ -22,24 +22,6 @@ $app->group('/v1', function() {
 
     $this->group('/app', function() {
 
-        $this->post("/candidato", function ($request, $response, $arguments) {
-
-            $mapper = $this->spot->mapper("App\User")
-                ->where(['role_id' => 2])
-                ->order(['last_activity' => 'ASC'])
-                ->limit(1);
-
-            $data = [
-                'id' => $mapper[0]->id,
-                'first_name' => $mapper[0]->first_name,
-                'picture' => $mapper[0]->picture
-            ];
-
-            return $response->withStatus(200)
-                ->withHeader("Content-Type", "application/json")
-                ->write(json_encode($data));
-        });
-
         $this->post("/contacto", function ($request, $response, $arguments) {
 
             $body = $request->getParsedBody();
@@ -60,16 +42,16 @@ $app->group('/v1', function() {
 
         });
 
-        $this->post('/marcas', function ($request, $response, $args) {
-            $mapper = $this->spot->mapper("App\Brand")
-                ->where(['id >' => 0])
+        $this->post('/vehicles', function ($request, $response, $args) {
+            $mapper = $this->spot->mapper("App\Vehicle")
+                ->where(['enabled' => 1])
                 ->order(['title' => 'ASC'])
                 ->limit(1000);
 
             /* Serialize the response data. */
             $fractal = new Manager();
             $fractal->setSerializer(new DataArraySerializer);
-            $resource = new Collection($mapper, new Brand);
+            $resource = new Collection($mapper, new Vehicle);
             $data = $fractal->createData($resource)->toArray();
 
             return $response->withStatus(200)
@@ -77,42 +59,61 @@ $app->group('/v1', function() {
                 ->write(json_encode($data));
         }); 
 
-        $this->post('/versiones', function ($request, $response, $args) {
-
-            $body = $request->getParsedBody();
-
-            $models = $this->spot->mapper("App\Model")
-                ->where(['brand_id' => $body['marca']])
+        $this->post('/vehicles/{{id}}', function ($request, $response, $args) {
+            
+            $mapper = $this->spot->mapper("App\Vehicle")
+                ->where(['enabled' => 1])
                 ->order(['title' => 'ASC'])
                 ->limit(1000);
-
-            $ids = [];
-
-            foreach($models as $model){
-                $ids[] = $model->id;
-            }
-
-            $ids = array_unique($ids);
-
-            $mapper = $this->spot->mapper("App\Version")
-                ->where(['model_id' => $ids])
-                ->order(['title' => 'ASC'])
-                ->limit(5000);
 
             /* Serialize the response data. */
             $fractal = new Manager();
             $fractal->setSerializer(new DataArraySerializer);
-            $resource = new Collection($mapper, new Version);
+            $resource = new Collection($mapper, new Vehicle);
             $data = $fractal->createData($resource)->toArray();
 
             return $response->withStatus(200)
                 ->withHeader("Content-Type", "application/json")
                 ->write(json_encode($data));
-        });  
+        }); 
+
+        $this->post('/types', function ($request, $response, $args) {
+            $mapper = $this->spot->mapper("App\VehicleType")
+                ->where(['enabled' => 1])
+                ->order(['title' => 'ASC'])
+                ->limit(1000);
+
+            /* Serialize the response data. */
+            $fractal = new Manager();
+            $fractal->setSerializer(new DataArraySerializer);
+            $resource = new Collection($mapper, new VehicleType);
+            $data = $fractal->createData($resource)->toArray();
+
+            return $response->withStatus(200)
+                ->withHeader("Content-Type", "application/json")
+                ->write(json_encode($data));
+        }); 
+
+        $this->post('/posts', function ($request, $response, $args) {
+            $mapper = $this->spot->mapper("App\Post")
+                ->where(['id >' => 0])
+                ->order(['title' => 'ASC'])
+                ->limit(1000);
+
+            /* Serialize the response data. */
+            $fractal = new Manager();
+            $fractal->setSerializer(new DataArraySerializer);
+            $resource = new Collection($mapper, new Post);
+            $data = $fractal->createData($resource)->toArray();
+
+            return $response->withStatus(200)
+                ->withHeader("Content-Type", "application/json")
+                ->write(json_encode($data));
+        }); 
 
         // Usuario crean cotizaciones, se actualizas usuarios y vehículos
 
-        $this->post('/cotizacion', function ($request, $response, $args) {
+        $this->post('/lead', function ($request, $response, $args) {
 
             $body = $request->getParsedBody();
             $lead = null;
@@ -139,8 +140,7 @@ $app->group('/v1', function() {
 
                 $body['code'] = $code;
                 $lead->data([
-                    'code' => $code,
-                    'status' => 'iniciado'
+                    'code' => $code
                 ]);
                 
                 $id = $this->spot->mapper("App\Lead")->save($lead);
@@ -218,6 +218,5 @@ $app->group('/v1', function() {
                 ->withHeader("Content-Type", "application/json")
                 ->write(json_encode(['status' => $lead ? "success" : "error", 'id' => (int) $id]));
         });
-    });
-    
+    });    
 });

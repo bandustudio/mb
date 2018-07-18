@@ -43,11 +43,11 @@ class Post extends \Spot\Entity
             "background_url" => ["type" => "string", "length" => 255],
             "title" => ["type" => "string", "length" => 250],
             "intro" => ["type" => "text"],
-            "content" => ["type" => "text"],
+            "content_text" => ["type" => "text"],
             "deleted" => ["type" => "boolean", "value" => false, "notnull" => true],
             "enabled" => ["type" => "boolean", "value" => false],
-            "datefrom" => ["type" => "datetime", "value" => new \DateTime()],
-            "dateto" => ["type" => "datetime", "value" => new \DateTime()],
+            "from_datetime" => ["type" => "datetime", "value" => new \DateTime()],
+            "to_datetime" => ["type" => "datetime", "value" => new \DateTime()],
             "created" => ["type" => "datetime", "value" => new \DateTime()],
             "updated" => ["type" => "datetime", "value" => new \DateTime()]
         ];
