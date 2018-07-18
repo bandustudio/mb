@@ -29,8 +29,8 @@ const Splash = {
         speed: 1500,
         fade: true,
         cssEase: 'linear'        
-      }).fadeIn(1000);
-    },1000)
+      })
+    },500)
   },
   data: function() {
     return{

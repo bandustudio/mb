@@ -87,7 +87,7 @@
   
   <script type="text/x-template" id="splash">
     <div>
-      <div class="slick slick-main">
+      <div class="slick slick-main fadeIn">
         <router-link v-for="item in slides" :to="filters.base64encode('/v/'+item.id)" tag="a">
           <div class="slick-pane" :style="'background-image:url(' + item.picture + ')'"></div>
         </router-link>
@@ -110,7 +110,7 @@
         <!--pre v-html="item"></pre-->
         <h1 v-html="item.title"></h1>
         <div class="post" v-html="item.content"></div>
-        <div class="slick-pane" :style="'background-image:url(' + item.picture + ')'"></div>
+        <div class="slick-pane fadeInUp" :style="'background-image:url(' + item.picture + ')'"></div>
       </div>
     </div>    
   </script>
