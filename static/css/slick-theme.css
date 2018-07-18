@@ -12,8 +12,8 @@
     font-weight: normal;
     font-style: normal;
 
-    src: url('/css/fonts/slick.eot');
-    src: url('/css/fonts/slick.eot?#iefix') format('embedded-opentype'), url('/css/fonts/slick.woff') format('woff'), url('/css/fonts/slick.ttf') format('truetype'), url('/css/fonts/slick.svg#slick') format('svg');
+    src: url('/fonts/slick.eot');
+    src: url('/fonts/slick.eot?#iefix') format('embedded-opentype'), url('/fonts/slick.woff') format('woff'), url('/fonts/slick.ttf') format('truetype'), url('/fonts/slick.svg#slick') format('svg');
 }
 /* Arrows */
 .slick-prev,
@@ -125,7 +125,7 @@
 .slick-dots
 {
     position: absolute;
-    bottom: -20px;
+    bottom: 20px;
 
     display: block;
 

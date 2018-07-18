@@ -596,6 +596,7 @@ body {
 }
 
 .navbar {
+  /*background-color: #5c5f62;*/
   background-color: black;
   max-width: 1220px;
   padding-top: 58px;

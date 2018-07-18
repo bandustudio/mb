@@ -21,15 +21,16 @@ const Splash = {
   },
   mounted: function(){
     setTimeout(function(){
-      $('.slick').slick({
+      $('.slides').slick({
         dots: true,
         autoplay: true,
-        autoplaySpeed: 3000,
+        autoplaySpeed: 2000,
         infinite: true,
-        speed: 1500,
+        speed: 500,
         fade: true,
-        cssEase: 'linear'        
+        cssEase: 'linear'
       })
+      $('.slick-pane').height(($(window).height()-110)+'px')
     },500)
   },
   data: function() {

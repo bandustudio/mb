@@ -86,18 +86,29 @@
   
   <script type="text/x-template" id="splash">
     <div>
-      <div class="slick slick-main fadeIn">
+      <div class="slides slick slick-main fadeIn">
         <router-link v-for="item in slides" :to="filters.base64encode('/v/'+item.id)" tag="a">
           <div class="slick-pane" :style="'background-image:url(' + item.picture + ')'"></div>
         </router-link>
       </div>
       <div class="content">
-        <div v-for="item in posts">
-          <router-link :to="filters.base64encode('/p/'+item.id)" tag="a">
-            <h1 v-html="item.title"></h1>
-          </router-link>
-          <blockquote v-html="item.intro"></blockquote>
-          <div class="slick-pane" :style="'background-image:url(' + item.picture + ')'"></div>
+        <div v-for="(item, index) in posts">
+          <div class="columns" v-if="index%2===0">
+            <div class="column is-four-fifths slick-pane" :style="'background-image:url(' + item.picture + ')'"></div>
+            <div class="column">
+              <h1 v-html="item.title"></h1>
+              <p v-html="item.intro"></p>
+              <router-link :to="filters.base64encode('/p/'+item.id)" class="button is-info" tag="a">Conocer mas...</router-link>
+            </div>
+          </div>
+          <div class="columns" v-if="index%2===0">
+            <div class="column has-text-right">
+              <h1 v-html="item.title"></h1>
+              <p v-html="item.intro"></p>
+              <router-link :to="filters.base64encode('/p/'+item.id)" class="button is-info" tag="a">Conocer mas...</router-link>
+            </div>
+            <div class="column is-four-fifths slick-pane" :style="'background-image:url(' + item.picture + ')'"></div>
+          </div>          
         </div>
       </div>
     </div>
@@ -328,7 +339,7 @@
     <a>[[:name]]</a>
   </script>
 
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnCpylsXEujI2Jb07gggRfcewyYwJSbqU&libraries=places"></script>
+  <!--script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnCpylsXEujI2Jb07gggRfcewyYwJSbqU&libraries=places"></script-->
   {% if localhost == false %}
   <script src="{{static_url}}/dist/js/app.js?_={{rev_parse}}" type="text/javascript"></script>
   {% else %}
