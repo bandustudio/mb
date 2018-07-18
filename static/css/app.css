@@ -3,10 +3,6 @@ body {
   transition: all 0.5 linear;
   background-color: black;
   color: white;
-  /*background-image:url(/img/placeholder2.png);
-  background-size: 1443px 895px;
-  background-position: top center;
-  background-repeat: no-repeat;*/
 }
 
 @font-face{
@@ -608,7 +604,7 @@ body {
   background-image: url(/img/índice.jpeg);
   background-repeat: no-repeat;
   background-position: left center;
-  background-size: 140px;  
+  background-size: 90px;  
 }
 
 .navbar-item .svg-inline--fa{
@@ -633,12 +629,11 @@ body {
   color: #08d184;
 }
 
-
 @media screen and (min-width: 1024px) {
   
   .navbar {
-    padding-top: 3.5em;
-    padding-bottom: 3.5em;
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
   }
 
   .navbar-button.has-dropdown {
@@ -724,7 +719,7 @@ a.navbar-item:hover, a.navbar-item.is-active, a.navbar-link:hover, a.navbar-link
   flex-direction: column;
   text-align: left;
   padding-right: 1em;  
-  padding-left: 3.4em;
+  padding-left: 2.4em;
   font-family: CorporateA;
   font-size: 28px;
   font-weight: 500;
@@ -742,7 +737,7 @@ a.navbar-item:hover, a.navbar-item.is-active, a.navbar-link:hover, a.navbar-link
 }
 
 .navbar-brand h2 {
-  font-size: 15px;
+  font-size: 14px;
   color: white;
 }
 
@@ -1561,7 +1556,7 @@ a:hover {
 }
 
 .slick-pane {
-  min-height: 400px;
+  min-height: 480px;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
