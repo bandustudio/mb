@@ -33,6 +33,7 @@ class ThemeType extends \Spot\Entity
         return [
             "id" => ["type" => "integer", "unsigned" => true, "primary" => true, "autoincrement" => true],
             "title" => ["type" => "string", "length" => 50],
+            "picture_url" => ["type" => "string", "length" => 255],
             "enabled" => ["type" => "boolean", "value" => false],
             "created"   => ["type" => "datetime", "value" => new \DateTime()],
             "updated"   => ["type" => "datetime", "value" => new \DateTime()]
