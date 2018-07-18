@@ -1,18 +1,25 @@
+var cache = {}
 const Splash = {
   template: '#splash',
-  mounted: function() {
-    this.$http.post(helper.getAttributes($('html')).endpoint + '/app/vehicles', {}, {emulateJSON:true}).then(function(res){
-      this.vehicles = res.data.data
-    }, function(error){
-      console.log(error.statusText)
-    })
-    this.$http.post(helper.getAttributes($('html')).endpoint + '/app/posts', {}, {emulateJSON:true}).then(function(res){
-      this.posts = res.data.data
-    }, function(error){
-      console.log(error.statusText)
-    })
+  created: function() {
+    if(!cache.slides){
+      this.$http.post(helper.getAttributes($('html')).endpoint + '/app/vehicles', {}, {emulateJSON:true}).then(function(res){
+        this.slides = res.data.data
+        cache.slides = this.slides
+      }, function(error){
+        console.log(error.statusText)
+      })
+    }
+    if(!cache.posts){
+      this.$http.post(helper.getAttributes($('html')).endpoint + '/app/posts', {}, {emulateJSON:true}).then(function(res){
+        this.posts = res.data.data
+        cache.posts = this.posts
+      }, function(error){
+        console.log(error.statusText)
+      })
+    }
   },
-  updated: function(){
+  mounted: function(){
     setTimeout(function(){
       $('.slick').slick({
         dots: true,
@@ -22,13 +29,13 @@ const Splash = {
         speed: 1500,
         fade: true,
         cssEase: 'linear'        
-      }).fadeIn(2000);
-    },500)
+      }).fadeIn(1000);
+    },1000)
   },
   data: function() {
     return{
-      vehicles:{},
-      posts:{},
+      slides:cache.slides||{},
+      posts:cache.posts||{},
       filters : helper.filters,
       settings: helper.getAttributes($('html'))
     }

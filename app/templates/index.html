@@ -88,7 +88,7 @@
   <script type="text/x-template" id="splash">
     <div>
       <div class="slick slick-main">
-        <router-link v-for="item in vehicles" :to="filters.base64encode('/v/'+item.id)" tag="a">
+        <router-link v-for="item in slides" :to="filters.base64encode('/v/'+item.id)" tag="a">
           <div class="slick-pane" :style="'background-image:url(' + item.pic1_url + ')'"></div>
         </router-link>
       </div>
