@@ -6,17 +6,24 @@ const Splash = {
     }, function(error){
       console.log(error.statusText)
     })
+    this.$http.post(helper.getAttributes($('html')).endpoint + '/app/posts', {}, {emulateJSON:true}).then(function(res){
+      this.posts = res.data.data
+    }, function(error){
+      console.log(error.statusText)
+    })
   },
   updated: function(){
-    $('.slick').slick({
-      dots: true,
-      autoplay: true,
-      autoplaySpeed: 2000,        
-      infinite: true,
-      speed: 500,
-      fade: true,
-      cssEase: 'linear'        
-    }).hide().fadeIn(2000);
+    setTimeout(function(){
+      $('.slick').slick({
+        dots: true,
+        autoplay: true,
+        autoplaySpeed: 3000,
+        infinite: true,
+        speed: 1500,
+        fade: true,
+        cssEase: 'linear'        
+      }).fadeIn(2000);
+    },500)
   },
   data: function() {
     return{
@@ -47,7 +54,7 @@ const Resource = {
   }
 }
 
-const Item = {
+const Items = {
   template: '#item',
   mounted: function() {
     var getCandidate = this.getCandidate()
@@ -188,8 +195,7 @@ const router = new VueRouter({
   routes: [
     {path: '/', component: Splash, meta : { title: 'Mercedes-Benz'}},
     {path: '/opener', component: Opener, meta : { title: 'Redirigiendo...'}},
-    {path: '/vehicles', component: Item,  meta : { title: 'Item'}},
-    {path: '/vehicles', component: Item,  meta : { title: 'Item'}},
+    {path: '/vehicles', component: Items,  meta : { title: 'Vehículos'}},
     {path: '/contacto', component: Contacto, meta : { title: 'Contacto'}},
     {path: '/terminos', component: Terminos, meta : { title: 'Términos y condiciones'}},
     {path: '/atencion', component: Atencion, meta : { title: 'Atención'}},

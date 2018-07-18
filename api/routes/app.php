@@ -10,6 +10,7 @@ use League\Fractal\Resource\Collection;
 use League\Fractal\Serializer\DataArraySerializer;
 use Tuupola\Base62;
 use App\Lead;
+use App\Post;
 use App\Vehicle;
 use App\Email;
 use App\VehicleModel;
@@ -18,11 +19,8 @@ use App\ThemeType;
 use App\ThemeSection;
 
 $app->group('/v1', function() {
-
     $this->group('/app', function() {
-
         $this->post("/contacto", function ($request, $response, $arguments) {
-
             $body = $request->getParsedBody();
             
             $user = (object) [
@@ -69,6 +67,23 @@ $app->group('/v1', function() {
             $fractal = new Manager();
             $fractal->setSerializer(new DataArraySerializer);
             $resource = new Collection($mapper, new Vehicle);
+            $data = $fractal->createData($resource)->toArray();
+
+            return $response->withStatus(200)
+                ->withHeader("Content-Type", "application/json")
+                ->write(json_encode($data));
+        }); 
+
+        $this->post('/posts', function ($request, $response, $args) {
+            $mapper = $this->spot->mapper("App\Post")
+                ->where(['id >' => 0])
+                ->order(['created' => 'DESC'])
+                ->limit(10);
+
+            /* Serialize the response data. */
+            $fractal = new Manager();
+            $fractal->setSerializer(new DataArraySerializer);
+            $resource = new Collection($mapper, new Post);
             $data = $fractal->createData($resource)->toArray();
 
             return $response->withStatus(200)
@@ -147,22 +162,6 @@ $app->group('/v1', function() {
                 ->write(json_encode($data));
         }); 
 
-        $this->post('/posts', function ($request, $response, $args) {
-            $mapper = $this->spot->mapper("App\Post")
-                ->where(['id >' => 0])
-                ->order(['title' => 'ASC'])
-                ->limit(1000);
-
-            /* Serialize the response data. */
-            $fractal = new Manager();
-            $fractal->setSerializer(new DataArraySerializer);
-            $resource = new Collection($mapper, new Post);
-            $data = $fractal->createData($resource)->toArray();
-
-            return $response->withStatus(200)
-                ->withHeader("Content-Type", "application/json")
-                ->write(json_encode($data));
-        }); 
 
         // Usuario crean cotizaciones, se actualizas usuarios y vehículos
 

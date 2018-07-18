@@ -128,38 +128,12 @@ class AdminerFileUpload {
 
 		    try {
 
-		        if(getenv('S3_ENABLED')){
+	            $url = getenv('UPLOADS_URL') . '/' . $key;
 
-		            $s3 = new S3Client([
-		                'version' => 'latest',
-		                'region'  => getenv('S3_REGION'),
-		                'credentials' => [
-		                    'key'    => getenv('S3_KEY'),
-		                    'secret' => getenv('S3_SECRET')
-		                ]
-		            ]);
+	            $orig = $manager->make($_FILES[$name]['tmp_name'])
+	                ->orientate()
+	                ->save(getenv('UPLOADS_PATH') . '/' . $key, (int) getenv('S3_QUALITY'));
 
-		            $orig = $manager->make($_FILES[$name]['tmp_name'])
-		                ->stream()
-		                ->__toString();
-
-		            $s3->putObject([
-		                'Bucket' => getenv('S3_BUCKET'),
-		                'Key'    => $key,
-		                'Body'   => (string) $orig,
-		                'ACL'    => 'public-read',
-		            ]);
-
-		            $url = 'https://' . getenv('S3_BUCKET') . '.s3.amazonaws.com/' . $key;
-		        } else {
-
-		            $url = getenv('UPLOADS_URL') . '/' . $key;
-
-		            $orig = $manager->make($_FILES[$name]['tmp_name'])
-		                ->orientate()
-		                ->save(getenv('UPLOADS_PATH') . '/' . $key, (int) getenv('S3_QUALITY'));
-
-		        }
 		    } catch (S3Exception $e) {
 		      // Catch an S3 specific exception.
 		        die($e->getMessage());

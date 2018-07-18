@@ -63,8 +63,8 @@
 
       <div class="navbar-menu" id="navMenu">
         <div class="navbar-start">
-          <router-link to="/item" active-class="active" class="navbar-item" tag="a">Cotización online</router-link>
-          <router-link to="/atencion" active-class="active" class="navbar-item" tag="a">Atención al cliente</router-link>
+          <router-link to="/terminos" active-class="active" class="navbar-item" tag="a">Términos</router-link>
+          <router-link to="/atencion" active-class="active" class="navbar-item" tag="a">Atención</router-link>
         </div>
         <!--div class="navbar-end">
           <a href="{{clientes_url}}/registro" class="navbar-item">Registro</a>
@@ -79,29 +79,8 @@
  		<router-view :key="$route.fullPath"><div class="spinner-outer fadeIn"><div class="spinner" data-layer="4"><div class="spinner-container"><div class="spinner-rotator"><div class="spinner-left"><div class="spinner-circle"></div></div><div class="spinner-right"><div class="spinner-circle"></div></div></div></div><div class="spinner-message">Si la reproducción no empieza en breve, prueba a reiniciar el dispositivo.</div></div></div></router-view>
 
     <div class="footer__partners loading">
-      <h6>Presentes en</h6>
       <div class="footer__partners--row">
-        <div class="footer__partners--item">
-          <img src="{{static_url}}/img/chevrolet@3x.png">
-        </div>
-        <div class="footer__partners--item">
-          <img src="{{static_url}}/img/mercedes@3x.png">
-        </div>
-        <div class="footer__partners--item">
-          <img src="{{static_url}}/img/hyundai@3x.png">
-        </div>
-        <div class="footer__partners--item">
-          <img src="{{static_url}}/img/ypf@3x.png">
-        </div>
-        <div class="footer__partners--item">
-          <img src="{{static_url}}/img/lanacion@3x.png">
-        </div>
-        <div class="footer__partners--item">
-          <img src="{{static_url}}/img/mercantil@3x.png">
-        </div>
-      </div>      
-      <div class="footer__partners--row">
-        <p class=""><router-link to="/terminos" tag="a">Términos y condiciones</router-link> &copy; 2018 <router-link to="/" tag="a">MercedesBenz.com</router-link> </p>
+        <p class=""><router-link to="/terminos" tag="a">Términos y condiciones</router-link> &copy; 2018 <router-link to="/" tag="a">Mercedes-Benz &mdash; Cigliutti-Guerini.</router-link> </p>
       </div>
     </div> 
   </div>
@@ -113,6 +92,15 @@
           <div class="slick-pane" :style="'background-image:url(' + item.pic1_url + ')'"></div>
         </router-link>
       </div>
+      <div class="content">
+        <div v-for="item in posts">
+          <router-link :to="filters.base64encode('/p/'+item.id)" tag="a">
+            <h1 v-html="item.title"></h1>
+          </router-link>
+          <blockquote v-html="item.intro"></blockquote>
+          <div class="slick-pane" :style="'background-image:url(' + item.pic1_url + ')'"></div>
+        </div>
+      </div>
     </div>
   </script>
 
@@ -120,11 +108,11 @@
     <div class="container">
       <div class="content">
         <!--pre v-html="item"></pre-->
-        <div class="slick-pane" :style="'background-image:url(' + item.pic1_url + ')'"></div>
         <h1 v-html="item.title"></h1>
         <div class="post" v-html="item.content"></div>
+        <div class="slick-pane" :style="'background-image:url(' + item.pic1_url + ')'"></div>
       </div>
-    </div>
+    </div>    
   </script>
 
   <script type="text/x-template" id="item">

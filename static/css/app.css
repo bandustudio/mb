@@ -1242,7 +1242,7 @@ a:hover {
   z-index: 1;
   display: inline-block;
   width: 100%;
-  background-color: #1c3e58;
+  background-color: transparent;
   padding: 4em 1em;
   text-align: center;
 }
@@ -1523,6 +1523,7 @@ a:hover {
 /* slick hacks*/
 
 .slick {
+  display: none;
   min-height: 300px;
 }
 
@@ -1534,6 +1535,9 @@ a:hover {
 }
 
 @media screen and (max-width: 1024px) {
+  .content {
+    padding: 10px;
+  }  
   .navbar-menu .navbar-item {
     padding-left: 10px;
     padding-right: 10px;
@@ -1541,6 +1545,7 @@ a:hover {
 }
 
 @media screen and (max-width: 768px) {
+
   .inline-background {
     height: 200px;
   }
