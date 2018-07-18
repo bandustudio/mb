@@ -24,26 +24,26 @@ use Tuupola\Base62;
 use Ramsey\Uuid\Uuid;
 use Psr\Log\LogLevel;
 
-class PostPosition extends \Spot\Entity
+class ThemeType extends \Spot\Entity
 {
-    protected static $table = "posts_positions";
+    protected static $table = "theme_types";
 
     public static function fields()
     {
         return [
             "id" => ["type" => "integer", "unsigned" => true, "primary" => true, "autoincrement" => true],
-            "title" => ["type" => "string", "length" => 250],
+            "title" => ["type" => "string", "length" => 50],
             "enabled" => ["type" => "boolean", "value" => false],
             "created"   => ["type" => "datetime", "value" => new \DateTime()],
             "updated"   => ["type" => "datetime", "value" => new \DateTime()]
         ];
     }
 
-    public function transform(Section $region)
+    public function transform(ThemeType $entity)
     {
         return [
-            "id" => (integer) $region->id ?: null,
-            "title" => (string) $region->title ?: ""
+            "id" => (integer) $entity->id ?: null,
+            "title" => (string) $entity->title ?: ""
         ];
     }
 
@@ -56,7 +56,6 @@ class PostPosition extends \Spot\Entity
     {
         $this->data([
             "title" => null,
-            "name" => null,
             "enabled" => null
         ]);
     }

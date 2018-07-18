@@ -57,8 +57,8 @@ class Post extends \Spot\Entity
     public static function relations(Mapper $mapper, Entity $entity)
     {
         return [
-            'section' => $mapper->belongsTo($entity, 'App\PostSection', 'section_id'),
-            'position' => $mapper->belongsTo($entity, 'App\PostPosition', 'position_id')
+            'section' => $mapper->belongsTo($entity, 'App\ThemeSection', 'section_id'),
+            'position' => $mapper->belongsTo($entity, 'App\ThemePosition', 'position_id')
         ];
     }
     

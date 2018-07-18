@@ -1515,6 +1515,23 @@ a:hover {
   text-align: center;
 }
 
+
+/* slick hacks*/
+
+.slick {
+  min-height: 50%
+}
+
+.slick-main {
+  min-height: 100%;
+}
+
+.slick-main > div {
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
 @media screen and (max-width: 1024px) {
   .navbar-menu .navbar-item {
     padding-left: 10px;

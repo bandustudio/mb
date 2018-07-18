@@ -24,22 +24,22 @@ use Tuupola\Base62;
 use Ramsey\Uuid\Uuid;
 use Psr\Log\LogLevel;
 
-class VehicleType extends \Spot\Entity
+class ThemePosition extends \Spot\Entity
 {
-    protected static $table = "vehicles_types";
+    protected static $table = "theme_positions";
 
     public static function fields()
     {
         return [
             "id" => ["type" => "integer", "unsigned" => true, "primary" => true, "autoincrement" => true],
-            "title" => ["type" => "string", "length" => 50],
+            "title" => ["type" => "string", "length" => 250],
             "enabled" => ["type" => "boolean", "value" => false],
             "created"   => ["type" => "datetime", "value" => new \DateTime()],
             "updated"   => ["type" => "datetime", "value" => new \DateTime()]
         ];
     }
 
-    public function transform(VehicleType $entity)
+    public function ThemePosition(Section $entity)
     {
         return [
             "id" => (integer) $entity->id ?: null,
@@ -56,6 +56,7 @@ class VehicleType extends \Spot\Entity
     {
         $this->data([
             "title" => null,
+            "name" => null,
             "enabled" => null
         ]);
     }

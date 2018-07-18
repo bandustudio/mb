@@ -78,7 +78,7 @@ $app->group('/v1', function() {
         }); 
 
         $this->post('/types', function ($request, $response, $args) {
-            $mapper = $this->spot->mapper("App\VehicleType")
+            $mapper = $this->spot->mapper("App\ThemeType")
                 ->where(['enabled' => 1])
                 ->order(['title' => 'ASC'])
                 ->limit(1000);
@@ -86,7 +86,7 @@ $app->group('/v1', function() {
             /* Serialize the response data. */
             $fractal = new Manager();
             $fractal->setSerializer(new DataArraySerializer);
-            $resource = new Collection($mapper, new VehicleType);
+            $resource = new Collection($mapper, new ThemeType);
             $data = $fractal->createData($resource)->toArray();
 
             return $response->withStatus(200)

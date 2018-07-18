@@ -24,9 +24,9 @@ use Tuupola\Base62;
 use Ramsey\Uuid\Uuid;
 use Psr\Log\LogLevel;
 
-class PostSection extends \Spot\Entity
+class ThemeSection extends \Spot\Entity
 {
-    protected static $table = "posts_sections";
+    protected static $table = "theme_sections";
 
     public static function fields()
     {

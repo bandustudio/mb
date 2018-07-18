@@ -33,6 +33,7 @@ class Vehicle extends \Spot\Entity
         return [
             "id" => ["type" => "integer", "unsigned" => true, "primary" => true, "autoincrement" => true],
             "model_id" => ["type" => "integer", "unsigned" => true, "default" => 0, 'index' => true],
+            "position_id" => ["type" => "integer", "unsigned" => true, "default" => 0, 'index' => true],            
             "type_id" => ["type" => "integer", "unsigned" => true, "default" => 0, 'index' => true],
             "picshare_url" => ["type" => "string", "length" => 255],
             "background_url" => ["type" => "string", "length" => 255],
@@ -59,8 +60,9 @@ class Vehicle extends \Spot\Entity
     public static function relations(Mapper $mapper, Entity $entity)
     {
         return [
-            'type' => $mapper->belongsTo($entity, 'App\VehicleType', 'type_id'),
-            'model' => $mapper->belongsTo($entity, 'App\VehicleModel', 'model_id')
+            'type' => $mapper->belongsTo($entity, 'App\ThemeType', 'type_id'),
+            'model' => $mapper->belongsTo($entity, 'App\VehicleModel', 'model_id'),
+            'position' => $mapper->belongsTo($entity, 'App\ThemePosition', 'position_id')
         ];
     }
     

@@ -1,16 +1,49 @@
 const Splash = {
   template: '#splash',
   mounted: function() {
-    helper.getFlash();
-    $('[data-typer-targets]').typer();
-    $.typer.options.textColor = 'black';
+    this.$http.post(helper.getAttributes($('html')).endpoint + '/app/vehicles', {}, {emulateJSON:true}).then(function(res){
+      this.vehicles = res.data.data
+    }, function(error){
+      console.log(error.statusText)
+    })
   },
   updated: function(){
-
+    $('.slick').slick({
+      dots: true,
+      infinite: true,
+      slidesToShow: 6,
+      slidesToScroll: 6,
+      responsive: [{
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 4,
+          infinite: true,
+          dots: true
+        }
+      }, {
+        breakpoint: 800,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: false
+        }
+      }, {
+        breakpoint: 490,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          infinite: true,
+          dots: false
+        }
+      }]
+    }).fadeIn(2000);
   },
   data: function() {
     return{
-      item: helper.champ().item||{},
+      vehicles:{},
+      posts:{},
       settings: helper.getAttributes($('html'))
     }
   }  
