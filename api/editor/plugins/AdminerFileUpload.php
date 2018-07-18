@@ -132,7 +132,7 @@ class AdminerFileUpload {
 
 	            $orig = $manager->make($_FILES[$name]['tmp_name'])
 	                ->orientate()
-	                ->save(getenv('UPLOADS_PATH') . '/' . $key, (int) getenv('S3_QUALITY'));
+	                ->save(getenv('UPLOADS_PATH') . '/' . $key, (int) getenv('UPLOADS_QUALITY'));
 
 		    } catch (S3Exception $e) {
 		      // Catch an S3 specific exception.

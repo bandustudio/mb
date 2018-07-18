@@ -116,13 +116,16 @@
 
   <script type="text/x-template" id="resource">
     <div class="container">
-      <div class="content">
-        <!--pre v-html="item"></pre-->
-        <h1 v-html="item.title"></h1>
-        <div class="post" v-html="item.content"></div>
-        <div class="slick-pane fadeInUp" :style="'background-image:url(' + item.picture + ')'"></div>
+      <div class="section">
+        <div>
+          <div class="content">
+            <h1 v-html="item.title">Términos y Condiciones de uso</h1>
+            <div class="post" v-html="item.content"></div>
+            <div class="slick-pane fadeInUp" :style="'background-image:url(' + item.picture + ')'"></div>
+          </div>
+        </div>
       </div>
-    </div>    
+    </div>
   </script>
 
   <script type="text/x-template" id="item">
