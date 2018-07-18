@@ -23,7 +23,7 @@ $minifier->add($dest . '/js/jquery.typer.js');
 $minifier->add($dest . '/js/moment-with-locales.min.js');
 $minifier->add($dest . '/js/sweetalert.min.js');
 $minifier->add($dest . '/js/jsrender.min.js');
-$minifier->add($dest . '/js/base64.min.js');
+$minifier->add($dest . '/js/base64.js');
 $minifier->add($dest . '/js/slick.min.js');
 $minifier->add($dest . '/js/fontawesome.js');
 $minifier->add($dest . '/js/app.js');
