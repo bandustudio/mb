@@ -14,7 +14,7 @@ use Tuupola\Base62;
 use App\Email;
 
 $app->get('/', function ($request, $response, $args) {
-    print "<h1>MercedesBenz.com API</h1>";
+    print "<h1>MercedesBenz.com API</h1><font color='green'>Un & Runnin'</font>";
 });
 
 $app->get("/m/{code}", function ($request, $response, $arguments) {

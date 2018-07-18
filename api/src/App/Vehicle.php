@@ -51,7 +51,7 @@ class Vehicle extends \Spot\Entity
             "version" => ["type" => "string", "length" => 50],
             "status" => ["type" => "string", "length" => 50],
             "deleted" => ["type" => "boolean", "value" => false, "notnull" => true],
-            "enabled" => ["type" => "boolean", "value" => false],
+            "enabled" => ["type" => "boolean", "value" => true],
             "created" => ["type" => "datetime", "value" => new \DateTime()],
             "updated" => ["type" => "datetime", "value" => new \DateTime()]
         ];
@@ -71,21 +71,18 @@ class Vehicle extends \Spot\Entity
 
         return [
             "id" => (integer) $entity->id ?: null,
-            "picture" => (string) $entity->picture_url ?: "",
-            "background" => (string) $entity->background_url ?: "",
-            "uploads" => (array) $uploads ?: [],
-            "brand" => (string) $entity->model ?: "",
-            "model" => (string) $entity->brand ?: "",
+            "title" => (string) $entity->title ?: "",
+            "content" => (string) $entity->content ?: "",
+            "picshare_url" => (string) $entity->picshare_url ?: "",
+            "background_url" => (string) $entity->background_url ?: "",
+            "pic1_url" => (string) $entity->pic1_url ?: "",
+            "pic2_url" => (string) $entity->pic2_url ?: "",
+            "pic3_url" => (string) $entity->pic3_url ?: "",
+            "pic4_url" => (string) $entity->pic4_url ?: "",
+            "pic5_url" => (string) $entity->pic5_url ?: "",
+            "pic6_url" => (string) $entity->pic6_url ?: "",
             "status" => (string) $entity->status ?: "",
-            "version" => (string) $entity->version ?: "",
-            "created" => (string) $entity->created->format('U') ?: "",
-            "user" => [
-                'id' => (integer) $entity->user->id ?: null,
-                "username" => (string) $entity->user->username ?: "",
-                "first_name" => (string) $entity->user->first_name ?: "",
-                "last_name" => (string) $entity->user->last_name ?: "",
-                "picture" => (string) $entity->user->picture ?: ""
-            ],
+            //"created" => (string) $entity->created->format('U') ?: "",
             "model" => [
                 "id" => (integer) $entity->model_id ?: null,
                 "title" => (string) $entity->model->title ?: null

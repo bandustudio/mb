@@ -45,10 +45,10 @@ class Post extends \Spot\Entity
             "title" => ["type" => "string", "length" => 250],
             "intro" => ["type" => "text"],
             "content_text" => ["type" => "text"],
-            "deleted" => ["type" => "boolean", "value" => false, "notnull" => true],
-            "enabled" => ["type" => "boolean", "value" => false],
             "from_datetime" => ["type" => "datetime", "value" => new \DateTime()],
             "to_datetime" => ["type" => "datetime", "value" => new \DateTime()],
+            "deleted" => ["type" => "boolean", "value" => false, "notnull" => true],
+            "enabled" => ["type" => "boolean", "value" => true],
             "created" => ["type" => "datetime", "value" => new \DateTime()],
             "updated" => ["type" => "datetime", "value" => new \DateTime()]
         ];
@@ -62,7 +62,7 @@ class Post extends \Spot\Entity
         ];
     }
     
-    public function transform(Vehicle $entity)
+    public function transform(Post $entity)
     {
 
         return [
@@ -70,22 +70,10 @@ class Post extends \Spot\Entity
             "picture" => (string) $entity->picture_url ?: "",
             "background" => (string) $entity->background_url ?: "",
             "uploads" => (array) $uploads ?: [],
-            "brand" => (string) $entity->model ?: "",
-            "model" => (string) $entity->brand ?: "",
-            "status" => (string) $entity->status ?: "",
-            "version" => (string) $entity->version ?: "",
-            "created" => (string) $entity->created->format('U') ?: "",
-            "user" => [
-                'id' => (integer) $entity->user->id ?: null,
-                "username" => (string) $entity->user->username ?: "",
-                "first_name" => (string) $entity->user->first_name ?: "",
-                "last_name" => (string) $entity->user->last_name ?: "",
-                "picture" => (string) $entity->user->picture ?: ""
-            ],
-            "model" => [
-                "id" => (integer) $entity->model_id ?: null,
-                "title" => (string) $entity->model->title ?: null
-            ]
+            "title" => (string) $entity->title ?: "",
+            "content" => (string) $entity->content_text ?: "",
+            "status" => (string) $entity->status ?: ""
+            //"created" => (string) $entity->created->format('U') ?: "",
         ];
     }
 

@@ -10,44 +10,42 @@ const Splash = {
   updated: function(){
     $('.slick').slick({
       dots: true,
+      autoplay: true,
+      autoplaySpeed: 2000,        
       infinite: true,
-      slidesToShow: 6,
-      slidesToScroll: 6,
-      responsive: [{
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 4,
-          slidesToScroll: 4,
-          infinite: true,
-          dots: true
-        }
-      }, {
-        breakpoint: 800,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-          infinite: true,
-          dots: false
-        }
-      }, {
-        breakpoint: 490,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          infinite: true,
-          dots: false
-        }
-      }]
-    }).fadeIn(2000);
+      speed: 500,
+      fade: true,
+      cssEase: 'linear'        
+    }).hide().fadeIn(2000);
   },
   data: function() {
     return{
       vehicles:{},
       posts:{},
+      filters : helper.filters,
       settings: helper.getAttributes($('html'))
     }
   }  
 };
+
+const Resource = {
+  template: '#resource',
+  mounted : function(){
+    helper.is_loading()
+    this.$http.post(helper.getAttributes($('html')).endpoint + '/app/resource', {payload:location.pathname}, {emulateJSON:true}).then(function(res){
+      this.item = res.data.data
+      helper.is_loaded()
+    }, function(error){
+      console.log(error.statusText)
+    })    
+  },
+  data: function() {
+    return{
+      item: {data:{}},
+      settings: helper.getAttributes($('html'))
+    }
+  }
+}
 
 const Item = {
   template: '#item',
@@ -170,26 +168,6 @@ const Opener = {
   data: function() {
     return{
       url: this.$route.query.url,
-      settings: helper.getAttributes($('html'))
-    }
-  }
-}
-
-const Resource = {
-  template: '#resource',
-  mounted : function(){
-    this.$http.post(helper.getAttributes($('html')).endpoint + '/app/resource', {}, {emulateJSON:true}).then(function(res){
-      candidato = res.data
-      this.candidato = candidato
-      $('input[name="gestor_id"]').val(res.data.id).trigger('change')
-    }, function(error){
-      console.log(error.statusText)
-    })    
-
-  },
-  data: function() {
-    return{
-      item: {},
       settings: helper.getAttributes($('html'))
     }
   }

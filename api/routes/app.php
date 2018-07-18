@@ -10,13 +10,12 @@ use League\Fractal\Resource\Collection;
 use League\Fractal\Serializer\DataArraySerializer;
 use Tuupola\Base62;
 use App\Lead;
-use App\User;
+use App\Vehicle;
 use App\Email;
-use App\Brand;
-use App\Model;
-use App\Version;
-use App\Message;
-use App\UserMessage;
+use App\VehicleModel;
+use App\ThemePosition;
+use App\ThemeType;
+use App\ThemeSection;
 
 $app->group('/v1', function() {
 
@@ -76,6 +75,60 @@ $app->group('/v1', function() {
                 ->withHeader("Content-Type", "application/json")
                 ->write(json_encode($data));
         }); 
+
+        $this->post("/resource", function ($request, $response, $arguments) {
+
+            $body = $request->getParsedBody();
+            $encoded = substr($body['payload'],1);
+            $decoded = base64_decode($encoded);
+
+            $parts = array_values(array_filter(explode('/',$decoded)));
+
+            switch ($parts[0]) {
+                case 'v':
+                    
+                    $mapper = $this->spot->mapper("App\Vehicle")
+                        ->where(['id' => $parts[1]])
+                        ->where(['enabled' => 1])
+                        ->first();
+
+                    /* Serialize the response data. */
+
+                    $fractal = new Manager();
+                    $fractal->setSerializer(new DataArraySerializer);
+                    $resource = new Item($mapper, new Vehicle);
+
+                    $data = $fractal->createData($resource)->toArray();                    
+
+                    break;
+
+                case 'p':
+                    
+                    $mapper = $this->spot->mapper("App\Post")
+                        ->where(['id' => $parts[1]])
+                        ->where(['enabled' => 1])
+                        ->first();
+
+                    /* Serialize the response data. */
+
+                    $fractal = new Manager();
+                    $fractal->setSerializer(new DataArraySerializer);
+                    $resource = new Item($mapper, new Post);
+
+                    $data = $fractal->createData($resource)->toArray();                    
+
+                    break;
+
+                default:
+                    # code...
+                    break;
+            }
+
+            return $response->withStatus(200)
+                ->withHeader("Content-Type", "application/json")
+                ->write(json_encode($data));
+        });
+
 
         $this->post('/types', function ($request, $response, $args) {
             $mapper = $this->spot->mapper("App\ThemeType")

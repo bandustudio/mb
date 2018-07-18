@@ -17,6 +17,9 @@ var helper = {
     formatDate : function(date){
       return moment(date,'X').format('DD MMM hh:mm');
     },
+    base64encode: function(a){
+      return Base64.encode(a)
+    },
     isHumanTime : function(date){
       return moment(date,'X').fromNow()
     },
@@ -34,6 +37,14 @@ var helper = {
         return moment.utc(date).format("D MMM YY HH:mm")
       return moment.utc(date).startOf('minute').fromNow()
     }   
+  },
+  is_loading: function(){
+    $('.navbar').after('<div class="spinner-outer fadeInFast"><div class="spinner" data-layer="4"><div class="spinner-container"><div class="spinner-rotator"><div class="spinner-left"><div class="spinner-circle"></div></div><div class="spinner-right"><div class="spinner-circle"></div></div></div></div><div class="spinner-message">Si la reproducción no empieza en breve, prueba a reiniciar el dispositivo.</div></div></div>')
+  },
+  is_loaded: function(){
+    $('#app .spinner-outer').fadeOut(250,function(){
+      $(this).remove()
+    })
   },
   playAudio : function(audio) {
     if(audio===undefined) audio = "message";
