@@ -69,18 +69,21 @@ class Vehicle extends \Spot\Entity
     public function transform(Vehicle $entity)
     {
 
+        $slick = [];
+        for($i=2;$i<7;$i++){
+            if(!empty($entity->{'pic' . $i . '_url'})){
+                $slick = $entity->{'pic' . $i . '_url'};
+            }
+        }
+
         return [
             "id" => (integer) $entity->id ?: null,
             "title" => (string) $entity->title ?: "",
             "content" => (string) $entity->content ?: "",
             "picshare_url" => (string) $entity->picshare_url ?: "",
             "background_url" => (string) $entity->background_url ?: "",
-            "pic1_url" => (string) $entity->pic1_url ?: "",
-            "pic2_url" => (string) $entity->pic2_url ?: "",
-            "pic3_url" => (string) $entity->pic3_url ?: "",
-            "pic4_url" => (string) $entity->pic4_url ?: "",
-            "pic5_url" => (string) $entity->pic5_url ?: "",
-            "pic6_url" => (string) $entity->pic6_url ?: "",
+            "picture" => (string) $entity->pic1_url ?: "",
+            "slick" => (array) $slick,
             "status" => (string) $entity->status ?: "",
             //"created" => (string) $entity->created->format('U') ?: "",
             "model" => [

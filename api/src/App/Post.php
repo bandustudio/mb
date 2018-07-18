@@ -66,13 +66,21 @@ class Post extends \Spot\Entity
     public function transform(Post $entity)
     {
 
+        $slick = [];
+        for($i=2;$i<7;$i++){
+            if(!empty($entity->{'pic' . $i . '_url'})){
+                $slick = $entity->{'pic' . $i . '_url'};
+            }
+        }
+
         return [
             "id" => (integer) $entity->id ?: null,
-            "picture" => (string) $entity->picture_url ?: "",
-            "background" => (string) $entity->background_url ?: "",
-            "uploads" => (array) $uploads ?: [],
             "title" => (string) $entity->title ?: "",
             "content" => (string) $entity->content_text ?: "",
+            "picshare_url" => (string) $entity->picshare_url ?: "",
+            "background_url" => (string) $entity->background_url ?: "",
+            "picture" => (string) $entity->pic1_url ?: "",
+            "slick" => (array) $slick,
             "status" => (string) $entity->status ?: ""
             //"created" => (string) $entity->created->format('U') ?: "",
         ];

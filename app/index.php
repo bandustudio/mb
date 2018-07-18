@@ -31,7 +31,7 @@ $container['view'] = function ($c) {
     $view->offsetSet('app_whatsapp', getenv('APP_WHATSAPP'));
     $view->offsetSet('app_facebook', getenv('APP_FACEBOOK'));
     $view->offsetSet('rev_parse', substr(exec('git rev-parse HEAD'),0,7));
-    $view->offsetSet('localhost', ($_SERVER['REMOTE_ADDR'] == "127.0.0.11"));
+    $view->offsetSet('localhost', ($_SERVER['REMOTE_ADDR'] == "127.0.0.1"));
     $view->addExtension(new Slim\Views\TwigExtension($c['router'], $basePath));
 
     return $view;
