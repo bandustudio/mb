@@ -41,6 +41,7 @@ class Post extends \Spot\Entity
             "pic6_url" => ["type" => "string", "length" => 255],
             "picshare_url" => ["type" => "string", "length" => 255],
             "background_url" => ["type" => "string", "length" => 255],
+            "location" => ["type" => "string", "length" => 20],
             "title" => ["type" => "string", "length" => 250],
             "intro" => ["type" => "text"],
             "content_text" => ["type" => "text"],

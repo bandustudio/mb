@@ -42,6 +42,9 @@ class AdminerFileUpload {
 		<script type="text/javascript" src="js/summernote.min.js"></script>
 		<script type="text/javascript">
 		$(function(){
+
+			$("#h1").attr("href","https://mb.automovilshop.com")
+			
 			$("input,textarea").each(function(){
 				var name = $(this).attr("name")||""
 

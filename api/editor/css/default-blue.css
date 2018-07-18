@@ -58,7 +58,7 @@ html{
 }
 body{
     font-family:"Helvetica Neue",Helvetica,Verdana,Arial,sans-serif;
-    background:#fff;
+    background:#f8f8f8;
     color:#444
 }
 a,a:visited{
@@ -357,7 +357,7 @@ p input,p select,p label,fieldset input,fieldset select{
     margin:0;
     padding:0 0 0 20px;
     border-right:205px solid #f6f6f6;
-    background:#f6f6f6;
+    background:#9ce0ff;
     height:40px;
     line-height:40px;
     z-index:100;
@@ -501,7 +501,7 @@ h1 #h1{
     overflow-y:auto;
     overflow-x:hidden;
     -webkit-overflow-scrolling:touch;
-    background:#fff;
+    background:#f8f8f8;
     z-index:100
 }
 #menu #dbs{
@@ -526,7 +526,7 @@ h1 #h1{
 }
 #menu #tables,#menu #logins{
     border-bottom:1px solid #ddd;
-    padding:0
+    padding:2em 0
 }
 #menu .message{
     background:transparent;

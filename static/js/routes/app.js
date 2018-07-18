@@ -1,11 +1,12 @@
-var candidato = {};
-
 const Splash = {
   template: '#splash',
   mounted: function() {
     helper.getFlash();
     $('[data-typer-targets]').typer();
     $.typer.options.textColor = 'black';
+  },
+  updated: function(){
+
   },
   data: function() {
     return{
