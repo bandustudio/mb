@@ -8,6 +8,7 @@ SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 TRUNCATE TABLE `vehicles_types`;
 TRUNCATE TABLE `vehicles_models`;
 TRUNCATE TABLE `posts_sections`;
+TRUNCATE TABLE `posts_positions`;
 
 INSERT INTO `posts_sections` (`id`, `route`, `title`, `template`, `enabled`, `created`, `updated`) VALUES
 (1,	'/',	'Inicio',	NULL,	1,	'2018-07-17 11:26:31',	'2018-07-17 11:26:31'),
@@ -15,6 +16,11 @@ INSERT INTO `posts_sections` (`id`, `route`, `title`, `template`, `enabled`, `cr
 (3,	'/vans',	'Vans',	NULL,	1,	'2018-07-17 11:26:31',	'2018-07-17 11:26:31'),
 (4,	'/camiones',	'Camiones',	NULL,	1,	'2018-07-17 11:26:31',	'2018-07-17 11:26:31'),
 (5,	'/autos',	'Autos',	NULL,	1,	'2018-07-17 11:26:31',	'2018-07-17 11:26:31');
+
+INSERT INTO `posts_positions` (`id`, `title`, `enabled`, `created`, `updated`) VALUES
+(1,	'Slide',	1,	'2018-07-17 11:26:31',	'2018-07-17 11:26:31'),
+(2,	'Body',	1,	'2018-07-17 11:26:31',	'2018-07-17 11:26:31'),
+(3,	'Sidebar',		1,	'2018-07-17 11:26:31',	'2018-07-17 11:26:31');
 
 INSERT INTO `vehicles_types` (`id`, `title`, `enabled`, `created`, `updated`) VALUES
 (1,	'Vans',	1,	'2018-07-17 11:26:31',	'2018-07-17 11:26:31'),

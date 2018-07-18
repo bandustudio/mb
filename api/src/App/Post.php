@@ -33,6 +33,7 @@ class Post extends \Spot\Entity
         return [
             "id" => ["type" => "integer", "unsigned" => true, "primary" => true, "autoincrement" => true],
             "section_id" => ["type" => "integer", "unsigned" => true, "default" => 0, 'index' => true],
+            "position_id" => ["type" => "integer", "unsigned" => true, "default" => 0, 'index' => true],
             "pic1_url" => ["type" => "string", "length" => 255],
             "pic2_url" => ["type" => "string", "length" => 255],
             "pic3_url" => ["type" => "string", "length" => 255],
@@ -41,7 +42,6 @@ class Post extends \Spot\Entity
             "pic6_url" => ["type" => "string", "length" => 255],
             "picshare_url" => ["type" => "string", "length" => 255],
             "background_url" => ["type" => "string", "length" => 255],
-            "location" => ["type" => "string", "length" => 20],
             "title" => ["type" => "string", "length" => 250],
             "intro" => ["type" => "text"],
             "content_text" => ["type" => "text"],
@@ -57,7 +57,8 @@ class Post extends \Spot\Entity
     public static function relations(Mapper $mapper, Entity $entity)
     {
         return [
-            'section' => $mapper->belongsTo($entity, 'App\PostSection', 'section_id')
+            'section' => $mapper->belongsTo($entity, 'App\PostSection', 'section_id'),
+            'position' => $mapper->belongsTo($entity, 'App\PostPosition', 'position_id')
         ];
     }
     
