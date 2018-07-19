@@ -93,23 +93,34 @@
         </router-link>
       </div>
       <div class="content">
-        <div v-for="(item, index) in posts">
-          <div class="columns container is-widescreen" v-if="index%2===0">
-            <div class="column is-four-fifths innerdarkshadow" :style="'background-image:url(' + item.picture + ')'"></div>
+        <div v-for="(item, index) in posts" class="posts container fadeIn">
+          <div class="columns" v-if="index%2===0">
+            <div class="column is-one-fifth"></div>
             <div class="column">
-              <h1 v-html="item.title"></h1>
-              <p class="has-text-justified-widescreen" v-html="item.intro"></p>
-              <router-link :to="filters.base64encode('/p/'+item.id)" class="button is-text" tag="a">Seguir leyendo...</router-link>
+              <div class="columns">
+                <div class="column innerdarkshadow" :style="'background-image:url(' + item.picture + ')'"></div>
+                <div class="column">
+                  <h1 v-html="item.title"></h1>
+                  <p class="has-text-justified-widescreen" v-html="item.intro"></p>
+                  <router-link :to="filters.base64encode('/p/'+item.id)" class="button is-text" tag="a">Seguir leyendo...</router-link>
+                </div>
+              </div>
             </div>
+            <div class="column is-one-fifth"></div>
           </div>
           <div class="columns" v-if="index%2===0">
-            <div class="column has-text-right">
-              <h1 v-html="item.title"></h1>
-              <p class="has-text-justified-widescreen" v-html="item.intro"></p>
-              <router-link :to="filters.base64encode('/p/'+item.id)" class="button is-text" tag="a">Seguir leyendo...</router-link>
+            <div class="column is-one-fifth"></div>
+            <div class="column">
+              <div class="columns">
+                <div class="column">
+                  <h1 v-html="item.title"></h1>
+                  <p class="has-text-justified-widescreen" v-html="item.intro"></p>
+                  <router-link :to="filters.base64encode('/p/'+item.id)" class="button is-text" tag="a">Seguir leyendo...</router-link>
+                </div>
+                <div class="column innerdarkshadow" :style="'background-image:url(' + item.picture + ')'"></div>
+              </div>
             </div>
-            <div class="column is-four-fifths innerdarkshadow" :style="'background-image:url(' + item.picture + ')'"></div>
-          </div>          
+          <div class="column is-one-fifth"></div>
         </div>
       </div>
     </div>

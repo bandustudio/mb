@@ -897,6 +897,14 @@ a:hover {
   right: 0;
 }
 
+.posts {
+  padding: 2em 0;
+}
+
+.posts > .columns {
+  padding: 2em 0;
+}
+
 .topleft {
   position: absolute;
   z-index: 99;
@@ -1572,7 +1580,7 @@ a:hover {
 }
 
 .innerdarkshadow {
-  height: 300px;
+  height: 200px;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
