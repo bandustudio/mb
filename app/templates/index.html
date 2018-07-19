@@ -57,6 +57,7 @@
           <span></span>
           <span></span>
           <span></span>
+          <span class="text">Menú</span>
         </div>
       </div>
 
@@ -93,21 +94,21 @@
       </div>
       <div class="content">
         <div v-for="(item, index) in posts">
-          <div class="columns" v-if="index%2===0">
-            <div class="column is-four-fifths slick-pane" :style="'background-image:url(' + item.picture + ')'"></div>
+          <div class="columns container is-widescreen" v-if="index%2===0">
+            <div class="column is-four-fifths innerdarkshadow" :style="'background-image:url(' + item.picture + ')'"></div>
             <div class="column">
               <h1 v-html="item.title"></h1>
-              <p v-html="item.intro"></p>
-              <router-link :to="filters.base64encode('/p/'+item.id)" class="button is-info" tag="a">Conocer mas...</router-link>
+              <p class="has-text-justified-widescreen" v-html="item.intro"></p>
+              <router-link :to="filters.base64encode('/p/'+item.id)" class="button is-text" tag="a">Seguir leyendo...</router-link>
             </div>
           </div>
           <div class="columns" v-if="index%2===0">
             <div class="column has-text-right">
               <h1 v-html="item.title"></h1>
-              <p v-html="item.intro"></p>
-              <router-link :to="filters.base64encode('/p/'+item.id)" class="button is-info" tag="a">Conocer mas...</router-link>
+              <p class="has-text-justified-widescreen" v-html="item.intro"></p>
+              <router-link :to="filters.base64encode('/p/'+item.id)" class="button is-text" tag="a">Seguir leyendo...</router-link>
             </div>
-            <div class="column is-four-fifths slick-pane" :style="'background-image:url(' + item.picture + ')'"></div>
+            <div class="column is-four-fifths innerdarkshadow" :style="'background-image:url(' + item.picture + ')'"></div>
           </div>          
         </div>
       </div>

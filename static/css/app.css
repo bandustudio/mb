@@ -604,7 +604,7 @@ body {
   margin-right: auto;
   background-image: url(/img/índice.jpeg);
   background-repeat: no-repeat;
-  background-position: left center;
+  background-position: left 10px;
   background-size: 90px;  
 }
 
@@ -675,7 +675,6 @@ body {
   font-stretch: normal;
   line-height: 1.28;
   letter-spacing: normal;
-  color: white;
 }
 
 .navbar-menu .navbar-item span {
@@ -685,7 +684,16 @@ body {
 .navbar-burger {
   position: absolute;
   left: 4px;
-  top: 4px;
+  top: 1px;
+}
+
+.navbar-burger span.text {
+  background-color: transparent;
+  position: relative!important;
+  left: 45px!important;
+  top: 17px!important;
+  font-size: 15px;
+  font-weight: 600;
 }
 
 .navbar-button {
@@ -729,7 +737,7 @@ a.navbar-item:hover, a.navbar-item.is-active, a.navbar-link:hover, a.navbar-link
   line-height: 1.36;
   letter-spacing: normal;
   text-align: left;
-  color: #4088da;
+  color: #fff;
 }
 
 .navbar-brand h1 {
@@ -1563,7 +1571,19 @@ a:hover {
   background-size: cover;
 }
 
+.innerdarkshadow {
+  height: 300px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  box-shadow: 10px 10px 60px 60px #000 inset;
+}
+
 @media screen and (max-width: 1024px) {
+
+  .navbar {
+    background-position: left 38px;
+  }  
   .content {
     padding: 10px;
   }  
