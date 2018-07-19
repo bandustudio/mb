@@ -51,7 +51,7 @@ class Vehicle extends \Spot\Entity
             "version" => ["type" => "string", "length" => 50],
             "status" => ["type" => "string", "length" => 50],
             "deleted" => ["type" => "boolean", "value" => false, "notnull" => true],
-            "enabled" => ["type" => "boolean", "value" => true],
+            "enabled" => ["type" => "boolean", "default" => true, "value" => true],
             "created" => ["type" => "datetime", "value" => new \DateTime()],
             "updated" => ["type" => "datetime", "value" => new \DateTime()]
         ];

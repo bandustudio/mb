@@ -49,7 +49,7 @@ class Post extends \Spot\Entity
             "from_datetime" => ["type" => "datetime", "value" => new \DateTime()],
             "to_datetime" => ["type" => "datetime", "value" => new \DateTime()],
             "deleted" => ["type" => "boolean", "value" => false, "notnull" => true],
-            "enabled" => ["type" => "boolean", "value" => true],
+            "enabled" => ["type" => "boolean", "default" => true, "value" => true],
             "created" => ["type" => "datetime", "value" => new \DateTime()],
             "updated" => ["type" => "datetime", "value" => new \DateTime()]
         ];
