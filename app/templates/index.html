@@ -108,14 +108,14 @@
             </div>
             <div class="column is-one-fifth"></div>
           </div>
-          <div class="columns" v-if="index%2===0">
+          <div class="columns" v-if="index%2!=0">
             <div class="column is-one-fifth"></div>
             <div class="column">
               <div class="columns">
                 <div class="column  has-text-left">
                   <h1 v-html="item.title"></h1>
                   <p class="has-text-justified-widescreen" v-html="item.intro"></p>
-                  <router-link :to="this.slug" class="button is-text" tag="a">Seguir leyendo...</router-link>
+                  <router-link :to="item.slug" class="button is-text" tag="a">Seguir leyendo...</router-link>
                 </div>
                 <div class="column lightborder" :style="'background-image:url(' + item.picture + ')'"></div>
               </div>

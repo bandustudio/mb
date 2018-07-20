@@ -974,9 +974,10 @@ a:hover {
 }
 
 .button.is-text {
-  background-color: #333;
-  border-color: #666;
-  color: #999;
+  background-color: #000;
+  border-color: #333;
+  color: #f7f7f7;
+  font-weight: 400;
 }
 
 .rounded {

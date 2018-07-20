@@ -39,6 +39,38 @@ $app->group('/v1', function() {
 
         });
 
+        $this->post('/home', function ($request, $response, $args) {
+
+            $mapper = $this->spot->mapper("App\Vehicle")
+                ->where(['enabled' => 1])
+                ->order(['created' => 'DESC'])
+                ->limit(10);
+
+
+            /* Serialize the response data. */
+            $fractal = new Manager();
+            $fractal->setSerializer(new DataArraySerializer);
+            $resource = new Collection($mapper, new Vehicle);
+            $data['items'] = $fractal->createData($resource)->toArray();
+
+            $mapper = $this->spot->mapper("App\Post")
+                ->where(['enabled' => 1])
+                ->order(['created' => 'DESC'])
+                ->limit(10);
+
+
+            /* Serialize the response data. */
+            $fractal = new Manager();
+            $fractal->setSerializer(new DataArraySerializer);
+            $resource = new Collection($mapper, new Post);
+            $data['posts'] = $fractal->createData($resource)->toArray();
+
+
+            return $response->withStatus(200)
+                ->withHeader("Content-Type", "application/json")
+                ->write(json_encode($data));
+        }); 
+
         $this->post('/items', function ($request, $response, $args) {
             $mapper = $this->spot->mapper("App\Vehicle")
                 ->where(['enabled' => 1])
@@ -233,7 +265,7 @@ $app->group('/v1', function() {
         });
 
         $this->post('/{slug}', function ($request, $response, $args) {
-            
+
             $mapper = $this->spot->mapper("App\Vehicle")
                 ->where(['title_slug' => $request->getAttribute('slug')])
                 ->where(['enabled' => 1])

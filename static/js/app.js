@@ -527,5 +527,9 @@ $.extend({
   }
 });
 
+$.ajaxSetup({
+  dataType : "json",
+  contentType: "application/json; charset=utf-8"
+})
 $.views.settings.delimiters("[[", "]]")
 moment.locale('es')
