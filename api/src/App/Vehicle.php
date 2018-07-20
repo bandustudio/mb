@@ -87,8 +87,8 @@ class Vehicle extends \Spot\Entity
             "status" => (string) $entity->status ?: "",
             //"created" => (string) $entity->created->format('U') ?: "",
             "model" => [
-                "id" => (integer) $entity->model_id ?: null,
-                "title" => (string) $entity->model->title ?: null
+                "id" => (integer) $entity->model ? $entity->model_id : null,
+                "title" => (string) $entity->model ? $entity->model->title : null
             ]
         ];
     }
