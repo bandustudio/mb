@@ -88,7 +88,7 @@
   <script type="text/x-template" id="splash">
     <div>
       <div class="slides slick slick-main fadeIn">
-        <router-link v-for="item in posts" :to="item.slug" tag="a">
+        <router-link v-for="item in posts" :to="'/posts/'+item.slug" tag="a">
           <div class="slick-pane" :style="'background-image:url(' + item.picture + ')'"></div>
         </router-link>
       </div>
@@ -102,7 +102,7 @@
                 <div class="column">
                   <h1 v-html="item.title"></h1>
                   <p class="has-text-justified-widescreen" v-html="item.intro"></p>
-                  <router-link :to="'/posts/'+item.slug" class="button is-text" tag="a">Seguir leyendo...</router-link>
+                  <router-link :to="item.slug" class="button is-text" tag="a">Seguir leyendo...</router-link>
                 </div>
               </div>
             </div>
@@ -115,7 +115,7 @@
                 <div class="column  has-text-left">
                   <h1 v-html="item.title"></h1>
                   <p class="has-text-justified-widescreen" v-html="item.intro"></p>
-                  <router-link :to="'/posts/'+this.slug" class="button is-text" tag="a">Seguir leyendo...</router-link>
+                  <router-link :to="this.slug" class="button is-text" tag="a">Seguir leyendo...</router-link>
                 </div>
                 <div class="column lightborder" :style="'background-image:url(' + item.picture + ')'"></div>
               </div>
@@ -336,7 +336,7 @@
   </script>
 
   <script type="text/x-jsrender" id="notfound">
-    <div class="section pagenotfound">
+    <div class="section pagenotfound fadeIn">
       <h2>No pudimos hallar la página</h2> 
       <p>Por favor revisa la url. Si creés que es un error por favor contactanos.</p>
       <div class="container has-text-centered">

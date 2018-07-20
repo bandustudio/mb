@@ -45,6 +45,11 @@ $app->group('/v1', function() {
                 ->order(['title' => 'ASC'])
                 ->limit(1000);
 
+            if($mapper === false){
+                throw new ForbiddenException("No resource was found.", 404);
+            }
+
+
             /* Serialize the response data. */
             $fractal = new Manager();
             $fractal->setSerializer(new DataArraySerializer);
@@ -61,6 +66,10 @@ $app->group('/v1', function() {
                 ->where(['id >' => 0])
                 ->order(['created' => 'DESC'])
                 ->limit(10);
+
+            if($mapper === false){
+                throw new ForbiddenException("No resource was found.", 404);
+            }
 
             /* Serialize the response data. */
             $fractal = new Manager();
@@ -80,6 +89,10 @@ $app->group('/v1', function() {
                 ->where(['title_slug' => $request->getAttribute('slug')])
                 ->where(['enabled' => 1])
                 ->first();
+
+            if($mapper === false){
+                throw new ForbiddenException("No resource was found.", 404);
+            }
 
             /* Serialize the response data. */
 
@@ -226,12 +239,9 @@ $app->group('/v1', function() {
                 ->where(['enabled' => 1])
                 ->first();
 
-
-
-            if(!$mapper){
-                throw new ForbiddenException("Resource not found.", 404);
+            if($mapper === false){
+                throw new ForbiddenException("No resource was found.", 404);
             }
-
             /* Serialize the response data. */
             $fractal = new Manager();
             $fractal->setSerializer(new DataArraySerializer);

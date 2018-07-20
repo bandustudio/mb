@@ -68,7 +68,7 @@ const Items = {
 const Item = {
   template: '#item',
   created: function() {
-    helper.progress_bar('')
+    //helper.progress_bar('')
   },
   mounted : function(){
     helper.is_loading()
@@ -77,8 +77,7 @@ const Item = {
       helper.is_loaded()
     }, function(error){
       helper.is_loaded()
-      console.log("errorrr")
-      $('.container').html($.templates('#notfound').render());
+      $('.content').html($.templates('#notfound').render());
       console.log(error.statusText)
     })    
   },
@@ -117,6 +116,8 @@ const Post = {
       this.data = res.data.data
       helper.is_loaded()
     }, function(error){
+      helper.is_loaded()
+      $('.content').html($.templates('#notfound').render());
       console.log(error.statusText)
     })    
   },
