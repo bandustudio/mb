@@ -687,7 +687,11 @@ body {
   top: 1px;
 }
 
-.navbar-burger span.text {
+.navbar-burger span:nth-child(2) {
+  width: 15px;
+}
+
+.navbar-burger span:last-child {
   background-color: transparent;
   position: relative!important;
   left: 45px!important;

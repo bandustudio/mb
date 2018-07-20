@@ -40,10 +40,6 @@ $container["token"] = function ($container) {
 $container["jwt"] = function ($container) {
     return new JwtAuthentication([
         "path" => [
-            "/v1/events",
-            "/v1/gestion",
-            "/v1/upload",
-            "/v1/clientes",
             "/v1/token"
         ],
         "passthrough" => [

@@ -18,7 +18,7 @@ var helper = {
       return moment(date,'X').format('DD MMM hh:mm');
     },
     base64encode: function(a){
-      return Base64.encode(a)
+      return Base64.encode(a).split("=").join("-").split("").reverse().join("");
     },
     isHumanTime : function(date){
       return moment(date,'X').fromNow()

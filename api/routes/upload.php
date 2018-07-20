@@ -23,6 +23,42 @@ $app->group('/v1', function() {
 
     $this->group('/upload', function() {
 
+        $this->post("/simple", function ($request, $response, $arguments) {
+
+            if ($_FILES['file']['name']) {
+                if (!$_FILES['file']['error']) {
+                    $fsy = getenv('UPLOADS_PATH') . '/' . date('Y');
+                    $folder = date('Y').'/'.date('m');
+                    $fsx = getenv('UPLOADS_PATH') . '/' . $folder;
+                        
+                    if( ! is_dir($fsy)){
+                        mkdir($fsy);
+                        chmod($fsy,0777);
+                    }
+
+                    if( ! is_dir($fsx)){
+                        mkdir($fsx);
+                        chmod($fsx,0777);
+                    }
+
+                    $name = md5(rand(100, 200));
+                    $ext = explode('.', $_FILES['file']['name']);
+                    $filename = $name . '.' . $ext[1];
+                    $destination = $fsx . '/' . $filename; //change this directory
+                    $location = $_FILES["file"]["tmp_name"];
+
+                    move_uploaded_file($location, $destination);
+                    $message =  getenv('STATIC_URL') . '/uploads/' . $folder . '/' . $filename;//change this URL
+                }
+                else
+                {
+                  $message = 'Ooops!  Your upload triggered the following error:  '.$_FILES['file']['error'];
+                }
+            }
+
+            return $message;
+        });
+
         $this->post("/lead/{code}", function ($request, $response, $arguments) {
 
             if (false === $this->token->decoded->uid) {

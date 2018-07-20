@@ -33,3 +33,4 @@ $app->get("/m/{code}", function ($request, $response, $arguments) {
 });
 
 require __DIR__ . "/app.php";
+require __DIR__ . "/upload.php";

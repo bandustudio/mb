@@ -44,6 +44,7 @@ class Post extends \Spot\Entity
             "background_url" => ["type" => "string", "length" => 255],
             "youtube" => ["type" => "string", "length" => 50],
             "title" => ["type" => "string", "length" => 250],
+            "title_slug" => ["type" => "string", "length" => 250],
             "intro" => ["type" => "text"],
             "content_text" => ["type" => "text"],
             "from_datetime" => ["type" => "datetime", "value" => new \DateTime()],

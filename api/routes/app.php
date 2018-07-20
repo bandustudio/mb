@@ -95,6 +95,7 @@ $app->group('/v1', function() {
 
             $body = $request->getParsedBody();
             $encoded = substr($body['payload'],1);
+            $encoded  = strrev(str_replace('-','=',$encoded));
             $decoded = base64_decode($encoded);
 
             $parts = array_values(array_filter(explode('/',$decoded)));
