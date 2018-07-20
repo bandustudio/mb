@@ -1,9 +1,10 @@
 var cache = {}
+
 const Splash = {
   template: '#splash',
   created: function() {
     if(!cache.slides){
-      this.$http.post(helper.getAttributes($('html')).endpoint + '/app/vehicles', {}, {emulateJSON:true}).then(function(res){
+      this.$http.post(helper.getAttributes($('html')).endpoint + '/app/items', {}, {emulateJSON:true}).then(function(res){
         this.slides = res.data.data
         cache.slides = this.slides
       }, function(error){
@@ -43,60 +44,17 @@ const Splash = {
   }  
 };
 
-const Resource = {
-  template: '#resource',
-  mounted : function(){
+const Items = {
+  template: '#item',
+  mounted: function() {
     helper.is_loading()
-    this.$http.post(helper.getAttributes($('html')).endpoint + '/app/resource', {payload:location.pathname}, {emulateJSON:true}).then(function(res){
-      this.item = res.data.data
+    this.$http.post(helper.getAttributes($('html')).endpoint + '/app'+location.pathname, {}, {emulateJSON:true}).then(function(res){
+      this.items = res.data.data
       helper.is_loaded()
     }, function(error){
       console.log(error.statusText)
     })    
-  },
-  data: function() {
-    return{
-      item: {data:{}},
-      settings: helper.getAttributes($('html'))
-    }
-  }
-}
-
-const Items = {
-  template: '#item',
-  mounted: function() {
-    var getCandidate = this.getCandidate()
-
-    if(this.item && this.item.complete){
-      helper.clear('item')
-      this.item = helper.champ().item
-    }    
-
-    helper.collect('item')
-
-    $('input[type="hidden"]').trigger("change")
-    $('.item input[name="full_name"]').on('change keyup',function(){
-      var val = $(this).val();
-      if(val){
-        $('.item input[name="first_name"]').val(val.split(' ').slice(0, -1).join(' ')).trigger('change');
-        $('.item input[name="last_name"]').val(val.split(' ').slice(-1).join(' ')).trigger('change');
-      }
-    });
   },    
-  methods: {
-    showImage : function(data){
-      return data.picture || "nose"
-    },
-    getCandidate: function(){
-      this.$http.post(helper.getAttributes($('html')).endpoint + '/app/candidato', {}, {emulateJSON:true}).then(function(res){
-        candidato = res.data
-        this.candidato = candidato
-        $('input[name="gestor_id"]').val(res.data.id).trigger('change')
-      }, function(error){
-        console.log(error.statusText)
-      })
-    }
-  },  
   data: function() {
     return{
       candidato: candidato,
@@ -106,6 +64,67 @@ const Items = {
     }
   }
 }
+
+const Item = {
+  template: '#item',
+  mounted : function(){
+    helper.is_loading()
+    this.$http.post(helper.getAttributes($('html')).endpoint + '/app'+location.pathname, {}, {emulateJSON:true}).then(function(res){
+      this.data = res.data.data
+      helper.is_loaded()
+    }, function(error){
+      helper.is_loaded()
+      console.log("errorrr")
+      $('.container').html($.templates('#notfound').render());
+      console.log(error.statusText)
+    })    
+  },
+  data: function() {
+    return{
+      data: {data:{}},
+      settings: helper.getAttributes($('html'))
+    }
+  }
+}
+
+const Posts = {
+  template: '#posts',
+  mounted: function() {
+    helper.is_loading()
+    this.$http.post(helper.getAttributes($('html')).endpoint + '/app'+location.pathname, {}, {emulateJSON:true}).then(function(res){
+      this.data = res.data.data
+      helper.is_loaded()
+    }, function(error){
+      console.log(error.statusText)
+    })    
+  },    
+  data: function() {
+    return{
+      data:{},
+      settings: helper.getAttributes($('html'))
+    }
+  }
+}
+
+const Post = {
+  template: '#post',
+  mounted : function(){
+    helper.is_loading()
+    this.$http.post(helper.getAttributes($('html')).endpoint + '/app'+location.pathname, {}, {emulateJSON:true}).then(function(res){
+      this.data = res.data.data
+      helper.is_loaded()
+    }, function(error){
+      console.log(error.statusText)
+    })    
+  },
+  data: function() {
+    return{
+      data: {data:{}},
+      settings: helper.getAttributes($('html'))
+    }
+  }
+}
+
 const Atencion = {
   template: '#atencion',
   data: function() {
@@ -144,16 +163,6 @@ const Contacto = {
       contacto : helper.champ().contacto||{},
       settings : helper.getAttributes($('html')),
       hash : location.hash.replace('#','')
-    }
-  }
-}
-
-const Beneficios = {
-  template: '#beneficios',
-  data: function() {
-    return{
-      msg: 'This is Users page',
-      settings: helper.getAttributes($('html'))
     }
   }
 }
@@ -202,12 +211,14 @@ const router = new VueRouter({
   mode: 'history',
   routes: [
     {path: '/', component: Splash, meta : { title: 'Mercedes-Benz'}},
-    {path: '/opener', component: Opener, meta : { title: 'Redirigiendo...'}},
-    {path: '/vehicles', component: Items,  meta : { title: 'Vehículos'}},
+    {path: '/items', component: Items,  meta : { title: 'Vehículos'}},
+    {path: '/posts', component: Posts,  meta : { title: 'Artículos'}},
+    {path: '/posts/:slug', component: Post,  meta : { title: 'Artículo'}},
     {path: '/contacto', component: Contacto, meta : { title: 'Contacto'}},
     {path: '/terminos', component: Terminos, meta : { title: 'Términos y condiciones'}},
     {path: '/atencion', component: Atencion, meta : { title: 'Atención'}},
-    {path: "*", component: Resource, meta : { title: ''}}
+    {path: '/opener', component: Opener, meta : { title: 'Redirigiendo...'}},
+    {path: "*", component: Item, meta : { title: ''}}
   ]
 });
 

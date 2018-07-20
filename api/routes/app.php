@@ -39,25 +39,7 @@ $app->group('/v1', function() {
 
         });
 
-        $this->post('/vehicles', function ($request, $response, $args) {
-            $mapper = $this->spot->mapper("App\Vehicle")
-                ->where(['enabled' => 1])
-                ->order(['title' => 'ASC'])
-                ->limit(1000);
-
-            /* Serialize the response data. */
-            $fractal = new Manager();
-            $fractal->setSerializer(new DataArraySerializer);
-            $resource = new Collection($mapper, new Vehicle);
-            $data = $fractal->createData($resource)->toArray();
-
-            return $response->withStatus(200)
-                ->withHeader("Content-Type", "application/json")
-                ->write(json_encode($data));
-        }); 
-
-        $this->post('/vehicles/{{id}}', function ($request, $response, $args) {
-            
+        $this->post('/items', function ($request, $response, $args) {
             $mapper = $this->spot->mapper("App\Vehicle")
                 ->where(['enabled' => 1])
                 ->order(['title' => 'ASC'])
@@ -91,60 +73,25 @@ $app->group('/v1', function() {
                 ->write(json_encode($data));
         }); 
 
-        $this->post("/resource", function ($request, $response, $arguments) {
 
-            $body = $request->getParsedBody();
-            $encoded = substr($body['payload'],1);
-            $encoded  = strrev(str_replace('-','=',$encoded));
-            $decoded = base64_decode($encoded);
+        $this->post("/posts/{slug}", function ($request, $response, $arguments) {
 
-            $parts = array_values(array_filter(explode('/',$decoded)));
+            $mapper = $this->spot->mapper("App\Post")
+                ->where(['title_slug' => $request->getAttribute('slug')])
+                ->where(['enabled' => 1])
+                ->first();
 
-            switch ($parts[0]) {
-                case 'v':
-                    
-                    $mapper = $this->spot->mapper("App\Vehicle")
-                        ->where(['id' => $parts[1]])
-                        ->where(['enabled' => 1])
-                        ->first();
+            /* Serialize the response data. */
 
-                    /* Serialize the response data. */
-
-                    $fractal = new Manager();
-                    $fractal->setSerializer(new DataArraySerializer);
-                    $resource = new Item($mapper, new Vehicle);
-
-                    $data = $fractal->createData($resource)->toArray();                    
-
-                    break;
-
-                case 'p':
-                    
-                    $mapper = $this->spot->mapper("App\Post")
-                        ->where(['id' => $parts[1]])
-                        ->where(['enabled' => 1])
-                        ->first();
-
-                    /* Serialize the response data. */
-
-                    $fractal = new Manager();
-                    $fractal->setSerializer(new DataArraySerializer);
-                    $resource = new Item($mapper, new Post);
-
-                    $data = $fractal->createData($resource)->toArray();                    
-
-                    break;
-
-                default:
-                    # code...
-                    break;
-            }
+            $fractal = new Manager();
+            $fractal->setSerializer(new DataArraySerializer);
+            $resource = new Item($mapper, new Post);
+            $data = $fractal->createData($resource)->toArray();                    
 
             return $response->withStatus(200)
                 ->withHeader("Content-Type", "application/json")
                 ->write(json_encode($data));
         });
-
 
         $this->post('/types', function ($request, $response, $args) {
             $mapper = $this->spot->mapper("App\ThemeType")
@@ -271,5 +218,30 @@ $app->group('/v1', function() {
                 ->withHeader("Content-Type", "application/json")
                 ->write(json_encode(['status' => $lead ? "success" : "error", 'id' => (int) $id]));
         });
+
+        $this->post('/{slug}', function ($request, $response, $args) {
+            
+            $mapper = $this->spot->mapper("App\Vehicle")
+                ->where(['title_slug' => $request->getAttribute('slug')])
+                ->where(['enabled' => 1])
+                ->first();
+
+
+
+            if(!$mapper){
+                throw new ForbiddenException("Resource not found.", 404);
+            }
+
+            /* Serialize the response data. */
+            $fractal = new Manager();
+            $fractal->setSerializer(new DataArraySerializer);
+            $resource = new Item($mapper, new Vehicle);
+            $data = $fractal->createData($resource)->toArray();
+
+            return $response->withStatus(200)
+                ->withHeader("Content-Type", "application/json")
+                ->write(json_encode($data));
+        }); 
+
     });    
 });

@@ -75,9 +75,23 @@ class AdminerTheme
 				$("input,textarea").each(function(){
 					var name = $(this).attr("name")||""
 
+					if(name.indexOf("_slug") > -1){
+						var result = name.match(/\[(.*)\]/);
+						var target = result[1].slice(0, result[1].lastIndexOf("_"));
+						var $o = $('input[name="fields[' + target + ']"]');
+
+						$o.on('keyup change',function(){
+							var result = name.match(/\[(.*)\]/);
+							var target = result[1].slice(0, result[1].lastIndexOf("_"));
+							var $t = $('input[name="fields[' + target + '_slug]"]');
+							$t.val(convertToSlug($(this).val().trim()))
+						})
+					}
+
 					if(name.indexOf("_text") > -1){
 
-						$(this).before('<progress class="progress is-info" value="0" max="100">0%</progress>');
+						$(this).before('<div class="progress summernote-progress hide"><div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"><span class="sr-only"></span></div></div>')
+
 						$(this).summernote({
 						    height: 200,   
 						    minHeight: null,
@@ -93,10 +107,19 @@ class AdminerTheme
 				})
 			})
 
+			function convertToSlug(Text)
+			{
+			    return Text
+			        .toLowerCase()
+			        .replace(/[^\w ]+/g,'')
+			        .replace(/ +/g,'-')
+			        ;
+			}
+
 			function sendFile(file, editor, welEditable) {
 			    data = new FormData();
 			    data.append("file", file);
-			    $(".progress").removeClass("hide").hide().fadeIn();
+			    $(".summernote-progress").removeClass("hide").hide().fadeIn();
 			    $.ajax({
 			        data: data,
 			        type: "POST",
@@ -110,8 +133,7 @@ class AdminerTheme
 			        contentType: false,
 			        processData: false,
 			        success: function(url) {
-			          $(".progress").fadeOut();
-			          console.log(url)
+			          $(".summernote-progress").fadeOut();
 			          editor.insertImage(welEditable, url);
 			        }
 			    });
@@ -120,10 +142,10 @@ class AdminerTheme
 			function progressHandlingFunction(e){
 			    if(e.lengthComputable){
 			        var perc = Math.floor((e.loaded/e.total)*100);
-			        $(".progress").attr({"value":perc}).width(perc+"%");
+			        $(".progress-bar").attr({"aria-valuenow":perc}).width(perc+"%");
 			        // reset progress on complete
 			        if (e.loaded == e.total) {
-			            $(".progress").attr("value","0.0");
+			            $(".progress-bar").attr("aria-valuenow","0.0");
 			        }
 			    }
 			}		

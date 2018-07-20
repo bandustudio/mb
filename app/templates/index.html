@@ -88,7 +88,7 @@
   <script type="text/x-template" id="splash">
     <div>
       <div class="slides slick slick-main fadeIn">
-        <router-link v-for="item in slides" :to="filters.base64encode('/v/'+item.id)" tag="a">
+        <router-link v-for="item in slides" :to="item.slug" tag="a">
           <div class="slick-pane" :style="'background-image:url(' + item.picture + ')'"></div>
         </router-link>
       </div>
@@ -102,7 +102,7 @@
                 <div class="column">
                   <h1 v-html="item.title"></h1>
                   <p class="has-text-justified-widescreen" v-html="item.intro"></p>
-                  <router-link :to="filters.base64encode('/p/'+item.id)" class="button is-text" tag="a">Seguir leyendo...</router-link>
+                  <router-link :to="'/posts/'+item.slug" class="button is-text" tag="a">Seguir leyendo...</router-link>
                 </div>
               </div>
             </div>
@@ -115,7 +115,7 @@
                 <div class="column">
                   <h1 v-html="item.title"></h1>
                   <p class="has-text-justified-widescreen" v-html="item.intro"></p>
-                  <router-link :to="filters.base64encode('/p/'+item.id)" class="button is-text" tag="a">Seguir leyendo...</router-link>
+                  <router-link :to="'/posts/'+this.slug" class="button is-text" tag="a">Seguir leyendo...</router-link>
                 </div>
                 <div class="column innerdarkshadow" :style="'background-image:url(' + item.picture + ')'"></div>
               </div>
@@ -126,28 +126,32 @@
     </div>
   </script>
 
-  <script type="text/x-template" id="resource">
+  <script type="text/x-template" id="item">
     <div class="container">
       <div class="section">
         <div>
           <div class="content">
-            <h1 v-html="item.title">Términos y Condiciones de uso</h1>
-            <div class="post" v-html="item.content"></div>
-            <div class="slick-pane fadeInUp" :style="'background-image:url(' + item.picture + ')'"></div>
+            <h1 v-html="data.title"></h1>
+            <div class="post" v-html="data.content"></div>
+            <div class="slick-pane fadeInUp" :style="'background-image:url(' + data.picture + ')'"></div>
           </div>
         </div>
       </div>
     </div>
   </script>
 
-  <script type="text/x-template" id="item">
+  <script type="text/x-template" id="post">
     <div class="container">
-      <div class="section item" ajax-prefix="app">
-        <div class="container has-text-centered">
-
+      <div class="section">
+        <div>
+          <div class="content">
+            <h1 v-html="data.title"></h1>
+            <div class="post" v-html="data.content"></div>
+            <div class="slick-pane fadeInUp" :style="'background-image:url(' + data.picture + ')'"></div>
+          </div>
         </div>
       </div>
-    </div>  
+    </div>
   </script>
 
   <script type="text/x-template" id="atencion">
@@ -345,6 +349,16 @@
         </div>        
       </div>
     </div>  
+  </script>
+
+  <script type="text/x-jsrender" id="notfound">
+    <div class="section pagenotfound">
+      <h2>No pudimos hallar la página</h2> 
+      <p>Por favor revisa la url. Si creés que es un error por favor contactanos.</p>
+      <div class="container has-text-centered">
+        <router-link to="/" class="button is-large" tag="a">Volver al inicio</router-link>
+      </div>        
+    </div>
   </script>
 
   <script type="text/x-jsrender" id="breadcrumb">
