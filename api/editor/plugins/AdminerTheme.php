@@ -76,8 +76,8 @@ class AdminerTheme
 					var name = $(this).attr("name")||""
 
 					if(name.indexOf("_slug") > -1){
-						$(this).prop('readonly',true).css({opacity:0.5,cursor:'pointer'})
-						//$(this).addClass('disabled')
+						//$(this).prop('readonly',true).css({opacity:0.5,cursor:'pointer'})
+						$(this).css({opacity:0.5,cursor:'pointer'})
 						var result = name.match(/\[(.*)\]/);
 						var target = result[1].slice(0, result[1].lastIndexOf("_"));
 						var $o = $('input[name="fields[' + target + ']"]');

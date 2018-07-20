@@ -37,6 +37,7 @@ class Post extends \Spot\Entity
             "title" => ["type" => "string", "length" => 250],
             "title_slug" => ["type" => "string", "length" => 250],
             "intro" => ["type" => "text"],
+            "button_link" => ["type" => "string", "length" => 250],
             "pic1_url" => ["type" => "string", "length" => 255],
             "pic2_url" => ["type" => "string", "length" => 255],
             "pic3_url" => ["type" => "string", "length" => 255],

@@ -3,10 +3,10 @@ var cache = {}
 const Splash = {
   template: '#splash',
   created: function() {
-    if(!cache.slides){
+    if(!cache.items){
       this.$http.post(helper.getAttributes($('html')).endpoint + '/app/items', {}, {emulateJSON:true}).then(function(res){
-        this.slides = res.data.data
-        cache.slides = this.slides
+        this.items = res.data.data
+        cache.items = this.items
       }, function(error){
         console.log(error.statusText)
       })
@@ -36,7 +36,7 @@ const Splash = {
   },
   data: function() {
     return{
-      slides:cache.slides||{},
+      items:cache.items||{},
       posts:cache.posts||{},
       filters : helper.filters,
       settings: helper.getAttributes($('html'))
@@ -67,6 +67,9 @@ const Items = {
 
 const Item = {
   template: '#item',
+  created: function() {
+    helper.progress_bar('')
+  },
   mounted : function(){
     helper.is_loading()
     this.$http.post(helper.getAttributes($('html')).endpoint + '/app'+location.pathname, {}, {emulateJSON:true}).then(function(res){
