@@ -77,6 +77,7 @@ class AdminerTheme
 
 					if(name.indexOf("_slug") > -1){
 						//$(this).prop('readonly',true).css({opacity:0.5,cursor:'pointer'})
+
 						$(this).css({opacity:0.5,cursor:'pointer'})
 						var result = name.match(/\[(.*)\]/);
 						var target = result[1].slice(0, result[1].lastIndexOf("_"));
@@ -104,7 +105,15 @@ class AdminerTheme
 						  });
 					}
 					if(name.indexOf("_datetime") > -1){
-						$(this).datetimepicker()
+						var format = 'YYYY-MM-DD HH:mm:ss';
+						if(moment($(this).val(),'DD/MM/YYYY HH:mm:ss').isValid()){
+							console.log("valid")
+							$(this).val(moment($(this).val(),'DD/MM/YYYY HH:mm:ss').format(format))
+						}
+
+						$(this).datetimepicker({
+							format: format
+						})
 					}
 				})
 			})
