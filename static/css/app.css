@@ -870,7 +870,6 @@ a.navbar-item:hover, a.navbar-item.is-active, a.navbar-link:hover, a.navbar-link
 }
 
 .navbar-brand {
-  font:normal 400 18px/1.33333 "corporatea";
   flex-direction: column;
   text-align: left;
   padding-left: 4.6em;
@@ -884,11 +883,13 @@ a.navbar-item:hover, a.navbar-item.is-active, a.navbar-link:hover, a.navbar-link
 }
 
 .navbar-brand h1 {
+  font-family:"corporatea";
   font-size: 22px;
   color: white;
 }
 
 .navbar-brand h2 {
+  font-family:"corporateacondpro";
   font-size: 14px;
   color: white;
 }
