@@ -889,6 +889,7 @@ a.navbar-item:hover, a.navbar-item.is-active, a.navbar-link:hover, a.navbar-link
 }
 
 .navbar-brand h2 {
+  padding-left: 0.1em;
   font-family:"corporateacondpro";
   font-size: 14px;
   color: white;
@@ -1794,7 +1795,7 @@ a:hover {
   }
   .navbar-brand {
     text-align: left;
-    padding-left: 3em;
+    padding-left: 3.1em;
   }
   .navbar-brand a {
     padding-top: 0.5em;

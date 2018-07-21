@@ -52,7 +52,10 @@
   <div id="app">
     <nav class="navbar loading" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
-        <router-link to="/" active-class="active" class="navbar-brand" :class="{ 'hidden': $route.path==='/404' }" tag="a"><h1>Mercedes-Benz</h1><br><h2>Cigliutti-Guerini</h2></router-link>
+        <router-link to="/" active-class="active" class="navbar-brand" :class="{ 'hidden': $route.path==='/404' }" tag="a">
+          <h1>Mercedes-Benz</h1>
+          <h2>Cigliutti-Guerini</h2>
+        </router-link>
         <div class="navbar-burger" data-target="navMenu">
           <span></span>
           <span></span>
@@ -86,7 +89,7 @@
   </div>
   
   <script type="text/x-template" id="splash">
-    <div class="viewport">
+    <div>
       <div class="slick slick-main opacity0">
         <div v-for="item in posts" class="slick-pane" :style="'background-image:url(' + item.picture + ')'">
           <div class="container columns">
