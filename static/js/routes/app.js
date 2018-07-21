@@ -31,7 +31,7 @@ const Splash = {
         cssEase: 'linear'
       })
       $('.slick-pane').height(($(window).height()-110)+'px')
-    },500)
+    },1000)
   },
   data: function() {
     return{

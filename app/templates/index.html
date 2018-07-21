@@ -93,42 +93,28 @@
             <div class="column is-one-quarter">
               <h1 class="fixed-hero__heading" v-html="item.title"></h1>
               <p class="fixed-hero__sub-heading" v-html="item.intro"></p>
-              <router-link class="button is-info is-medium" :to="'/posts/'+item.slug" tag="a" v-html="item.button_value"></router-link>
+              <router-link class="button is-info is-medium" :to="'/posts/'+item.slug" tag="a">Explorar</router-link>
             </div>
-            <div class="column">
-            </div>
+            <div class="column"></div>
           </div>              
         </div>
       </div>
-      <div class="content">
-        <div v-for="(item, index) in items" class="posts container fadeIn">
-          <div class="columns" v-if="index%2===0">
-            <div class="column is-one-fifth"></div>
-            <div class="column">
-              <div class="columns has-text-right">
-                <div class="column lightborder" :style="'background-image:url(' + item.picture + ')'"></div>
-                <div class="column">
-                  <h1 class="image-slider__heading" v-html="item.title"></h1>
-                  <p class="has-text-justified-widescreen" v-html="item.intro"></p>
-                  <router-link :to="item.slug" class="button is-text" tag="a">Seguir leyendo...</router-link>
-                </div>
-              </div>
-            </div>
-            <div class="column is-one-fifth"></div>
-          </div>
-          <div class="columns" v-if="index%2!=0">
-            <div class="column is-one-fifth"></div>
-            <div class="column">
-              <div class="columns">
-                <div class="column  has-text-left">
-                  <h1 class="image-slider__heading" v-html="item.title"></h1>
-                  <p class="has-text-justified-widescreen" v-html="item.intro"></p>
-                  <router-link :to="item.slug" class="button is-text" tag="a">Seguir leyendo...</router-link>
-                </div>
-                <div class="column lightborder" :style="'background-image:url(' + item.picture + ')'"></div>
-              </div>
-            </div>
-          <div class="column is-one-fifth"></div>
+      <div v-for="(item, index) in items" class="posts fadeIn">
+        <div class="columns slick-pane" v-if="index%2===0" :style="'background-image:url(' + item.picture + ')'">
+          <div class="column"></div>
+          <div class="column is-one-quarter has-text-left">
+            <h1 class="fixed-hero__heading" v-html="item.title"></h1>
+            <p class="fixed-hero__sub-heading" v-html="item.intro"></p>
+            <router-link class="button is-info is-medium" :to="item.slug" tag="a">Explorar</router-link>
+          </div>            
+        </div>   
+        <div class="columns slick-pane" v-if="index%2!=0" :style="'background-image:url(' + item.picture + ')'">
+          <div class="column is-one-quarter has-text-right">
+            <h1 class="fixed-hero__heading" v-html="item.title"></h1>
+            <p class="fixed-hero__sub-heading" v-html="item.intro"></p>
+            <router-link class="button is-info is-medium" :to="item.slug" tag="a">Explorar</router-link>
+          </div>            
+          <div class="column"></div>
         </div>
       </div>
     </div>

@@ -998,7 +998,7 @@ a:hover {
 }
 
 .posts {
-  padding: 2em 0;
+  padding: 0;
 }
 
 .posts > .columns {
@@ -1683,11 +1683,13 @@ a:hover {
 
 .fixed-hero__heading {
     font: normal 400 40px/1 "corporateacondpro";
+    text-shadow: 1px 1px 5px #666;
 }
 
 .fixed-hero__sub-heading {
     margin-bottom: 20px;
     font: normal 400 12px/1.5 "Arial",sans-serif;
+    text-shadow: 1px 1px 5px #666;
 }
 
 .slick {
@@ -1701,6 +1703,16 @@ a:hover {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
+}
+
+.slick-pane.left {
+  background-position: center left;
+  background-size: 85%;
+}
+
+.slick-pane.right {
+  background-position: center right;
+  background-size: 85%;
 }
 
 .innerdarkshadow {
