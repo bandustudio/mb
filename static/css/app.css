@@ -837,7 +837,7 @@ body {
   background-color: transparent;
   position: relative!important;
   left: 40px !important;
-  top: 20px !important;
+  top: 17px !important;
   font-size: 14px;
   font-weight: 600;
 }
@@ -877,7 +877,7 @@ a.navbar-item:hover, a.navbar-item.is-active, a.navbar-link:hover, a.navbar-link
   font-weight: 600;
   font-style: normal;
   font-stretch: normal;
-  line-height: 1;
+  line-height: 20px;
   letter-spacing: normal;
   text-align: right;
   color: #fff;
@@ -1793,7 +1793,7 @@ a:hover {
   }
   .navbar-brand {
     text-align: left;
-    padding-left: 3.3em;    
+    padding-left: 3em;
   }
   .navbar-brand a {
     padding-top: 0.5em;
