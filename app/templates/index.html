@@ -62,7 +62,7 @@
       </div>
 
       <div class="navbar-menu" id="navMenu">
-        <div class="navbar-start">
+        <div class="navbar-end">
           <router-link to="/terminos" active-class="active" class="navbar-item" tag="a">Términos</router-link>
           <router-link to="/atencion" active-class="active" class="navbar-item" tag="a">Atención</router-link>
         </div>
@@ -78,7 +78,7 @@
   	
  		<router-view :key="$route.fullPath"><div class="spinner-outer fadeIn"><div class="spinner" data-layer="4"><div class="spinner-container"><div class="spinner-rotator"><div class="spinner-left"><div class="spinner-circle"></div></div><div class="spinner-right"><div class="spinner-circle"></div></div></div></div><div class="spinner-message">Si la reproducción no empieza en breve, prueba a reiniciar el dispositivo.</div></div></div></router-view>
 
-    <div class="footer__partners loading">
+    <div class="footer__partners loading fadeIn">
       <div class="footer__partners--row">
         <p class=""><router-link to="/terminos" tag="a">Términos y condiciones</router-link> &copy; 2018 <router-link to="/" tag="a">Mercedes-Benz &mdash; Cigliutti-Guerini.</router-link> </p>
       </div>
@@ -86,11 +86,11 @@
   </div>
   
   <script type="text/x-template" id="splash">
-    <div>
-      <div class="slides slick slick-main fadeIn">
+    <div class="viewport">
+      <div class="slick slick-main opacity0">
         <div v-for="item in posts" class="slick-pane" :style="'background-image:url(' + item.picture + ')'">
           <div class="container columns">
-            <div class="column is-one-quarter">
+            <div class="column is-one-third">
               <h1 class="fixed-hero__heading" v-html="item.title"></h1>
               <p class="fixed-hero__sub-heading" v-html="item.intro"></p>
               <router-link class="button is-info is-medium" :to="'/posts/'+item.slug" tag="a">Explorar</router-link>
@@ -102,14 +102,14 @@
       <div v-for="(item, index) in items" class="posts fadeIn">
         <div class="columns slick-pane" v-if="index%2===0" :style="'background-image:url(' + item.picture + ')'">
           <div class="column"></div>
-          <div class="column is-one-quarter has-text-left">
+          <div class="column is-one-third has-text-left">
             <h1 class="fixed-hero__heading" v-html="item.title"></h1>
             <p class="fixed-hero__sub-heading" v-html="item.intro"></p>
             <router-link class="button is-info is-medium" :to="item.slug" tag="a">Explorar</router-link>
           </div>            
         </div>   
         <div class="columns slick-pane" v-if="index%2!=0" :style="'background-image:url(' + item.picture + ')'">
-          <div class="column is-one-quarter has-text-right">
+          <div class="column is-one-third has-text-right">
             <h1 class="fixed-hero__heading" v-html="item.title"></h1>
             <p class="fixed-hero__sub-heading" v-html="item.intro"></p>
             <router-link class="button is-info is-medium" :to="item.slug" tag="a">Explorar</router-link>
@@ -124,9 +124,10 @@
     <div>
       <div class="slick-pane" :style="'background-image:url(' + data.picture + ')'">
         <div class="container columns">
-          <div class="column is-one-quarter">
+          <div class="column is-one-third">
             <h1 class="fixed-hero__heading" v-html="data.title"></h1>
             <p class="fixed-hero__sub-heading" v-html="data.intro"></p>
+            <router-link v-if="item.button_value" class="button is-info is-medium" :to="item.button_link" v-html="item.button_value" tag="a">Explorar</router-link>
           </div>
           <div class="column"></div>
         </div>              
@@ -144,9 +145,10 @@
     <div>
       <div class="slick-pane" :style="'background-image:url(' + data.picture + ')'">
         <div class="container columns">
-          <div class="column is-one-quarter">
+          <div class="column is-one-third">
             <h1 class="fixed-hero__heading" v-html="data.title"></h1>
             <p class="fixed-hero__sub-heading" v-html="data.intro"></p>
+            <router-link v-if="item.button_value" class="button is-info is-medium" :to="item.button_link" v-html="item.button_value" tag="a">Explorar</router-link>
           </div>
           <div class="column"></div>
         </div>              
@@ -364,6 +366,14 @@
       <i class="fas fa-[[:icon]]"></i>
     </span>&nbsp;
     <a>[[:name]]</a>
+  </script>
+
+  <script type="text/x-jsrender" id="backtotop">
+    <div class="backtotop has-text-center">
+      <span class="icon has-text-rendered">
+        <i class="fas fa-chevron-up"></i>
+      </span>
+    </div>
   </script>
 
   <!--script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnCpylsXEujI2Jb07gggRfcewyYwJSbqU&libraries=places"></script-->

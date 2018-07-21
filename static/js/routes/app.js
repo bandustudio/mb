@@ -22,15 +22,15 @@ const Splash = {
   },
   mounted: function(){
     setTimeout(function(){
-      $('.slides').slick({
+      $('.slick').slick({
         dots: true,
         arrows:true,
         infinite: true,
         speed: 500,
         fade: true,
         cssEase: 'linear'
-      })
-      $('.slick-pane').height(($(window).height()-110)+'px')
+      }).addClass('fadeIn')
+      $('.slick-pane').height(($(window).height()-100)+'px')
     },1000)
   },
   data: function() {
