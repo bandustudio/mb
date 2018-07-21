@@ -100,7 +100,7 @@
               <div class="columns has-text-right">
                 <div class="column lightborder" :style="'background-image:url(' + item.picture + ')'"></div>
                 <div class="column">
-                  <h1 v-html="item.title"></h1>
+                  <h1 class="image-slider__heading" v-html="item.title"></h1>
                   <p class="has-text-justified-widescreen" v-html="item.intro"></p>
                   <router-link :to="item.slug" class="button is-text" tag="a">Seguir leyendo...</router-link>
                 </div>
@@ -113,7 +113,7 @@
             <div class="column">
               <div class="columns">
                 <div class="column  has-text-left">
-                  <h1 v-html="item.title"></h1>
+                  <h1 class="image-slider__heading" v-html="item.title"></h1>
                   <p class="has-text-justified-widescreen" v-html="item.intro"></p>
                   <router-link :to="item.slug" class="button is-text" tag="a">Seguir leyendo...</router-link>
                 </div>

@@ -58,6 +58,42 @@ body {
     url("/fonts/corporateacondpro_regularitalic_webfont.svg#corporateacondpro") format("svg")
 }
 
+@font-face{
+    font-family:"corpos";
+    font-style:normal;
+    font-weight:400;
+    src:url("/fonts/corpos_regular_webfont.eot?#iefix") format("embedded-opentype"),
+    url("/fonts/corpos_regular_webfont.woff") format("woff"),
+    url("/fonts/corpos_regular_webfont.ttf") format("truetype"),
+    url("/fonts/corpos_regular_webfont.svg#corpos") format("svg")
+}
+@font-face{
+    font-family:"corpos";
+    font-style:normal;
+    font-weight:700;
+    src:url("/fonts/corpos_bold_webfont.eot?#iefix") format("embedded-opentype"),
+    url("/fonts/corpos_bold_webfont.woff") format("woff"),
+    url("/fonts/corpos_bold_webfont.ttf") format("truetype"),
+    url("/fonts/corpos_bold_webfont.svg#corpos") format("svg")
+}
+@font-face{
+    font-family:"corpos";
+    font-style:italic;
+    font-weight:400;
+    src:url("/fonts/corpos_italic_webfont.eot?#iefix") format("embedded-opentype"),
+    url("/fonts/corpos_italic_webfont.woff") format("woff"),
+    url("/fonts/corpos_italic_webfont.ttf") format("truetype"),
+    url("/fonts/corpos_italic_webfont.svg#corpos") format("svg")
+}
+@font-face{
+    font-family:"corpos";
+    font-style:italic;
+    font-weight:700;
+    src:url("/fonts/corpos_bolditalic_webfont.eot?#iefix") format("embedded-opentype"),
+    url("/fonts/corpos_bolditalic_webfont.woff") format("woff"),
+    url("/fonts/corpos_bolditalic_webfont.ttf") format("truetype"),
+    url("/fonts/corpos_bolditalic_webfont.svg#corpos") format("svg")
+}
 
 .imso_li__live-ind-mask{
   overflow:hidden
@@ -79,6 +115,11 @@ body {
   height: 2px;
   float: left;
   background-color: #259b24;
+}
+
+.image-slider__heading{
+    font:normal 400 28px/1.21429 "corporateacondpro";
+    margin-bottom:20px
 }
 
 @keyframes live-indicator-length-animation {
@@ -804,6 +845,7 @@ a.navbar-item:hover, a.navbar-item.is-active, a.navbar-link:hover, a.navbar-link
 
 .button, .button:hover {
   border-color: transparent;
+  font:normal 400 18px/1.33333 "corpos";
 }
 
 .button:hover {
@@ -1387,6 +1429,11 @@ a:hover {
 
 #navMenu .navbar-dropdown {
   /*width: 4em;*/
+}
+
+.navbar-item {
+  font:normal 400 18px/1.33333 "corpos";
+  color: white;
 }
 
 #navMenu .navbar-dropdown .navbar-item {
