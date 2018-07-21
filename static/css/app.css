@@ -1,5 +1,5 @@
 body {
-  font-family:"CorporateA",Helvetica,Arial,sans-serif;
+  font-family:"corporateacondpro",Helvetica,Arial,sans-serif;
   transition: all 0.5 linear;
   background-color: black;
   color: white;
@@ -10,6 +10,54 @@ body {
     src:url(/fonts/corporate_a_regular.eot);
     src:url(/fonts/corporate_a_regular.eot) format("embedded-opentype"),url(/fonts/corporate_a_regular.woff) format("woff"),url(/fonts/corporate_a_regular.ttf) format("truetype"),url(/fonts/corporate_a_regular.svg#CorporateARegular) format("svg")
 }
+
+
+@font-face{
+    font-family:"corporateacondpro";
+    font-style:normal;
+    font-weight:500;
+    src:url("/fonts/corporateacondpro_medium_webfont.eot?#iefix") format("embedded-opentype"),
+    url("/fonts/corporateacondpro_medium_webfont.woff") format("woff"),
+    url("/fonts/corporateacondpro_medium_webfont.ttf") format("truetype"),
+    url("/fonts/corporateacondpro_medium_webfont.svg#corporateacondpro") format("svg")
+}
+@font-face{
+    font-family:"corporateacondpro";
+    font-style:normal;
+    font-weight:400;
+    src:url("/fonts/corporateacondpro_regular_webfont.eot?#iefix") format("embedded-opentype"),
+    url("/fonts/corporateacondpro_regular_webfont.woff") format("woff"),
+    url("/fonts/corporateacondpro_regular_webfont.ttf") format("truetype"),
+    url("/fonts/corporateacondpro_regular_webfont.svg#corporateacondpro") format("svg")
+}
+@font-face{
+    font-family:"corporateacondpro";
+    font-style:italic;
+    font-weight:200;
+    src:url("/fonts/corporateacondpro_lightitalic_webfont.eot?#iefix") format("embedded-opentype"),
+    url("/fonts/corporateacondpro_lightitalic_webfont.woff") format("woff"),
+    url("/fonts/corporateacondpro_lightitalic_webfont.ttf") format("truetype"),
+    url("/fonts/corporateacondpro_lightitalic_webfont.svg#corporateacondpro") format("svg")
+}
+@font-face{
+    font-family:"corporateacondpro";
+    font-style:italic;
+    font-weight:500;
+    src:url("/fonts/corporateacondpro_mediumitalic_webfont.eot?#iefix") format("embedded-opentype"),
+    url("/fonts/corporateacondpro_mediumitalic_webfont.woff") format("woff"),
+    url("/fonts/corporateacondpro_mediumitalic_webfont.ttf") format("truetype"),
+    url("/fonts/corporateacondpro_mediumitalic_webfont.svg#corporateacondpro") format("svg")
+}
+@font-face{
+    font-family:"corporateacondpro";
+    font-style:italic;
+    font-weight:400;
+    src:url("/fonts/corporateacondpro_regularitalic_webfont.eot?#iefix") format("embedded-opentype"),
+    url("/fonts/corporateacondpro_regularitalic_webfont.woff") format("woff"),
+    url("/fonts/corporateacondpro_regularitalic_webfont.ttf") format("truetype"),
+    url("/fonts/corporateacondpro_regularitalic_webfont.svg#corporateacondpro") format("svg")
+}
+
 
 .imso_li__live-ind-mask{
   overflow:hidden
