@@ -21,22 +21,17 @@
 {
     font-size: 0;
     line-height: 0;
-
     position: absolute;
     top: 44%;
     z-index: 2;
-
     display: block;
-
     width: 40px;
     height: 40px;
     padding: 0;
     -webkit-transform: translate(0, -50%);
     -ms-transform: translate(0, -50%);
     transform: translate(0, -50%);
-
     cursor: pointer;
-
     color: transparent;
     border: none;
     outline: none;
@@ -67,13 +62,15 @@
 .slick-prev:before,
 .slick-next:before
 {
-    font-family: 'Catamaran';
-    font-size: 50px;
+    font-family: "nafta-icons";
+    font-weight: normal;
+    font-size: 40px;
+    width: 40px;
+    height: 40px;
     line-height: 1;
     opacity: .7;
-    color: #cbcbcb;
-    text-shadow: 0 0 5px #fff;
-
+    color: #fff;
+    text-shadow: 1px 1px 5px #666;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -81,7 +78,6 @@
 .slick-prev
 {
     left: 10px;
-    background-image: url(/images/chevron-left.svg);
 }
 [dir='rtl'] .slick-prev
 {
@@ -90,17 +86,16 @@
 }
 .slick-prev:before
 {
-    content: '';
+    content: '';
 }
 [dir='rtl'] .slick-prev:before
 {
-    content: '';
+    content: "";
 }
 
 .slick-next
 {
     right: 15px;
-    background-image: url(/images/chevron-right.svg);
 }
 [dir='rtl'] .slick-next
 {
@@ -109,11 +104,11 @@
 }
 .slick-next:before
 {
-    content: '';
+    content: '';
 }
 [dir='rtl'] .slick-next:before
 {
-    content: '';
+    content: '';
 }
 
 /* Dots */

@@ -94,6 +94,16 @@ body {
     url("/fonts/corpos_bolditalic_webfont.ttf") format("truetype"),
     url("/fonts/corpos_bolditalic_webfont.svg#corpos") format("svg")
 }
+@font-face{
+    font-family:'nafta-icons';
+    src:url("/fonts/nafta-icons.eot?2ya63x");
+    src:url("/fonts/nafta-icons.eot?2ya63x#iefix") format("embedded-opentype"),
+    url("/fonts/nafta-icons.ttf?2ya63x") format("truetype"),
+    url("/fonts/nafta-icons.woff?2ya63x") format("woff"),
+    url("/fonts/nafta-icons.svg?2ya63x#nafta-icons") format("svg");
+    font-weight:normal;
+    font-style:normal
+}
 
 .imso_li__live-ind-mask{
   overflow:hidden
@@ -669,6 +679,10 @@ body {
   z-index: 30;
 }
 
+.navbar-start {
+  padding-left: 1em;
+}
+
 .navbar-link {
   padding-right: 1.2em;
   padding-left: 0.2em;
@@ -688,13 +702,12 @@ body {
   /*background-color: #5c5f62;*/
   background-color: black;
   max-width: 1220px;
-  padding-top: 58px;
   margin-left: auto;
   margin-right: auto;
   background-image: url(/img/índice.jpeg);
   background-repeat: no-repeat;
-  background-position: left 10px;
-  background-size: 90px;  
+  background-position: left 5px;
+  background-size: 100px;
 }
 
 .navbar-item .svg-inline--fa{
@@ -722,8 +735,7 @@ body {
 @media screen and (min-width: 1024px) {
   
   .navbar {
-    padding-top: 1.5em;
-    padding-bottom: 1.5em;
+    padding-top: 3em;
   }
 
   .navbar-button.has-dropdown {
@@ -817,24 +829,20 @@ a.navbar-item:hover, a.navbar-item.is-active, a.navbar-link:hover, a.navbar-link
 }
 
 .navbar-brand {
-  justify-content: center;
   flex-direction: column;
   text-align: left;
-  padding-right: 1em;  
-  padding-left: 2.4em;
-  font-family: CorporateA;
-  font-size: 28px;
+  padding-left: 4.6em;
   font-weight: 500;
   font-style: normal;
   font-stretch: normal;
-  line-height: 1.36;
+  line-height: 1;
   letter-spacing: normal;
-  text-align: left;
+  text-align: right;
   color: #fff;
 }
 
 .navbar-brand h1 {
-  font-size: 24px;
+  font-size: 22px;
   color: white;
 }
 
@@ -843,15 +851,13 @@ a.navbar-item:hover, a.navbar-item.is-active, a.navbar-link:hover, a.navbar-link
   color: white;
 }
 
-.button, .button:hover {
+.button {
   border-color: transparent;
   font:normal 400 18px/1.33333 "corpos";
 }
 
 .button:hover {
-  background-color: #f7f7f7;
-  border-color: #4088da;
-  color: #4088da!important;
+  opacity: 0.9;
 }
 
 .navbar-brand a { 
@@ -1441,6 +1447,7 @@ a:hover {
     padding-right: 0.5rem;
     /*white-space: normal;*/
     position: relative;
+    color: #333;
 }
 
 #navMenu .navbar-dropdown .icon {
@@ -1674,12 +1681,23 @@ a:hover {
 
 /* slick hacks*/
 
+.fixed-hero__heading {
+    font: normal 400 40px/1 "corporateacondpro";
+}
+
+.fixed-hero__sub-heading {
+    margin-bottom: 20px;
+    font: normal 400 12px/1.5 "Arial",sans-serif;
+}
+
 .slick {
   min-height: 300px;
+  margin-bottom: 20px;
 }
 
 .slick-pane {
-  min-height: 480px;
+  min-height: 480px!important;
+  padding-top: 60px;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -1698,14 +1716,24 @@ a:hover {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-  border: 1px solid #a2a2a2;
 }
 
-
 @media screen and (max-width: 1024px) {
+  
 
+  #navMenu .navbar-item {
+      color: #333;
+  }
+  .navbar-brand {
+    text-align: left;
+    padding-left: 3.3em;    
+  }
+  .navbar-brand a {
+    padding-top: 0.5em;
+  }
   .navbar {
-    background-position: left 38px;
+    background-position: right -1px;
+    background-size: 60px;
   }  
   .content {
     padding: 10px;
@@ -1741,7 +1769,7 @@ a:hover {
     top: -6px;
   }
   .router-link-exact-active {
-    display: none;
+    /*background-color: #f7f7f7;*/
   }
   .section {
     padding-top: 0;

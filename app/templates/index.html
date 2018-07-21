@@ -71,7 +71,7 @@
           <a href="{{clientes_url}}" class="navbar-item navbar-button">Clientes</a>
         </div-->
       </div>
-      <div class="topright phone">
+      <div class="topright phone is-hidden-mobile">
         <a href="tel:08006660896">0800 666 0896</a>
       </div>
     </nav>
@@ -88,9 +88,17 @@
   <script type="text/x-template" id="splash">
     <div>
       <div class="slides slick slick-main fadeIn">
-        <router-link v-for="item in posts" :to="'/posts/'+item.slug" tag="a">
-          <div class="slick-pane" :style="'background-image:url(' + item.picture + ')'"></div>
-        </router-link>
+        <div v-for="item in posts" class="slick-pane" :style="'background-image:url(' + item.picture + ')'">
+          <div class="container columns">
+            <div class="column is-one-quarter">
+              <h1 class="fixed-hero__heading" v-html="item.title"></h1>
+              <p class="fixed-hero__sub-heading" v-html="item.intro"></p>
+              <router-link class="button is-info is-medium" :to="'/posts/'+item.slug" tag="a" v-html="item.button_value"></router-link>
+            </div>
+            <div class="column">
+            </div>
+          </div>              
+        </div>
       </div>
       <div class="content">
         <div v-for="(item, index) in items" class="posts container fadeIn">
@@ -240,7 +248,7 @@
   </script>
 
   <script type="text/x-template" id="terminos">
-    <div class="section">
+    <div class="container">
       <div>
         <div class="content">
 
@@ -325,7 +333,7 @@
   </script>
 
   <script type="text/x-template" id="pagenotfound">
-    <div class="section pagenotfound">
+    <div class="container pagenotfound">
       <h2>No pudimos hallar la página</h2> 
       <p>Por favor revisa la url. Si creés que es un error por favor contactanos</p>
       <div class="container has-text-centered">
@@ -336,7 +344,7 @@
   </script>
 
   <script type="text/x-jsrender" id="notfound">
-    <div class="section pagenotfound fadeIn">
+    <div class="container pagenotfound fadeIn">
       <h2>No pudimos hallar la página</h2> 
       <p>Por favor revisa la url. Si creés que es un error por favor contactanos.</p>
       <div class="container has-text-centered">

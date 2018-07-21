@@ -38,6 +38,7 @@ class Post extends \Spot\Entity
             "title_slug" => ["type" => "string", "length" => 250],
             "intro" => ["type" => "text"],
             "button_link" => ["type" => "string", "length" => 250],
+            "button_value" => ["type" => "string", "length" => 250],
             "pic1_url" => ["type" => "string", "length" => 255],
             "pic2_url" => ["type" => "string", "length" => 255],
             "pic3_url" => ["type" => "string", "length" => 255],
@@ -78,6 +79,9 @@ class Post extends \Spot\Entity
         return [
             "id" => (integer) $entity->id ?: null,
             "title" => (string) $entity->title ?: "",
+            "intro" => (string) $entity->intro ?: "",
+            "button_value" => (string) $entity->button_value ?: "",
+            "button_link" => (string) $entity->button_link ?: "",
             "slug" => (string) $entity->title_slug ?: "",
             "content" => (string) $entity->content_text ?: "",
             "picshare_url" => (string) $entity->picshare_url ?: "",
