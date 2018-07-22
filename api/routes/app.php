@@ -74,7 +74,7 @@ $app->group('/v1', function() {
         $this->post('/items', function ($request, $response, $args) {
             $mapper = $this->spot->mapper("App\Vehicle")
                 ->where(['enabled' => 1])
-                ->order(['title' => 'ASC'])
+                ->order(['created' => 'DESC'])
                 ->limit(1000);
 
             if($mapper === false){
@@ -95,7 +95,7 @@ $app->group('/v1', function() {
 
         $this->post('/posts', function ($request, $response, $args) {
             $mapper = $this->spot->mapper("App\Post")
-                ->where(['id >' => 0])
+                ->where(['enabled' => 1])
                 ->order(['created' => 'DESC'])
                 ->limit(10);
 

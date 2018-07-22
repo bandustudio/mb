@@ -968,17 +968,15 @@ a:hover {
 
 .section {
   font-family: "corpos";
-  padding: 0 1rem;
-  padding-top: 10px;
-  padding-bottom: 400px;
+  padding: 0;
+  margin:0;
   background-position: bottom center;
   background-repeat: no-repeat;
-  min-height: 74vh;
 }
 
 .section h2 .svg-inline--fa {
   position: relative;
-  top: 8px;
+  top: -2px;
 }
 
 .section > h1, .section > div > h1 {
@@ -1027,6 +1025,12 @@ a:hover {
   color: white;
   margin: 30px 0;
   padding-bottom: 25px;
+}
+
+.section.white > h2, .section.white > div > h2,
+.section.white > h3, .section.white > div > h3,
+.section.white > p, .section.white > div > p {
+  color: #000;
 }
 
 .w--spacer {
@@ -1268,6 +1272,12 @@ a:hover {
 
 .container .rounded-button + .rounded-button {
   margin-left: 10px;
+}
+
+.pagenotfound { 
+  background-image: url(/img/atencion.svg);
+  color: #000;
+  padding-bottom: 360px;
 }
 
 .link {
@@ -1645,11 +1655,9 @@ a:hover {
 */
 
 .inline-background {
-  background-size: 102%;
   background-repeat: no-repeat;
   background-position: bottom center;
   background-color: white;
-  height: 410px;
 }
 
 .accept-terms-arrow {

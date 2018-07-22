@@ -50,8 +50,8 @@
 </head>
 <body>
   <div id="app">
-    <nav class="navbar loading" role="navigation" aria-label="main navigation">
-      <div class="navbar-brand hidden-loading fadeIn">
+    <nav class="navbar loading hidden-loading fadeIn" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
         <router-link to="/" active-class="active" class="navbar-brand" :class="{ 'hidden': $route.path==='/404' }" tag="a">
           <h1>Mercedes-Benz</h1>
           <h2>Cigliutti-Guerini</h2>
@@ -89,7 +89,7 @@
   </div>
   
   <script type="text/x-template" id="splash">
-    <div>
+    <div class="section">
       <div class="slick slick-main opacity0">
         <div v-for="item in posts" class="slick-pane has-text-left" :style="'background-image:url(' + item.picture + ')'">
           <h1 class="fixed-hero__heading" v-html="item.title"></h1>
@@ -113,7 +113,7 @@
   </script>
 
   <script type="text/x-template" id="item">
-    <div>
+    <div class="section">
       <div class="slick-pane" :style="'background-image:url(' + data.picture + ')'">
         <h1 class="fixed-hero__heading" v-html="data.title"></h1>
         <p class="fixed-hero__sub-heading" v-html="data.intro"></p>
@@ -129,7 +129,7 @@
   </script>
 
   <script type="text/x-template" id="post">
-    <div>
+    <div class="section">
       <div class="slick-pane" :style="'background-image:url(' + data.picture + ')'">
         <h1 class="fixed-hero__heading" v-html="data.title"></h1>
         <p class="fixed-hero__sub-heading" v-html="data.intro"></p>
@@ -238,8 +238,8 @@
   </script>
 
   <script type="text/x-template" id="terminos">
-    <div class="container">
-      <div>
+    <div class="section">
+      <div class="container">
         <div class="content">
 
           <h1 class="garantia--h">Términos y Condiciones de uso</h1>
@@ -322,23 +322,12 @@
     </div>
   </script>
 
-  <script type="text/x-template" id="pagenotfound">
-    <div class="container pagenotfound">
-      <h2>No pudimos hallar la página</h2> 
-      <p>Por favor revisa la url. Si creés que es un error por favor contactanos</p>
-      <div class="container has-text-centered">
-        <a :href="clientes_url + '/registro'" class="button rounded-button rounded-button-green">Registrarme</a>
-        <router-link to="/atencion" class="button rounded-button" tag="a">Quiero contactarme</router-link>            
-      </div>        
-    </div>
-  </script>
-
   <script type="text/x-jsrender" id="notfound">
-    <div class="container pagenotfound fadeIn">
-      <h2>No pudimos hallar la página</h2> 
+    <div class="container section white inline-background pagenotfound fadeIn">
+      <h2><span class="icon has-text-danger fa fa-times-circle"></span> No pudimos hallar la página</h2> 
       <p>Por favor revisa la url. Si creés que es un error por favor contactanos.</p>
       <div class="container has-text-centered">
-        <router-link to="/" class="button is-large" tag="a">Volver al inicio</router-link>
+        <a href="/" class="button is-large">Volver al inicio</a>
       </div>        
     </div>
   </script>

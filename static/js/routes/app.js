@@ -94,7 +94,7 @@ const Item = {
       helper.is_loaded()
     }, function(error){
       helper.is_loaded()
-      $('.content').html($.templates('#notfound').render());
+      $('.section').html($.templates('#notfound').render());
       console.log(error.statusText)
     })    
   },
@@ -134,7 +134,7 @@ const Post = {
       helper.is_loaded()
     }, function(error){
       helper.is_loaded()
-      $('.content').html($.templates('#notfound').render());
+      $('.section').html($.templates('#notfound').render());
       console.log(error.statusText)
     })    
   },
