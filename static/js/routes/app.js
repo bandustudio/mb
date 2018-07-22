@@ -12,26 +12,44 @@ const Splash = {
       })
     }
     if(!cache.posts){
+      cache.creating = 1
       this.$http.post(helper.getAttributes($('html')).endpoint + '/app/posts', {}, {emulateJSON:true}).then(function(res){
         this.posts = res.data.data
         cache.posts = this.posts
+        setTimeout(function(){
+          $('.slick').on('init', function(event, slick, currentSlide, nextSlide){
+            cache.creating = 0
+          });
+
+          $('.slick').slick({
+            dots: true,
+            arrows:true,
+            infinite: true,
+            speed: 500,
+            fade: true,
+            cssEase: 'linear'
+          }).addClass('fadeIn')
+          $('.slick-pane').css({'min-height':($(window).height()-$('.navbar').height())+'px'})
+        },250);     
       }, function(error){
         console.log(error.statusText)
       })
     }
   },
   mounted: function(){
-    setTimeout(function(){
-      $('.slick').slick({
-        dots: true,
-        arrows:true,
-        infinite: true,
-        speed: 500,
-        fade: true,
-        cssEase: 'linear'
-      }).addClass('fadeIn')
-      $('.slick-pane').css({'min-height':($(window).height()-$('.navbar').height())+'px'})
-    },1000)
+    if(!cache.creating){
+      setTimeout(function(){
+        $('.slick').slick({
+          dots: true,
+          arrows:true,
+          infinite: true,
+          speed: 500,
+          fade: true,
+          cssEase: 'linear'
+        }).addClass('fadeIn')
+        $('.slick-pane').css({'min-height':($(window).height()-$('.navbar').height())+'px'})
+      },250)
+    }
   },
   data: function() {
     return{
