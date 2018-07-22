@@ -98,12 +98,12 @@
         </div>
       </div>
       <div v-for="(item, index) in items" class="posts fadeIn">
-        <div class="slick-pane has-text-left" v-if="index%2===0" :style="'background-image:url(' + item.picture + ')'">
+        <div class="slick-pane has-text-left" v-if="index%2!=0" :style="'background-image:url(' + item.picture + ')'">
           <h1 class="fixed-hero__heading" v-html="item.title"></h1>
           <p class="fixed-hero__sub-heading" v-html="item.intro"></p>
           <router-link class="button is-info is-medium" :to="item.slug" tag="a">Explorar</router-link>
         </div>   
-        <div class="slick-pane has-text-right" v-if="index%2!=0" :style="'background-image:url(' + item.picture + ')'">
+        <div class="slick-pane has-text-right" v-if="index%2===0" :style="'background-image:url(' + item.picture + ')'">
           <h1 class="fixed-hero__heading" v-html="item.title"></h1>
           <p class="fixed-hero__sub-heading" v-html="item.intro"></p>
           <router-link class="button is-info is-medium" :to="item.slug" tag="a">Explorar</router-link>
