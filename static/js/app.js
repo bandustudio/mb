@@ -536,6 +536,7 @@ $.extend({
 });
 
 
+var lastscrollpos = 0;
 $(window).scroll(function(){
   clearTimeout($.data(this, 'scrollTimer'));
   $.data(this, 'scrollTimer', setTimeout(function() {
@@ -544,12 +545,13 @@ $(window).scroll(function(){
         if(!$('.backtotop').hasClass('slideIn')){
           $('.backtotop').removeClass('slideOut').addClass('slideIn')
         }
-      } else {
+      } 
+      if(lastscrollpos > scrollpos) {
         if($('.backtotop').hasClass('slideIn')){
           $('.backtotop').removeClass('slideIn').addClass('slideOut')
         }
       }
-      lastpos = scrollpos;
+      lastscrollpos = scrollpos;
   }, 250));
 });
 

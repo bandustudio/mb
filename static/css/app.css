@@ -947,7 +947,7 @@ a:hover {
   z-index: 99;
   text-align: center;
   width: 100%;
-  bottom: 100px;
+  bottom: 10px;
   left: 0;
   right: 0;
   cursor: pointer;
@@ -1850,15 +1850,16 @@ a:hover {
     padding-bottom: 260px;
     background-size: 150%;
   }
-  .section h1 {
-    font-size: 32px!important;
-    line-height: 32px!important;
+  .content h1, .section h1 {
+    font-size: 30px!important;
+    line-height: 30px!important;
   }
-  .section h2 {
+  .content h2,.section h2 {
     font-size: 24px!important;
     line-height: 28px!important;
   }
-  .section p {
+  .content p,.section p {
+    font-family: "corpos";
     font-size: 15px!important;
     line-height: 20px!important;
     padding-bottom: 35px;
