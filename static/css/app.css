@@ -970,6 +970,7 @@ a:hover {
   font-family: "corpos";
   padding: 0;
   margin:0;
+  box-shadow: 0 4px 0 #111 inset;
   background-position: bottom center;
   background-repeat: no-repeat;
 }
@@ -997,7 +998,7 @@ a:hover {
   line-height: 1.21;
   letter-spacing: normal;
   color: white;
-  margin: 30px 0;
+  padding: 30px 0;
 }
 
 .section > h3, .section > div > h3 {
@@ -1008,7 +1009,7 @@ a:hover {
   line-height: 1.21;
   letter-spacing: normal;
   color: white;
-  margin: 30px 0;
+  padding: 30px 0;
 }
 
 .section > p, .section > div > p {
@@ -1021,6 +1022,10 @@ a:hover {
   color: white;
   margin: 30px 0;
   padding-bottom: 25px;
+}
+
+.section .content {
+  padding-top: 20px;
 }
 
 .w--spacer {
@@ -1768,7 +1773,8 @@ a:hover {
 
 .slick-pane {
   min-height: 480px;
-  padding: 2em 4em;
+  padding: 2em 3em;
+  background-color: #000;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
