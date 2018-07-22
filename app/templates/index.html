@@ -114,7 +114,7 @@
 
   <script type="text/x-template" id="item">
     <div class="section">
-      <div class="slick-pane" :style="'background-image:url(' + data.picture + ')'">
+      <div class="slick-pane has-text-left" :style="'background-image:url(' + data.picture + ')'">
         <h1 class="fixed-hero__heading" v-html="data.title"></h1>
         <p class="fixed-hero__sub-heading" v-html="data.intro"></p>
         <router-link v-if="item.button_value" class="button is-info is-medium" :to="item.button_link" v-html="item.button_value" tag="a">Explorar</router-link>
@@ -130,7 +130,7 @@
 
   <script type="text/x-template" id="post">
     <div class="section">
-      <div class="slick-pane" :style="'background-image:url(' + data.picture + ')'">
+      <div class="slick-pane has-text-left" :style="'background-image:url(' + data.picture + ')'">
         <h1 class="fixed-hero__heading" v-html="data.title"></h1>
         <p class="fixed-hero__sub-heading" v-html="data.intro"></p>
         <router-link v-if="item.button_value" class="button is-info is-medium" :to="item.button_link" v-html="item.button_value" tag="a">Explorar</router-link>
@@ -323,7 +323,7 @@
   </script>
 
   <script type="text/x-jsrender" id="notfound">
-    <div class="container section white inline-background pagenotfound fadeIn">
+    <div class="container inline-background pagenotfound fadeIn">
       <h2><span class="icon has-text-danger fa fa-times-circle"></span> No pudimos hallar la página</h2> 
       <p>Por favor revisa la url. Si creés que es un error por favor contactanos.</p>
       <div class="container has-text-centered">
