@@ -877,7 +877,7 @@ a.navbar-item:hover, a.navbar-item.is-active, a.navbar-link:hover, a.navbar-link
 .navbar-brand {
   flex-direction: column;
   text-align: left;
-  padding-left: 4.6em;
+  padding-left: 77px;
   font-weight: 600;
   font-style: normal;
   font-stretch: normal;
@@ -1805,20 +1805,17 @@ a:hover {
   background-size: cover;
 }
 
+#navMenu.is-active .navbar-item {
+    color: #333;
+}
+
 @media screen and (max-width: 1024px) {
-  #navMenu .navbar-item {
-      color: #333;
-  }
   .navbar-brand {
     text-align: left;
     padding-left: 3.3em;
   }
   .navbar-brand a {
     padding-top: 0.5em;
-  }
-  .navbar {
-    background-position: right -1px;
-    background-size: 60px;
   }
   .content {
     padding: 10px;
@@ -1829,8 +1826,14 @@ a:hover {
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1023px) {
+  .navbar {
+    background-position: right -1px;
+    background-size: 60px;
+  }
+}
 
+@media screen and (max-width: 768px) {
   .inline-background {
     height: 200px;
   }
