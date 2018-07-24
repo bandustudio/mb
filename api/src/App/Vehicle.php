@@ -43,6 +43,7 @@ class Vehicle extends \Spot\Entity
             "pic5_url" => ["type" => "string", "length" => 255],
             "pic6_url" => ["type" => "string", "length" => 255],
             "youtube" => ["type" => "string", "length" => 50],
+            "intro" => ["type" => "text"],
             "content" => ["type" => "text"],
             "fecha" => ["type" => "string", "length" => 50],
             "model" => ["type" => "string", "length" => 50],

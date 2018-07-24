@@ -53,10 +53,6 @@ $container['view'] = function ($c) {
         }
     }
 
-    echo "<pre>";
-    var_dump($featured);
-    exit;
-
     if($share){
         $share_title = $share->title;
         $share_text = $share->intro;
