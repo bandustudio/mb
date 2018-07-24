@@ -60,7 +60,7 @@
 </head>
 <body>
   <div id="app">
-    <nav class="navbar loading hidden-loading fadeIn" role="navigation" aria-label="main navigation">
+    <nav class="navbar hidden-loading fadeIn" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
         <router-link to="/" active-class="active" class="navbar-brand" :class="{ 'hidden': $route.path==='/404' }" tag="a">
           <h1>Mercedes-Benz </h1>
@@ -90,7 +90,6 @@
     </nav>
 
     <div class="subnav">
-
     {% for cat,items in featured %}
       <div class="container is-cat is-cat-{{ cat }}">
         <h1 class="is-capitalized">{{ cat }}</h1>
@@ -107,9 +106,10 @@
       </div>
     {% endfor %}
     </div>
+
  		<router-view :key="$route.fullPath"><div class="spinner-outer fadeIn"><div class="spinner" data-layer="4"><div class="spinner-container"><div class="spinner-rotator"><div class="spinner-left"><div class="spinner-circle"></div></div><div class="spinner-right"><div class="spinner-circle"></div></div></div></div><div class="spinner-message">Si la reproducción no empieza en breve, prueba a reiniciar el dispositivo.</div></div></div></router-view>
 
-    <div class="footer__partners loading fadeIn">
+    <div class="footer__partners hidden-loading fadeIn">
       <div class="footer__partners--row">
         <p class=""><router-link to="/terminos" tag="a">Términos y condiciones</router-link> &copy; 2018 <router-link to="/" tag="a">Mercedes-Benz &mdash; Cigliutti-Guerini.</router-link> </p>
       </div>

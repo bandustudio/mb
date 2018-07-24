@@ -268,5 +268,5 @@ router.afterEach(function (to, from, next) {
 
 const app = new Vue({ router: router,
   created: function () {
-    $('.loading, .hidden-loading').removeClass('loading hidden-loading')
+    $('.hidden-loading').removeClass('hidden-loading')
   }}).$mount('#app');
