@@ -260,6 +260,7 @@ router.beforeEach(function (to, from, next) {
 router.afterEach(function (to, from, next) {
   setTimeout(function() {
     $('.navbar-menu, .navbar-burger').removeClass('is-active')
+    $('.is-cat').slideUp('fast')
   }, 1)
 })
 

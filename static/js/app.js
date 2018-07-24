@@ -484,8 +484,13 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   $('.is-cat-link').hover(function(){
+    var visible = $('.is-cat').is(':visible')
     $('.is-cat').css({display:'none'})
-    $('.is-cat-' + $(this).attr('cat')).slideDown('fast')
+    if(visible){
+      $('.is-cat-' + $(this).attr('cat')).fadeIn('fast')
+    } else {
+      $('.is-cat-' + $(this).attr('cat')).slideDown('fast')
+    }
   },function(){
   });
 
