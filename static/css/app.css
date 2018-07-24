@@ -4,8 +4,8 @@ html {
 body {
   font-family:"corporateacondpro",Helvetica,Arial,sans-serif;
   transition: all 0.5 linear;
-  background-color: black;
-  color: white;
+  background-color: white;
+  color: black;
 }
 @font-face{
     font-family:"corporatea";
@@ -668,6 +668,16 @@ body {
   padding: 5rem 1.5rem;
 }
 
+.column-pic {
+  display: inline-block;
+  width: 100%;
+  min-height: 100px;
+
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
 .rounded .field {
   padding-top: 1em;
 }
@@ -737,7 +747,7 @@ body {
 .navbar {
   /*background-color: #5c5f62;*/
   background-color: black;
-  max-width: 1220px;
+  /*max-width: 1220px;*/
   margin-left: auto;
   margin-right: auto;
   background-image: url(/img/índice.jpeg);
@@ -917,11 +927,11 @@ a.navbar-item:hover, a.navbar-item.is-active, a.navbar-link:hover, a.navbar-link
 }
 
 a {
-  color: white;
+  color: #3273dc;
 }
 
 a:hover {
-  color: #444;
+  color: #4088da;
 }
 
 .splash .brand {
@@ -987,7 +997,7 @@ a:hover {
   font-stretch: normal;
   line-height: 1.37;
   letter-spacing: normal;
-  color: #4088da;
+  color: #000;
   margin: 20px 0;
 }
 
@@ -1468,7 +1478,7 @@ a:hover {
   z-index: 1;
   display: inline-block;
   width: 100%;
-  background-color: transparent;
+  background-color: #000;
   padding: 4em 1em;
   text-align: center;
 }
@@ -1803,6 +1813,10 @@ a:hover {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
+}
+
+.is-cat {
+  display: none;
 }
 
 #navMenu.is-active .navbar-item {

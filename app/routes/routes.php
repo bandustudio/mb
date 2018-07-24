@@ -10,6 +10,13 @@ function subpic($id,$url){
     return implode('/',$parts);
 }
 
+function words($str,$cut=10){
+    $words=str_word_count($str,true);
+    $a=array_slice($words,$cut);
+    $s=join(' ',$a);
+    return $s;    
+}
+
 $container = $app->getContainer();
 
 $container['view'] = function ($c) {
@@ -45,13 +52,15 @@ $container['view'] = function ($c) {
     foreach($mapper as $item){
         if($item->type->title){
             if(!isset($featured[strtolower($item->type->title)])) $featured[strtolower($item->type->title)] = [];
-            $featured[strtolower($item->type->title)][] = [
+            $featured[strtolower($item->type->title)][] = (object) [
                 'title' => $item->title,
-                'intro' => $item->intro?:substr(0,50,strip_tags($item->content_html)),
+                'intro' => $item->intro?:\words($item->content,20),
+                'slug' => $item->title_slug,
                 'pic' => \subpic('200x140',$item->pic1_url)
             ];
         }
     }
+
 
     if($share){
         $share_title = $share->title;

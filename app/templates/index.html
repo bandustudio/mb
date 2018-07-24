@@ -76,13 +76,13 @@
 
       <div class="navbar-menu" id="navMenu">
         <div class="navbar-end">
+        {% for cat,items in featured %}
+          <router-link to="/cat/{{ cat }}" class="navbar-item is-capitalized is-cat-link" cat="{{ cat }}" active-class="active" tag="a">{{ cat }}</router-link>
+        {% endfor %}
           <router-link to="/terminos" active-class="active" class="navbar-item" tag="a">Términos</router-link>
           <router-link to="/atencion" active-class="active" class="navbar-item" tag="a">Atención</router-link>
         </div>
-        <!--div class="navbar-end">
-          <a href="{{clientes_url}}/registro" class="navbar-item">Registro</a>
-          <a href="{{clientes_url}}" class="navbar-item navbar-button">Clientes</a>
-        </div-->
+        <!--div class="navbar-end"></div-->
       </div>
       <div class="topright phone is-hidden-mobile">
         <a href="tel:08006660896">0800 666 0896</a>
@@ -91,17 +91,19 @@
 
     <div class="subnav">
 
-    {% for items in featured %}
-      <div class="columns">
-      <h1>{{ loop.index }}</h1>
-      {% for item in items %}
-        <div class="column is {{ item.type }}">
-          <div class="subnav-pic" style="background-image: url({{item.pic}})"></div>
-          <h1>{{ loop.index }} {{ item.title }}</h1>
-          <p>{{ item.intro }}</p>
-          <router-link to="item.title_slug" tag="a">Conocer más</router-link>
+    {% for cat,items in featured %}
+      <div class="container is-cat is-cat-{{ cat }}">
+        <h1 class="is-capitalized">{{ cat }}</h1>
+        <div class="columns">
+        {% for item in items %}
+          <div class="column is-one-fifth">
+            <div class="column-pic" style="background-image: url({{item.pic}})"></div>
+            <h1>{{ loop.index }} {{ item.title }}</h1>
+            <p>{{ item.intro }}</p>
+            <router-link to="{{item.slug}}" tag="a">Conocer más</router-link>
+          </div>
+        {% endfor %}
         </div>
-      {% endfor %}
       </div>
     {% endfor %}
     </div>
@@ -118,19 +120,19 @@
     <div class="section">
       <div class="slick slick-main opacity0">
         <div v-for="item in posts" class="slick-pane has-text-left" :style="'background-image:url(' + item.picture + ')'">
-          <h1 class="fixed-hero__heading" v-html="item.title"></h1>
+          <h1 class="fixed-hero__heading has-text-white" v-html="item.title"></h1>
           <p class="fixed-hero__sub-heading" v-html="item.intro"></p>
           <router-link class="button is-info is-medium" :to="'/posts/'+item.slug" tag="a">Explorar</router-link>
         </div>
       </div>
       <div v-for="(item, index) in items" class="posts fadeIn">
         <div class="slick-pane has-text-left" v-if="index%2!=0" :style="'background-image:url(' + item.picture + ')'">
-          <h1 class="fixed-hero__heading" v-html="item.title"></h1>
+          <h1 class="fixed-hero__heading has-text-white" v-html="item.title"></h1>
           <p class="fixed-hero__sub-heading" v-html="item.intro"></p>
           <router-link class="button is-info is-medium" :to="item.slug" tag="a">Explorar</router-link>
         </div>   
         <div class="slick-pane has-text-right" v-if="index%2===0" :style="'background-image:url(' + item.picture + ')'">
-          <h1 class="fixed-hero__heading" v-html="item.title"></h1>
+          <h1 class="fixed-hero__heading has-text-white" v-html="item.title"></h1>
           <p class="fixed-hero__sub-heading" v-html="item.intro"></p>
           <router-link class="button is-info is-medium" :to="item.slug" tag="a">Explorar</router-link>
         </div>
@@ -141,13 +143,13 @@
   <script type="text/x-template" id="item">
     <div class="section">
       <div class="slick-pane has-text-left" :style="'background-image:url(' + data.picture + ')'">
-        <h1 class="fixed-hero__heading" v-html="data.title"></h1>
+        <h1 class="fixed-hero__heading has-text-white" v-html="data.title"></h1>
         <p class="fixed-hero__sub-heading" v-html="data.intro"></p>
         <a class="button is-info is-medium" href="#lead">Me interesa</a>
       </div>
       <div class="container">
         <div class="content hero">
-          <h1 class="fixed-hero__heading" v-html="data.title"></h1>
+          <h1 class="fixed-hero__heading has-text-black" v-html="data.title"></h1>
           <div class="post" v-html="data.content"></div>
         </div>
       </div>
@@ -219,13 +221,13 @@
   <script type="text/x-template" id="post">
     <div class="section">
       <div class="slick-pane has-text-left" :style="'background-image:url(' + data.picture + ')'">
-        <h1 class="fixed-hero__heading" v-html="data.title"></h1>
+        <h1 class="fixed-hero__heading has-text-white" v-html="data.title"></h1>
         <p class="fixed-hero__sub-heading" v-html="data.intro"></p>
         <router-link v-if="item.button_value" class="button is-info is-medium" :to="item.button_link" v-html="item.button_value" tag="a">Explorar</router-link>
       </div>  
       <div class="container">
         <div class="content hero">
-          <h1 class="fixed-hero__heading" v-html="data.title"></h1>
+          <h1 class="fixed-hero__heading has-text-black" v-html="data.title"></h1>
           <div class="post" v-html="data.content"></div>
         </div>
       </div>

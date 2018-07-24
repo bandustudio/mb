@@ -481,41 +481,19 @@ document.addEventListener('DOMContentLoaded', function () {
     body.stop().animate({scrollTop:0}, 500, 'swing', function() { 
        
     });
-  })
+  });
+
+  $('.is-cat-link').hover(function(){
+    $('.is-cat').css({display:'none'})
+    $('.is-cat-' + $(this).attr('cat')).slideDown('fast')
+  },function(){
+  });
+
+  $('.is-cat').hover(function(){
+  },function(){
+    $(this).slideUp('fast')
+  });  
 });
-
-var ping = function() {
-  var token = helper.champ('token')
-  if(token.token){
-    $.server({
-      url: '/' + helper.getAttributes($('html')).name + '/notif',
-      success: function(res) {
-        if(res && res.notificacion && res.notificacion.length){
-
-          var ref = $('.navbar-item.has-dropdown').find('a[href="/notificaciones"] .count').html() 
-
-          if(!$('.navbar-item.has-dropdown').find('a[href="/notificaciones"] .count').length){
-            $('.navbar-item.has-dropdown').find('a[href="/notificaciones"]').append('<span class="count pulse"></span>')
-          } 
-
-          $('.navbar-item.has-dropdown').find('a[href="/notificaciones"] .count').html(res.notificacion.length)
-          
-          $('.events-count').css({display:'block'})
-            .attr('title',"Nuevas notificaciones")
-            .html('<i class="fas fa-bell"></i> '+res.notificacion.length)
-
-          if(ref != $('.navbar-item.has-dropdown').find('a[href="/notificaciones"] .count').html()){
-            helper.playAudio()    
-          }
-
-        } else {
-          $('.events-count').fadeOut()
-          $('.navbar-item.has-dropdown').find('a[href="/notificaciones"] .count').text('0').hide()
-        }
-      }
-    })
-  }
-}
 
 $.extend({
   server: function(options) {
