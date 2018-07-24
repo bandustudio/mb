@@ -91,7 +91,7 @@ class AdminerTheme
 						})
 					}
 
-					if(name.indexOf("_text") > -1){
+					if(name.indexOf("_html") > -1){
 
 						$(this).before('<div class="progress summernote-progress hide"><div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"><span class="sr-only"></span></div></div>')
 

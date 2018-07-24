@@ -43,13 +43,19 @@ $container['view'] = function ($c) {
         ->order(['title' => "ASC"]);
 
     foreach($mapper as $item){
-        $featured[] = [
-            'title' => $item->title,
-            'type' => strtolower($item->type->title),
-            'intro' => $item->intro,
-            'pic' => \subpic('200x140',$item->pic1_url)
-        ];
+        if($item->type->title){
+            if(!isset($featured[strtolower($item->type->title)])) $featured[strtolower($item->type->title)] = [];
+            $featured[strtolower($item->type->title)][] = [
+                'title' => $item->title,
+                'intro' => $item->intro?:substr(0,50,strip_tags($item->content_html)),
+                'pic' => \subpic('200x140',$item->pic1_url)
+            ];
+        }
     }
+
+    echo "<pre>";
+    var_dump($featured);
+    exit;
 
     if($share){
         $share_title = $share->title;

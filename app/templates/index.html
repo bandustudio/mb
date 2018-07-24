@@ -88,17 +88,22 @@
         <a href="tel:08006660896">0800 666 0896</a>
       </div>
     </nav>
-  	
-    <div class="subnav columns">
-      <h1>Subnav</h1>
-      {% for item in featured %}
-        <div class="column {{ item.type }}">
+
+    <div class="subnav">
+
+    {% for items in featured %}
+      <div class="columns">
+      <h1>{{ loop.index }}</h1>
+      {% for item in items %}
+        <div class="column is {{ item.type }}">
           <div class="subnav-pic" style="background-image: url({{item.pic}})"></div>
           <h1>{{ loop.index }} {{ item.title }}</h1>
           <p>{{ item.intro }}</p>
           <router-link to="item.title_slug" tag="a">Conocer más</router-link>
         </div>
       {% endfor %}
+      </div>
+    {% endfor %}
     </div>
  		<router-view :key="$route.fullPath"><div class="spinner-outer fadeIn"><div class="spinner" data-layer="4"><div class="spinner-container"><div class="spinner-rotator"><div class="spinner-left"><div class="spinner-circle"></div></div><div class="spinner-right"><div class="spinner-circle"></div></div></div></div><div class="spinner-message">Si la reproducción no empieza en breve, prueba a reiniciar el dispositivo.</div></div></div></router-view>
 
