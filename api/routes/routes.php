@@ -18,19 +18,15 @@ $app->get('/', function ($request, $response, $args) {
 });
 
 $app->get("/m/{code}", function ($request, $response, $arguments) {
-
     $mapper = $this->spot->mapper("App\Email")->first([
         "code" => $request->getAttribute('code')
     ]);
-
     if( ! $mapper){
         throw new NotFoundException("No se encontró el email", 404);        
     }
-
     header('Content-Type: text/html; charset=utf-8');
     print $mapper->content;
     exit;
 });
 
 require __DIR__ . "/app.php";
-require __DIR__ . "/upload.php";

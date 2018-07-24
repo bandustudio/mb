@@ -85,7 +85,7 @@ const Items = {
 const Item = {
   template: '#item',
   created: function() {
-    //helper.progress_bar('')
+    helper.collect('lead');
   },
   mounted : function(){
     helper.is_loading()
@@ -98,10 +98,16 @@ const Item = {
       console.log(error.statusText)
     })    
   },
+  methods: {
+    consultar: function(){
+      helper.send('lead')
+    }
+  },
   data: function() {
     return{
       data: {data:{}},
-      settings: helper.getAttributes($('html'))
+      settings: helper.getAttributes($('html')),
+      hash : location.hash.replace('#','')
     }
   }
 }

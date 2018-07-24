@@ -18,9 +18,7 @@ namespace App;
 use Spot\EntityInterface as Entity;
 use Spot\MapperInterface as Mapper;
 use Spot\EventEmitter;
-
 use Tuupola\Base62;
-
 use Ramsey\Uuid\Uuid;
 use Psr\Log\LogLevel;
 
@@ -76,6 +74,16 @@ class Post extends \Spot\Entity
             }
         }
 
+        $resolutions = explode(',',getenv('UPLOADS_RESOLUTIONS'));
+        $sizes = [];
+
+        foreach($resolutions as $res){
+            $parts = explode('/',$entity->pic1_url);
+            $name = $parts2[count($parts2)-1];
+            $parts[count($parts)-1] = $res.$parts[count($parts)-1];
+            $sizes[$res]=implode('/',$parts);
+        }
+
         return [
             "id" => (integer) $entity->id ?: null,
             "title" => (string) $entity->title ?: "",
@@ -87,6 +95,8 @@ class Post extends \Spot\Entity
             "picshare_url" => (string) $entity->picshare_url ?: "",
             "background_url" => (string) $entity->background_url ?: "",
             "picture" => (string) $entity->pic1_url ?: "",
+            "pic_options" => $pic_options,
+            "sizes" => (array) $sizes,
             "slick" => (array) $slick,
             "status" => (string) $entity->status ?: ""
             //"created" => (string) $entity->created->format('U') ?: "",

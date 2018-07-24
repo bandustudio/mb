@@ -18,9 +18,7 @@ namespace App;
 use Spot\EntityInterface as Entity;
 use Spot\MapperInterface as Mapper;
 use Spot\EventEmitter;
-
 use Tuupola\Base62;
-
 use Ramsey\Uuid\Uuid;
 use Psr\Log\LogLevel;
 
@@ -37,6 +35,7 @@ class Vehicle extends \Spot\Entity
             "type_id" => ["type" => "integer", "unsigned" => true, "default" => 0, 'index' => true],
             "title" => ["type" => "string", "length" => 250],
             "title_slug" => ["type" => "string", "length" => 250],
+            "picshare_url" => ["type" => "string", "length" => 255],
             "pic1_url" => ["type" => "string", "length" => 255],
             "pic2_url" => ["type" => "string", "length" => 255],
             "pic3_url" => ["type" => "string", "length" => 255],
@@ -50,6 +49,7 @@ class Vehicle extends \Spot\Entity
             "version" => ["type" => "string", "length" => 50],
             "status" => ["type" => "string", "length" => 50],
             "deleted" => ["type" => "boolean", "value" => false, "notnull" => true],
+            "featured" => ["type" => "boolean", "default" => false, "value" => false],
             "enabled" => ["type" => "boolean", "default" => true, "value" => true],
             "created" => ["type" => "datetime", "value" => new \DateTime()],
             "updated" => ["type" => "datetime", "value" => new \DateTime()]

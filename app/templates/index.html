@@ -9,11 +9,21 @@
   <link rel="home" href="/">
 
   <!-- Page Meta -->
-  <meta name="description" content="{{app_text}}">
+  <meta name="description" content="{{app_desc}}">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
   <link rel="manifest" href="/manifest.json">
+
+   <!-- Twitter Card data -->
+  <meta name="twitter:card" value="summary">
+
+  <!-- Open Graph data -->
+  <meta property="og:title" content="{{share_title}}" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="{{app_url}}" />
+  <meta property="og:image" content="{{share_pic}}" />
+  <meta property="og:description" content="{{share_text}}" /> 
 
   <!-- Icons -->
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
@@ -53,8 +63,8 @@
     <nav class="navbar loading hidden-loading fadeIn" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
         <router-link to="/" active-class="active" class="navbar-brand" :class="{ 'hidden': $route.path==='/404' }" tag="a">
-          <h1>Mercedes-Benz</h1>
-          <h2>Cigliutti-Guerini</h2>
+          <h1>Mercedes-Benz </h1>
+          <h2>Cigliutti-Guerini {{app_text}} </h2>
         </router-link>
         <div class="navbar-burger" data-target="navMenu">
           <span></span>
@@ -79,6 +89,17 @@
       </div>
     </nav>
   	
+    <div class="subnav columns">
+      <h1>Subnav</h1>
+      {% for item in featured %}
+        <div class="column {{ item.type }}">
+          <div class="subnav-pic" style="background-image: url({{item.pic}})"></div>
+          <h1>{{ loop.index }} {{ item.title }}</h1>
+          <p>{{ item.intro }}</p>
+          <router-link to="item.title_slug" tag="a">Conocer más</router-link>
+        </div>
+      {% endfor %}
+    </div>
  		<router-view :key="$route.fullPath"><div class="spinner-outer fadeIn"><div class="spinner" data-layer="4"><div class="spinner-container"><div class="spinner-rotator"><div class="spinner-left"><div class="spinner-circle"></div></div><div class="spinner-right"><div class="spinner-circle"></div></div></div></div><div class="spinner-message">Si la reproducción no empieza en breve, prueba a reiniciar el dispositivo.</div></div></div></router-view>
 
     <div class="footer__partners loading fadeIn">
@@ -117,13 +138,75 @@
       <div class="slick-pane has-text-left" :style="'background-image:url(' + data.picture + ')'">
         <h1 class="fixed-hero__heading" v-html="data.title"></h1>
         <p class="fixed-hero__sub-heading" v-html="data.intro"></p>
-        <router-link v-if="item.button_value" class="button is-info is-medium" :to="item.button_link" v-html="item.button_value" tag="a">Explorar</router-link>
-      </div>  
+        <a class="button is-info is-medium" href="#lead">Me interesa</a>
+      </div>
       <div class="container">
         <div class="content hero">
           <h1 class="fixed-hero__heading" v-html="data.title"></h1>
           <div class="post" v-html="data.content"></div>
         </div>
+      </div>
+      <div class="container lead has-text-centered">
+        <div class="rounded">
+          <div class="badge">
+            <img :src="settings.assets + '/img/timer.svg'">
+          </div>
+          <h2 v-if="item.first_name">Hola , dejanos tu consulta</h2>
+          <h2 v-if="!item.first_name">Dejanos tu consulta</h2>
+          <p>Quiero que me contacten</p>
+          <div class="columns">
+            <div class="column">
+              <p class="control is-expanded has-icons-left">
+                <input class="input rounded-input is-large" type="text" name="full_name" placeholder="Nombre" autofocus>
+                <span class="icon is-large is-left">
+                  <i class="fas fa-user"></i>
+                </span>
+              </p>
+            </div>
+            <div class="column">
+              <p class="control is-expanded has-icons-left has-icons-right">
+                <input class="input rounded-input is-large is-success" name="email" type="email" placeholder="Email">
+                <span class="icon is-large is-left">
+                  <i class="fas fa-envelope"></i>
+                </span>
+                <span class="icon is-large is-right">
+                  <i class="fas fa-check"></i>
+                </span>
+              </p>
+            </div>
+            <div class="column">
+              <p class="control is-expanded has-icons-left">
+                <input class="input rounded-input is-large" type="text" name="tel" placeholder="Teléfono">
+                <span class="icon is-large is-left">
+                  <i class="fas fa-phone"></i>
+                </span>
+              </p>
+            </div>
+          </div>
+          <div class="columns">
+            <div class="column is-one-third">
+              <div class="control">
+                <div class="select rounded-select is-large is-fullwidth">
+                  <select name="use">
+                    <option value="">Elija Motivo</option>
+                    <option value="consulta" :selected="hash == 'consulta'">Consulta</option>
+                    <option value="concesionarios" :selected="hash == 'concesionarios'">Concesionarios</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="column">
+              <div class="control">
+                <textarea name="comment" class="textarea rounded-input" placeholder="Explain how we can help you"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="container has-text-centered">
+            <button class="button rounded-button is-primary" v-on:click="consultar()">
+              Enviar mensaje
+            </button>
+          </div>
+        </div>        
       </div>
     </div>
   </script>

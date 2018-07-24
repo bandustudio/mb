@@ -56,6 +56,17 @@ class AdminerFileUpload {
 	                ->orientate()
 	                ->save(getenv('UPLOADS_PATH') . '/' . $key, (int) getenv('UPLOADS_QUALITY'));
 
+	            if (preg_match('~(.*)1_url$~', $field["field"], $regs) || preg_match('~(.*)share_url$~', $field["field"], $regs)) {
+		            $resolutions = explode(',',getenv('UPLOADS_RESOLUTIONS'));
+		            foreach($resolutions as $res){
+		                $parts = explode('x',$res);
+		                $resized = $manager->make($_FILES[$name]['tmp_name'])
+		                    ->orientate()
+		                    ->fit((int) $parts[0],(int) $parts[1])
+		                    ->save(getenv('UPLOADS_PATH') . '/' . $parts[0] . 'x' . $parts[1] . $key, (int) getenv('UPLOADS_QUALITY'));
+		            }
+		        }
+
 		    } catch (S3Exception $e) {
 		      // Catch an S3 specific exception.
 		        die($e->getMessage());
