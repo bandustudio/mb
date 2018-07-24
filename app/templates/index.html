@@ -99,7 +99,7 @@
             <div class="item-pic" style="background-image: url({{item.pic}})"></div>
             <h1>{{ item.title }}</h1>
             <p>{{ item.intro }}</p>
-            <router-link to="{{item.slug}}" tag="a">Conocer más</router-link>
+            <router-link to="{{item.slug}}" tag="a">Explorar</router-link>
           </div>
         {% endfor %}
         </div>
@@ -120,21 +120,27 @@
     <div class="section">
       <div class="slick slick-main opacity0">
         <div v-for="item in posts" class="slick-pane has-text-left" :style="'background-image:url(' + item.picture + ')'">
-          <h1 class="fixed-hero__heading has-text-white" v-html="item.title"></h1>
-          <p class="fixed-hero__sub-heading" v-html="item.intro"></p>
-          <router-link class="button is-info is-medium" :to="'/posts/'+item.slug" tag="a">Explorar</router-link>
+          <div class="hero__heading">
+            <h1 v-html="item.title"></h1>
+            <p v-html="item.intro"></p>
+            <router-link class="button is-info is-medium" :to="'/posts/'+item.slug" tag="a">Explorar</router-link>
+          </div>          
         </div>
       </div>
       <div v-for="(item, index) in vehicles" class="posts fadeIn">
         <div class="slick-pane has-text-left" v-if="index%2!=0" :style="'background-image:url(' + item.picture + ')'">
-          <h1 class="fixed-hero__heading has-text-white" v-html="item.title"></h1>
-          <p class="fixed-hero__sub-heading" v-html="item.intro"></p>
-          <router-link class="button is-info is-medium" :to="item.slug" tag="a">Explorar</router-link>
+          <div class="hero__heading">
+            <h1 v-html="item.title"></h1>
+            <p v-html="item.intro"></p>
+            <router-link class="button is-info is-medium" :to="item.slug" tag="a">Explorar</router-link>
+          </div>
         </div>   
         <div class="slick-pane has-text-right" v-if="index%2===0" :style="'background-image:url(' + item.picture + ')'">
-          <h1 class="fixed-hero__heading has-text-white" v-html="item.title"></h1>
-          <p class="fixed-hero__sub-heading" v-html="item.intro"></p>
-          <router-link class="button is-info is-medium" :to="item.slug" tag="a">Explorar</router-link>
+          <div class="hero__heading">
+            <h1 v-html="item.title"></h1>
+            <p v-html="item.intro"></p>
+            <router-link class="button is-info is-medium" :to="item.slug" tag="a">Explorar</router-link>
+          </div>
         </div>
       </div>
     </div>
@@ -143,13 +149,15 @@
   <script type="text/x-template" id="item">
     <div class="section">
       <div class="slick-pane has-text-left" :style="'background-image:url(' + data.picture + ')'">
-        <h1 class="fixed-hero__heading has-text-white" v-html="data.title"></h1>
-        <p class="fixed-hero__sub-heading" v-html="data.intro"></p>
-        <a class="button is-info is-medium" href="#lead">Me interesa</a>
+        <div class="hero__heading">
+          <h1 v-html="data.title"></h1>
+          <p v-html="data.intro"></p>
+          <a class="button is-info is-medium" href="#lead">Me interesa</a>
+        </div>
       </div>
       <div class="container">
         <div class="content hero">
-          <h1 class="fixed-hero__heading has-text-black" v-html="data.title"></h1>
+          <h1 v-html="data.title"></h1>
           <div class="post" v-html="data.content"></div>
         </div>
       </div>
@@ -237,9 +245,11 @@
   <script type="text/x-template" id="post">
     <div class="section">
       <div class="slick-pane has-text-left" :style="'background-image:url(' + data.picture + ')'">
-        <h1 class="fixed-hero__heading has-text-white" v-html="data.title"></h1>
-        <p class="fixed-hero__sub-heading" v-html="data.intro"></p>
-        <router-link v-if="item.button_value" class="button is-info is-medium" :to="item.button_link" v-html="item.button_value" tag="a">Explorar</router-link>
+        <div class="hero__heading">
+          <h1 v-html="data.title"></h1>
+          <p v-html="data.intro"></p>
+          <router-link v-if="item.button_value" class="button is-info is-medium" :to="item.button_link" v-html="item.button_value" tag="a">Explorar</router-link>
+        </div>
       </div>  
       <div class="container">
         <div class="content hero">

@@ -1768,13 +1768,24 @@ a:hover {
 
 /* slick hacks*/
 
-.fixed-hero__heading {
-  font: normal 400 40px/1 "corporateacondpro";
+.hero__heading {
+  padding: 15px;
+  display: inline-block;
+  background-color: rgba(255,255,255,0.8);
 }
 
-.fixed-hero__sub-heading {
+.hero__heading h1 {
+  font-family:"corporateacondpro";
+  font-size: 32px;
+  font-style: italic;
+  color: black;
+}
+
+.hero__heading p {
+    font-family:"corpos";
+  color: black;
+  font-size: 18px;
   margin-bottom: 10px;
-  font: normal 400 12px/1.5 "Arial",sans-serif;
 }
 
 .slick-pane {
