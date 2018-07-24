@@ -64,7 +64,7 @@
       <div class="navbar-brand">
         <router-link to="/" active-class="active" class="navbar-brand" :class="{ 'hidden': $route.path==='/404' }" tag="a">
           <h1>Mercedes-Benz </h1>
-          <h2>Cigliutti-Guerini {{app_text}} </h2>
+          <h2>Cigliutti-Guerini</h2>
         </router-link>
         <div class="navbar-burger" data-target="navMenu">
           <span></span>
@@ -77,7 +77,7 @@
       <div class="navbar-menu" id="navMenu">
         <div class="navbar-end">
         {% for cat,items in featured %}
-          <router-link to="/cat/{{ cat }}" class="navbar-item is-capitalized is-cat-link" cat="{{ cat }}" active-class="active" tag="a">{{ cat }}</router-link>
+          <router-link to="/vehicles/{{ cat }}" class="navbar-item is-capitalized is-cat-link" cat="{{ cat }}" active-class="active" tag="a">{{ cat }}</router-link>
         {% endfor %}
           <router-link to="/terminos" active-class="active" class="navbar-item" tag="a">Términos</router-link>
           <router-link to="/atencion" active-class="active" class="navbar-item" tag="a">Atención</router-link>
@@ -97,8 +97,8 @@
         <div class="columns">
         {% for item in items %}
           <div class="column is-one-fifth">
-            <div class="column-pic" style="background-image: url({{item.pic}})"></div>
-            <h1>{{ loop.index }} {{ item.title }}</h1>
+            <div class="item-pic" style="background-image: url({{item.pic}})"></div>
+            <h1>{{ item.title }}</h1>
             <p>{{ item.intro }}</p>
             <router-link to="{{item.slug}}" tag="a">Conocer más</router-link>
           </div>
@@ -125,7 +125,7 @@
           <router-link class="button is-info is-medium" :to="'/posts/'+item.slug" tag="a">Explorar</router-link>
         </div>
       </div>
-      <div v-for="(item, index) in items" class="posts fadeIn">
+      <div v-for="(item, index) in vehicles" class="posts fadeIn">
         <div class="slick-pane has-text-left" v-if="index%2!=0" :style="'background-image:url(' + item.picture + ')'">
           <h1 class="fixed-hero__heading has-text-white" v-html="item.title"></h1>
           <p class="fixed-hero__sub-heading" v-html="item.intro"></p>
@@ -214,6 +214,22 @@
             </button>
           </div>
         </div>        
+      </div>
+    </div>
+  </script>
+
+  <script type="text/x-template" id="items">
+    <div class="section">
+      <div class="container">
+        <h1 v-html="title" class="is-capitalized fixed-hero__heading"></h1>
+        <div class="columns">
+          <div v-for="item in items" class="column is-one-fifth">
+            <div class="item-pic" :style="'background-image: url('+item.pic+')'"></div>
+            <h1 v-html="item.title"></h1>
+            <p v-html="item.intro"></p>
+            <router-link :to="'/'+item.slug">Ver más</router-link>
+          </div>
+        </div>
       </div>
     </div>
   </script>
@@ -331,7 +347,6 @@
     <div class="section">
       <div class="container">
         <div class="content">
-
           <h1 class="garantia--h">Términos y Condiciones de uso</h1>
           <h5 class="titlesection"></h5>
           <p>A través del Sitio www.MercedesBenz.com (en adelante, el ”Sitio y/o MercedesBenz”), toda persona podrá encontrar diversos servicios y contenidos relacionados la búsqueda de automóviles y servicios relacionados (en adelante, los “Servicios”).</p>

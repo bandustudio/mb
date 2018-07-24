@@ -668,11 +668,10 @@ body {
   padding: 5rem 1.5rem;
 }
 
-.column-pic {
+.item-pic {
   display: inline-block;
   width: 100%;
   min-height: 100px;
-
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -977,10 +976,12 @@ a:hover {
 }
 
 .section {
+  display: inline-block;
+  width: 100%;  
   font-family: "corpos";
   padding: 0;
   margin:0;
-  box-shadow: 0 4px 0 #111 inset;
+  box-shadow: 0 4px 0 #d8d8d8 inset;
   background-position: bottom center;
   background-repeat: no-repeat;
 }
@@ -1007,7 +1008,7 @@ a:hover {
   font-stretch: normal;
   line-height: 1.21;
   letter-spacing: normal;
-  color: white;
+  color: black;
   padding: 30px 0;
 }
 
@@ -1018,7 +1019,7 @@ a:hover {
   font-stretch: normal;
   line-height: 1.21;
   letter-spacing: normal;
-  color: white;
+  color: black;
   padding: 30px 0;
 }
 
@@ -1029,7 +1030,7 @@ a:hover {
   font-stretch: normal;
   line-height: 1.21;
   letter-spacing: normal;
-  color: white;
+  color: black;
   margin: 30px 0;
   padding-bottom: 25px;
 }
@@ -1772,13 +1773,11 @@ a:hover {
 
 .fixed-hero__heading {
   font: normal 400 40px/1 "corporateacondpro";
-  text-shadow: 1px 1px 5px #666;
 }
 
 .fixed-hero__sub-heading {
   margin-bottom: 10px;
   font: normal 400 12px/1.5 "Arial",sans-serif;
-  text-shadow: 1px 1px 5px #666;
 }
 
 .slick-pane {
@@ -1816,7 +1815,12 @@ a:hover {
 }
 
 .is-cat {
+  padding: 2em 0;
   display: none;
+}
+
+.is-cat h1 {
+  font-size: 25px;
 }
 
 #navMenu.is-active .navbar-item {

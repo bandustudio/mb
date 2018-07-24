@@ -71,7 +71,7 @@ $app->group('/v1', function() {
                 ->write(json_encode($data));
         }); 
 
-        $this->post('/items', function ($request, $response, $args) {
+        $this->post('/vehicles', function ($request, $response, $args) {
             $mapper = $this->spot->mapper("App\Vehicle")
                 ->where(['enabled' => 1])
                 ->order(['created' => 'DESC'])
@@ -80,7 +80,6 @@ $app->group('/v1', function() {
             if($mapper === false){
                 throw new ForbiddenException("No resource was found.", 404);
             }
-
 
             /* Serialize the response data. */
             $fractal = new Manager();
@@ -92,6 +91,38 @@ $app->group('/v1', function() {
                 ->withHeader("Content-Type", "application/json")
                 ->write(json_encode($data));
         }); 
+
+        $this->post('/vehicles/{slug}', function ($request, $response, $args) {
+
+            $type = $this->spot->mapper("App\ThemeType")
+                ->where(['title' => ucfirst( $request->getAttribute('slug'))])
+                ->first();
+
+            if($type === false){
+                throw new ForbiddenException("No resource was found.", 404);
+            }
+
+            $mapper = $this->spot->mapper("App\Vehicle")
+                ->where(['enabled' => 1])
+                ->where(['type_id' => $type->id])
+                ->order(['created' => 'DESC'])
+                ->limit(1000);
+
+            if($mapper === false){
+                throw new ForbiddenException("No resource was found.", 404);
+            }
+
+            /* Serialize the response data. */
+            $fractal = new Manager();
+            $fractal->setSerializer(new DataArraySerializer);
+            $resource = new Collection($mapper, new Vehicle);
+            $data = $fractal->createData($resource)->toArray();
+
+            return $response->withStatus(200)
+                ->withHeader("Content-Type", "application/json")
+                ->write(json_encode($data));
+        }); 
+
 
         $this->post('/posts', function ($request, $response, $args) {
             $mapper = $this->spot->mapper("App\Post")

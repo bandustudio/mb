@@ -86,6 +86,7 @@ class Vehicle extends \Spot\Entity
             "picture" => (string) $entity->pic1_url ?: "",
             "slick" => (array) $slick,
             "status" => (string) $entity->status ?: "",
+            'pic' => \subpic('200x140',$entity->pic1_url),
             //"created" => (string) $entity->created->format('U') ?: "",
             "model" => [
                 "id" => (integer) $entity->model ? $entity->model_id : null,

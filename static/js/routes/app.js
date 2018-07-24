@@ -3,10 +3,10 @@ var cache = {}
 const Splash = {
   template: '#splash',
   created: function() {
-    if(!cache.items){
-      this.$http.post(helper.getAttributes($('html')).endpoint + '/app/items', {}, {emulateJSON:true}).then(function(res){
-        this.items = res.data.data
-        cache.items = this.items
+    if(!cache.vehicles){
+      this.$http.post(helper.getAttributes($('html')).endpoint + '/app/vehicles', {}, {emulateJSON:true}).then(function(res){
+        this.vehicles = res.data.data
+        cache.vehicles = this.vehicles
       }, function(error){
         console.log(error.statusText)
       })
@@ -53,7 +53,7 @@ const Splash = {
   },
   data: function() {
     return{
-      items:cache.items||{},
+      vehicles:cache.vehicles||{},
       posts:cache.posts||{},
       filters : helper.filters,
       settings: helper.getAttributes($('html'))
@@ -62,9 +62,10 @@ const Splash = {
 };
 
 const Items = {
-  template: '#item',
+  template: '#items',
   mounted: function() {
     helper.is_loading()
+    this.title = this.$route.params.cat||"Nuestros vehículos"
     this.$http.post(helper.getAttributes($('html')).endpoint + '/app'+location.pathname, {}, {emulateJSON:true}).then(function(res){
       this.items = res.data.data
       helper.is_loaded()
@@ -74,8 +75,8 @@ const Items = {
   },    
   data: function() {
     return{
-      candidato: candidato,
-      item: helper.champ().item||{},
+      items:{},
+      title:'',
       helper : helper,
       settings: helper.getAttributes($('html'))
     }
@@ -238,9 +239,10 @@ const router = new VueRouter({
   mode: 'history',
   routes: [
     {path: '/', component: Splash, meta : { title: 'Mercedes-Benz'}},
-    {path: '/items', component: Items,  meta : { title: 'Vehículos'}},
     {path: '/posts', component: Posts,  meta : { title: 'Artículos'}},
     {path: '/posts/:slug', component: Post,  meta : { title: 'Artículo'}},
+    {path: '/vehicles', component: Items,  meta : { title: 'Vehículos'}},
+    {path: '/vehicles/:cat', component: Items,  meta : { title: ''}},
     {path: '/contacto', component: Contacto, meta : { title: 'Contacto'}},
     {path: '/terminos', component: Terminos, meta : { title: 'Términos y condiciones'}},
     {path: '/atencion', component: Atencion, meta : { title: 'Atención'}},
