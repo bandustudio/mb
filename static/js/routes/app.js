@@ -27,7 +27,8 @@ const Splash = {
             infinite: true,
             speed: 500,
             fade: true,
-            cssEase: 'linear'
+            cssEase: 'linear',
+            accessibility: true
           }).addClass('fadeIn')
           $('.slick-pane').css({'min-height':($(window).height()-$('.navbar').height())+'px'})
         },250);     
