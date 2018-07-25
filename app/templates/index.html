@@ -236,7 +236,7 @@
               <div class="item-pic" :style="'background-image: url('+item.pic+')'"></div>
               <h1><span v-html="item.title"></span></h1>
               <h4><span v-html="item.intro"></span></h4>
-              <router-link :to="'/'+item.slug">Ver más</router-link>
+              <router-link :to="'/'+item.slug">Explorar</router-link>
             </div>
           </div>
         </div>
@@ -266,22 +266,24 @@
     <div class="section atencion has-text-centered">
       <h2 class="">Elegí el medio más cómodo<br>para hablar ahora mismo</h2>
       <div class="container has-text-centered">
-        <div class="columns">
-          <div class="column option">
-            <img :src="settings.assets + '/img/phone.svg'">
-            <h2>Atención telefónica</h2>
-            <a href="tel:+59 9 11 1111 1111" class="button rounded-button rounded-button-success" v-on:click="cotizarAhora()">+59 9 11 1111 1111</a>
-          </div>
-          <div class="column option option-main">
-            <img :src="settings.assets + '/img/whatsapp.svg'">
-            <h2>Whatsapp</h2>
-            <p>La manera más rápida de comunicarse<br>elegida por nuestros clientes.</p>
-            <a href="https://api.whatsapp.com/send?phone={{app_whatsapp}}" class="button rounded-button rounded-button-success">Empezar chat</a>
-          </div>
-          <div class="column option">
-            <img :src="settings.assets + '/img/email.svg'">
-            <h2>Atención vía mail</h2>
-            <a href="/contacto" class="button rounded-button rounded-button-success">Contactar</a>
+        <div class="content">
+          <div class="columns">
+            <div class="column option">
+              <img :src="settings.assets + '/img/phone.svg'">
+              <h2>Atención telefónica</h2>
+              <a href="tel:+59 9 11 1111 1111" class="button rounded-button rounded-button-success" v-on:click="cotizarAhora()">+59 9 11 1111 1111</a>
+            </div>
+            <div class="column option option-main">
+              <img :src="settings.assets + '/img/whatsapp.svg'">
+              <h2>Whatsapp</h2>
+              <p>La manera más rápida de comunicarse<br>elegida por nuestros clientes.</p>
+              <a href="https://api.whatsapp.com/send?phone={{app_whatsapp}}" class="button rounded-button rounded-button-success">Empezar chat</a>
+            </div>
+            <div class="column option">
+              <img :src="settings.assets + '/img/email.svg'">
+              <h2>Atención vía mail</h2>
+              <a href="/contacto" class="button rounded-button rounded-button-success">Contactar</a>
+            </div>
           </div>
         </div>
       </div>
@@ -291,64 +293,66 @@
   <script type="text/x-template" id="contacto">
     <div class="section contacto" ajax-prefix="app">
       <div class="container has-text-centered">
-        <div class="rounded">
-          <div class="badge">
-            <img :src="settings.assets + '/img/timer.svg'">
-          </div>
-          <h2 v-if="item.first_name">Hola {{ item.first_name }}, dejanos tu consulta</h2>
-          <h2 v-if="!item.first_name">Dejanos tu consulta</h2>
-          <p>Quiero que me contacten</p>
-          <div class="columns">
-            <div class="column">
-              <p class="control is-expanded has-icons-left">
-                <input class="input rounded-input is-large" type="text" name="full_name" placeholder="Nombre" autofocus>
-                <span class="icon is-large is-left">
-                  <i class="fas fa-user"></i>
-                </span>
-              </p>
+        <div class="content">
+          <div class="rounded">
+            <div class="badge">
+              <img :src="settings.assets + '/img/timer.svg'">
             </div>
-            <div class="column">
-              <p class="control is-expanded has-icons-left has-icons-right">
-                <input class="input rounded-input is-large is-success" name="email" type="email" placeholder="Email">
-                <span class="icon is-large is-left">
-                  <i class="fas fa-envelope"></i>
-                </span>
-                <span class="icon is-large is-right">
-                  <i class="fas fa-check"></i>
-                </span>
-              </p>
+            <h2 v-if="item.first_name">Hola {{ item.first_name }}, dejanos tu consulta</h2>
+            <h2 v-if="!item.first_name">Dejanos tu consulta</h2>
+            <p>Quiero que me contacten</p>
+            <div class="columns">
+              <div class="column">
+                <p class="control is-expanded has-icons-left">
+                  <input class="input rounded-input is-large" type="text" name="full_name" placeholder="Nombre" autofocus>
+                  <span class="icon is-large is-left">
+                    <i class="fas fa-user"></i>
+                  </span>
+                </p>
+              </div>
+              <div class="column">
+                <p class="control is-expanded has-icons-left has-icons-right">
+                  <input class="input rounded-input is-large is-success" name="email" type="email" placeholder="Email">
+                  <span class="icon is-large is-left">
+                    <i class="fas fa-envelope"></i>
+                  </span>
+                  <span class="icon is-large is-right">
+                    <i class="fas fa-check"></i>
+                  </span>
+                </p>
+              </div>
+              <div class="column">
+                <p class="control is-expanded has-icons-left">
+                  <input class="input rounded-input is-large" type="text" name="tel" placeholder="Teléfono">
+                  <span class="icon is-large is-left">
+                    <i class="fas fa-phone"></i>
+                  </span>
+                </p>
+              </div>
             </div>
-            <div class="column">
-              <p class="control is-expanded has-icons-left">
-                <input class="input rounded-input is-large" type="text" name="tel" placeholder="Teléfono">
-                <span class="icon is-large is-left">
-                  <i class="fas fa-phone"></i>
-                </span>
-              </p>
-            </div>
-          </div>
-          <div class="columns">
-            <div class="column is-one-third">
-              <div class="control">
-                <div class="select rounded-select is-large is-fullwidth">
-                  <select name="use">
-                    <option value="">Elija Motivo</option>
-                    <option value="consulta" :selected="hash == 'consulta'">Consulta</option>
-                    <option value="concesionarios" :selected="hash == 'concesionarios'">Concesionarios</option>
-                  </select>
+            <div class="columns">
+              <div class="column is-one-third">
+                <div class="control">
+                  <div class="select rounded-select is-large is-fullwidth">
+                    <select name="use">
+                      <option value="">Elija Motivo</option>
+                      <option value="consulta" :selected="hash == 'consulta'">Consulta</option>
+                      <option value="concesionarios" :selected="hash == 'concesionarios'">Concesionarios</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="column">
+                <div class="control">
+                  <textarea name="comment" class="textarea rounded-input" placeholder="Explain how we can help you"></textarea>
                 </div>
               </div>
             </div>
-            <div class="column">
-              <div class="control">
-                <textarea name="comment" class="textarea rounded-input" placeholder="Explain how we can help you"></textarea>
-              </div>
+            <div class="container has-text-centered">
+              <button class="button rounded-button is-primary" v-on:click="enviar()">
+                Enviar mensaje
+              </button>
             </div>
-          </div>
-          <div class="container has-text-centered">
-            <button class="button rounded-button is-primary" v-on:click="enviar()">
-              Enviar mensaje
-            </button>
           </div>
         </div>
       </div>

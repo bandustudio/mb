@@ -1804,6 +1804,7 @@ a:hover {
   font-size: 44px;
   font-weight: 700;
   font-style: italic;
+  line-height: 1.35em;
 }
 
 .hero__heading h4 span {
