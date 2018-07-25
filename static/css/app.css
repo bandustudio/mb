@@ -1769,9 +1769,10 @@ a:hover {
 /* slick hacks*/
 
 .hero__heading {
-  padding: 15px;
+  padding: 30px;
   display: inline-block;
   background-color: rgba(255,255,255,0.8);
+  min-width: 280px;
 }
 
 .hero__heading h1 {
