@@ -765,6 +765,7 @@ body {
   background-repeat: no-repeat;
   background-position: left 5px;
   background-size: 100px;
+  min-height: 3.5rem;
 }
 
 .navbar-item .svg-inline--fa{
@@ -902,7 +903,10 @@ a.navbar-item:hover, a.navbar-item.is-active, a.navbar-link:hover, a.navbar-link
   letter-spacing: normal;
   text-align: right;
   color: #fff;
+  min-height: 3.5rem;
 }
+
+
 
 .navbar-brand h1 {
   font-family:"corporatea";
@@ -1869,7 +1873,7 @@ a:hover {
     padding-left: 3.3em;
   }
   .navbar-brand a {
-    padding-top: 0.5em;
+    padding-top: 0.6em;
   }
   .content {
     padding: 2em;
@@ -1883,7 +1887,7 @@ a:hover {
 
 @media screen and (max-width: 1023px) {
   .navbar {
-    background-position: right -1px;
+    background-position: right 1px;
     background-size: 60px;
   }
 }
@@ -1954,9 +1958,7 @@ a:hover {
     min-height: 382px; 
   }
   .rounded {
-    margin-top: 0!important;
     border: none;
-    padding: 10px;
   } 
   .rounded > h2 {
     font-size: 32px;
