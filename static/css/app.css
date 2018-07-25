@@ -677,12 +677,16 @@ body {
   background-size: cover;
 }
 
+.subnav {
+  background-color: white;
+}
+
 .subnav h1 span {
-  color: white;
+  color: black;
 }
 
 .subnav h4 span {
-  color: white;
+  color: black;
 }
 
 .rounded .field {
