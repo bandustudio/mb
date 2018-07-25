@@ -677,6 +677,14 @@ body {
   background-size: cover;
 }
 
+.subnav h1 span {
+  color: white;
+}
+
+.subnav h4 span {
+  color: white;
+}
+
 .rounded .field {
   padding-top: 1em;
 }
@@ -977,7 +985,7 @@ a:hover {
   padding: 0;
   margin:0;
   background-color: white;
-  /*box-shadow: 0 4px 0 #d8d8d8 inset;*/
+  box-shadow: 0 4px 0 #d8d8d8 inset;
   background-position: bottom center;
   background-repeat: no-repeat;
 }
