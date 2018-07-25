@@ -4,7 +4,7 @@ html {
 body {
   font-family:"corporateacondpro",Helvetica,Arial,sans-serif;
   transition: all 0.5 linear;
-  background-color: white;
+  background-color: black;
   color: black;
 }
 @font-face{
@@ -777,10 +777,6 @@ body {
   color: #08d184;
 }
 
-.hero {
-  padding-top: 2em;
-}
-
 @media screen and (min-width: 1024px) {
   
   .navbar {
@@ -980,7 +976,8 @@ a:hover {
   font-family: "corpos";
   padding: 0;
   margin:0;
-  box-shadow: 0 4px 0 #d8d8d8 inset;
+  background-color: white;
+  /*box-shadow: 0 4px 0 #d8d8d8 inset;*/
   background-position: bottom center;
   background-repeat: no-repeat;
 }
@@ -1768,24 +1765,41 @@ a:hover {
 
 /* slick hacks*/
 
+.hero {
+  padding-top: 2em;
+}
+
 .hero__heading {
   padding: 30px;
   display: inline-block;
-  background-color: rgba(255,255,255,0.8);
   min-width: 280px;
 }
 
 .hero__heading h1 {
-  font-family:"corporateacondpro";
-  font-size: 32px;
-  font-style: italic;
-  color: black;
+  margin-bottom: 10px;
 }
 
-.hero__heading p {
-    font-family:"corpos";
-  color: black;
-  font-size: 18px;
+.hero__heading h4 {
+  margin-bottom: 10px;
+}
+
+.hero__heading h1 span {
+  font-family:"corporateacondpro";
+  box-decoration-break: clone;
+  background: #000;
+  color: #fff;
+  padding: 0 15px;
+  font-size: 44px;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.hero__heading h4 span {
+  font-family:"corporateacondpro";
+  padding: 5px 10px;
+  background-color: black;
+  color: white;
+  font-size: 25px;
   margin-bottom: 10px;
 }
 
@@ -1845,7 +1859,8 @@ a:hover {
     padding-top: 0.5em;
   }
   .content {
-    padding: 10px;
+    padding: 2em;
+    padding-top: 0;
   }  
   .navbar-menu .navbar-item {
     padding-left: 10px;

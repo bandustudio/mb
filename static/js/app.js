@@ -543,8 +543,6 @@ $.ajaxSetup({
   contentType: "application/json; charset=utf-8"
 })
 
-
-
 $("body").keydown(function(e) {
   if(e.keyCode == 37) { // left
     $('.slick').slick('slickPrev');
@@ -553,8 +551,6 @@ $("body").keydown(function(e) {
     $('.slick').slick('slickNext');
   }
 });
-
-
 
 $.views.settings.delimiters("[[", "]]")
 moment.locale('es')
