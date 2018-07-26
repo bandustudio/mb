@@ -111,7 +111,10 @@
 
     <div class="footer__partners hidden-loading fadeIn">
       <div class="footer__partners--row">
-        <p class=""><router-link to="/terminos" tag="a">Términos y condiciones</router-link> &copy; 2018 <router-link to="/" tag="a">Mercedes-Benz &mdash; Cigliutti-Guerini.</router-link> </p>
+        <p>
+          <router-link to="/atencion" tag="a">Atención</router-link> &mdash; 
+          <router-link to="/terminos" tag="a">Términos y condiciones</router-link> &nbsp;
+          &copy; 2018 Mercedes-Benz &mdash; Cigliutti-Guerini.</p>
       </div>
     </div> 
   </div>
@@ -121,8 +124,8 @@
       <div class="slick slick-main opacity0">
         <div v-for="item in posts" class="slick-pane has-text-left" :style="'background-image:url(' + item.picture + ')'">
           <div class="hero__heading">
-            <h1><span v-html="item.title"></span></h1>
-            <h4><span v-html="item.intro"></span></h4>
+            <h1 v-if="item.title && item.title.length"><span v-html="item.title"></span></h1>
+            <h4 v-if="item.intro && item.intro.length"><span v-html="item.intro"></span></h4>
             <router-link class="button is-white is-medium" :to="'/posts/'+item.slug" tag="a">Explorar</router-link>
           </div>          
         </div>
@@ -130,15 +133,15 @@
       <div v-for="(item, index) in vehicles" class="posts fadeIn">
         <div class="slick-pane has-text-left" v-if="index%2!=0" :style="'background-image:url(' + item.picture + ')'">
           <div class="hero__heading">
-            <h1><span v-html="item.title"></span></h1>
-            <h4><span v-html="item.intro"></span></h4>
+            <h1 v-if="item.title && item.title.length"><span v-html="item.title"></span></h1>
+            <h4 v-if="item.intro && item.intro.length"><span v-html="item.intro"></span></h4>
             <router-link class="button is-white is-medium" :to="item.slug" tag="a">Explorar</router-link>
           </div>
         </div>   
         <div class="slick-pane has-text-right" v-if="index%2===0" :style="'background-image:url(' + item.picture + ')'">
           <div class="hero__heading">
-            <h1><span v-html="item.title"></span></h1>
-            <h4><span v-html="item.intro"></span></h4>
+            <h1 v-if="item.title && item.title.length"><span v-html="item.title"></span></h1>
+            <h4 v-if="item.intro && item.intro.length"><span v-html="item.intro"></span></h4>
             <router-link class="button is-white is-medium" :to="item.slug" tag="a">Explorar</router-link>
           </div>
         </div>
@@ -150,14 +153,14 @@
     <div class="section">
       <div class="slick-pane has-text-left" :style="'background-image:url(' + data.picture + ')'">
         <div class="hero__heading">
-          <h1><span v-html="data.title"></span></h1>
-          <h4><span v-html="data.intro"></span></h4>
+          <h1 v-if="data.title && data.title.length"><span v-html="data.title"></span></h1>
+          <h4 v-if="data.intro && data.intro.length"><span v-html="data.intro"></span></h4>
           <a class="button is-white is-medium" href="#lead">Me interesa</a>
         </div>
       </div>
       <div class="container">
         <div class="content hero">
-          <h1><span v-html="data.title"></span></h1>
+          <h1 v-if="data.title && data.title.length"><span v-html="data.title"></span></h1>
           <div class="post" v-html="data.content"></div>
         </div>
       </div>
@@ -234,8 +237,8 @@
           <div class="columns">
             <div v-for="item in items" class="column is-one-fifth">
               <div class="item-pic" :style="'background-image: url('+item.pic+')'"></div>
-              <h1><span v-html="item.title"></span></h1>
-              <h4><span v-html="item.intro"></span></h4>
+              <h1 v-if="item.title && item.title.length"><span v-html="item.title"></span></h1>
+              <h4 v-if="item.intro && item.intro.length"><span v-html="item.intro"></span></h4>
               <router-link :to="'/'+item.slug">Explorar</router-link>
             </div>
           </div>
@@ -248,9 +251,9 @@
     <div class="section">
       <div class="slick-pane has-text-left" :style="'background-image:url(' + data.picture + ')'">
         <div class="hero__heading">
-          <h1><span v-html="data.title"></span></h1>
-          <h4><span v-html="data.intro"></span></h4>
-          <router-link v-if="item.button_value" class="button is-white is-medium" :to="item.button_link" v-html="item.button_value" tag="a">Explorar</router-link>
+          <h1 v-if="data.title && data.title.length"><span v-html="data.title"></span></h1>
+          <h4 v-if="data.intro && data.intro.length"><span v-html="data.intro"></span></h4>
+          <router-link v-if="data.button_value" class="button is-white is-medium" :to="data.button_link" v-html="data.button_value" tag="a">Explorar</router-link>
         </div>
       </div>  
       <div class="container">
