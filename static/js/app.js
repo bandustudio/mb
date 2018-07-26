@@ -264,7 +264,7 @@ var helper = {
     var atts = JSON.parse(atts||'{}')||{}
     var prefix = $('.'+form).attr('ajax-prefix')?"/"+$('.'+form).attr('ajax-prefix')+"/":"/"
 
-    return $.post( helper.getAttributes($('html')).endpoint + prefix + form, champ[form], function(res){
+    return $.post( helper.getAttributes($('html')).endpoint + prefix + form, JSON.stringify(champ[form]), function(res){
       if(res.status === 'success'){
         if(res.id){
           champ[form].id = res.id;

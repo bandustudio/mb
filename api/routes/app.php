@@ -11,6 +11,7 @@ use League\Fractal\Serializer\DataArraySerializer;
 use Tuupola\Base62;
 use App\Lead;
 use App\Post;
+use App\User;
 use App\Vehicle;
 use App\Email;
 use App\VehicleModel;
@@ -191,7 +192,9 @@ $app->group('/v1', function() {
 
         $this->post('/lead', function ($request, $response, $args) {
 
-            $body = $request->getParsedBody();
+            //$body = $request->getParsedBody();
+            $body = $request->getParams();
+
             $lead = null;
 
             if(empty($body)){

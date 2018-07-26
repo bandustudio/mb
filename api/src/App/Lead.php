@@ -32,6 +32,7 @@ class Lead extends \Spot\Entity
     {
         return [
             "id" => ["type" => "integer", "unsigned" => true, "primary" => true, "autoincrement" => true],
+            "user_id" => ["type" => "integer", "unsigned" => true, "default" => NULL, 'index' => true],
             "model_id" => ["type" => "integer", "unsigned" => true, "default" => NULL, 'index' => true],
             "code" => ["type" => "string", "length" => 255],            
             "origin" => ["type" => "string", "length" => 50],
@@ -86,7 +87,8 @@ class Lead extends \Spot\Entity
     public static function relations(Mapper $mapper, Entity $entity)
     {
         return [
-            'model' => $mapper->belongsTo($entity, 'App\VehicleModel', 'model_id')
+            'model' => $mapper->belongsTo($entity, 'App\VehicleModel', 'model_id'),
+            'user' => $mapper->belongsTo($entity, 'App\User', 'user_id')
         ];
     }
     

@@ -10,7 +10,6 @@ use League\Fractal\Resource\Collection;
 use League\Fractal\Serializer\DataArraySerializer;
 use Tuupola\Base62;
 use App\User;
-use App\Upload;
 use App\Message;
 use App\UserMessage;
 use App\Email;

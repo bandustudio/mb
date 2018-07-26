@@ -46,6 +46,8 @@ $console
         $container["spot"]->mapper("App\Vehicle")->migrate();
         $container["spot"]->mapper("App\Post")->migrate();
         $container["spot"]->mapper("App\Lead")->migrate();
+        $container["spot"]->mapper("App\User")->migrate();
+        $container["spot"]->mapper("App\Email")->migrate();
         $container["spot"]->mapper("App\ThemeType")->migrate();
     });
 

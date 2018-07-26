@@ -86,10 +86,8 @@ const Items = {
 
 const Item = {
   template: '#item',
-  created: function() {
-    helper.collect('lead');
-  },
   mounted : function(){
+    helper.collect('lead');
     helper.is_loading()
     this.$http.post(helper.getAttributes($('html')).endpoint + '/app'+location.pathname, {}, {emulateJSON:true}).then(function(res){
       this.data = res.data.data
@@ -102,7 +100,16 @@ const Item = {
   },
   methods: {
     consultar: function(){
-      helper.send('lead')
+      helper.send('lead','{"redirect":"/consulta-exito"}')
+    },
+    showLead: function(){
+      if($('.lead').is(':hidden')){
+        $('.lead').slideDown()
+        setTimeout(function() {
+          window.scrollTo(0,$('.lead').offset().top + 50);
+          $('input[name="full_name"]').focus()
+        }, 300);        
+      }
     }
   },
   data: function() {
@@ -159,6 +166,15 @@ const Atencion = {
   data: function() {
     return{
       msg: 'This is Users page',
+      settings: helper.getAttributes($('html'))
+    }
+  }
+}
+
+const ConsultaExito = {
+  template: '#consulta_exito',
+  data: function() {
+    return{
       settings: helper.getAttributes($('html'))
     }
   }
@@ -244,6 +260,7 @@ const router = new VueRouter({
     {path: '/posts/:slug', component: Post,  meta : { title: 'Artículo'}},
     {path: '/vehicles', component: Items,  meta : { title: 'Vehículos'}},
     {path: '/vehicles/:cat', component: Items,  meta : { title: ''}},
+    {path: '/consulta-exito', component: ConsultaExito,  meta : { title: ''}},
     {path: '/contacto', component: Contacto, meta : { title: 'Contacto'}},
     {path: '/terminos', component: Terminos, meta : { title: 'Términos y condiciones'}},
     {path: '/atencion', component: Atencion, meta : { title: 'Atención'}},

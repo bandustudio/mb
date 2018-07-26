@@ -763,13 +763,17 @@ body {
   margin-right: auto;
   background-image: url(/img/índice.jpeg);
   background-repeat: no-repeat;
-  background-position: left 5px;
+  background-position: left 9px;
   background-size: 100px;
   min-height: 3.95rem;
 }
 
 .navbar-item .svg-inline--fa{
   font-size: 22px;
+}
+
+.lead {
+  display: none;
 }
 
 .sugest {
