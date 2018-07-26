@@ -498,7 +498,7 @@ body {
   width:200%;
   height:100%;
   border-style:solid;
-  border-color:#4088da #4088da transparent;
+  border-color:#f1f1f1 #f1f1f1 transparent;
   border-radius:50%;
   border-width:6px
 }
@@ -851,8 +851,9 @@ body {
   top: 1px;
 }
 
+
 .navbar-burger span:nth-child(2) {
-  width: 15px;
+  width: 12px;
 }
 
 .navbar-burger span:last-child {
