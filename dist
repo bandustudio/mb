@@ -36,5 +36,5 @@ $minifier->add($dest . '/css/app.css');
 $minifier->add($dest . '/css/sweetalert.css');
 $minifier->add($dest . '/css/slick.css');
 $minifier->add($dest . '/css/slick-theme.css');
-$minifier->add($dest . '/css/custom/app.css');
+$minifier->add($dest . '/css/app-theme.css');
 $minifier->minify($dest . '/dist/css/app.css');

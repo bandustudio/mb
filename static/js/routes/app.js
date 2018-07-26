@@ -20,7 +20,6 @@ const Splash = {
           $('.slick').on('init', function(event, slick, currentSlide, nextSlide){
             cache.creating = 0
           });
-
           $('.slick').slick({
             dots: true,
             arrows:true,
@@ -31,7 +30,7 @@ const Splash = {
             accessibility: true
           }).addClass('fadeIn')
           $('.slick-pane').css({'min-height':($(window).height()-$('.navbar').height())+'px'})
-        },250);     
+        },100);
       }, function(error){
         console.log(error.statusText)
       })
@@ -49,7 +48,7 @@ const Splash = {
           cssEase: 'linear'
         }).addClass('fadeIn')
         $('.slick-pane').css({'min-height':($(window).height()-$('.navbar').height())+'px'})
-      },250)
+      },100)
     }
   },
   data: function() {

@@ -1385,7 +1385,7 @@ a:hover {
 .option {
   border-radius: 35px;
   background-color: #f7f7f7;
-  border: solid 1px white;
+  border: solid 1px #dbdbdb;
   margin: 10px;
   margin-top: 30px;
   padding-top: 40px;
