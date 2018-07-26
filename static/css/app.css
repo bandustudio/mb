@@ -911,8 +911,6 @@ a.navbar-item:hover, a.navbar-item.is-active, a.navbar-link:hover, a.navbar-link
   min-height: 3.95rem;
 }
 
-
-
 .navbar-brand h1 {
   font-family:"corporatea";
   font-size: 22px;
@@ -1172,11 +1170,10 @@ a:hover {
 }
 
 .rounded {
-  border-radius: 31px;
-  background-color: #ffffff;
+  background-color: #f6f6f6;
   border: solid 1px white;
   padding: 40px 30px;
-  margin-top: 65px;
+  margin-top: 80px;
 }
 
 .rounded .button {

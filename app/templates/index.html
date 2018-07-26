@@ -126,7 +126,7 @@
           <div class="hero__heading">
             <h1 v-if="item.title && item.title.length"><span v-html="item.title"></span></h1>
             <h4 v-if="item.intro && item.intro.length"><span v-html="item.intro"></span></h4>
-            <router-link class="button is-white is-medium" :to="'/posts/'+item.slug" tag="a">Explorar</router-link>
+            <router-link class="button is-white is-medium" :to="'/posts/'+item.slug" tag="a">Continuar leyendo</router-link>
           </div>          
         </div>
       </div>
@@ -167,34 +167,34 @@
       <div class="container has-text-centered lead" ajax-prefix="app">
         <div class="rounded">
           <div class="badge">
-            <img :src="settings.assets + '/img/timer.svg'">
+            <img :src="settings.assets + '/img/car.svg'">
           </div>
           <h2 v-if="!item.first_name">Estoy interesado</h2>
           <p>Quiero que me contacten por <em v-html="data.title"></em></p>
           <div class="columns">
             <div class="column">
               <p class="control is-expanded has-icons-left">
-                <input class="input rounded-input is-large" type="text" name="full_name" placeholder="Nombre" autofocus>
-                <span class="icon is-large is-left">
+                <input class="input rounded-input is-medium" type="text" name="full_name" placeholder="Nombre" autofocus>
+                <span class="icon is-medium is-left">
                   <i class="fas fa-user"></i>
                 </span>
               </p>
             </div>
             <div class="column">
               <p class="control is-expanded has-icons-left has-icons-right">
-                <input class="input rounded-input is-large is-success" name="email" type="email" placeholder="Email">
-                <span class="icon is-large is-left">
+                <input class="input rounded-input is-medium is-success" name="email" type="email" placeholder="Email">
+                <span class="icon is-medium is-left">
                   <i class="fas fa-envelope"></i>
                 </span>
-                <span class="icon is-large is-right">
+                <span class="icon is-medium is-right">
                   <i class="fas fa-check"></i>
                 </span>
               </p>
             </div>
             <div class="column">
               <p class="control is-expanded has-icons-left">
-                <input class="input rounded-input is-large" type="text" name="tel" placeholder="Teléfono">
-                <span class="icon is-large is-left">
+                <input class="input rounded-input is-medium" type="text" name="tel" placeholder="Teléfono">
+                <span class="icon is-medium is-left">
                   <i class="fas fa-phone"></i>
                 </span>
               </p>
@@ -203,7 +203,7 @@
           <div class="columns">
             <div class="column is-one-third">
               <div class="control">
-                <div class="select rounded-select is-large is-fullwidth">
+                <div class="select rounded-select is-medium is-fullwidth">
                   <select name="use">
                     <option value="">Elija Motivo</option>
                     <option value="consulta" :selected="hash == 'consulta'">Consulta</option>
@@ -220,7 +220,7 @@
           </div>
           <div class="container has-text-centered">
             <button class="button rounded-button is-primary" v-on:click="consultar()">
-              Enviar mensaje
+              Enviar 
             </button>
           </div>
         </div>        
@@ -306,27 +306,27 @@
             <div class="columns">
               <div class="column">
                 <p class="control is-expanded has-icons-left">
-                  <input class="input rounded-input is-large" type="text" name="full_name" placeholder="Nombre" autofocus>
-                  <span class="icon is-large is-left">
+                  <input class="input rounded-input is-medium" type="text" name="full_name" placeholder="Nombre" autofocus>
+                  <span class="icon is-medium is-left">
                     <i class="fas fa-user"></i>
                   </span>
                 </p>
               </div>
               <div class="column">
                 <p class="control is-expanded has-icons-left has-icons-right">
-                  <input class="input rounded-input is-large is-success" name="email" type="email" placeholder="Email">
-                  <span class="icon is-large is-left">
+                  <input class="input rounded-input is-medium is-success" name="email" type="email" placeholder="Email">
+                  <span class="icon is-medium is-left">
                     <i class="fas fa-envelope"></i>
                   </span>
-                  <span class="icon is-large is-right">
+                  <!--span class="icon is-medium is-right">
                     <i class="fas fa-check"></i>
-                  </span>
+                  </span-->
                 </p>
               </div>
               <div class="column">
                 <p class="control is-expanded has-icons-left">
-                  <input class="input rounded-input is-large" type="text" name="tel" placeholder="Teléfono">
-                  <span class="icon is-large is-left">
+                  <input class="input rounded-input is-medium" type="text" name="tel" placeholder="Teléfono">
+                  <span class="icon is-medium is-left">
                     <i class="fas fa-phone"></i>
                   </span>
                 </p>
@@ -335,7 +335,7 @@
             <div class="columns">
               <div class="column is-one-third">
                 <div class="control">
-                  <div class="select rounded-select is-large is-fullwidth">
+                  <div class="select rounded-select is-medium is-fullwidth">
                     <select name="use">
                       <option value="">Elija Motivo</option>
                       <option value="consulta" :selected="hash == 'consulta'">Consulta</option>
@@ -352,7 +352,7 @@
             </div>
             <div class="container has-text-centered">
               <button class="button rounded-button is-primary" v-on:click="enviar()">
-                Enviar mensaje
+                Enviar
               </button>
             </div>
           </div>
@@ -362,22 +362,15 @@
   </script>
 
   <script type="text/x-jsrender" id="consulta_exito">
-    <div class="section">
-      <div class="container">
-        <div class="content">
-          <h1 class="garantia--h">Gracias por interesarse en nuestros vehículos.</h1>
-          <h5 class="titlesection"></h5>
-          <p>Responderemos a su consulta en cuanto nos sea posible.</p>
-          <div class="columns has-text-centered">
-            <div class="column">
-              <router-link @click="$router.go(-1)">Volver</router-link>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>  
+    <div class="container inline-background pagenotfound fadeIn">
+      <h1><span class="icon has-text-success fa fa-check-circle"></span> Gracias por interesarse en nuestros vehículos.</h1> 
+      <p>Responderemos a su consulta en cuanto nos sea posible.</p>
+      <div class="container has-text-centered">
+        <a href="javascript:history.go(-1)" class="button is-medium">Volver</a>
+        <a href="/" class="button is-medium">Volver al inicio</a>
+      </div>        
+    </div>
   </script>
-
 
   <script type="text/x-template" id="terminos">
     <div class="section">
@@ -468,7 +461,7 @@
       <h2><span class="icon has-text-danger fa fa-times-circle"></span> No pudimos hallar la página</h2> 
       <p>Por favor revisa la url. Si creés que es un error por favor contactanos.</p>
       <div class="container has-text-centered">
-        <a href="/" class="button is-large">Volver al inicio</a>
+        <a href="/" class="button is-medium">Volver al inicio</a>
       </div>        
     </div>
   </script>

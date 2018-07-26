@@ -3098,7 +3098,7 @@ a.box:active {
 
 .textarea:not([rows]) {
   max-height: 600px;
-  min-height: 120px;
+  min-height: 100px;
 }
 
 .textarea[rows] {
@@ -4305,7 +4305,7 @@ a.box:active {
 .control.has-icons-left .input:focus ~ .icon,
 .control.has-icons-left .select:focus ~ .icon, .control.has-icons-right .input:focus ~ .icon,
 .control.has-icons-right .select:focus ~ .icon {
-  color: #7a7a7a;
+  color: #0681f9;
 }
 
 .control.has-icons-left .input.is-small ~ .icon,

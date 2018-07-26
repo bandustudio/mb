@@ -106,7 +106,7 @@ const Item = {
       if($('.lead').is(':hidden')){
         $('.lead').slideDown()
         setTimeout(function() {
-          window.scrollTo(0,$('.lead').offset().top + 50);
+          window.scrollTo(0,$('.lead').offset().top + 10);
           $('input[name="full_name"]').focus()
         }, 300);        
       }
