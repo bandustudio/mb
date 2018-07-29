@@ -61,7 +61,6 @@ $container['view'] = function ($c) {
         }
     }
 
-
     if($share){
         $share_title = $share->title;
         $share_text = $share->intro;

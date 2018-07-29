@@ -35,11 +35,13 @@ class AdminerTheme
 		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, target-densitydpi=medium-dpi"/>
 
 		<link rel="icon" type="image/ico" href="images/favicon.png">
-		<link href="css/bootstrap.css" type="text/css" rel="stylesheet" />
+		<link href="css/bootstrap-min.css" type="text/css" rel="stylesheet" />
 		<link href="css/bootstrap-datetimepicker.min.css" type="text/css" rel="stylesheet" />
 		<link href="css/font-awesome.min.css" type="text/css" rel="stylesheet" />
 		<link href="css/summernote.css" type="text/css" rel="stylesheet" />
-
+		<link href="css/source-sans-pro.css" type="text/css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/<?php echo htmlspecialchars($this->themeName) ?>.css?2">
+		
 		<?php
 			// Condition for Windows Phone has to be the first, because IE11 contains also iPhone and Android keywords.
 			if (strpos($userAgent, "Windows") !== false):
@@ -59,13 +61,26 @@ class AdminerTheme
 			<link rel="apple-touch-icon" href="images/touchIcon.png"/>
 		<?php endif; ?>
 
-		<link rel="stylesheet" type="text/css" href="css/<?php echo htmlspecialchars($this->themeName) ?>.css?2">
 
+		<style>
+		#map_canvas {
+		    height: 200px;
+		}
+		</style>
+		<?php if($_GET['edit'] === 'dealers'):?>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnCpylsXEujI2Jb07gggRfcewyYwJSbqU&libraries=places"></script>
+		<?php endif;?>
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="js/moment.js"></script>
 		<script type="text/javascript" src="js/bootstrap-datetimepicker.js"></script>
+		<script type="text/javascript" src="js/jsrender.min.js"></script>
 		<script type="text/javascript" src="js/summernote.min.js"></script>
+
+		<script type="text/x-jsrender" id="map">  
+			<div id="map_canvas"></div>
+        </script>
+
 		<script type="text/javascript">
 
 			$(function(){
@@ -92,7 +107,6 @@ class AdminerTheme
 					}
 
 					if(name.indexOf("_html") > -1){
-
 						$(this).before('<div class="progress summernote-progress hide"><div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"><span class="sr-only"></span></div></div>')
 
 						$(this).summernote({
@@ -115,8 +129,96 @@ class AdminerTheme
 							format: format
 						})
 					}
+
+					if(name.indexOf("_places") > -1){
+
+						var that = this
+						setTimeout(function(){
+							var lat = parseFloat($('input[name="fields[lat]"]').val())
+							var lng = parseFloat($('input[name="fields[lng]"]').val())
+							var title = $('input[name="fields[title]"]').val()
+
+							$(that)
+								.attr('id',name)
+
+								$('#form')
+									.before($.templates('#map').render({name:name}))
+
+							initMap(lat,lng,title)
+							initAutocomplete(name)
+						},1000)
+					}
 				})
 			})
+
+			var map = null;
+			var marker = null;
+
+			function initMap(lat,lng,title) {
+				var myLatLng = {lat: lat, lng: lng};
+
+				map = new google.maps.Map(document.getElementById('map_canvas'), {
+					center: myLatLng,
+					zoom: 15,
+					disableDefaultUI: true
+				});
+				
+				marker = new google.maps.Marker({
+					position: myLatLng,
+					map: map,
+					title: ""
+				});
+			}
+
+			function moveMarker(lat,lng) {
+			    var newLatLng = new google.maps.LatLng(lat, lng);
+			    marker.setPosition(newLatLng);
+			    map.setCenter(newLatLng);
+			}
+
+
+			function initAutocomplete (field){
+			    var input = document.getElementById(field);
+			    var options = {
+			      componentRestrictions: {country: "ar"}
+			    };
+
+			    var autocomplete = new google.maps.places.Autocomplete(input,options);
+
+			    autocomplete.addListener('place_changed', function() {
+			      	var place = autocomplete.getPlace();
+			      	if (!place.geometry) {
+				        // User entered the name of a Place that was not suggested and
+				        // pressed the Enter key, or the Place Details request failed.
+				        console.log("No details available for input: '" + place.name + "'");
+				        return;
+				      }
+				      if (place.geometry.viewport) {
+				        var coords = place.geometry.location.toJSON();
+				        var address = place.address_components;
+
+				        moveMarker(coords.lat,coords.lng)
+
+				        var inject = {
+							lat: coords.lat,
+							lng: coords.lng,
+							locality: address[1].long_name,
+							administrative_area_level_1: address[3].long_name,
+							administrative_area_level_2: address[2].long_name,
+							country: address[4].long_name,
+							vicinity: place.vicinity,
+							mapicon: place.icon,
+							mapurl: place.url,
+							formatted_address: place.formatted_address,
+							utc: place.utc_offset
+				        };
+
+				        for(var i in inject){
+							$('input[name="fields['+i+']"]').val(inject[i]);
+				        };
+				    }
+			    });
+			}
 
 			function convertToSlug(Text)
 			{

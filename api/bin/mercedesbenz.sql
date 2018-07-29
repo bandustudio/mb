@@ -10,6 +10,9 @@ TRUNCATE TABLE `theme_positions`;
 TRUNCATE TABLE `theme_types`;
 TRUNCATE TABLE `vehicles_models`;
 
+INSERT INTO `dealers` (`id`, `title`, `enabled`, `created`, `updated`) VALUES
+(1,	'Default', 1,	'2018-07-17 11:26:31',	'2018-07-17 11:26:31');
+
 INSERT INTO `theme_sections` (`id`, `route`, `title`, `template`, `enabled`, `created`, `updated`) VALUES
 (1,	'/',	'Inicio',	NULL,	1,	'2018-07-17 11:26:31',	'2018-07-17 11:26:31'),
 (2,	'/noticias',	'Noticias',	NULL,	1,	'2018-07-17 11:26:31',	'2018-07-17 11:26:31'),

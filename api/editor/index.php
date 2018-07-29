@@ -8,9 +8,7 @@ function adminer_object() {
   
   $plugins = array(
   	new AdminerTheme(),
-  	//new CustomDatabase(),
-    new AdminerFileUpload("images/"),
-    //new AdminerSlugify(),
+    new AdminerFileUpload("images/")
   );
 
   return new AdminerPlugin($plugins); 

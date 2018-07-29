@@ -34,6 +34,7 @@ class Lead extends \Spot\Entity
             "id" => ["type" => "integer", "unsigned" => true, "primary" => true, "autoincrement" => true],
             "user_id" => ["type" => "integer", "unsigned" => true, "default" => NULL, 'index' => true],
             "model_id" => ["type" => "integer", "unsigned" => true, "default" => NULL, 'index' => true],
+            "dealer_id" => ["type" => "integer", "unsigned" => true, "default" => NULL, 'index' => true],
             "code" => ["type" => "string", "length" => 255],            
             "origin" => ["type" => "string", "length" => 50],
             "picture" => ["type" => "string", "length" => 255],
@@ -88,6 +89,7 @@ class Lead extends \Spot\Entity
     {
         return [
             'model' => $mapper->belongsTo($entity, 'App\VehicleModel', 'model_id'),
+            'dealer' => $mapper->belongsTo($entity, 'App\Dealer', 'dealer_id'),
             'user' => $mapper->belongsTo($entity, 'App\User', 'user_id')
         ];
     }
