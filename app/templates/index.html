@@ -39,6 +39,7 @@
   <link rel="stylesheet" href="{{static_url}}/css/sweetalert.css">
   <link rel="stylesheet" href="{{static_url}}/css/slick.css">
   <link rel="stylesheet" href="{{static_url}}/css/slick-theme.css">
+  <link href='https://api.mapbox.com/mapbox-gl-js/v0.47.0/mapbox-gl.css' rel='stylesheet' />
   {% endif %}
 
   {% if params.webfont %}
@@ -80,8 +81,9 @@
         {% for cat,items in featured %}
           <router-link to="/vehicles/{{ cat }}" class="navbar-item is-capitalized is-cat-link" cat="{{ cat }}" active-class="active" tag="a">{{ cat }}</router-link>
         {% endfor %}
-          <router-link to="/terminos" active-class="active" class="navbar-item" tag="a">Términos</router-link>
+          <router-link to="/dealers" active-class="active" class="navbar-item" tag="a">Sucursales</router-link>
           <router-link to="/atencion" active-class="active" class="navbar-item" tag="a">Atención</router-link>
+          <router-link to="/terminos" active-class="active" class="navbar-item" tag="a">Términos</router-link>
         </div>
         <!--div class="navbar-end"></div-->
       </div>
@@ -149,7 +151,7 @@
       </div>
     </div>
   </script>
-
+  
   <script type="text/x-template" id="item">
     <div class="section">
       <div class="slick-pane has-text-left" :style="'background-image:url(' + data.picture + ')'">
@@ -262,6 +264,18 @@
           <div class="post" v-html="data.content"></div>
         </div>
       </div>
+    </div>
+  </script>
+  
+  <script type="text/x-template" id="dealers">
+    <div class="section">
+      <div id="map"></div>
+      <div class="columns">
+        <div class="column is-one-fifth">
+          <div class="dealers">
+          </div>
+        </div>
+      </div>      
     </div>
   </script>
 
@@ -474,6 +488,14 @@
     <a>[[:name]]</a>
   </script>
 
+  <script type="text/x-jsrender" id="list_dealer">
+    <div class="backtotop has-text-center">
+      <span class="icon has-text-rendered">
+        <i class="fas fa-chevron-up"></i>
+      </span>
+    </div>
+  </script>
+
   <script type="text/x-jsrender" id="backtotop">
     <div class="backtotop has-text-center">
       <span class="icon has-text-rendered">
@@ -483,6 +505,7 @@
   </script>
 
   <!--script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnCpylsXEujI2Jb07gggRfcewyYwJSbqU&libraries=places"></script-->
+  <script src='https://api.mapbox.com/mapbox-gl-js/v0.47.0/mapbox-gl.js'></script>
   {% if localhost == false %}
   <script src="{{static_url}}/dist/js/app.js?_={{rev_parse}}" type="text/javascript"></script>
   {% else %}

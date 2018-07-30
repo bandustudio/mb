@@ -10,6 +10,9 @@ if(typeof localStorage === 'object') {
 }
 
 var helper = {
+  mapbox : {
+    accessToken: 'pk.eyJ1IjoibWFydGluZnJlZSIsImEiOiJjams4ZDh0dGoyanRwM3FtbHlqMXJnYjA3In0.VBD8U4yG46py1g9NxBFMPw'
+  },
   filters : {
     toJSON : function(json){
       return JSON.stringify(json)

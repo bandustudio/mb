@@ -1301,6 +1301,12 @@ a:hover {
   padding-bottom: 360px;
 }
 
+#map {
+  display: inline-block;
+  width: 100%;
+  height: 400px
+}
+
 .link {
   height: 70px;
   font-size: 18px;

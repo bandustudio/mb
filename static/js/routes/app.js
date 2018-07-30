@@ -61,6 +61,58 @@ const Splash = {
   }  
 };
 
+const markerContent = Vue.extend({
+  template: '<div class="marker-content"></div>',
+  computed: {
+    someVuexData() {
+      return this.$store.getters.someVuexData;
+    }
+  }
+});
+
+const Dealers = {
+  template: '#dealers',
+  mounted: function() {
+    helper.is_loading()
+    this.title = this.$route.params.slug||"Nuestras sucursales"
+    this.$http.post(helper.getAttributes($('html')).endpoint + '/app'+location.pathname, {}, {emulateJSON:true}).then(function(res){
+      var features = res.data.data
+
+      mapboxgl.accessToken = helper.mapbox.accessToken
+      var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v10'
+      });        
+
+
+      //L.mapbox.accessToken = geo.mapbox.accessToken
+      //map = L.mapbox.map('map', 'mapbox.streets');
+      map.setCenter([-58.46762990000002,-34.5488008])
+      map.setZoom(13)
+      for(var i in features){
+        if(features[i].lat && features[i].lng){
+          var marker = new mapboxgl.Marker()
+            .setLngLat([features[i].lng,features[i].lat])
+            .addTo(map);
+          //L.marker([locs[i].lat,locs[i].lng], {icon:geo.icon({id:locs[i].id,displayName:locs[i].title + ' ('+locs[i].region_id+')',className:'me',colorId:locs[i].region_id})}).addTo(map);
+        }
+      }
+
+      helper.is_loaded()
+    }, function(error){
+      console.log(error.statusText)
+    })    
+  },    
+  data: function() {
+    return{
+      items:{},
+      title:'',
+      helper : helper,
+      settings: helper.getAttributes($('html'))
+    }
+  }
+}
+
 const Items = {
   template: '#items',
   mounted: function() {
@@ -259,6 +311,7 @@ const router = new VueRouter({
     {path: '/posts/:slug', component: Post,  meta : { title: 'Artículo'}},
     {path: '/vehicles', component: Items,  meta : { title: 'Vehículos'}},
     {path: '/vehicles/:cat', component: Items,  meta : { title: ''}},
+    {path: '/dealers', component: Dealers,  meta : { title: 'Sucursales'}},
     {path: '/consulta-exito', component: ConsultaExito,  meta : { title: ''}},
     {path: '/contacto', component: Contacto, meta : { title: 'Contacto'}},
     {path: '/terminos', component: Terminos, meta : { title: 'Términos y condiciones'}},

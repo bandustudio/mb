@@ -12,6 +12,7 @@ use Tuupola\Base62;
 use App\Lead;
 use App\Post;
 use App\User;
+use App\Dealer;
 use App\Vehicle;
 use App\Email;
 use App\VehicleModel;
@@ -21,6 +22,27 @@ use App\ThemeSection;
 
 $app->group('/v1', function() {
     $this->group('/app', function() {
+
+        $this->post("/dealers", function ($request, $response, $arguments) {
+            $body = $request->getParsedBody();
+
+            $mapper = $this->spot->mapper("App\Dealer")
+                ->where(['enabled' => 1])
+                ->order(['created' => 'DESC'])
+                ->limit(1000);
+
+            /* Serialize the response data. */
+            $fractal = new Manager();
+            $fractal->setSerializer(new DataArraySerializer);
+            $resource = new Collection($mapper, new Dealer);
+            $data = $fractal->createData($resource)->toArray();
+            
+            return $response->withStatus(200)
+                ->withHeader("Content-Type", "application/json")
+                ->write(json_encode($data));  
+
+        });
+
         $this->post("/contacto", function ($request, $response, $arguments) {
             $body = $request->getParsedBody();
             
