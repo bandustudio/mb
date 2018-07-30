@@ -116,6 +116,7 @@
       <div class="footer__partners--row">
         <p>
           <router-link to="/atencion" tag="a">Atención</router-link> &mdash; 
+          <router-link to="/sucursales" tag="a">Sucursales</router-link> &mdash; 
           <router-link to="/terminos" tag="a">Términos y condiciones</router-link> &nbsp;
           &copy; 2018 Mercedes-Benz &mdash; Cigliutti-Guerini.</p>
       </div>
@@ -269,11 +270,17 @@
   
   <script type="text/x-template" id="dealers">
     <div class="section">
-      <div id="map"></div>
       <div class="columns">
         <div class="column is-one-fifth">
           <div class="dealers">
+            <div v-for="feature, index in features" class="dealer">
+              <p v-html="feature.title"></p>
+              <a href="#" @click="flyTo(feature)">Volar</a>
+            </div>
           </div>
+        </div>
+        <div class="column">
+          <div id="map"></div>
         </div>
       </div>      
     </div>

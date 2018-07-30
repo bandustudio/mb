@@ -74,39 +74,60 @@ const Dealers = {
   template: '#dealers',
   mounted: function() {
     helper.is_loading()
+    $('.section, #map').css({'height':($(window).height()-$('.navbar').height() - 100)+'px'})
     this.title = this.$route.params.slug||"Nuestras sucursales"
     this.$http.post(helper.getAttributes($('html')).endpoint + '/app'+location.pathname, {}, {emulateJSON:true}).then(function(res){
       var features = res.data.data
+      this.features = features
 
       mapboxgl.accessToken = helper.mapbox.accessToken
-      var map = new mapboxgl.Map({
+      this.map = new mapboxgl.Map({
         container: 'map',
-        style: 'mapbox://styles/mapbox/streets-v10'
+        style: 'mapbox://styles/mapbox/dark-v9'
       });        
 
 
       //L.mapbox.accessToken = geo.mapbox.accessToken
       //map = L.mapbox.map('map', 'mapbox.streets');
-      map.setCenter([-58.46762990000002,-34.5488008])
-      map.setZoom(13)
+      //map.setCenter([-58.46762990000002,-34.5488008])
+      //map.setZoom(13)
+
+      var bounds = new mapboxgl.LngLatBounds();
+
       for(var i in features){
-        if(features[i].lat && features[i].lng){
+        var p = features[i]
+        if(p.lat && p.lng){
           var marker = new mapboxgl.Marker()
-            .setLngLat([features[i].lng,features[i].lat])
-            .addTo(map);
+            .setLngLat([p.lng,p.lat])
+            .addTo(this.map);
+          bounds.extend([p.lng,p.lat]);
+
           //L.marker([locs[i].lat,locs[i].lng], {icon:geo.icon({id:locs[i].id,displayName:locs[i].title + ' ('+locs[i].region_id+')',className:'me',colorId:locs[i].region_id})}).addTo(map);
         }
       }
 
+      this.map.fitBounds(bounds, { padding: 50 })
       helper.is_loaded()
     }, function(error){
       console.log(error.statusText)
     })    
-  },    
+  },
+  methods: {
+    flyTo(feature){
+      this.map.flyTo({
+        center: [
+          feature.lng,
+          feature.lat
+        ],
+        zoom: 17
+      });
+    }
+  },
   data: function() {
     return{
-      items:{},
+      features:{},
       title:'',
+      map:{},
       helper : helper,
       settings: helper.getAttributes($('html'))
     }
