@@ -8,11 +8,6 @@ body {
   color: black;
 }
 @font-face{
-    font-family:"corporatea";
-    src:url(/fonts/corporate_a_regular.eot);
-    src:url(/fonts/corporate_a_regular.eot) format("embedded-opentype"),url(/fonts/corporate_a_regular.woff) format("woff"),url(/fonts/corporate_a_regular.ttf) format("truetype"),url(/fonts/corporate_a_regular.svg#CorporateARegular) format("svg")
-}
-@font-face{
     font-family:"corporateacondpro";
     font-style:normal;
     font-weight:500;
@@ -695,13 +690,7 @@ body {
 
 .rounded-input, .rounded-textarea, .rounded-select select {
   border: 1px solid white;
-  border-radius: 10px;
-  height: 60px;
-  padding: 18px 20px;
-}
-
-.rounded-select:not(.is-multiple)::after {
-  margin-top: 0;
+  border-radius: 7px;
 }
 
 /* Bulma overriding */
@@ -846,7 +835,7 @@ body {
 }
 
 .navbar-menu .navbar-item span {
-  font-size: 15px;
+  /*font-size: 15px;*/
 }
 
 .navbar-burger {
@@ -912,8 +901,8 @@ a.navbar-item:hover, a.navbar-item.is-active, a.navbar-link:hover, a.navbar-link
 }
 
 .navbar-brand h1 {
-  font-family:"corporatea";
-  font-size: 22px;
+  font-family:"corporateacondpro";
+  font-size: 28px;
   color: white;
 }
 
@@ -1213,6 +1202,16 @@ a:hover {
   background-size: 144px 144px;
 }
 
+.rounded .badge > div {
+  width: 144px;
+  height: 144px;
+  margin: 0 auto;
+  border-radius: 50%;  
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .rounded > h2 {
   font-size: 48px;
   font-weight: 500;
@@ -1288,7 +1287,7 @@ a:hover {
 }
 
 .brand {
-  font-family: "corporatea";
+  font-family:"corporateacondpro";
 }
 
 .container .rounded-button + .rounded-button {

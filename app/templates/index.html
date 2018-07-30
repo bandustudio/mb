@@ -41,7 +41,7 @@
   <link rel="stylesheet" href="{{static_url}}/css/slick-theme.css">
   {% endif %}
   <link href='https://api.mapbox.com/mapbox-gl-js/v0.47.0/mapbox-gl.css' rel='stylesheet' />
-  
+
   {% if params.webfont %}
   <link href="https://fonts.googleapis.com/css?family={{params.webfont}}" rel="stylesheet">
   <style>
@@ -81,9 +81,15 @@
         {% for cat,items in featured %}
           <router-link to="/vehicles/{{ cat }}" class="navbar-item is-capitalized is-cat-link" cat="{{ cat }}" active-class="active" tag="a">{{ cat }}</router-link>
         {% endfor %}
-          <router-link to="/dealers" active-class="active" class="navbar-item" tag="a">Sucursales</router-link>
-          <router-link to="/atencion" active-class="active" class="navbar-item" tag="a">Atención</router-link>
-          <router-link to="/terminos" active-class="active" class="navbar-item" tag="a">Términos</router-link>
+          <router-link to="/atencion" active-class="active" class="navbar-item" tag="a">
+            <!--span class="fa fa-comment"></span-->
+            <span>Atención</span>
+          </router-link>
+          <router-link to="/dealers" active-class="active" class="navbar-item" tag="a">
+            <!--span class="fa fa-map-marker"></span-->
+            <span>Sucursales</span>
+          </router-link>
+          <!--router-link to="/terminos" active-class="active" class="navbar-item" tag="a">Términos</router-link-->
         </div>
         <!--div class="navbar-end"></div-->
       </div>
@@ -171,7 +177,7 @@
       <div class="container has-text-centered lead" ajax-prefix="app">
         <div class="rounded">
           <div class="badge">
-            <img :src="settings.assets + '/img/car.svg'">
+            <div :style="'background-image:url(' + data.picture + ')'"></div>
           </div>
           <h2 v-if="!item.first_name">Estoy interesado</h2>
           <p>Quiero que me contacten por <em v-html="data.title"></em></p>
@@ -208,8 +214,8 @@
             <div class="column is-one-third">
               <div class="control">
                 <div class="select rounded-select is-medium is-fullwidth">
-                  <select name="use">
-                    <option value="">Elija Motivo</option>
+                  <select name="dealer_id">
+                    <option value="">Sucursal</option>
                     <option value="consulta" :selected="hash == 'consulta'">Consulta</option>
                     <option value="concesionarios" :selected="hash == 'concesionarios'">Concesionarios</option>
                   </select>
