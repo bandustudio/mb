@@ -227,7 +227,7 @@ const Post = {
 }
 
 const Atencion = {
-  template: '#atencion',
+  template: '#call',
   data: function() {
     return{
       msg: 'This is Users page',
@@ -246,9 +246,9 @@ const ConsultaExito = {
 }
 
 const Contacto = {
-  template: '#contacto',
+  template: '#contact',
   mounted: function() {
-    helper.collect('contacto');
+    helper.collect('contact');
     //helper.send('item')
   },
   methods : {
@@ -259,10 +259,10 @@ const Contacto = {
         button.addClass('is-loading')  
         setTimeout(function(){
           helper.setFlash({
-            title:"Felicitaciones " + helper.champ().contacto.first_name,
+            title:"Felicitaciones " + helper.champ().contact.first_name,
             text:"Nuestro asesor se pondrá en contacto con vos para ayudarte a ahorrar."
           })
-          helper.send('contacto', {redirect:"/"})
+          helper.send('contact', {redirect:"/"})
         },1000)   
       }
     }
@@ -270,7 +270,7 @@ const Contacto = {
   data: function() {
     return{
       item : helper.champ().item||{},
-      contacto : helper.champ().contacto||{},
+      contact : helper.champ().contact||{},
       settings : helper.getAttributes($('html')),
       hash : location.hash.replace('#','')
     }
@@ -278,7 +278,7 @@ const Contacto = {
 }
 
 const Terminos = {
-  template: '#terminos',
+  template: '#tos',
   data: function() {
     return{
       msg: 'This is Users page',
@@ -326,10 +326,9 @@ const router = new VueRouter({
     {path: '/products', component: Items,  meta : { title: 'Vehículos'}},
     {path: '/products/:cat', component: Items,  meta : { title: ''}},
     {path: '/dealers', component: Dealers,  meta : { title: 'Sucursales'}},
-    {path: '/consulta-exito', component: ConsultaExito,  meta : { title: ''}},
-    {path: '/contacto', component: Contacto, meta : { title: 'Contacto'}},
-    {path: '/terminos', component: Terminos, meta : { title: 'Términos y condiciones'}},
-    {path: '/atencion', component: Atencion, meta : { title: 'Atención'}},
+    {path: '/contact', component: Contacto, meta : { title: 'Contacto'}},
+    {path: '/tos', component: Terminos, meta : { title: 'Términos y condiciones'}},
+    {path: '/call', component: Atencion, meta : { title: 'Atención'}},
     {path: '/opener', component: Opener, meta : { title: 'Redirigiendo...'}},
     {path: "*", component: Item, meta : { title: ''}}
   ]
