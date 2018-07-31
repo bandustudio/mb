@@ -775,6 +775,14 @@ body {
   border-bottom: 1px solid #e2e2e2;
 }
 
+.dealer {
+  padding: 10px;
+}
+
+.dealer h4 {
+  font-weight: 600;  
+}
+
 .notification {
   margin-top: 1.5em;
 }
@@ -1868,7 +1876,7 @@ a:hover {
 }
 
 .is-cat {
-  padding: 2em 0;
+  padding: 2em;
   display: none;
 }
 

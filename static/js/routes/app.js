@@ -111,6 +111,7 @@ const Dealers = {
   data: function() {
     return{
       helper : helper,
+      dealers: {},
       settings: helper.getAttributes($('html'))
     }
   }
