@@ -1208,10 +1208,10 @@ a:hover {
   top: -110px;  
   height: 144px;
   margin-bottom: -100px;
-  background-image: url(/img/badge.svg);
+  /*background-image: url(/img/badge.svg);
   background-position: center center;
   background-repeat: no-repeat;
-  background-size: 144px 144px;
+  background-size: 144px 144px;*/
 }
 
 .rounded .badge > div {
@@ -1222,6 +1222,8 @@ a:hover {
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
+  border: 5px solid #fff;
+  box-shadow: 0 10px 10px #ccc;
 }
 
 .rounded > h2 {
