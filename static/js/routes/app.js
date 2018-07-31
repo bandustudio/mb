@@ -73,44 +73,29 @@ const markerContent = Vue.extend({
 const Dealers = {
   template: '#dealers',
   mounted: function() {
-    helper.is_loading()
     $('.section, #map').css({'height':($(window).height()-$('.navbar').height() - 100)+'px'})
     this.title = this.$route.params.slug||"Nuestras sucursales"
-    this.$http.post(helper.getAttributes($('html')).endpoint + '/app'+location.pathname, {}, {emulateJSON:true}).then(function(res){
-      var features = res.data.data
-      this.features = features
+    this.dealers = dealers
 
-      mapboxgl.accessToken = helper.mapbox.accessToken
-      this.map = new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/mapbox/dark-v9'
-      });        
+    mapboxgl.accessToken = helper.mapbox.accessToken
+    this.map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/mapbox/dark-v9'
+    });        
 
+    var bounds = new mapboxgl.LngLatBounds();
 
-      //L.mapbox.accessToken = geo.mapbox.accessToken
-      //map = L.mapbox.map('map', 'mapbox.streets');
-      //map.setCenter([-58.46762990000002,-34.5488008])
-      //map.setZoom(13)
-
-      var bounds = new mapboxgl.LngLatBounds();
-
-      for(var i in features){
-        var p = features[i]
-        if(p.lat && p.lng){
-          var marker = new mapboxgl.Marker()
-            .setLngLat([p.lng,p.lat])
-            .addTo(this.map);
-          bounds.extend([p.lng,p.lat]);
-
-          //L.marker([locs[i].lat,locs[i].lng], {icon:geo.icon({id:locs[i].id,displayName:locs[i].title + ' ('+locs[i].region_id+')',className:'me',colorId:locs[i].region_id})}).addTo(map);
-        }
+    for(var i in this.dealers){
+      var p = this.dealers[i]
+      if(p.lat && p.lng){
+        var marker = new mapboxgl.Marker()
+          .setLngLat([p.lng,p.lat])
+          .addTo(this.map);
+        bounds.extend([p.lng,p.lat]);
       }
+    }
 
-      this.map.fitBounds(bounds, { padding: 50 })
-      helper.is_loaded()
-    }, function(error){
-      console.log(error.statusText)
-    })    
+    this.map.fitBounds(bounds, { padding: 50 })
   },
   methods: {
     flyTo(feature){
@@ -125,9 +110,6 @@ const Dealers = {
   },
   data: function() {
     return{
-      features:{},
-      title:'',
-      map:{},
       helper : helper,
       settings: helper.getAttributes($('html'))
     }
@@ -161,6 +143,7 @@ const Item = {
   mounted : function(){
     helper.collect('lead');
     helper.is_loading()
+    this.dealers = dealers
     this.$http.post(helper.getAttributes($('html')).endpoint + '/app'+location.pathname, {}, {emulateJSON:true}).then(function(res){
       this.data = res.data.data
       helper.is_loaded()
@@ -186,6 +169,7 @@ const Item = {
   },
   data: function() {
     return{
+      lead:{},
       data: {data:{}},
       settings: helper.getAttributes($('html')),
       hash : location.hash.replace('#','')

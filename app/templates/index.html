@@ -50,6 +50,10 @@
     }
   </style>
   {% endif %}
+  
+  <script>
+    var dealers = {{ dealers|raw  }}
+  </script>
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <!--script async src="https://www.googletagmanager.com/gtag/js?id=UA-118678125-1"></script>
@@ -184,7 +188,7 @@
           <div class="columns">
             <div class="column">
               <p class="control is-expanded has-icons-left">
-                <input class="input rounded-input is-medium" type="text" name="full_name" placeholder="Nombre" autofocus>
+                <input class="input rounded-input is-medium" type="text" name="full_name" v-model="lead.full_name" placeholder="Nombre" autofocus>
                 <span class="icon is-medium is-left">
                   <i class="fas fa-user"></i>
                 </span>
@@ -192,7 +196,7 @@
             </div>
             <div class="column">
               <p class="control is-expanded has-icons-left has-icons-right">
-                <input class="input rounded-input is-medium is-success" name="email" type="email" placeholder="Email">
+                <input class="input rounded-input is-medium is-success" name="email" type="email" v-model="lead.email" placeholder="Email">
                 <span class="icon is-medium is-left">
                   <i class="fas fa-envelope"></i>
                 </span>
@@ -203,7 +207,7 @@
             </div>
             <div class="column">
               <p class="control is-expanded has-icons-left">
-                <input class="input rounded-input is-medium" type="tel" name="tel" placeholder="Teléfono">
+                <input class="input rounded-input is-medium" type="tel" name="tel" v-model="lead.tel" placeholder="Teléfono">
                 <span class="icon is-medium is-left">
                   <i class="fas fa-phone"></i>
                 </span>
@@ -214,17 +218,16 @@
             <div class="column is-one-third">
               <div class="control">
                 <div class="select rounded-select is-medium is-fullwidth">
-                  <select name="dealer_id">
-                    <option value="">Sucursal</option>
-                    <option value="consulta" :selected="hash == 'consulta'">Consulta</option>
-                    <option value="concesionarios" :selected="hash == 'concesionarios'">Concesionarios</option>
+                  <select name="dealer_id" v-model="lead.dealer_id">
+                    <option value="" selected>Sucursal</option>
+                    <option v-for="dealer in dealers" :value="dealer.id" v-html="dealer.formatted_address"></option>
                   </select>
                 </div>
               </div>
             </div>
             <div class="column">
               <div class="control">
-                <textarea name="comment" class="textarea rounded-input" placeholder="Explain how we can help you"></textarea>
+                <textarea name="comment" class="textarea rounded-input" v-model="lead.comment" placeholder="Explain how we can help you"></textarea>
               </div>
             </div>
           </div>
@@ -279,9 +282,10 @@
       <div class="columns">
         <div class="column is-one-fifth">
           <div class="dealers">
-            <div v-for="feature, index in features" class="dealer">
-              <p v-html="feature.title"></p>
-              <a href="#" @click="flyTo(feature)">Volar</a>
+            <div v-for="dealer, index in dealers" class="dealer">
+              <h4 v-html="dealer.title"></h4>
+              <p v-html="dealer.formatted_address"></p>
+              <a href="#" @click="flyTo(dealer)">Volar</a>
             </div>
           </div>
         </div>

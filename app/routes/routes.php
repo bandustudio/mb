@@ -5,7 +5,7 @@ use App\Vehicle;
 
 function subpic($id,$url){
     $parts = explode('/',$url);
-    $name = $parts2[count($parts2)-1];
+    $name = $parts[count($parts)-1];
     $parts[count($parts)-1] = $id.$parts[count($parts)-1];
     return implode('/',$parts);
 }
@@ -45,11 +45,11 @@ $container['view'] = function ($c) {
             ->first();
     }
 
-    $mapper = $c['spot']->mapper("App\Vehicle")
+    $items = $c['spot']->mapper("App\Vehicle")
         ->where(['enabled' => 1])
         ->order(['title' => "ASC"]);
 
-    foreach($mapper as $item){
+    foreach($items as $item){
         if($item->type->title){
             if(!isset($featured[strtolower($item->type->title)])) $featured[strtolower($item->type->title)] = [];
             $featured[strtolower($item->type->title)][] = (object) [
@@ -71,8 +71,30 @@ $container['view'] = function ($c) {
         $share_pic = \subpic('640x480',$pic);
     }
 
+    // dealers
+    $_dealers = $c['spot']->mapper("App\Dealer")
+        ->where(['enabled' => 1])
+        ->order(['created' => 'DESC'])
+        ->limit(1000);
+
+        $dealers=[];
+    foreach($_dealers as $item){
+        $dealers[] = (object) [
+            'title' => $item->title,
+            'lat' => (float) $item->lat,
+            'lng' => (float) $item->lng,
+            'slug' => $item->title_slug,
+            'address' => $item->address,
+            'vicinity' => $item->vicinity,
+            'administrative_area_level_1' => $item->administrative_area_level_1,
+            'formatted_address' => $item->formatted_address,
+            'pic' => \subpic('200x140',$item->pic1_url)
+        ];
+    }
+
     $view->offsetSet('params', $_REQUEST?:false);
     $view->offsetSet('featured', $featured);
+    $view->offsetSet('dealers', json_encode($dealers));
     $view->offsetSet('rev_parse', substr(exec('git rev-parse HEAD'),0,7));
     $view->offsetSet('localhost', ($_SERVER['REMOTE_ADDR'] == "127.0.0.1"));
     $view->offsetSet('share_title', $share_title);
