@@ -155,7 +155,15 @@ const Item = {
   },
   methods: {
     consultar: function(){
-      helper.send('lead',{redirect:"/consulta-exito"})
+      helper.send('lead',{},function(){
+        console.log("1")
+        if($('.section .notification').is(':hidden')) {
+            console.log("2")
+          $('.section .lead').slideUp(200,function(){
+            $('.section .notification').slideDown()    
+          })          
+        }
+      })
     },
     showLead: function(){
       if($('.lead').is(':hidden')){

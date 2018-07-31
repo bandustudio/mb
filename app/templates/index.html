@@ -169,6 +169,10 @@
           <h1 v-if="data.title && data.title.length"><span v-html="data.title"></span></h1>
           <div class="post" v-html="data.content"></div>
         </div>
+        <div class="notification is-warning">
+          <button class="delete"></button>
+          Consulta recibida. Nos pondremos en contacto en cuanto nos sea posible. Muchas gracias por su tiempo.
+        </div>            
       </div>
       <div class="container has-text-centered lead" ajax-prefix="app">
         <div class="rounded">
@@ -177,6 +181,7 @@
           </div>
           <h2 v-if="!item.first_name">Estoy interesado</h2>
           <p>Quiero que me contacten por <em v-html="data.title"></em></p>
+
           <div class="columns">
             <div class="column">
               <p class="control is-expanded has-icons-left">

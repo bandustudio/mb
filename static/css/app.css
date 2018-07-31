@@ -779,6 +779,10 @@ body {
   margin-top: 1.5em;
 }
 
+.section .notification {
+  display: none;
+}
+
 .navbar-button.has-dropdown > .navbar-link a {
   color: #08d184;
 }
