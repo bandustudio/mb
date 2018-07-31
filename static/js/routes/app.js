@@ -3,10 +3,10 @@ var cache = {}
 const Splash = {
   template: '#splash',
   created: function() {
-    if(!cache.vehicles){
-      this.$http.post(helper.getAttributes($('html')).endpoint + '/app/vehicles', {}, {emulateJSON:true}).then(function(res){
-        this.vehicles = res.data.data
-        cache.vehicles = this.vehicles
+    if(!cache.products){
+      this.$http.post(helper.getAttributes($('html')).endpoint + '/app/products', {}, {emulateJSON:true}).then(function(res){
+        this.products = res.data.data
+        cache.products = this.products
       }, function(error){
         console.log(error.statusText)
       })
@@ -53,7 +53,7 @@ const Splash = {
   },
   data: function() {
     return{
-      vehicles:cache.vehicles||{},
+      products:cache.products||{},
       posts:cache.posts||{},
       filters : helper.filters,
       settings: helper.getAttributes($('html'))
@@ -75,7 +75,7 @@ const Dealers = {
   mounted: function() {
     $('.section, #map').css({'height':($(window).height()-$('.navbar').height() - 100)+'px'})
     this.title = this.$route.params.slug||"Nuestras sucursales"
-    this.dealers = dealers
+    this.dealers = layout.dealers
 
     mapboxgl.accessToken = helper.mapbox.accessToken
     this.map = new mapboxgl.Map({
@@ -143,7 +143,7 @@ const Item = {
   mounted : function(){
     helper.collect('lead');
     helper.is_loading()
-    this.dealers = dealers
+    this.dealers = layout.dealers
     this.$http.post(helper.getAttributes($('html')).endpoint + '/app'+location.pathname, {}, {emulateJSON:true}).then(function(res){
       this.data = res.data.data
       helper.is_loaded()
@@ -155,7 +155,7 @@ const Item = {
   },
   methods: {
     consultar: function(){
-      helper.send('lead','{"redirect":"/consulta-exito"}')
+      helper.send('lead',{redirect:"/consulta-exito"})
     },
     showLead: function(){
       if($('.lead').is(':hidden')){
@@ -253,7 +253,7 @@ const Contacto = {
             title:"Felicitaciones " + helper.champ().contacto.first_name,
             text:"Nuestro asesor se pondrá en contacto con vos para ayudarte a ahorrar."
           })
-          helper.send('contacto', '{"redirect":"/"}')
+          helper.send('contacto', {redirect:"/"})
         },1000)   
       }
     }
@@ -314,8 +314,8 @@ const router = new VueRouter({
     {path: '/', component: Splash, meta : { title: 'Mercedes-Benz'}},
     {path: '/posts', component: Posts,  meta : { title: 'Artículos'}},
     {path: '/posts/:slug', component: Post,  meta : { title: 'Artículo'}},
-    {path: '/vehicles', component: Items,  meta : { title: 'Vehículos'}},
-    {path: '/vehicles/:cat', component: Items,  meta : { title: ''}},
+    {path: '/products', component: Items,  meta : { title: 'Vehículos'}},
+    {path: '/products/:cat', component: Items,  meta : { title: ''}},
     {path: '/dealers', component: Dealers,  meta : { title: 'Sucursales'}},
     {path: '/consulta-exito', component: ConsultaExito,  meta : { title: ''}},
     {path: '/contacto', component: Contacto, meta : { title: 'Contacto'}},

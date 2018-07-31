@@ -1,7 +1,7 @@
 <?php 
 
 use App\Post;
-use App\Vehicle;
+use App\Product;
 
 function subpic($id,$url){
     $parts = explode('/',$url);
@@ -39,13 +39,13 @@ $container['view'] = function ($c) {
             ->where(['enabled' => 1])
             ->first();
     } else {
-        $share = $c['spot']->mapper("App\Vehicle")
+        $share = $c['spot']->mapper("App\Product")
             ->where(['title_slug' => $uriparts[1]])
             ->where(['enabled' => 1])
             ->first();
     }
 
-    $items = $c['spot']->mapper("App\Vehicle")
+    $items = $c['spot']->mapper("App\Product")
         ->where(['enabled' => 1])
         ->order(['title' => "ASC"]);
 
@@ -80,6 +80,7 @@ $container['view'] = function ($c) {
         $dealers=[];
     foreach($_dealers as $item){
         $dealers[] = (object) [
+            'id' => $item->id,
             'title' => $item->title,
             'lat' => (float) $item->lat,
             'lng' => (float) $item->lng,

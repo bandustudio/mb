@@ -32,6 +32,7 @@ class ThemePosition extends \Spot\Entity
     {
         return [
             "id" => ["type" => "integer", "unsigned" => true, "primary" => true, "autoincrement" => true],
+            "slug" => ["type" => "string", "length" => 250],
             "title" => ["type" => "string", "length" => 250],
             "enabled" => ["type" => "boolean", "value" => false],
             "created"   => ["type" => "datetime", "value" => new \DateTime()],

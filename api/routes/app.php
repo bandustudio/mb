@@ -13,9 +13,9 @@ use App\Lead;
 use App\Post;
 use App\User;
 use App\Dealer;
-use App\Vehicle;
+use App\Product;
 use App\Email;
-use App\VehicleModel;
+use App\ProductModel;
 use App\ThemePosition;
 use App\ThemeType;
 use App\ThemeSection;
@@ -64,7 +64,7 @@ $app->group('/v1', function() {
 
         $this->post('/home', function ($request, $response, $args) {
 
-            $mapper = $this->spot->mapper("App\Vehicle")
+            $mapper = $this->spot->mapper("App\Product")
                 ->where(['enabled' => 1])
                 ->order(['created' => 'DESC'])
                 ->limit(10);
@@ -73,7 +73,7 @@ $app->group('/v1', function() {
             /* Serialize the response data. */
             $fractal = new Manager();
             $fractal->setSerializer(new DataArraySerializer);
-            $resource = new Collection($mapper, new Vehicle);
+            $resource = new Collection($mapper, new Product);
             $data['items'] = $fractal->createData($resource)->toArray();
 
             $mapper = $this->spot->mapper("App\Post")
@@ -94,8 +94,8 @@ $app->group('/v1', function() {
                 ->write(json_encode($data));
         }); 
 
-        $this->post('/vehicles', function ($request, $response, $args) {
-            $mapper = $this->spot->mapper("App\Vehicle")
+        $this->post('/products', function ($request, $response, $args) {
+            $mapper = $this->spot->mapper("App\Product")
                 ->where(['enabled' => 1])
                 ->order(['created' => 'DESC'])
                 ->limit(1000);
@@ -107,7 +107,7 @@ $app->group('/v1', function() {
             /* Serialize the response data. */
             $fractal = new Manager();
             $fractal->setSerializer(new DataArraySerializer);
-            $resource = new Collection($mapper, new Vehicle);
+            $resource = new Collection($mapper, new Product);
             $data = $fractal->createData($resource)->toArray();
 
             return $response->withStatus(200)
@@ -115,7 +115,7 @@ $app->group('/v1', function() {
                 ->write(json_encode($data));
         }); 
 
-        $this->post('/vehicles/{slug}', function ($request, $response, $args) {
+        $this->post('/products/{slug}', function ($request, $response, $args) {
 
             $type = $this->spot->mapper("App\ThemeType")
                 ->where(['title' => ucfirst( $request->getAttribute('slug'))])
@@ -125,7 +125,7 @@ $app->group('/v1', function() {
                 throw new ForbiddenException("No resource was found.", 404);
             }
 
-            $mapper = $this->spot->mapper("App\Vehicle")
+            $mapper = $this->spot->mapper("App\Product")
                 ->where(['enabled' => 1])
                 ->where(['type_id' => $type->id])
                 ->order(['created' => 'DESC'])
@@ -138,7 +138,7 @@ $app->group('/v1', function() {
             /* Serialize the response data. */
             $fractal = new Manager();
             $fractal->setSerializer(new DataArraySerializer);
-            $resource = new Collection($mapper, new Vehicle);
+            $resource = new Collection($mapper, new Product);
             $data = $fractal->createData($resource)->toArray();
 
             return $response->withStatus(200)
@@ -322,7 +322,7 @@ $app->group('/v1', function() {
 
         $this->post('/{slug}', function ($request, $response, $args) {
 
-            $mapper = $this->spot->mapper("App\Vehicle")
+            $mapper = $this->spot->mapper("App\Product")
                 ->where(['title_slug' => $request->getAttribute('slug')])
                 ->where(['enabled' => 1])
                 ->first();
@@ -333,7 +333,7 @@ $app->group('/v1', function() {
             /* Serialize the response data. */
             $fractal = new Manager();
             $fractal->setSerializer(new DataArraySerializer);
-            $resource = new Item($mapper, new Vehicle);
+            $resource = new Item($mapper, new Product);
             $data = $fractal->createData($resource)->toArray();
 
             return $response->withStatus(200)

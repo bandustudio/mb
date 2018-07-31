@@ -263,8 +263,9 @@ var helper = {
     localStorage.setItem("champ", JSON.stringify(champ))
   },
   send : function( form, atts, cb ){
+    if(atts===undefined) atts = {}
     var champ = helper.champ();
-    var atts = JSON.parse(atts||'{}')||{}
+    var atts = JSON.parse(JSON.stringify(atts))||{}
     var prefix = $('.'+form).attr('ajax-prefix')?"/"+$('.'+form).attr('ajax-prefix')+"/":"/"
 
     return $.post( helper.getAttributes($('html')).endpoint + prefix + form, JSON.stringify(champ[form]), function(res){
@@ -328,7 +329,6 @@ var helper = {
     });
 
     elements.on('change keyup',function(){
-
       var complete = true;
       helper.fill($(this),form);
 
@@ -342,7 +342,6 @@ var helper = {
           }
         }
       })
-
       if(complete) {
         button.attr('disabled',false).removeClass('disabled');
       }

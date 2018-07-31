@@ -22,9 +22,9 @@ use Tuupola\Base62;
 use Ramsey\Uuid\Uuid;
 use Psr\Log\LogLevel;
 
-class Vehicle extends \Spot\Entity
+class Product extends \Spot\Entity
 {
-    protected static $table = "vehicles";
+    protected static $table = "products";
 
     public static function fields()
     {
@@ -61,12 +61,12 @@ class Vehicle extends \Spot\Entity
     {
         return [
             'type' => $mapper->belongsTo($entity, 'App\ThemeType', 'type_id'),
-            'model' => $mapper->belongsTo($entity, 'App\VehicleModel', 'model_id'),
+            'model' => $mapper->belongsTo($entity, 'App\ProductModel', 'model_id'),
             'position' => $mapper->belongsTo($entity, 'App\ThemePosition', 'position_id')
         ];
     }
     
-    public function transform(Vehicle $entity)
+    public function transform(Product $entity)
     {
 
         $slick = [];

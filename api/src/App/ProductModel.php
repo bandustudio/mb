@@ -24,9 +24,9 @@ use Tuupola\Base62;
 use Ramsey\Uuid\Uuid;
 use Psr\Log\LogLevel;
 
-class VehicleModel extends \Spot\Entity
+class ProductModel extends \Spot\Entity
 {
-    protected static $table = "vehicles_models";
+    protected static $table = "products_models";
 
     public static function fields()
     {
@@ -39,7 +39,7 @@ class VehicleModel extends \Spot\Entity
         ];
     }
 
-    public function transform(VehicleModel $model)
+    public function transform(ProductModel $model)
     {
         return [
             "id" => (integer)$model->id ?: null,

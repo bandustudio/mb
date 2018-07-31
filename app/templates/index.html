@@ -14,18 +14,12 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
   <link rel="manifest" href="/manifest.json">
-
-   <!-- Twitter Card data -->
   <meta name="twitter:card" value="summary">
-
-  <!-- Open Graph data -->
   <meta property="og:title" content="{{share_title}}" />
   <meta property="og:type" content="article" />
   <meta property="og:url" content="{{app_url}}" />
   <meta property="og:image" content="{{share_pic}}" />
   <meta property="og:description" content="{{share_text}}" /> 
-
-  <!-- Icons -->
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
   <link rel="apple-touch-icon" href="/img/apple-touch-icon.png" type="image/x-icon">
 
@@ -51,10 +45,6 @@
   </style>
   {% endif %}
   
-  <script>
-    var dealers = {{ dealers|raw  }}
-  </script>
-
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <!--script async src="https://www.googletagmanager.com/gtag/js?id=UA-118678125-1"></script>
   <script>
@@ -63,6 +53,8 @@
     gtag('js', new Date());
     gtag('config', 'UA-118678125-1');
   </script-->
+
+  <script>var layout = { dealers : {{ dealers|raw  }} }</script>
 </head>
 <body>
   <div id="app">
@@ -83,7 +75,7 @@
       <div class="navbar-menu" id="navMenu">
         <div class="navbar-end">
         {% for cat,items in featured %}
-          <router-link to="/vehicles/{{ cat }}" class="navbar-item is-capitalized is-cat-link" cat="{{ cat }}" active-class="active" tag="a">{{ cat }}</router-link>
+          <router-link to="/products/{{ cat }}" class="navbar-item is-capitalized is-cat-link" cat="{{ cat }}" active-class="active" tag="a">{{ cat }}</router-link>
         {% endfor %}
           <router-link to="/atencion" active-class="active" class="navbar-item" tag="a">
             <!--span class="fa fa-comment"></span-->
@@ -98,7 +90,7 @@
         <!--div class="navbar-end"></div-->
       </div>
       <div class="topright phone is-hidden-mobile">
-        <a href="tel:08006660896">0800 666 0896</a>
+        <a href="tel:{{ app_phone }}">{{ app_phone }}</a>
       </div>
     </nav>
 
@@ -144,7 +136,7 @@
           </div>          
         </div>
       </div>
-      <div v-for="(item, index) in vehicles" class="posts fadeIn">
+      <div v-for="(item, index) in products" class="posts fadeIn">
         <div class="slick-pane has-text-left" v-if="index%2!=0" :style="'background-image:url(' + item.picture + ')'">
           <div class="hero__heading">
             <h1 v-if="item.title && item.title.length"><span v-html="item.title"></span></h1>
