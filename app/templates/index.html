@@ -284,7 +284,7 @@
               <a href="#" @click="flyTo(dealer)">
               <p v-html="dealer.formatted_address"></p>
               </a>
-              <em v-if="dealer.vicinity" v-html="dealer.vicinity"></em> <em v-if="dealer.administrative_area_level_1" v-html="dealer.administrative_area_level_1"></em>
+              <p><em v-if="dealer.vicinity" v-html="dealer.vicinity"></em> <em v-if="dealer.administrative_area_level_1" v-html="dealer.administrative_area_level_1"></em></p>
               <router-link :to="'/dealers/'+dealer.slug">Explorar</router-link>
             </div>
           </div>
@@ -514,7 +514,8 @@
   <script type="text/x-jsrender" id="map_info">
     <h3>[[:title]]</h3>
     <p>[[:info]]</p>
-    <em>[[:formatted_address]]</em>
+    <div class="mapinfo-img" style="background-image:url([[:pic]])"></div>
+    <p><em>[[:formatted_address]]</em></p>
     <a href="/dealers/[[:slug]]">Explorar</a>
   </script>
 

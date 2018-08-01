@@ -1320,6 +1320,15 @@ a:hover {
   height: 400px
 }
 
+.mapinfo-img {
+  display: inline-block;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  height: 100px;
+}
+
 .link {
   height: 70px;
   font-size: 18px;

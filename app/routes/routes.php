@@ -89,7 +89,7 @@ $container['view'] = function ($c) {
             'vicinity' => $item->vicinity,
             'administrative_area_level_1' => $item->administrative_area_level_1,
             'formatted_address' => $item->formatted_address,
-            'pic' => \subpic('200x140',$item->pic1_url)
+            'pic' => \subpic('640x480',$item->pic1_url)
         ];
     }
 
