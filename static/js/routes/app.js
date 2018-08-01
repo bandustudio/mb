@@ -80,7 +80,8 @@ const Dealers = {
     mapboxgl.accessToken = helper.mapbox.accessToken
     this.map = new mapboxgl.Map({
       container: 'map',
-      style: 'mapbox://styles/mapbox/dark-v9'
+      //style: 'mapbox://styles/mapbox/dark-v9'
+      style: 'mapbox://styles/mapbox/streets-v10'
     });        
 
     var bounds = new mapboxgl.LngLatBounds();
@@ -128,6 +129,19 @@ const Dealer = {
     helper.is_loading()
     this.$http.post(helper.getAttributes($('html')).endpoint + '/app'+location.pathname, {}, {emulateJSON:true}).then(function(res){
       this.data = res.data.data
+
+      mapboxgl.accessToken = helper.mapbox.accessToken
+      this.map = new mapboxgl.Map({
+        container: 'dealer_map',
+        style: 'mapbox://styles/mapbox/streets-v10'
+      });   
+
+      var marker = new mapboxgl.Marker()
+        .setLngLat([this.data.lng,this.data.lat])
+        .addTo(this.map);
+
+      this.map.setCenter([this.data.lng,this.data.lat])
+      this.map.setZoom(16)
       helper.is_loaded()
     }, function(error){
       helper.is_loaded()
