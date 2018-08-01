@@ -16,7 +16,15 @@ const Splash = {
     if(!cache.posts){
       cache.creating = 1
       this.$http.post(helper.getAttributes($('html')).endpoint + '/app/posts', {}, {emulateJSON:true}).then(function(res){
-        this.posts = res.data.data
+        var data = res.data.data
+        var posts = []
+        data.forEach(function(post){
+          if(!posts[post.position]) posts[post.position] = []
+            console.log(post.position)
+          posts[post.position].push(post)
+        })
+
+        this.posts = posts
         cache.posts = this.posts
         setTimeout(function(){
           $('.slick').on('init', function(event, slick, currentSlide, nextSlide){
