@@ -20,7 +20,6 @@ const Splash = {
         var posts = []
         data.forEach(function(post){
           if(!posts[post.position]) posts[post.position] = []
-            console.log(post.position)
           posts[post.position].push(post)
         })
 

@@ -96,7 +96,7 @@
 
     <div class="subnav">
     {% for cat,items in featured %}
-      <div class="container is-striped is-cat is-cat-{{ cat }}">
+      <div class="container is-striped is-spaced-desktop is-cat is-cat-{{ cat }}">
         <h1 class="is-capitalized">{{ cat }}</h1>
         <div class="columns">
         {% for item in items %}
@@ -199,7 +199,7 @@
           <div class="badge">
             <div :style="'background-image:url(' + data.picture + ')'"></div>
           </div>
-          <h2 v-if="!item.first_name">Estoy interesado</h2>
+          <h2>Estoy interesado</h2>
           <p>Quiero que me contacten por <em v-html="data.title"></em></p>
 
           <div class="columns">
