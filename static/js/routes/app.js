@@ -88,9 +88,14 @@ const Dealers = {
     for(var i in this.dealers){
       var p = this.dealers[i]
       if(p.lat && p.lng){
+        var popup = new mapboxgl.Popup()
+          .setHTML($.templates('#map_info').render(p))
+
         var marker = new mapboxgl.Marker()
           .setLngLat([p.lng,p.lat])
+          .setPopup(popup)
           .addTo(this.map);
+
         bounds.extend([p.lng,p.lat]);
       }
     }
@@ -112,6 +117,27 @@ const Dealers = {
     return{
       helper : helper,
       dealers: {},
+      settings: helper.getAttributes($('html'))
+    }
+  }
+}
+
+const Dealer = {
+  template: '#dealer',
+  mounted : function(){
+    helper.is_loading()
+    this.$http.post(helper.getAttributes($('html')).endpoint + '/app'+location.pathname, {}, {emulateJSON:true}).then(function(res){
+      this.data = res.data.data
+      helper.is_loaded()
+    }, function(error){
+      helper.is_loaded()
+      $('.section').html($.templates('#notfound').render());
+      console.log(error.statusText)
+    })    
+  },
+  data: function() {
+    return{
+      data: {data:{}},
       settings: helper.getAttributes($('html'))
     }
   }
@@ -326,6 +352,7 @@ const router = new VueRouter({
     {path: '/products', component: Items,  meta : { title: 'Vehículos'}},
     {path: '/products/:cat', component: Items,  meta : { title: ''}},
     {path: '/dealers', component: Dealers,  meta : { title: 'Sucursales'}},
+    {path: '/dealers/:slug', component: Dealer,  meta : { title: 'Dealer'}},
     {path: '/contact', component: Contacto, meta : { title: 'Contacto'}},
     {path: '/tos', component: Terminos, meta : { title: 'Términos y condiciones'}},
     {path: '/call', component: Atencion, meta : { title: 'Atención'}},

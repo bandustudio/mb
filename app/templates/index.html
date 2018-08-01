@@ -281,8 +281,11 @@
           <div class="dealers">
             <div v-for="dealer, index in dealers" class="dealer">
               <h4 v-html="dealer.title"></h4>
+              <a href="#" @click="flyTo(dealer)">
               <p v-html="dealer.formatted_address"></p>
-              <a href="#" @click="flyTo(dealer)">Volar</a>
+              </a>
+              <em v-if="dealer.vicinity" v-html="dealer.vicinity"></em> <em v-if="dealer.administrative_area_level_1" v-html="dealer.administrative_area_level_1"></em>
+              <router-link :to="'/dealers/'+dealer.slug">Explorar</router-link>
             </div>
           </div>
         </div>
@@ -293,6 +296,23 @@
     </div>
   </script>
 
+  <script type="text/x-template" id="dealer">
+    <div class="section">
+      <div class="slick-pane has-text-left" :style="'background-image:url(' + data.picture + ')'">
+        <div class="hero__heading">
+          <h1 v-if="data.title && data.title.length"><span v-html="data.title"></span></h1>
+          <h4 v-if="data.intro && data.intro.length"><span v-html="data.intro"></span></h4>
+        </div>
+      </div>  
+      <div class="container">
+        <div class="content hero">
+          <h1 class="fixed-hero__heading has-text-black" v-html="data.title"></h1>
+          <div class="post" v-html="data.content"></div>
+        </div>
+      </div>
+    </div>
+  </script>
+  
   <script type="text/x-template" id="call">
     <div class="section call has-text-centered">
       <h2 class="">Elegí el medio más cómodo<br>para hablar ahora mismo</h2>
@@ -387,17 +407,6 @@
           </div>
         </div>
       </div>
-    </div>
-  </script>
-
-  <script type="text/x-jsrender" id="consulta_exito">
-    <div class="container inline-background pagenotfound fadeIn">
-      <h1><span class="icon has-text-success fa fa-check-circle"></span> Gracias por interesarse en nuestros vehículos.</h1> 
-      <p>Responderemos a su consulta en cuanto nos sea posible.</p>
-      <div class="container has-text-centered">
-        <a href="javascript:history.go(-1)" class="button is-medium">Volver</a>
-        <a href="/" class="button is-medium">Volver al inicio</a>
-      </div>        
     </div>
   </script>
 
@@ -502,12 +511,11 @@
     <a>[[:name]]</a>
   </script>
 
-  <script type="text/x-jsrender" id="list_dealer">
-    <div class="backtotop has-text-center">
-      <span class="icon has-text-rendered">
-        <i class="fas fa-chevron-up"></i>
-      </span>
-    </div>
+  <script type="text/x-jsrender" id="map_info">
+    <h3>[[:title]]</h3>
+    <p>[[:info]]</p>
+    <em>[[:formatted_address]]</em>
+    <a href="/dealers/[[:slug]]">Explorar</a>
   </script>
 
   <script type="text/x-jsrender" id="backtotop">

@@ -40,8 +40,30 @@ $app->group('/v1', function() {
             return $response->withStatus(200)
                 ->withHeader("Content-Type", "application/json")
                 ->write(json_encode($data));  
-
         });
+
+        $this->post('/dealers/{slug}', function ($request, $response, $args) {
+
+            $mapper = $this->spot->mapper("App\Dealer")
+                ->where(['enabled' => 1])
+                ->where(['title_slug' => urldecode( $request->getAttribute('slug') )])
+                ->first();
+
+            if($mapper === false){
+                throw new ForbiddenException("No resource was found.", 404);
+            }
+
+            /* Serialize the response data. */
+            $fractal = new Manager();
+            $fractal->setSerializer(new DataArraySerializer);
+            $resource = new Item($mapper, new Dealer);
+            $data = $fractal->createData($resource)->toArray();
+
+            return $response->withStatus(200)
+                ->withHeader("Content-Type", "application/json")
+                ->write(json_encode($data));
+        }); 
+
 
         $this->post("/contacto", function ($request, $response, $arguments) {
             $body = $request->getParsedBody();
@@ -208,7 +230,6 @@ $app->group('/v1', function() {
                 ->withHeader("Content-Type", "application/json")
                 ->write(json_encode($data));
         }); 
-
 
         // Usuario crean cotizaciones, se actualizas usuarios y vehículos
 

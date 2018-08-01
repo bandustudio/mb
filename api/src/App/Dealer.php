@@ -87,6 +87,7 @@ class Dealer extends \Spot\Entity
             "lng" => (string) $entity->lng ?: "",
             "formatted_address" => (string) $entity->formatted_address ?: "",
             "content" => (string) $entity->content_html ?: "",
+            "picture" => (string) $entity->pic1_url ?: "",
             "sizes" => (array) $sizes,
             "slick" => (array) $slick,
             "status" => (string) $entity->status ?: ""
