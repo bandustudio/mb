@@ -182,18 +182,26 @@ const Item = {
   },
   methods: {
     consultar: function(){
-      helper.send('lead',{},function(){
-        console.log("1")
-        if($('.section .notification').is(':hidden')) {
-            console.log("2")
-          $('.section .lead').slideUp(200,function(){
-            $('.section .notification').slideDown()    
-          })          
-        }
-      })
+      if($('.submitable').hasClass('disabled')===false){
+        helper.send('lead',{},function(){
+          helper.clear('lead')
+          if($('.section .notification').is(':hidden')) {
+            $('.section .lead').slideUp(200,function(){
+              $('.section .notification').slideDown()
+            })          
+          }
+        })
+      }
     },
     showLead: function(){
+      if($('.section .notification').is(':visible')) {
+        $('.section .notification').hide()
+      }      
       if($('.lead').is(':hidden')){
+        $('.lead').find('input,select,textarea').each(function(){
+          $(this).val('')
+        })
+
         $('.lead').slideDown()
         setTimeout(function() {
           window.scrollTo(0,$('.lead').offset().top + 10);

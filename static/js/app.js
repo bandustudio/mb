@@ -310,7 +310,6 @@ var helper = {
     if(val){
       champ[form][field.attr('name')] = val;
     }
-    //console.log(champ)
     localStorage.setItem("champ", JSON.stringify(champ));
   },
   collect : function( form ){
@@ -327,7 +326,7 @@ var helper = {
         router.push($(this).attr('to'));
       }
     });
-
+    
     elements.on('change keyup',function(){
       var complete = true;
       helper.fill($(this),form);

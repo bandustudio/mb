@@ -785,6 +785,7 @@ body {
 
 .notification {
   margin-top: 1.5em;
+  border-radius: 0;
 }
 
 .section .notification {
