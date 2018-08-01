@@ -3,6 +3,7 @@ var cache = {}
 const Splash = {
   template: '#splash',
   created: function() {
+    /*
     if(!cache.products){
       this.$http.post(helper.getAttributes($('html')).endpoint + '/app/products', {}, {emulateJSON:true}).then(function(res){
         this.products = res.data.data
@@ -10,7 +11,8 @@ const Splash = {
       }, function(error){
         console.log(error.statusText)
       })
-    }
+    }*/
+
     if(!cache.posts){
       cache.creating = 1
       this.$http.post(helper.getAttributes($('html')).endpoint + '/app/posts', {}, {emulateJSON:true}).then(function(res){
@@ -29,7 +31,7 @@ const Splash = {
             cssEase: 'linear',
             accessibility: true
           }).addClass('fadeIn')
-          $('.slick-pane').css({'min-height':($(window).height()-$('.navbar').height())+'px'})
+          $('.slick-pane').css({'min-height':($(window).height()-$('.navbar').height()-48)+'px'})
         },100);
       }, function(error){
         console.log(error.statusText)
@@ -80,8 +82,7 @@ const Dealers = {
     mapboxgl.accessToken = helper.mapbox.accessToken
     this.map = new mapboxgl.Map({
       container: 'map',
-      //style: 'mapbox://styles/mapbox/dark-v9'
-      style: 'mapbox://styles/mapbox/streets-v10'
+      style: helper.mapbox.style 
     });        
 
     var bounds = new mapboxgl.LngLatBounds();
@@ -133,7 +134,7 @@ const Dealer = {
       mapboxgl.accessToken = helper.mapbox.accessToken
       this.map = new mapboxgl.Map({
         container: 'dealer_map',
-        style: 'mapbox://styles/mapbox/streets-v10'
+        style: helper.mapbox.style 
       });   
 
       var marker = new mapboxgl.Marker()
@@ -157,8 +158,8 @@ const Dealer = {
   }
 }
 
-const Items = {
-  template: '#items',
+const Products = {
+  template: '#products',
   mounted: function() {
     helper.is_loading()
     this.title = this.$route.params.cat||"Nuestros vehículos"
@@ -179,8 +180,8 @@ const Items = {
   }
 }
 
-const Item = {
-  template: '#item',
+const Product = {
+  template: '#product',
   mounted : function(){
     helper.collect('lead');
     helper.is_loading()
@@ -371,15 +372,15 @@ const router = new VueRouter({
     {path: '/', component: Splash, meta : { title: 'Mercedes-Benz'}},
     {path: '/posts', component: Posts,  meta : { title: 'Artículos'}},
     {path: '/posts/:slug', component: Post,  meta : { title: 'Artículo'}},
-    {path: '/products', component: Items,  meta : { title: 'Vehículos'}},
-    {path: '/products/:cat', component: Items,  meta : { title: ''}},
+    {path: '/products', component: Products,  meta : { title: 'Vehículos'}},
+    {path: '/products/:cat', component: Products,  meta : { title: ''}},
     {path: '/dealers', component: Dealers,  meta : { title: 'Sucursales'}},
     {path: '/dealers/:slug', component: Dealer,  meta : { title: 'Dealer'}},
     {path: '/contact', component: Contacto, meta : { title: 'Contacto'}},
     {path: '/tos', component: Terminos, meta : { title: 'Términos y condiciones'}},
     {path: '/call', component: Atencion, meta : { title: 'Atención'}},
     {path: '/opener', component: Opener, meta : { title: 'Redirigiendo...'}},
-    {path: "*", component: Item, meta : { title: ''}}
+    {path: "*", component: Product, meta : { title: ''}}
   ]
 });
 

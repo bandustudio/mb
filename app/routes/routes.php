@@ -49,15 +49,20 @@ $container['view'] = function ($c) {
         ->where(['enabled' => 1])
         ->order(['title' => "ASC"]);
 
+    $featured_row_count = 4;
+
     foreach($items as $item){
         if($item->type->title){
             if(!isset($featured[strtolower($item->type->title)])) $featured[strtolower($item->type->title)] = [];
-            $featured[strtolower($item->type->title)][] = (object) [
-                'title' => $item->title,
-                'intro' => $item->intro?:\words($item->content,20),
-                'slug' => $item->title_slug,
-                'pic' => \subpic('200x140',$item->pic1_url)
-            ];
+
+            if(count($featured[strtolower($item->type->title)]) <= $featured_row_count){
+                $featured[strtolower($item->type->title)][] = (object) [
+                    'title' => $item->title,
+                    'intro' => $item->intro?:\words($item->content,20),
+                    'slug' => $item->title_slug,
+                    'pic' => \subpic('200x140',$item->pic1_url)
+                ];
+            }
         }
     }
 

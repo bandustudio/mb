@@ -95,6 +95,7 @@ class Post extends \Spot\Entity
             "picshare_url" => (string) $entity->picshare_url ?: "",
             "background_url" => (string) $entity->background_url ?: "",
             "picture" => (string) $entity->pic1_url ?: "",
+            "position" => (string) $entity->position->slug ?: "",
             "pic_options" => $pic_options,
             "sizes" => (array) $sizes,
             "slick" => (array) $slick,

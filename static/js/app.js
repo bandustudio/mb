@@ -11,7 +11,10 @@ if(typeof localStorage === 'object') {
 
 var helper = {
   mapbox : {
-    accessToken: 'pk.eyJ1IjoibWFydGluZnJlZSIsImEiOiJjams4ZDh0dGoyanRwM3FtbHlqMXJnYjA3In0.VBD8U4yG46py1g9NxBFMPw'
+    accessToken: 'pk.eyJ1IjoibWFydGluZnJlZSIsImEiOiJjams4ZDh0dGoyanRwM3FtbHlqMXJnYjA3In0.VBD8U4yG46py1g9NxBFMPw',
+    style: 'mapbox://styles/mapbox/bright-v8'
+    //style: 'mapbox://styles/mapbox/dark-v9'
+    //style: 'mapbox://styles/mapbox/streets-v10'
   },
   filters : {
     toJSON : function(json){
@@ -326,7 +329,7 @@ var helper = {
         router.push($(this).attr('to'));
       }
     });
-    
+
     elements.on('change keyup',function(){
       var complete = true;
       helper.fill($(this),form);
