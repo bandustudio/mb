@@ -833,6 +833,10 @@ body {
     color: #08d184!important;
     font-weight: 500;
   }  
+
+  .is-spaced-desktop {
+    padding: 10rem 0;
+  }
 }
 
 .navbar-menu .navbar-item {
@@ -1914,6 +1918,7 @@ a:hover {
 }
 
 .is-striped .column:nth-child(2n+2){
+  border-radius: 10px;
   background-color: #f9f9f9;
 }
 

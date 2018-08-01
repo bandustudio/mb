@@ -142,6 +142,19 @@
         </div>
       </div>
 
+      <div v-if="posts.body" class="container is-striped is-spaced-desktop">
+        <div class="content">
+          <div class="columns">
+            <div v-for="(item, index) in posts.body" class="column is-one-quarter">
+              <h2 v-if="item.title && item.title.length"><span v-html="item.title"></span></h2>
+              <div class="item-pic" :style="'background-image: url('+item.picture+')'"></div>
+              <h4 v-if="item.intro && item.intro.length"><span v-html="item.intro"></span></h4>
+              <router-link :to="'/posts/'+item.slug">Continuar leyendo</router-link>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div v-for="(item, index) in posts.featured" class="posts fadeIn">
         <div class="slick-pane has-text-left" v-if="index%2!=0" :style="'background-image:url(' + item.picture + ')'">
           <div class="hero__heading">
@@ -159,18 +172,6 @@
         </div>
       </div>
 
-      <div class="container is-striped">
-        <div class="content">
-          <div class="columns">
-            <div v-for="(item, index) in posts.body" class="column is-one-quarter">
-              <h2 v-if="item.title && item.title.length"><span v-html="item.title"></span></h2>
-              <div class="item-pic" :style="'background-image: url('+item.picture+')'"></div>
-              <h4 v-if="item.intro && item.intro.length"><span v-html="item.intro"></span></h4>
-              <router-link :to="'/posts/'+item.slug">Continuar leyendo</router-link>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </script>
   
