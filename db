@@ -49,6 +49,7 @@ $console
         $container["spot"]->mapper("App\ThemeSection")->migrate();
         $container["spot"]->mapper("App\ThemePosition")->migrate();
         $container["spot"]->mapper("App\Product")->migrate();
+        $container["spot"]->mapper("App\Service")->migrate();
         $container["spot"]->mapper("App\Post")->migrate();
         $container["spot"]->mapper("App\Lead")->migrate();
     });

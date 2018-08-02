@@ -165,6 +165,33 @@ const Dealer = {
   }
 }
 
+const Services = {
+  template: '#services',
+  mounted: function() {
+    this.services = layout.services
+  },
+  data: function() {
+    return{
+      helper : helper,
+      services: {},
+      settings: helper.getAttributes($('html'))
+    }
+  }
+}
+
+const Service = {
+  template: '#service',
+  mounted : function(){
+    this.data = layout.services[this.$route.params.slug]||{}
+  },
+  data: function() {
+    return{
+      data: {},
+      settings: helper.getAttributes($('html'))
+    }
+  }
+}
+
 const Products = {
   template: '#products',
   mounted: function() {
@@ -383,6 +410,8 @@ const router = new VueRouter({
     {path: '/products/:cat', component: Products,  meta : { title: ''}},
     {path: '/dealers', component: Dealers,  meta : { title: 'Sucursales'}},
     {path: '/dealers/:slug', component: Dealer,  meta : { title: 'Dealer'}},
+    {path: '/services', component: Services,  meta : { title: 'Sucursales'}},
+    {path: '/services/:slug', component: Service,  meta : { title: 'Dealer'}},
     {path: '/contact', component: Contacto, meta : { title: 'Contacto'}},
     {path: '/tos', component: Terminos, meta : { title: 'Términos y condiciones'}},
     {path: '/call', component: Atencion, meta : { title: 'Atención'}},

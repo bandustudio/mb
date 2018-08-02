@@ -2,6 +2,7 @@
 
 use App\Post;
 use App\Product;
+use App\Service;
 
 function subpic($id,$url){
     $parts = explode('/',$url);
@@ -98,9 +99,30 @@ $container['view'] = function ($c) {
         ];
     }
 
+    // services
+    $_services = $c['spot']->mapper("App\Service")
+        ->where(['enabled' => 1])
+        ->order(['created' => 'DESC'])
+        ->limit(1000);
+
+        $services=[];
+    foreach($_services as $item){
+        $services[$item->title_slug] = (object) [
+            'id' => $item->id,
+            'title' => $item->title,
+            'lat' => (float) $item->lat,
+            'lng' => (float) $item->lng,
+            'slug' => $item->title_slug,
+            'pic_on' => $item->pic_on_url,
+            'pic_off' => $item->pic_off_url
+        ];
+    }
+
     $view->offsetSet('params', $_REQUEST?:false);
     $view->offsetSet('featured', $featured);
+    $view->offsetSet('services_arr', $services);
     $view->offsetSet('dealers', json_encode($dealers));
+    $view->offsetSet('services', json_encode($services));
     $view->offsetSet('rev_parse', substr(exec('git rev-parse HEAD'),0,7));
     $view->offsetSet('localhost', ($_SERVER['REMOTE_ADDR'] == "127.0.0.1"));
     $view->offsetSet('share_title', $share_title);

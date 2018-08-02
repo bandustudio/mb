@@ -22,55 +22,42 @@ use Tuupola\Base62;
 use Ramsey\Uuid\Uuid;
 use Psr\Log\LogLevel;
 
-class Test extends \Spot\Entity
+class Service extends \Spot\Entity
 {
-    protected static $table = "test";
+    protected static $table = "services";
 
     public static function fields()
     {
         return [
             "id" => ["type" => "integer", "unsigned" => true, "primary" => true, "autoincrement" => true],
-            "address_places" => ["type" => "string", "length" => 250],
-            "locality" => ["type" => "string", "length" => 50],
-            "administrative_area_level_1" => ["type" => "string", "length" => 50],
-            "administrative_area_level_2" => ["type" => "string", "length" => 50],
-            "formatted_address" => ["type" => "string", "length" => 250],
-            "country" => ["type" => "string", "length" => 50],
-            "vicinity" => ["type" => "string", "length" => 50],
-            "mapicon" => ["type" => "string", "length" => 250],
-            "mapurl" => ["type" => "string", "length" => 250],
-            "address" => ["type" => "string", "length" => 250],
-            "utc" => ["type" => "string", "length" => 20],
-            "lat" => ["type" => "string", "length" => 50],
-            "lng" => ["type" => "string", "length" => 50],                                    
-            "pic1_url" => ["type" => "string", "length" => 255],
+            "title" => ["type" => "string", "length" => 250],
+            "title_slug" => ["type" => "string", "length" => 250],
+            "intro" => ["type" => "text"],
+            "pic_off_url" => ["type" => "string", "length" => 255],
+            "pic_on_url" => ["type" => "string", "length" => 255],
             "youtube" => ["type" => "string", "length" => 50],
             "content_html" => ["type" => "text"],
+            "deleted" => ["type" => "boolean", "value" => false, "notnull" => true],
+            "enabled" => ["type" => "boolean", "default" => true, "value" => true],
             "created" => ["type" => "datetime", "value" => new \DateTime()],
             "updated" => ["type" => "datetime", "value" => new \DateTime()]
         ];
     }
 
-    public function transform(Test $entity)
+    public function transform(Service $entity)
     {
 
         return [
             "id" => (integer) $entity->id ?: null,
             "title" => (string) $entity->title ?: "",
             "intro" => (string) $entity->intro ?: "",
+            "slug" => (string) $entity->title_slug ?: "",
             "lat" => (string) $entity->lat ?: "",
             "lng" => (string) $entity->lng ?: "",
             "formatted_address" => (string) $entity->formatted_address ?: "",
-            "button_value" => (string) $entity->button_value ?: "",
-            "button_link" => (string) $entity->button_link ?: "",
-            "slug" => (string) $entity->title_slug ?: "",
             "content" => (string) $entity->content_html ?: "",
-            "picshare_url" => (string) $entity->picshare_url ?: "",
-            "background_url" => (string) $entity->background_url ?: "",
-            "picture" => (string) $entity->pic1_url ?: "",
-            "pic_options" => $pic_options,
-            "sizes" => (array) $sizes,
-            "slick" => (array) $slick,
+            "pic_off" => (string) $entity->pic_off_url ?: "",
+            "pic_on" => (string) $entity->pic_on_url ?: "",
             "status" => (string) $entity->status ?: ""
             //"created" => (string) $entity->created->format('U') ?: "",
         ];

@@ -502,6 +502,12 @@ document.addEventListener('DOMContentLoaded', function () {
   },function(){
     $(this).slideUp('fast')
   });  
+
+  $('.is-cat-services .column').hover(function(){
+    $(this).find('.item-pic').css({'background-image':'url('+$(this).attr('on')+')'})
+  },function(){
+    $(this).find('.item-pic').css({'background-image':'url('+$(this).attr('off')+')'})
+  })
 });
 
 $.extend({
