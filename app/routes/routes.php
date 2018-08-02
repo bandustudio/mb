@@ -110,8 +110,7 @@ $container['view'] = function ($c) {
         $services[$item->title_slug] = (object) [
             'id' => $item->id,
             'title' => $item->title,
-            'lat' => (float) $item->lat,
-            'lng' => (float) $item->lng,
+            'intro' => $item->intro,
             'slug' => $item->title_slug,
             'pic_on' => $item->pic_on_url,
             'pic_off' => $item->pic_off_url
@@ -120,9 +119,8 @@ $container['view'] = function ($c) {
 
     $view->offsetSet('params', $_REQUEST?:false);
     $view->offsetSet('featured', $featured);
-    $view->offsetSet('services_arr', $services);
-    $view->offsetSet('dealers', json_encode($dealers));
-    $view->offsetSet('services', json_encode($services));
+    $view->offsetSet('services', $services);
+    $view->offsetSet('layout', json_encode((object)['dealers' => $dealers,'services' => $services]));
     $view->offsetSet('rev_parse', substr(exec('git rev-parse HEAD'),0,7));
     $view->offsetSet('localhost', ($_SERVER['REMOTE_ADDR'] == "127.0.0.1"));
     $view->offsetSet('share_title', $share_title);

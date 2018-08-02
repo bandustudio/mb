@@ -504,9 +504,9 @@ document.addEventListener('DOMContentLoaded', function () {
   });  
 
   $('.is-cat-services .column').hover(function(){
-    $(this).find('.item-pic').css({'background-image':'url('+$(this).attr('on')+')'})
+    $(this).find('.item-pic').first().css('background-image','url("'+$(this).attr('on')+'")')
   },function(){
-    $(this).find('.item-pic').css({'background-image':'url('+$(this).attr('off')+')'})
+    $(this).find('.item-pic').first().css('background-image','url("'+$(this).attr('off')+'")')
   })
 });
 

@@ -54,10 +54,7 @@
   </script-->
 
   <script>
-  var layout = { 
-    dealers: {{ dealers|raw }}, 
-    services: {{ services|raw }} 
-  }
+  var layout = {{ layout|raw }}
   </script>
 </head>
 <body>
@@ -126,7 +123,7 @@
       <div class="container is-striped is-spaced-desktop is-cat is-cat-services">
         <h1 class="is-capitalized">Servicios</h1>
         <div class="columns">
-        {% for item in services_arr %}
+        {% for item in services %}
           <div class="column is-one-quarter" on="{{item.pic_off}}" off="{{item.pic_off}}">
             <div class="item-pic" style="background-image: url({{item.pic_off}})"></div>
             <h2><span>{{ item.title }}</span></h2>
@@ -361,13 +358,13 @@
     <div class="section">
       <div class="container is-striped">
         <div class="content">
-          <h1 v-html="title" class="is-capitalized fixed-hero__heading"></h1>
+          <h1 class="is-capitalized fixed-hero__heading">Servicios</h1>
           <div class="columns">
-            <div v-for="item in items" class="column is-one-quarter">
-              <div class="item-pic" :style="'background-image: url('+item.pic+')'"></div>
+            <div v-for="item in services" class="column is-one-quarter">
+              <div class="item-pic" :style="'background-image: url('+item.pic_off+')'"></div>
               <h2 v-if="item.title && item.title.length"><span v-html="item.title"></span></h2>
               <h4 v-if="item.intro && item.intro.length"><span v-html="item.intro"></span></h4>
-              <router-link :to="'/'+item.slug">Explorar</router-link>
+              <router-link :to="'/services/'+item.slug">Explorar</router-link>
             </div>
           </div>
         </div>
