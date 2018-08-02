@@ -79,7 +79,7 @@ class Post extends \Spot\Entity
 
         foreach($resolutions as $res){
             $parts = explode('/',$entity->pic1_url);
-            $name = $parts2[count($parts2)-1];
+            $name = $parts[count($parts)-1];
             $parts[count($parts)-1] = $res.$parts[count($parts)-1];
             $sizes[$res]=implode('/',$parts);
         }
@@ -96,7 +96,6 @@ class Post extends \Spot\Entity
             "background_url" => (string) $entity->background_url ?: "",
             "picture" => (string) $entity->pic1_url ?: "",
             "position" => (string) $entity->position->slug ?: "",
-            "pic_options" => $pic_options,
             "sizes" => (array) $sizes,
             "slick" => (array) $slick,
             "status" => (string) $entity->status ?: ""
