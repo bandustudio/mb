@@ -6,7 +6,7 @@ html,body,header,footer,aside,menu,div,span,applet,object,iframe,h1,h2,h3,h4,h5,
     border:none;
     background:transparent;
     text-align:left;
-    font-size:10pt;
+    font-size:14pt;
     font-weight:normal
 }
 ol,ul{
@@ -59,7 +59,7 @@ html{
 }
 body{
     font-family:"Helvetica Neue",Helvetica,Verdana,Arial,sans-serif;
-    background:#f8f8f8;
+    background:white;
     color:#444
 }
 a,a:visited{
@@ -462,18 +462,20 @@ pre+.message,pre+.error{
     }
 }
 h1{
-    height:40px;
+    height:80px;
     white-space:nowrap;
     overflow:hidden
 }
 h1 #h1{
     display:inline-block;
     padding:0;
-	background:url("../images/logo_Mercedes-Benz_149_.jpg?3") center no-repeat;
-	background-size:40px;
+	background-image:url("../images/logo.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+	background-size:contain;
 	text-indent:-100px;
-    width:135px;
-    height:40px
+    width:100%;
+    height:80px
 }
 .version,#version{
     position:relative;
@@ -498,11 +500,11 @@ h1 #h1{
     width:260px;
     margin:0;
     padding:0;
-    border-right:1px solid #ddd;
+    box-shadow: 5px 0 10px #666;
     overflow-y:auto;
     overflow-x:hidden;
     -webkit-overflow-scrolling:touch;
-    background:#f8f8f8;
+    background:#000;
     z-index:100
 }
 #menu #dbs{
