@@ -510,6 +510,7 @@ document.addEventListener('DOMContentLoaded', function () {
   })
 });
 
+
 $.extend({
   server: function(options) {
     options.method = "post";
