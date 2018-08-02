@@ -524,17 +524,17 @@ h1 #h1{
 }
 #menu .links{
     background:#f6f6f6;
-    border-bottom:1px solid #ddd;
+    border-bottom:none;
     padding:0 10px 7px 10px
 }
 #menu #tables,#menu #logins{
-    border-bottom:1px solid #ddd;
+    border-bottom:none;
     padding:2em 0
 }
 #menu .message{
     background:transparent;
     border:none;
-    border-bottom:1px solid #ddd;
+    border-bottom:none;
     color:#bbb
 }
 .menuLink{
