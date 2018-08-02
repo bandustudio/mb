@@ -26,7 +26,7 @@ $minifier->add($dest . '/js/jsrender.min.js');
 $minifier->add($dest . '/js/base64.js');
 $minifier->add($dest . '/js/slick.min.js');
 $minifier->add($dest . '/js/fontawesome.js');
-$minifier->add($dest . '/js/app.js');
+$minifier->add($dest . '/js/common.js');
 $minifier->add($dest . '/js/routes/app.js');
 $minifier->minify($dest . '/dist/js/app.js');
 

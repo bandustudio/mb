@@ -490,12 +490,9 @@ document.addEventListener('DOMContentLoaded', function () {
   $('.is-cat-link').hover(function(){
     var visible = $('.is-cat').is(':visible')
     $('.is-cat').css({display:'none'})
-    if(visible){
+    console.log($('.is-cat-' + $(this).attr('cat')))
+    if(location.pathname!=$(this).attr('href')){
       $('.is-cat-' + $(this).attr('cat')).fadeIn('fast')
-    } else {
-      if(location.pathname!=$(this).attr('href')){
-        $('.is-cat-' + $(this).attr('cat')).slideDown('fast')
-      }
     }
   },function(){
   });
