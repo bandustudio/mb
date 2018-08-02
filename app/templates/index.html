@@ -183,14 +183,14 @@
           <div class="hero__heading">
             <h1 v-if="item.title && item.title.length"><span v-html="item.title"></span></h1>
             <h4 v-if="item.intro && item.intro.length"><span v-html="item.intro"></span></h4>
-            <router-link class="button is-white is-medium" :to="item.slug" tag="a">Continuar leyendo</router-link>
+            <router-link class="button is-white is-medium" :to="'/posts/'+item.slug" tag="a">Continuar leyendo</router-link>
           </div>
         </div>   
         <div class="slick-pane has-text-right" v-if="index%2===0" :style="'background-image:url(' + item.picture + ')'">
           <div class="hero__heading">
             <h1 v-if="item.title && item.title.length"><span v-html="item.title"></span></h1>
             <h4 v-if="item.intro && item.intro.length"><span v-html="item.intro"></span></h4>
-            <router-link class="button is-white is-medium" :to="item.slug" tag="a">Continuar leyendo</router-link>
+            <router-link class="button is-white is-medium" :to="'/posts/'+item.slug" tag="a">Continuar leyendo</router-link>
           </div>
         </div>
       </div>

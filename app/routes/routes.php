@@ -111,7 +111,9 @@ $container['view'] = function ($c) {
             'id' => $item->id,
             'title' => $item->title,
             'intro' => $item->intro,
+            'content' => $item->content_html,
             'slug' => $item->title_slug,
+            'picture' => $item->pic1_url,
             'pic_on' => $item->pic_on_url,
             'pic_off' => $item->pic_off_url
         ];

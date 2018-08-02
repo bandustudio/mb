@@ -1836,7 +1836,7 @@ a:hover {
 .hero__heading {
   padding: 30px;
   display: inline-block;
-  min-width: 280px;
+  max-width: 600px;
 }
 
 .hero__heading h1 {
