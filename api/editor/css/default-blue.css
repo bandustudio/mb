@@ -358,7 +358,7 @@ p input,p select,p label,fieldset input,fieldset select{
     margin:0;
     padding:0 0 0 20px;
     border-right:205px solid #f6f6f6;
-    background:#9ce0ff;
+    background:#f6f6f6;
     height:40px;
     line-height:40px;
     z-index:100;
