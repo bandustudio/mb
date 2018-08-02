@@ -124,8 +124,10 @@
         <h1 class="is-capitalized">Servicios</h1>
         <div class="columns">
         {% for item in services %}
-          <div class="column is-one-quarter" on="{{item.pic_off}}" off="{{item.pic_off}}">
-            <div class="item-pic" style="background-image: url({{item.pic_off}})"></div>
+          <div class="column is-one-quarter">
+            <router-link to="/services/{{item.slug}}" tag="a">
+            <div class="item-pic" pic-on="{{item.pic_on|raw}}" pic-off="{{item.pic_off|raw}}" style="background-image: url({{item.pic_off|raw}})"></div>
+            </router-link>
             <h2><span>{{ item.title }}</span></h2>
             <h4><span>{{ item.intro }}</span></h4>
             <router-link to="/services/{{item.slug}}" tag="a">Explorar</router-link>

@@ -503,10 +503,10 @@ document.addEventListener('DOMContentLoaded', function () {
     $(this).slideUp('fast')
   });  
 
-  $('.is-cat-services .column').hover(function(){
-    $(this).find('.item-pic').first().css('background-image','url("'+$(this).attr('on')+'")')
+  $('.is-cat-services .item-pic').hover(function(){
+    $(this).css('background-image','url('+$(this).attr('pic-on')+')')
   },function(){
-    $(this).find('.item-pic').first().css('background-image','url("'+$(this).attr('off')+'")')
+    $(this).css('background-image','url('+$(this).attr('pic-off')+')')
   })
 });
 
