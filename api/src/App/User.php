@@ -33,7 +33,6 @@ class User extends \Spot\Entity
         return [
             "id" => ["type" => "integer", "unsigned" => true, "primary" => true, "autoincrement" => true],
             "role_id" => ["type" => "integer", "unsigned" => true, 'index' => true, 'value' => 1],
-            "region_id" => ["type" => "integer", "unsigned" => true, 'index' => true],
             "email" => ["type" => "string", "length" => 50, "unique" => true],
             "username" => ["type" => "string", "length" => 100, "unique" => true],
             "first_name" => ["type" => "string", "length" => 32],
@@ -83,8 +82,7 @@ class User extends \Spot\Entity
     {
         return [
             //'lead' => $mapper->hasOne($entity, 'App\Lead', 'gestor_id'),
-            'role' => $mapper->belongsTo($entity, 'App\UserRole', 'role_id'),
-            'region' => $mapper->belongsTo($entity, 'App\Region', 'region_id')
+            'role' => $mapper->belongsTo($entity, 'App\UserRole', 'role_id')
         ];
     }
 
@@ -102,7 +100,6 @@ class User extends \Spot\Entity
         return [
             "id" => (integer) $entity->id ?: null,
             "role_id" => (integer) $entity->role_id ?: null,
-            "region_id" => (integer) $entity->region_id ?: null,
             "email" => (string) $entity->email ?: null,
             "phone" => (string) $entity->phone ?: null,
             "email_encoded" => (string) $entity->email ? Base62::encode($entity->email): null,
