@@ -493,7 +493,9 @@ document.addEventListener('DOMContentLoaded', function () {
     if(visible){
       $('.is-cat-' + $(this).attr('cat')).fadeIn('fast')
     } else {
-      $('.is-cat-' + $(this).attr('cat')).slideDown('fast')
+      if(location.pathname!=$(this).attr('href')){
+        $('.is-cat-' + $(this).attr('cat')).slideDown('fast')
+      }
     }
   },function(){
   });
@@ -509,7 +511,6 @@ document.addEventListener('DOMContentLoaded', function () {
     $(this).css('background-image','url('+$(this).attr('pic-off')+')')
   })
 });
-
 
 $.extend({
   server: function(options) {
