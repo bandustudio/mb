@@ -171,8 +171,10 @@
         <div class="content">
           <div class="columns">
             <div v-for="(item, index) in posts.body" class="column is-half">
+              <router-link :to="'/posts/'+item.slug">
+                <div class="item-pic" :style="'background-image: url('+item.picture+')'"></div>
+              </router-link>
               <h2 v-if="item.title && item.title.length"><span v-html="item.title"></span></h2>
-              <div class="item-pic" :style="'background-image: url('+item.picture+')'"></div>
               <h4 v-if="item.intro && item.intro.length"><span v-html="item.intro"></span></h4>
               <router-link :to="'/posts/'+item.slug">Continuar leyendo</router-link>
             </div>
@@ -201,8 +203,10 @@
         <div class="content">
           <div class="columns">
             <div v-for="(item, index) in posts.lower" class="column is-one-quarter">
+              <router-link :to="'/posts/'+item.slug">
+                <div class="item-pic" :style="'background-image: url('+item.picture+')'"></div>
+              </router-link>
               <h2 v-if="item.title && item.title.length"><span v-html="item.title"></span></h2>
-              <div class="item-pic" :style="'background-image: url('+item.picture+')'"></div>
               <h4 v-if="item.intro && item.intro.length"><span v-html="item.intro"></span></h4>
               <router-link :to="'/posts/'+item.slug">Continuar leyendo</router-link>
             </div>
