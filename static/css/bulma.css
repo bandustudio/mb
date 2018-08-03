@@ -2424,11 +2424,11 @@ a.box:active {
 }
 
 .button.is-medium {
-  font-size: 1.25rem;
+  font-size: 1rem;
 }
 
 .button.is-large {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
 }
 
 .button[disabled] {

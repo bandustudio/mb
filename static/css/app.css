@@ -1335,6 +1335,10 @@ a:hover {
   height: 400px
 }
 
+.dealers {
+  background-color: white;
+}
+
 #dealer_map {
   display: inline-block;
   width: 100%;
@@ -1964,6 +1968,19 @@ a:hover {
 }
 
 @media screen and (max-width: 768px) {
+  
+  .hero__heading {
+    padding-top: 10px;
+  }
+
+  .hero__heading h1 span {
+    font-size: 32px;
+  }
+
+  .hero__heading h4 span {
+    font-size: 20px;
+  }  
+
   .inline-background {
     height: 200px;
   }
@@ -2040,6 +2057,10 @@ a:hover {
 }
 
 @media screen and (max-width: 440px) {
+  .hero__heading {
+    padding: 0;
+  }
+
   .container .rounded-button + .rounded-button {
     margin-left: 0;
   }
