@@ -39,7 +39,7 @@ const Splash = {
             accessibility: true,
             adaptiveHeight: true
           }).addClass('fadeIn')
-          $('.slick-pane').css({'max-height':($(window).height()-$('.navbar').height())+'px'})
+          //$('.slick-pane').css({'max-height':($(window).height()-$('.navbar').height())+'px'})
         },100);
       }, function(error){
         console.log(error.statusText)

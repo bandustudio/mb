@@ -841,7 +841,11 @@ body {
   }  
 
   .is-spaced-desktop {
-    padding: 2rem 0;
+    padding: 3rem 0;
+  }
+
+  .is-striped .column {
+    min-height: 350px;
   }
 }
 
@@ -867,9 +871,9 @@ body {
   top: 5px;
 }
 
-
-.navbar-burger span:nth-child(2) {
-  width: 12px;
+.navbar-burger span {
+  border-radius: 2px;
+  height: 3px;
 }
 
 .navbar-burger span:last-child {
@@ -878,7 +882,7 @@ body {
   position: relative!important;
   left: 40px !important;
   top: 16px !important;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 400;
 }
 
@@ -1927,10 +1931,6 @@ a:hover {
   font-size: 25px;
   font-weight: 500;
   font-style: italic;  
-}
-
-.is-striped .column {
-  min-height: 350px;
 }
 
 .is-striped .column:nth-child(2n+2){

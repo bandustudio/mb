@@ -170,7 +170,7 @@
       <div v-if="posts.body" class="container is-striped is-spaced-desktop">
         <div class="content">
           <div class="columns">
-            <div v-for="(item, index) in posts.body" class="column is-one-quarter">
+            <div v-for="(item, index) in posts.body" class="column is-half">
               <h2 v-if="item.title && item.title.length"><span v-html="item.title"></span></h2>
               <div class="item-pic" :style="'background-image: url('+item.picture+')'"></div>
               <h4 v-if="item.intro && item.intro.length"><span v-html="item.intro"></span></h4>
@@ -187,7 +187,7 @@
             <h4 v-if="item.intro && item.intro.length"><span v-html="item.intro"></span></h4>
             <router-link class="button is-white is-medium" :to="'/posts/'+item.slug" tag="a">Continuar leyendo</router-link>
           </div>
-        </div>   
+        </div>
         <div class="slick-pane has-text-right" v-if="index%2===0" :style="'background-image:url(' + item.picture + ')'">
           <div class="hero__heading">
             <h1 v-if="item.title && item.title.length"><span v-html="item.title"></span></h1>
@@ -196,6 +196,19 @@
           </div>
         </div>
       </div>
+
+      <div v-if="posts.lower" class="container is-striped is-spaced-desktop">
+        <div class="content">
+          <div class="columns">
+            <div v-for="(item, index) in posts.lower" class="column is-one-quarter">
+              <h2 v-if="item.title && item.title.length"><span v-html="item.title"></span></h2>
+              <div class="item-pic" :style="'background-image: url('+item.picture+')'"></div>
+              <h4 v-if="item.intro && item.intro.length"><span v-html="item.intro"></span></h4>
+              <router-link :to="'/posts/'+item.slug">Continuar leyendo</router-link>
+            </div>
+          </div>
+        </div>
+      </div>      
     </div>
   </script>
   
