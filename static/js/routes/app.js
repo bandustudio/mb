@@ -57,7 +57,7 @@ const Splash = {
           fade: true,
           cssEase: 'linear'
         }).addClass('fadeIn')
-        $('.slick-pane').css({'min-height':($(window).height()-$('.navbar').height())+'px'})
+        //$('.slick-pane').css({'min-height':($(window).height()-$('.navbar').height())+'px'})
       },100)
     }
   },
