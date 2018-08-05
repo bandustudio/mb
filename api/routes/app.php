@@ -23,6 +23,83 @@ use App\ThemeSection;
 $app->group('/v1', function() {
     $this->group('/app', function() {
 
+        $this->post("/subnav", function ($request, $response, $arguments) {
+
+            $featured = [];
+            $services = [];
+            $dealers = [];
+            
+            $items = $this->spot->mapper("App\Product")
+                ->where(['enabled' => 1])
+                ->order(['title' => "ASC"]);
+
+            $featured_row_count = 4;
+
+            // featured
+            foreach($items as $item){
+                if($item->type->title){
+                    if(!isset($featured[strtolower($item->type->title)])) $featured[strtolower($item->type->title)] = [];
+
+                    if(count($featured[strtolower($item->type->title)]) <= $featured_row_count){
+                        $featured[strtolower($item->type->title)][] = (object) [
+                            'title' => $item->title,
+                            'intro' => $item->intro?:\words($item->content,20),
+                            'slug' => $item->title_slug,
+                            'pic' => \subpic('200x140',$item->pic1_url)
+                        ];
+                    }
+                }
+            }  
+
+            // services
+            $_services = $this->spot->mapper("App\Service")
+                ->where(['enabled' => 1])
+                ->order(['created' => 'DESC'])
+                ->limit(1000);
+
+                $services=[];
+            foreach($_services as $item){
+                $services[$item->title_slug] = (object) [
+                    'id' => $item->id,
+                    'title' => $item->title,
+                    'intro' => $item->intro,
+                    'content' => $item->content_html,
+                    'slug' => $item->title_slug,
+                    'picture' => $item->pic1_url,
+                    'pic_on' => $item->pic_on_url,
+                    'pic_off' => $item->pic_off_url
+                ];
+            }
+
+
+            // dealers
+            $_dealers = $this->spot->mapper("App\Dealer")
+                ->where(['enabled' => 1])
+                ->order(['created' => 'DESC'])
+                ->limit(1000);
+
+                $dealers=[];
+            foreach($_dealers as $item){
+                $dealers[] = (object) [
+                    'id' => $item->id,
+                    'title' => $item->title,
+                    'lat' => (float) $item->lat,
+                    'lng' => (float) $item->lng,
+                    'slug' => $item->title_slug,
+                    'address' => $item->address,
+                    'vicinity' => $item->vicinity,
+                    'administrative_area_level_1' => $item->administrative_area_level_1,
+                    'formatted_address' => $item->formatted_address,
+                    'pic' => \subpic('640x480',$item->pic1_url)
+                ];
+            }
+
+            $data = (object) ['featured' => $featured,'services' => $services,'dealers' => $dealers];
+            return $response->withStatus(200)
+                ->withHeader("Content-Type", "application/json")
+                ->write(json_encode($data));
+        });
+
         $this->post("/dealers", function ($request, $response, $arguments) {
             $body = $request->getParsedBody();
 

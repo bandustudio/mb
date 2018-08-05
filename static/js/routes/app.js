@@ -1,53 +1,15 @@
-var cache = {}
-
 const Splash = {
   template: '#splash',
-  created: function() {
-    /*
-    if(!cache.products){
-      this.$http.post(helper.getAttributes($('html')).endpoint + '/app/products', {}, {emulateJSON:true}).then(function(res){
-        this.products = res.data.data
-        cache.products = this.products
-      }, function(error){
-        console.log(error.statusText)
-      })
-    }*/
-
-    if(!cache.posts){
-      cache.creating = 1
-      this.$http.post(helper.getAttributes($('html')).endpoint + '/app/posts', {}, {emulateJSON:true}).then(function(res){
-        var data = res.data.data
-        var posts = []
-        data.forEach(function(post){
-          if(!posts[post.position]) posts[post.position] = []
-          posts[post.position].push(post)
-        })
-
-        this.posts = posts
-        cache.posts = this.posts
-        setTimeout(function(){
-          $('.slick').on('init', function(event, slick, currentSlide, nextSlide){
-            cache.creating = 0
-          });
-          $('.slick').slick({
-            dots: true,
-            arrows:true,
-            infinite: true,
-            speed: 500,
-            fade: true,
-            cssEase: 'linear',
-            accessibility: true,
-            adaptiveHeight: true
-          }).addClass('fadeIn')
-          //$('.slick-pane').css({'max-height':($(window).height()-$('.navbar').height())+'px'})
-        },100);
-      }, function(error){
-        console.log(error.statusText)
-      })
-    }
-  },
   mounted: function(){
-    if(!cache.creating){
+    this.$http.post(helper.getAttributes($('html')).endpoint + '/app/posts', {}, {emulateJSON:true}).then(function(res){
+      var data = res.data.data
+      var posts = []
+      data.forEach(function(post){
+        if(!posts[post.position]) posts[post.position] = []
+        posts[post.position].push(post)
+      })
+
+      this.posts = posts
       setTimeout(function(){
         $('.slick').slick({
           dots: true,
@@ -55,64 +17,66 @@ const Splash = {
           infinite: true,
           speed: 500,
           fade: true,
-          cssEase: 'linear'
+          cssEase: 'linear',
+          accessibility: true,
+          adaptiveHeight: true
         }).addClass('fadeIn')
-        //$('.slick-pane').css({'min-height':($(window).height()-$('.navbar').height())+'px'})
-      },100)
-    }
+        //$('.slick-pane').css({'max-height':($(window).height()-$('.navbar').height())+'px'})
+      },100);
+    }, function(error){
+      console.log(error.statusText)
+    })
   },
   data: function() {
     return{
-      products:cache.products||{},
-      posts:cache.posts||{},
+      products:{},
+      posts:{},
       filters : helper.filters,
       settings: helper.getAttributes($('html'))
     }
   }  
 };
 
-const markerContent = Vue.extend({
-  template: '<div class="marker-content"></div>',
-  computed: {
-    someVuexData() {
-      return this.$store.getters.someVuexData;
-    }
-  }
-});
-
 const Dealers = {
   template: '#dealers',
-  mounted: function() {
-    $('.section, #map').css({'height':($(window).height()-$('.navbar').height() - 100)+'px'})
-    this.title = this.$route.params.slug||"Nuestras sucursales"
-    this.dealers = layout.dealers
-
-    mapboxgl.accessToken = helper.mapbox.accessToken
-    this.map = new mapboxgl.Map({
-      container: 'map',
-      style: helper.mapbox.style 
-    });        
-
-    var bounds = new mapboxgl.LngLatBounds();
-
-    for(var i in this.dealers){
-      var p = this.dealers[i]
-      if(p.lat && p.lng){
-        var popup = new mapboxgl.Popup()
-          .setHTML($.templates('#map_info').render(p))
-
-        var marker = new mapboxgl.Marker()
-          .setLngLat([p.lng,p.lat])
-          .setPopup(popup)
-          .addTo(this.map);
-
-        bounds.extend([p.lng,p.lat]);
-      }
-    }
-
-    this.map.fitBounds(bounds, { padding: 50 })
+  mounted: function(){
+    this.$http.post(helper.getAttributes($('html')).endpoint + '/app/dealers', {}, {emulateJSON:true}).then(function(res){
+      this.dealers = res.data.data
+      this.title = this.$route.params.slug||"Nuestras sucursales"
+      this.initMap()
+    })
   },
   methods: {
+    initMap : function(){
+
+      console.log(this.dealers)
+      $('.section, #map').css({'height':($(window).height()-$('.navbar').height() - 100)+'px'})
+
+      mapboxgl.accessToken = helper.mapbox.accessToken
+      this.map = new mapboxgl.Map({
+        container: 'map',
+        style: helper.mapbox.style 
+      });        
+
+      var bounds = new mapboxgl.LngLatBounds();
+
+      for(var i in this.dealers){
+        var p = this.dealers[i]
+        if(p.lat && p.lng){
+          var popup = new mapboxgl.Popup()
+            .setHTML($.templates('#map_info').render(p))
+
+          var marker = new mapboxgl.Marker()
+            .setLngLat([p.lng,p.lat])
+            .setPopup(popup)
+            .addTo(this.map);
+
+          bounds.extend([p.lng,p.lat]);
+        }
+      }
+
+      this.map.fitBounds(bounds, { padding: 50 })    
+    },
     flyTo(feature){
       this.map.flyTo({
         center: [
@@ -169,7 +133,7 @@ const Dealer = {
 const Services = {
   template: '#services',
   mounted: function() {
-    this.services = layout.services
+    this.services = cache.services
   },
   data: function() {
     return{
@@ -183,7 +147,7 @@ const Services = {
 const Service = {
   template: '#service',
   mounted : function(){
-    this.data = layout.services[this.$route.params.slug]||{}
+    this.data = cache.services[this.$route.params.slug]||{}
   },
   data: function() {
     return{
@@ -220,7 +184,7 @@ const Product = {
   mounted : function(){
     helper.collect('lead');
     helper.is_loading()
-    this.dealers = layout.dealers
+    this.dealers = cache.subnav.dealers
     this.$http.post(helper.getAttributes($('html')).endpoint + '/app'+location.pathname, {}, {emulateJSON:true}).then(function(res){
       this.data = res.data.data
       helper.is_loaded()
@@ -438,6 +402,66 @@ router.afterEach(function (to, from, next) {
 
 const app = new Vue({ router: router,
   created: function () {
+    $.post(helper.getAttributes($('html')).endpoint + '/app/subnav',function(res){
+      cache.subnav = res
+      $('.subnav').html($.templates('#subnav').render(res))  
+      $('.navbar-end').prepend($.templates('#navitems').render(res))  
+
+      $('.is-cat-link').hover(function(){
+        var visible = $('.is-cat').is(':visible')
+        $('.is-cat').css({display:'none'})
+        if(location.pathname!=$(this).attr('href')){
+          $('.is-cat-' + $(this).attr('cat')).fadeIn('fast')
+        }
+      },function(){
+      });
+
+      $('.is-cat').hover(function(){
+      },function(){
+        $(this).slideUp('fast')
+      });  
+
+      $('.is-cat-services .item-pic').hover(function(){
+        $(this).css('background-image','url('+$(this).attr('pic-on')+')')
+      },function(){
+        $(this).css('background-image','url('+$(this).attr('pic-off')+')')
+      })
+
+    })      
     $('.hidden-loading').removeClass('hidden-loading')
+  },
+  mounted : function(){
+    window.addEventListener('click', event => {
+      const { target } = event
+      // handle only links that do not reference external resources
+      if (target && target.matches("a:not([href*='://'])") && target.href) {
+        // some sanity checks taken from vue-router:
+        // https://github.com/vuejs/vue-router/blob/dev/src/components/link.js#L106
+        const { altKey, ctrlKey, metaKey, shiftKey, button, defaultPrevented } = event
+        // don't handle with control keys
+        if (metaKey || altKey || ctrlKey || shiftKey) return
+        // don't handle when preventDefault called
+        if (defaultPrevented) return
+        // don't handle right clicks
+        if (button !== undefined && button !== 0) return
+        // don't handle if `target="_blank"`
+        if (target && target.getAttribute) {
+          const linkTarget = target.getAttribute('target')
+          if (/\b_blank\b/i.test(linkTarget)) return
+        }
+        // don't handle same page links/anchors
+        const url = new URL(target.href)
+        const to = url.pathname
+        if (window.location.pathname !== to && event.preventDefault) {
+          event.preventDefault()
+          this.$router.push(to)
+        }
+
+        event.preventDefault()
+        return false
+      }
+    })    
   }
 }).$mount('#app');
+
+var cache = {}

@@ -32,8 +32,9 @@ $container['view'] = function ($c) {
     $share_title = getenv('APP_TITLE');
     $share_text = getenv('APP_TEXT');
     $share_pic = getenv('APP_PIC');
-    $pic = null;
+    $share = null;
 
+    // social networks
     if($uriparts[0]==='posts'){
         $share = $c['spot']->mapper("App\Post")
             ->where(['title_slug' => $uriparts[1]])
@@ -46,83 +47,13 @@ $container['view'] = function ($c) {
             ->first();
     }
 
-    $items = $c['spot']->mapper("App\Product")
-        ->where(['enabled' => 1])
-        ->order(['title' => "ASC"]);
-
-    $featured_row_count = 4;
-
-    foreach($items as $item){
-        if($item->type->title){
-            if(!isset($featured[strtolower($item->type->title)])) $featured[strtolower($item->type->title)] = [];
-
-            if(count($featured[strtolower($item->type->title)]) <= $featured_row_count){
-                $featured[strtolower($item->type->title)][] = (object) [
-                    'title' => $item->title,
-                    'intro' => $item->intro?:\words($item->content,20),
-                    'slug' => $item->title_slug,
-                    'pic' => \subpic('200x140',$item->pic1_url)
-                ];
-            }
-        }
-    }
-
     if($share){
         $share_title = $share->title;
         $share_text = $share->intro;
-        $pic = $share->picshare_url?:$share->pic1_url;
-    }
-
-    if($pic){
-        $share_pic = \subpic('640x480',$pic);
-    }
-
-    // dealers
-    $_dealers = $c['spot']->mapper("App\Dealer")
-        ->where(['enabled' => 1])
-        ->order(['created' => 'DESC'])
-        ->limit(1000);
-
-        $dealers=[];
-    foreach($_dealers as $item){
-        $dealers[] = (object) [
-            'id' => $item->id,
-            'title' => $item->title,
-            'lat' => (float) $item->lat,
-            'lng' => (float) $item->lng,
-            'slug' => $item->title_slug,
-            'address' => $item->address,
-            'vicinity' => $item->vicinity,
-            'administrative_area_level_1' => $item->administrative_area_level_1,
-            'formatted_address' => $item->formatted_address,
-            'pic' => \subpic('640x480',$item->pic1_url)
-        ];
-    }
-
-    // services
-    $_services = $c['spot']->mapper("App\Service")
-        ->where(['enabled' => 1])
-        ->order(['created' => 'DESC'])
-        ->limit(1000);
-
-        $services=[];
-    foreach($_services as $item){
-        $services[$item->title_slug] = (object) [
-            'id' => $item->id,
-            'title' => $item->title,
-            'intro' => $item->intro,
-            'content' => $item->content_html,
-            'slug' => $item->title_slug,
-            'picture' => $item->pic1_url,
-            'pic_on' => $item->pic_on_url,
-            'pic_off' => $item->pic_off_url
-        ];
+        $share_pic = $share->picture;        
     }
 
     $view->offsetSet('params', $_REQUEST?:false);
-    $view->offsetSet('featured', $featured);
-    $view->offsetSet('services', $services);
-    $view->offsetSet('layout', json_encode((object)['dealers' => $dealers,'services' => $services]));
     $view->offsetSet('rev_parse', substr(exec('git rev-parse HEAD'),0,7));
     $view->offsetSet('localhost', ($_SERVER['REMOTE_ADDR'] == "127.0.0.1"));
     $view->offsetSet('share_title', $share_title);

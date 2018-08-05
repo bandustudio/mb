@@ -52,10 +52,6 @@
     gtag('js', new Date());
     gtag('config', 'UA-118678125-1');
   </script-->
-
-  <script>
-  var layout = {{ layout|raw }}
-  </script>
 </head>
 <body>
   <div id="app">
@@ -75,20 +71,16 @@
 
       <div class="navbar-menu" id="navMenu">
         <div class="navbar-end">
-        {% for cat,items in featured %}
-          <router-link to="/products/{{ cat }}" class="navbar-item is-capitalized is-cat-link" cat="{{ cat }}" active-class="active" tag="a">{{ cat }}</router-link>
-        {% endfor %}
-
-          <router-link to="/services" active-class="active" class="navbar-item is-capitalized is-cat-link" cat="services" tag="a">
+          <router-link to="/services" active-class="active" class="navbar-item is-cat-link" cat="services" tag="a">
             <span>Servicios</span>
+          </router-link>
+          <router-link to="/dealers" active-class="active" class="navbar-item is-cat-link" cat="dealers" tag="a">
+            <!--span class="fa fa-map-marker"></span-->
+            <span>Sucursales</span>
           </router-link>
           <router-link to="/call" active-class="active" class="navbar-item" tag="a">
             <!--span class="fa fa-comment"></span-->
             <span>Atención</span>
-          </router-link>
-          <router-link to="/dealers" active-class="active" class="navbar-item" tag="a">
-            <!--span class="fa fa-map-marker"></span-->
-            <span>Sucursales</span>
           </router-link>
           <!--router-link to="/tos" active-class="active" class="navbar-item" tag="a">Términos</router-link-->
         </div>
@@ -99,50 +91,10 @@
       </div>
     </nav>
 
-    <div class="subnav">
-    {% for cat,items in featured %}
-      <div class="container is-striped is-spaced-desktop is-cat is-cat-{{ cat }}">
-        <h1 class="is-capitalized">{{ cat }}</h1>
-        <div class="columns">
-        {% for item in items %}
-          <div class="column is-one-quarter">
-            <router-link to="/{{item.slug}}" tag="a">
-            <div class="item-pic" style="background-image: url({{item.pic}})"></div>
-            </router-link>
-            <h2><span>{{ item.title }}</span></h2>
-            <h4><span>{{ item.intro }}</span></h4>
-            <router-link to="/{{item.slug}}" tag="a">Explorar</router-link>
-          </div>
-        {% endfor %}
-        </div>
-        <p>
-          <router-link to="/products/{{ cat }}" tag="a">Explorar <span class="is-capitalized">{{ cat }}</span></router-link>&nbsp;&nbsp;
-          <router-link to="/products" tag="a">Explorar todo</router-link>
-        </p>
-      </div>
-    {% endfor %}
-
-      <div class="container is-striped is-spaced-desktop is-cat is-cat-services">
-        <h1 class="is-capitalized">Servicios</h1>
-        <div class="columns">
-        {% for item in services %}
-          <div class="column is-one-quarter">
-            <router-link to="/services/{{item.slug}}" tag="a">
-            <div class="item-pic" pic-on="{{item.pic_on|raw}}" pic-off="{{item.pic_off|raw}}" style="background-image: url({{item.pic_off|raw}})"></div>
-            </router-link>
-            <h2><span>{{ item.title }}</span></h2>
-            <h4><span>{{ item.intro }}</span></h4>
-            <router-link to="/services/{{item.slug}}" tag="a">Explorar</router-link>
-          </div>
-        {% endfor %}
-        </div>
-        <p>
-          <router-link to="/services" tag="a">Explorar todo</router-link>
-        </p>
-      </div>
-    </div>
-
- 		<router-view :key="$route.fullPath"><div class="spinner-outer fadeIn"><div class="spinner" data-layer="4"><div class="spinner-container"><div class="spinner-rotator"><div class="spinner-left"><div class="spinner-circle"></div></div><div class="spinner-right"><div class="spinner-circle"></div></div></div></div><div class="spinner-message">Si la aplicación no empieza en breve, prueba a reiniciar el dispositivo.</div></div></div></router-view>
+    <div class="subnav"></div>
+    <keep-alive>
+      <router-view :key="$route.fullPath"><div class="spinner-outer fadeIn"><div class="spinner" data-layer="4"><div class="spinner-container"><div class="spinner-rotator"><div class="spinner-left"><div class="spinner-circle"></div></div><div class="spinner-right"><div class="spinner-circle"></div></div></div></div><div class="spinner-message">Si la aplicación no empieza en breve, prueba a reiniciar el dispositivo.</div></div></div></router-view>
+    </keep-alive>
 
     <div class="footer__partners hidden-loading fadeIn">
       <div class="footer__partners--row">
@@ -233,68 +185,25 @@
         <div class="notification is-warning">
           <button class="delete"></button>
           Consulta recibida. Nos pondremos en contacto en cuanto nos sea posible. Muchas gracias por su tiempo.
-        </div>            
-      </div>
-      <div class="container has-text-centered lead" ajax-prefix="app">
-        <div class="rounded">
-          <div class="badge">
-            <div :style="'background-image:url(' + data.picture + ')'"></div>
-          </div>
-          <h2>Estoy interesado</h2>
-          <p>Quiero que me contacten por <em v-html="data.title"></em></p>
-
+        </div>
+        
+        <div class="container">
+          <h2>Opciones para este producto</h2>
           <div class="columns">
-            <div class="column">
-              <p class="control is-expanded has-icons-left">
-                <input class="input rounded-input is-medium" type="text" name="full_name" v-model="lead.full_name" placeholder="Nombre" autofocus>
-                <span class="icon is-medium is-left">
-                  <i class="fas fa-user"></i>
-                </span>
-              </p>
+            <div class="column button is-large" @click="prodOption('testdrive')">
+              Test Drive
             </div>
-            <div class="column">
-              <p class="control is-expanded has-icons-left has-icons-right">
-                <input class="input rounded-input is-medium is-success" name="email" type="email" v-model="lead.email" placeholder="Email">
-                <span class="icon is-medium is-left">
-                  <i class="fas fa-envelope"></i>
-                </span>
-                <!--span class="icon is-medium is-right">
-                  <i class="fas fa-check"></i>
-                </span-->
-              </p>
+            <div class="column button is-large" @click="prodOption('respuestos')">
+              Repuestos
             </div>
-            <div class="column">
-              <p class="control is-expanded has-icons-left">
-                <input class="input rounded-input is-medium" type="tel" name="tel" v-model="lead.tel" placeholder="Teléfono">
-                <span class="icon is-medium is-left">
-                  <i class="fas fa-phone"></i>
-                </span>
-              </p>
+            <div class="column button is-large" @click="prodOption('seguro')">
+              Seguro
+            </div>
+            <div class="column button is-large" @click="prodOption('accesorios')">
+              Accesorios
             </div>
           </div>
-          <div class="columns">
-            <div class="column is-one-third">
-              <div class="control">
-                <div class="select rounded-select is-medium is-fullwidth">
-                  <select name="dealer_id" v-model="lead.dealer_id">
-                    <option value="" selected>Sucursal</option>
-                    <option v-for="dealer in dealers" :value="dealer.id" v-html="dealer.formatted_address"></option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <div class="column">
-              <div class="control">
-                <textarea name="comment" class="textarea rounded-input" v-model="lead.comment" placeholder="Explain how we can help you"></textarea>
-              </div>
-            </div>
-          </div>
-          <div class="container has-text-centered">
-            <a class="button rounded-button is-success disabled submitable" v-on:click="consultar()" disabled>
-              Enviar 
-            </a>
-          </div>
-        </div>        
+        </div>
       </div>
     </div>
   </script>
@@ -344,10 +253,9 @@
           <div class="dealers">
             <div v-for="dealer, index in dealers" class="dealer">
               <h4 v-html="dealer.title"></h4>
-              <a href="#" @click="flyTo(dealer)">
               <p v-html="dealer.formatted_address"></p>
-              </a>
               <p><em v-if="dealer.vicinity" v-html="dealer.vicinity"></em> <em v-if="dealer.administrative_area_level_1" v-html="dealer.administrative_area_level_1"></em></p>
+              <a @click="flyTo(dealer)">Mostrar</a>&nbsp;
               <router-link :to="'/dealers/'+dealer.slug">Explorar</router-link>
             </div>
           </div>
@@ -603,11 +511,178 @@
     </div>
   </script>
 
+  <script type="text/x-jsrender" id="navitems">
+    [[props featured]]
+      <a href="/products/[[>key]]" class="navbar-item is-capitalized is-cat-link" cat="[[>key]]" active-class="active">[[>key]]</a>
+    [[/props]]
+  </script>
+
+  <script type="text/x-jsrender" id="subnav">
+    [[props featured]]
+      <div class="container is-striped is-spaced-desktop is-cat is-cat-[[>key]]">
+        <h1 class="is-capitalized">[[>key]]</h1>
+        <div class="columns">
+        [[for prop]]
+          <div class="column is-one-quarter">
+            <a href="/[[:slug]]">
+            <div class="item-pic" style="background-image: url([[:pic]])"></div>
+            </a>
+            <h2><span>[[:title]]</span></h2>
+            <h4><span>[[:intro]]</span></h4>
+            <a href="/[[:slug]]">Explorar</a>
+          </div>
+        [[/for]]
+        </div>
+        <p>
+          <a href="/products/[[>key]]" tag="a">Explorar <span class="is-capitalized">[[>key]]</span></a>&nbsp;&nbsp;
+          <a href="/products" tag="a">Explorar todo</a>
+        </p>
+      </div>
+    [[/props]]
+      <div class="container is-striped is-spaced-desktop is-cat is-cat-services">
+        <h1 class="is-capitalized">Servicios</h1>
+        <div class="columns">
+        [[props services]]
+          <div class="column is-one-quarter">
+            <a href="/services/[[>key]]">
+            <div class="item-pic" pic-on="[[:prop.pic_on]]" pic-off="[[:prop.pic_off]]" style="background-image: url([[:prop.pic_off]])"></div>
+            </a>
+            <h2><span>[[:prop.title]]</span></h2>
+            <h4><span>[[:prop.intro]]</span></h4>
+            <a href="/services/[[:prop.slug]]">Explorar</a>
+          </div>
+        [[/props]]
+        </div>
+        <p>
+          <a href="/services" tag="a">Explorar todo</a>
+        </p>
+      </div>      
+      <div class="container is-striped is-spaced-desktop is-cat is-cat-dealers">
+        <h1 class="is-capitalized">Sucursales</h1>
+        <div class="columns">
+        [[for dealers]]
+          <div class="column is-one-quarter">
+            <a href="/dealers/[[:slug]]">
+            <div class="item-pic" style="background-image: url([[:pic]])"></div>
+            </a>
+            <h2><span>[[:title]]</span></h2>
+            <h4><span>[[:intro]]</span></h4>
+            <a href="/dealers/[[:slug]]">Explorar</a>
+          </div>
+        [[/for]]
+        </div>
+        <p>
+          <a href="/dealers">Explorar todo</a>
+        </p>
+      </div>         
+  </script>
+
   <script type="text/x-jsrender" id="breadcrumb">
     <span class="icon has-text-success">
       <i class="fas fa-[[:icon]]"></i>
     </span>&nbsp;
     <a>[[:name]]</a>
+  </script>
+  
+  <script type="text/x-jsrender" id="product_repuestos">
+    <div class="container has-text-centered lead" ajax-prefix="app">
+      <div class="rounded">
+        <div class="badge">
+          <div style="background-image:url([[:picture]])"></div>
+        </div>
+        <h2>Quiero solicitar Respuestos para</h2>
+        <h4><em>[[:title]]</em></h4>
+      </div>
+    </div>  
+  </script>
+
+  <script type="text/x-jsrender" id="product_accesorios">
+    <div class="container has-text-centered lead" ajax-prefix="app">
+      <div class="rounded">
+        <div class="badge">
+          <div style="background-image:url([[:picture]])"></div>
+        </div>
+        <h2>Quiero solicitar un Test Drive para</h2>
+        <h4><em>[[:title]]</em></h4>
+      </div>
+    </div>  
+  </script>
+
+  <script type="text/x-jsrender" id="product_seguros">
+    <div class="container has-text-centered lead" ajax-prefix="app">
+      <div class="rounded">
+        <div class="badge">
+          <div style="background-image:url([[:picture]])"></div>
+        </div>
+        <h2>Quiero solicitar un Test Drive para</h2>
+        <h4><em>[[:title]]</em></h4>
+      </div>
+    </div>
+  </script>
+
+  <script type="text/x-jsrender" id="product_testdrive">
+    <div class="container has-text-centered lead" ajax-prefix="app">
+      <div class="rounded">
+        <div class="badge">
+          <div style="background-image:url([[:picture]])"></div>
+        </div>
+        <h2>Quiero solicitar un Test Drive para</h2>
+        <h4><em>[[:title]]</em></h4>
+        <div class="columns">
+          <div class="column">
+            <p class="control is-expanded has-icons-left">
+              <input class="input rounded-input is-medium" type="text" name="full_name" v-model="lead.full_name" placeholder="Nombre" autofocus>
+              <span class="icon is-medium is-left">
+                <i class="fas fa-user"></i>
+              </span>
+            </p>
+          </div>
+          <div class="column">
+            <p class="control is-expanded has-icons-left has-icons-right">
+              <input class="input rounded-input is-medium is-success" name="email" type="email" v-model="lead.email" placeholder="Email">
+              <span class="icon is-medium is-left">
+                <i class="fas fa-envelope"></i>
+              </span>
+              <!--span class="icon is-medium is-right">
+                <i class="fas fa-check"></i>
+              </span-->
+            </p>
+          </div>
+          <div class="column">
+            <p class="control is-expanded has-icons-left">
+              <input class="input rounded-input is-medium" type="tel" name="tel" v-model="lead.tel" placeholder="Teléfono">
+              <span class="icon is-medium is-left">
+                <i class="fas fa-phone"></i>
+              </span>
+            </p>
+          </div>
+        </div>
+        <div class="columns">
+          <div class="column is-one-third">
+            <div class="control">
+              <div class="select rounded-select is-medium is-fullwidth">
+                <select name="dealer_id" v-model="lead.dealer_id">
+                  <option value="" selected>Sucursal</option>
+                  [[for dealers]]
+                  <option value="[[:id]]">[[:formatted_address]]</option>
+                  [[/for]]
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="control">
+              <textarea name="comment" class="textarea rounded-input" v-model="lead.comment" placeholder="Explain how we can help you"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="container has-text-centered">
+          <a class="button rounded-button is-success disabled submitable" v-on:click="consultar()" disabled>
+            Enviar 
+          </a>
+        </div>
+      </div>        
+    </div>  
   </script>
 
   <script type="text/x-jsrender" id="map_info">

@@ -487,26 +487,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  $('.is-cat-link').hover(function(){
-    var visible = $('.is-cat').is(':visible')
-    $('.is-cat').css({display:'none'})
-    console.log($('.is-cat-' + $(this).attr('cat')))
-    if(location.pathname!=$(this).attr('href')){
-      $('.is-cat-' + $(this).attr('cat')).fadeIn('fast')
-    }
-  },function(){
-  });
 
-  $('.is-cat').hover(function(){
-  },function(){
-    $(this).slideUp('fast')
-  });  
-
-  $('.is-cat-services .item-pic').hover(function(){
-    $(this).css('background-image','url('+$(this).attr('pic-on')+')')
-  },function(){
-    $(this).css('background-image','url('+$(this).attr('pic-off')+')')
-  })
 });
 
 $.extend({
