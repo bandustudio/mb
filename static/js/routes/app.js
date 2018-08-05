@@ -6,13 +6,6 @@ const Splash = {
     } else {
       this.$http.post(helper.getAttributes($('html')).endpoint + '/app/services', {}, {emulateJSON:true}).then(function(res){
         this.services = res.data.data
-        setTimeout(function(){
-          $('.services .item-pic').hover(function(){
-            $(this).css('background-image','url('+$(this).attr('pic-on')+')')
-          },function(){
-            $(this).css('background-image','url('+$(this).attr('pic-off')+')')
-          })
-        },500)
       }, function(error){
         console.log(error.statusText)
       })
@@ -38,6 +31,11 @@ const Splash = {
           accessibility: true,
           adaptiveHeight: true
         }).addClass('fadeIn')
+        $('.services .item-pic').hover(function(){
+          $(this).css('background-image','url('+$(this).attr('pic-on')+')')
+        },function(){
+          $(this).css('background-image','url('+$(this).attr('pic-off')+')')
+        })
         //$('.slick-pane').css({'max-height':($(window).height()-$('.navbar').height())+'px'})
       },100);
     }, function(error){
@@ -159,6 +157,13 @@ const Services = {
         console.log(error.statusText)
       })  
     }
+    setTimeout(function(){
+      $('.services .item-pic').hover(function(){
+        $(this).css('background-image','url('+$(this).attr('pic-on')+')')
+      },function(){
+        $(this).css('background-image','url('+$(this).attr('pic-off')+')')
+      })
+    },200)        
   },
   data: function() {
     return{

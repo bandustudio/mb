@@ -493,7 +493,7 @@ body {
   width:200%;
   height:100%;
   border-style:solid;
-  border-color:#f1f1f1 #f1f1f1 transparent;
+  border-color:#333 #333 transparent;
   border-radius:50%;
   border-width:6px
 }
@@ -1952,7 +1952,7 @@ a:hover {
 }
 
 .is-striped .column:nth-child(2n+2){
-  border-radius: 5px;
+  /*border-radius: 5px;*/
   background-color: #f9f9f9;
 }
 
