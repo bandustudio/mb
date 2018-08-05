@@ -442,7 +442,6 @@ $(document).on('unfocus blur','.sugest',function(e){
 $(document).on('click','.sugest-setv',function(e){
   e.preventDefault()
   var $v = $(this).text()
-  console.log($v)
   var $p = $(this).parents('.sugest')
   $p.prev().val($v)
   $p.fadeOut('fast',function(){

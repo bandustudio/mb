@@ -758,8 +758,8 @@ body {
   margin-right: auto;
   background-image: url(/img/índice.jpeg);
   background-repeat: no-repeat;
-  background-position: left 9px;
-  background-size: 100px;
+  background-position: 30px 15px;
+  background-size: 90px;
   min-height: 3.95rem;
 }
 
@@ -846,8 +846,12 @@ body {
   }
 
   .is-striped .column {
-    min-height: 200px;
+    min-height: 350px;
   }
+
+  .is-cat .column {
+    min-height: 200px!important;
+  }  
 }
 
 .navbar-menu .navbar-item {
