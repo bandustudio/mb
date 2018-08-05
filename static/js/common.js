@@ -367,6 +367,18 @@ $(document).keypress(function(e) {
   }
 })
 
+$(document).on('click','.modal-button',function(e){
+  $('html').addClass('is-clipped');
+  $('#'+$(this).data('target')).addClass('is-active');
+})
+
+$(document).on('click','.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button',function(e){
+  $('html').removeClass('is-clipped');
+  $('.modal').each(function () {
+    $(this).removeClass('is-active');
+  });
+})
+
 $(document).on('click','.rmver',function(e){
   e.preventDefault()
   var $t = $(this).parents($(this).attr('target'))
@@ -517,8 +529,6 @@ document.addEventListener('DOMContentLoaded', function () {
        
     });
   });
-
-
 });
 
 $.extend({
