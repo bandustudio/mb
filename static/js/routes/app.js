@@ -184,7 +184,6 @@ const Product = {
   mounted : function(){
     helper.collect('lead');
     helper.is_loading()
-    this.dealers = cache.subnav.dealers
     this.$http.post(helper.getAttributes($('html')).endpoint + '/app'+location.pathname, {}, {emulateJSON:true}).then(function(res){
       this.data = res.data.data
       helper.is_loaded()
@@ -429,12 +428,15 @@ const app = new Vue({ router: router,
 
     })      
     $('.hidden-loading').removeClass('hidden-loading')
-  },
+  }/*,
   mounted : function(){
     window.addEventListener('click', event => {
       const { target } = event
+      console.log("a")
+      console.log(target)
       // handle only links that do not reference external resources
       if (target && target.matches("a:not([href*='://'])") && target.href) {
+        console.log("b")
         // some sanity checks taken from vue-router:
         // https://github.com/vuejs/vue-router/blob/dev/src/components/link.js#L106
         const { altKey, ctrlKey, metaKey, shiftKey, button, defaultPrevented } = event
@@ -445,6 +447,7 @@ const app = new Vue({ router: router,
         // don't handle right clicks
         if (button !== undefined && button !== 0) return
         // don't handle if `target="_blank"`
+      console.log("2")
         if (target && target.getAttribute) {
           const linkTarget = target.getAttribute('target')
           if (/\b_blank\b/i.test(linkTarget)) return
@@ -452,16 +455,15 @@ const app = new Vue({ router: router,
         // don't handle same page links/anchors
         const url = new URL(target.href)
         const to = url.pathname
+        console.log("1")
         if (window.location.pathname !== to && event.preventDefault) {
+          console.log("link")
           event.preventDefault()
           this.$router.push(to)
         }
-
-        event.preventDefault()
-        return false
       }
     })    
-  }
+  }*/
 }).$mount('#app');
 
 var cache = {}
