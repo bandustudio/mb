@@ -80,6 +80,7 @@ class Product extends \Spot\Entity
             "id" => (integer) $entity->id ?: null,
             "title" => (string) $entity->title ?: "",
             "slug" => (string) $entity->title_slug ?: "",
+            "intro" => (string) $entity->intro ?: "",
             "content" => (string) $entity->content ?: "",
             "picshare_url" => (string) $entity->picshare_url ?: "",
             "background_url" => (string) $entity->background_url ?: "",

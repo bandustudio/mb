@@ -133,7 +133,17 @@ const Dealer = {
 const Services = {
   template: '#services',
   mounted: function() {
-    this.services = cache.services
+    if(cache.layout && cache.layout.services){
+      this.services = cache.layout.services
+    } else {
+      helper.is_loading()
+      this.$http.post(helper.getAttributes($('html')).endpoint + '/app'+location.pathname, {}, {emulateJSON:true}).then(function(res){
+        this.services = res.data.data
+        helper.is_loaded()
+      }, function(error){
+        console.log(error.statusText)
+      })  
+    }
   },
   data: function() {
     return{
@@ -147,7 +157,17 @@ const Services = {
 const Service = {
   template: '#service',
   mounted : function(){
-    this.data = cache.services[this.$route.params.slug]||{}
+    if(cache.layout && cache.layout.services){
+      this.data = cache.layout.services[this.$route.params.slug]||{}
+    } else {
+      helper.is_loading()
+      this.$http.post(helper.getAttributes($('html')).endpoint + '/app'+location.pathname, {}, {emulateJSON:true}).then(function(res){
+        this.data = res.data.data
+        helper.is_loaded()
+      }, function(error){
+        console.log(error.statusText)
+      })  
+    }    
   },
   data: function() {
     return{
@@ -402,7 +422,7 @@ router.afterEach(function (to, from, next) {
 const app = new Vue({ router: router,
   created: function () {
     $.post(helper.getAttributes($('html')).endpoint + '/app/subnav',function(res){
-      cache.subnav = res
+      cache.layout = res
       $('.subnav').html($.templates('#subnav').render(res))  
       $('.navbar-end').prepend($.templates('#navitems').render(res))  
 
@@ -465,5 +485,3 @@ const app = new Vue({ router: router,
     })    
   }*/
 }).$mount('#app');
-
-var cache = {}

@@ -519,7 +519,7 @@
 
   <script type="text/x-jsrender" id="subnav">
     [[props featured]]
-      <div class="container is-striped is-spaced-desktop is-cat is-cat-[[>key]]">
+      <div class="container is-striped is-cat is-cat-[[>key]]">
         <h1 class="is-capitalized">[[>key]]</h1>
         <div class="columns">
         [[for prop]]
@@ -528,7 +528,7 @@
             <div class="item-pic" style="background-image: url([[:pic]])"></div>
             </a>
             <h2><span>[[:title]]</span></h2>
-            <h4><span>[[:intro]]</span></h4>
+            <!--h4><span>[[:intro]]</span></h4-->
             <a href="/[[:slug]]">Explorar</a>
           </div>
         [[/for]]
@@ -539,7 +539,7 @@
         </p>
       </div>
     [[/props]]
-      <div class="container is-striped is-spaced-desktop is-cat is-cat-services">
+      <div class="container is-striped is-cat is-cat-services">
         <h1 class="is-capitalized">Servicios</h1>
         <div class="columns">
         [[props services]]
@@ -548,7 +548,7 @@
             <div class="item-pic" pic-on="[[:prop.pic_on]]" pic-off="[[:prop.pic_off]]" style="background-image: url([[:prop.pic_off]])"></div>
             </a>
             <h2><span>[[:prop.title]]</span></h2>
-            <h4><span>[[:prop.intro]]</span></h4>
+            <!--h4><span>[[:prop.intro]]</span></h4-->
             <a href="/services/[[:prop.slug]]">Explorar</a>
           </div>
         [[/props]]
@@ -557,7 +557,7 @@
           <a href="/services" tag="a">Explorar todo</a>
         </p>
       </div>      
-      <div class="container is-striped is-spaced-desktop is-cat is-cat-dealers">
+      <div class="container is-striped is-cat is-cat-dealers">
         <h1 class="is-capitalized">Sucursales</h1>
         <div class="columns">
         [[for dealers]]
@@ -566,7 +566,7 @@
             <div class="item-pic" style="background-image: url([[:pic]])"></div>
             </a>
             <h2><span>[[:title]]</span></h2>
-            <h4><span>[[:intro]]</span></h4>
+            <!--h4><span>[[:intro]]</span></h4-->
             <a href="/dealers/[[:slug]]">Explorar</a>
           </div>
         [[/for]]

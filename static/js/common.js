@@ -8,7 +8,7 @@ if(typeof localStorage === 'object') {
     console.log('Tu navegador no soporta alojamiento local. En Safari, la causa más común de este error es usar "Modo Navegación Privada". Algunas preferencias no podrán ser guardadas y la aplicación no funcionará correctamente.');
   }
 }
-
+var cache = {}
 var helper = {
   mapbox : {
     accessToken: 'pk.eyJ1IjoibWFydGluZnJlZSIsImEiOiJjams4ZDh0dGoyanRwM3FtbHlqMXJnYjA3In0.VBD8U4yG46py1g9NxBFMPw',

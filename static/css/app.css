@@ -846,7 +846,7 @@ body {
   }
 
   .is-striped .column {
-    min-height: 350px;
+    min-height: 200px;
   }
 }
 
@@ -1919,6 +1919,7 @@ a:hover {
 }
 
 .is-cat {
+  transform: scale(0.85);
   display: none;
 }
 

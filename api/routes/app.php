@@ -13,6 +13,7 @@ use App\Lead;
 use App\Post;
 use App\User;
 use App\Dealer;
+use App\Service;
 use App\Product;
 use App\Email;
 use App\ProductModel;
@@ -28,7 +29,7 @@ $app->group('/v1', function() {
             $featured = [];
             $services = [];
             $dealers = [];
-            
+
             $items = $this->spot->mapper("App\Product")
                 ->where(['enabled' => 1])
                 ->order(['title' => "ASC"]);
@@ -141,6 +142,46 @@ $app->group('/v1', function() {
                 ->write(json_encode($data));
         }); 
 
+        $this->post("/services", function ($request, $response, $arguments) {
+            $body = $request->getParsedBody();
+
+            $mapper = $this->spot->mapper("App\Service")
+                ->where(['enabled' => 1])
+                ->order(['created' => 'DESC'])
+                ->limit(1000);
+
+            /* Serialize the response data. */
+            $fractal = new Manager();
+            $fractal->setSerializer(new DataArraySerializer);
+            $resource = new Collection($mapper, new Service);
+            $data = $fractal->createData($resource)->toArray();
+            
+            return $response->withStatus(200)
+                ->withHeader("Content-Type", "application/json")
+                ->write(json_encode($data));  
+        });
+
+        $this->post('/services/{slug}', function ($request, $response, $args) {
+
+            $mapper = $this->spot->mapper("App\Service")
+                ->where(['enabled' => 1])
+                ->where(['title_slug' => urldecode( $request->getAttribute('slug') )])
+                ->first();
+
+            if($mapper === false){
+                throw new ForbiddenException("No resource was found.", 404);
+            }
+
+            /* Serialize the response data. */
+            $fractal = new Manager();
+            $fractal->setSerializer(new DataArraySerializer);
+            $resource = new Item($mapper, new Service);
+            $data = $fractal->createData($resource)->toArray();
+
+            return $response->withStatus(200)
+                ->withHeader("Content-Type", "application/json")
+                ->write(json_encode($data));
+        }); 
 
         $this->post("/contacto", function ($request, $response, $arguments) {
             $body = $request->getParsedBody();
