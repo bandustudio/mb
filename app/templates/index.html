@@ -71,16 +71,16 @@
 
       <div class="navbar-menu" id="navMenu">
         <div class="navbar-end">
+          <router-link to="/call" active-class="active" class="navbar-item" tag="a">
+            <!--span class="fa fa-comment"></span-->
+            <span>Atención</span>
+          </router-link>
           <router-link to="/services" active-class="active" class="navbar-item is-cat-link" cat="services" tag="a">
             <span>Servicios</span>
           </router-link>
           <router-link to="/dealers" active-class="active" class="navbar-item is-cat-link" cat="dealers" tag="a">
             <!--span class="fa fa-map-marker"></span-->
             <span>Sucursales</span>
-          </router-link>
-          <router-link to="/call" active-class="active" class="navbar-item" tag="a">
-            <!--span class="fa fa-comment"></span-->
-            <span>Atención</span>
           </router-link>
           <!--router-link to="/tos" active-class="active" class="navbar-item" tag="a">Términos</router-link-->
         </div>
@@ -147,6 +147,22 @@
             <h1 v-if="item.title && item.title.length"><span v-html="item.title"></span></h1>
             <h4 v-if="item.intro && item.intro.length"><span v-html="item.intro"></span></h4>
             <router-link class="button is-white is-medium" :to="'/posts/'+item.slug" tag="a">Continuar leyendo</router-link>
+          </div>
+        </div>
+      </div>
+
+      <div class="container is-striped services">
+        <div class="content">
+          <!--h1 class="is-capitalized fixed-hero__heading">Servicios</h1-->
+          <div class="columns">
+            <div v-for="item in services"  class="column is-one-quarter">
+              <a :href="'/services/'+item.slug">
+              <div class="item-pic" :pic-on="item.pic_on" :pic-off="item.pic_off" :style="'background-image: url('+item.pic_off+')'"></div>
+              </a>
+              <h2><span v-html="item.title"></span></h2>
+              <h4><span v-html="item.intro"></span></h4>
+              <a :href="'/services/'+item.slug">Explorar</a>
+            </div>
           </div>
         </div>
       </div>
@@ -539,7 +555,7 @@
         </p>
       </div>
     [[/props]]
-      <div class="container is-striped is-cat is-cat-services">
+      <div class="container is-striped is-cat is-cat-services services">
         <h1 class="is-capitalized">Servicios</h1>
         <div class="columns">
         [[props services]]

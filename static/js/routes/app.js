@@ -1,6 +1,23 @@
 const Splash = {
   template: '#splash',
   mounted: function(){
+    if(cache.layout && cache.layout.services){
+      this.services = cache.layout.services
+    } else {
+      this.$http.post(helper.getAttributes($('html')).endpoint + '/app/services', {}, {emulateJSON:true}).then(function(res){
+        this.services = res.data.data
+        setTimeout(function(){
+          $('.services .item-pic').hover(function(){
+            $(this).css('background-image','url('+$(this).attr('pic-on')+')')
+          },function(){
+            $(this).css('background-image','url('+$(this).attr('pic-off')+')')
+          })
+        },500)
+      }, function(error){
+        console.log(error.statusText)
+      })
+    }
+
     this.$http.post(helper.getAttributes($('html')).endpoint + '/app/posts', {}, {emulateJSON:true}).then(function(res){
       var data = res.data.data
       var posts = []
@@ -29,8 +46,8 @@ const Splash = {
   },
   data: function() {
     return{
-      products:{},
       posts:{},
+      services:{},
       filters : helper.filters,
       settings: helper.getAttributes($('html'))
     }
@@ -100,7 +117,7 @@ const Dealer = {
     helper.is_loading()
     this.$http.post(helper.getAttributes($('html')).endpoint + '/app'+location.pathname, {}, {emulateJSON:true}).then(function(res){
       this.data = res.data.data
-
+      document.title = this.data.title
       mapboxgl.accessToken = helper.mapbox.accessToken
       this.map = new mapboxgl.Map({
         container: 'dealer_map',
@@ -157,10 +174,12 @@ const Service = {
   mounted : function(){
     if(cache.layout && cache.layout.services){
       this.data = cache.layout.services[this.$route.params.slug]||{}
+      document.title = this.data.title
     } else {
       helper.is_loading()
       this.$http.post(helper.getAttributes($('html')).endpoint + '/app'+location.pathname, {}, {emulateJSON:true}).then(function(res){
         this.data = res.data.data
+        document.title = this.data.title
         helper.is_loaded()
       }, function(error){
         console.log(error.statusText)
@@ -179,7 +198,7 @@ const Products = {
   template: '#products',
   mounted: function() {
     helper.is_loading()
-    this.title = this.$route.params.cat||"Nuestros vehículos"
+    this.title = this.$route.params.slug||"Nuestros vehículos"
     this.$http.post(helper.getAttributes($('html')).endpoint + '/app'+location.pathname, {}, {emulateJSON:true}).then(function(res){
       this.items = res.data.data
       helper.is_loaded()
@@ -204,6 +223,7 @@ const Product = {
     helper.is_loading()
     this.$http.post(helper.getAttributes($('html')).endpoint + '/app'+location.pathname, {}, {emulateJSON:true}).then(function(res){
       this.data = res.data.data
+      document.title = this.data.title
       helper.is_loaded()
     }, function(error){
       helper.is_loaded()
@@ -276,6 +296,7 @@ const Post = {
     helper.is_loading()
     this.$http.post(helper.getAttributes($('html')).endpoint + '/app'+location.pathname, {}, {emulateJSON:true}).then(function(res){
       this.data = res.data.data
+      document.title = this.data.title
       helper.is_loaded()
     }, function(error){
       helper.is_loaded()
@@ -376,7 +397,6 @@ const PageNotFound = {
   template: '#pagenotfound',
   data: function() {
     return{
-      msg: 'This is Users page',
       settings: helper.getAttributes($('html'))
     }
   }
@@ -389,11 +409,11 @@ const router = new VueRouter({
     {path: '/posts', component: Posts,  meta : { title: 'Artículos'}},
     {path: '/posts/:slug', component: Post,  meta : { title: 'Artículo'}},
     {path: '/products', component: Products,  meta : { title: 'Vehículos'}},
-    {path: '/products/:cat', component: Products,  meta : { title: ''}},
+    {path: '/products/:slug', component: Products,  meta : { title: ''}},
     {path: '/dealers', component: Dealers,  meta : { title: 'Sucursales'}},
     {path: '/dealers/:slug', component: Dealer,  meta : { title: 'Dealer'}},
-    {path: '/services', component: Services,  meta : { title: 'Sucursales'}},
-    {path: '/services/:slug', component: Service,  meta : { title: 'Dealer'}},
+    {path: '/services', component: Services,  meta : { title: 'Servicios'}},
+    {path: '/services/:slug', component: Service,  meta : { title: 'Servicio'}},
     {path: '/contact', component: Contacto, meta : { title: 'Contacto'}},
     {path: '/tos', component: Terminos, meta : { title: 'Términos y condiciones'}},
     {path: '/call', component: Atencion, meta : { title: 'Atención'}},
@@ -422,7 +442,7 @@ const app = new Vue({ router: router,
     $.post(helper.getAttributes($('html')).endpoint + '/app/subnav',function(res){
       cache.layout = res
       $('.subnav').html($.templates('#subnav').render(res))  
-      $('.navbar-end').prepend($.templates('#navitems').render(res))  
+      $('.navbar-end').append($.templates('#navitems').render(res))  
 
       $('.is-cat-link').hover(function(){
         var visible = $('.is-cat').is(':visible')
@@ -438,12 +458,11 @@ const app = new Vue({ router: router,
         $(this).slideUp('fast')
       });  
 
-      $('.is-cat-services .item-pic').hover(function(){
+      $('.services .item-pic').hover(function(){
         $(this).css('background-image','url('+$(this).attr('pic-on')+')')
       },function(){
         $(this).css('background-image','url('+$(this).attr('pic-off')+')')
       })
-
     })      
     $('.hidden-loading').removeClass('hidden-loading')
   }

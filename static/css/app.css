@@ -674,7 +674,7 @@ body {
   transition: background-image 0.2s ease-in-out;
 }
 
-.is-cat-services .item-pic {
+.services .item-pic {
   min-height: 220px;
 }
 
@@ -1122,6 +1122,16 @@ a:hover {
 
 .posts > .columns {
   padding: 5em 0;
+}
+
+.post p {
+  font-family: corpos;
+  font-size: 16px;    
+}
+
+.columns h4 {
+  font-family: corpos;
+  font-size: 16px;  
 }
 
 .topleft {
