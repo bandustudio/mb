@@ -281,7 +281,7 @@ body {
 
 .scaleIn {
   opacity:0;
-  animation:1s cubic-bezier(1, -0.5, 0.5, 1) .0001s normal forwards 1 scaleIn;
+  animation:.3s cubic-bezier(0, -0.5, 0.5, 1) .1s normal forwards 1 scaleIn;
   text-rendering: optimizeSpeed;  
 }
 
@@ -1240,7 +1240,7 @@ a:hover {
 }
 
 .product_options .tile:hover {
-  border-color: #333;
+  border-color: #999;
 }
 
 .product_options .is-ancestor {
