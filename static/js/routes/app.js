@@ -224,7 +224,6 @@ const Products = {
 const Product = {
   template: '#product',
   mounted : function(){
-    helper.collect('lead');
     helper.is_loading()
     this.$http.post(helper.getAttributes($('html')).endpoint + '/app'+location.pathname, {}, {emulateJSON:true}).then(function(res){
       this.data = res.data.data
@@ -250,20 +249,7 @@ const Product = {
       }
     },
     showLead: function(){
-      if($('.section .notification').is(':visible')) {
-        $('.section .notification').hide()
-      }      
-      if($('.lead').is(':hidden')){
-        $('.lead').find('input,select,textarea').each(function(){
-          $(this).val('')
-        })
-
-        $('.lead').slideDown()
-        setTimeout(function() {
-          window.scrollTo(0,$('.lead').offset().top + 10);
-          $('input[name="full_name"]').focus()
-        }, 300);        
-      }
+      $('.modal-button').first().click()
     }
   },
   data: function() {

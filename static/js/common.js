@@ -315,7 +315,7 @@ var helper = {
     }
     localStorage.setItem("champ", JSON.stringify(champ));
   },
-  collect : function( form ){
+  capture : function( form ){
 
     var champ = this.champ();
     var parent = $("."+form);
@@ -369,7 +369,9 @@ $(document).keypress(function(e) {
 
 $(document).on('click','.modal-button',function(e){
   $('html').addClass('is-clipped');
+  $('.modal').removeClass('is-active');
   $('#'+$(this).data('target')).addClass('is-active');
+  if($(this).data('capture')) helper.capture($(this).data('capture'))
 })
 
 $(document).on('click','.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button',function(e){
@@ -462,6 +464,10 @@ $(document).on('click','.sugest-setv',function(e){
   return false   
 })
 
+$(document).on('click','.notification .delete',function(){
+  $(this).parents('.notification').fadeOut();
+})
+
 $(document).on('click',"a:not([href*='://'])",function(event){
 
   const target = this
@@ -492,10 +498,6 @@ $(document).on('click',"a:not([href*='://'])",function(event){
 
     event.preventDefault()
   }  
-})
-
-$(document).on('click','.notification .delete',function(){
-  $(this).parents('.notification').fadeOut();
 })
 
 document.addEventListener('DOMContentLoaded', function () {
