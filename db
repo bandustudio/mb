@@ -44,6 +44,7 @@ $console
     ->setCode(function (InputInterface $input, OutputInterface $output) use ($container) {
         print "Migrating database...\n";
         $container["spot"]->mapper("App\User")->migrate();
+        $container["spot"]->mapper("App\Dealer")->migrate();
         $container["spot"]->mapper("App\Email")->migrate();
         $container["spot"]->mapper("App\ThemeType")->migrate();
         $container["spot"]->mapper("App\ThemeSection")->migrate();

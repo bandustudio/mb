@@ -38,7 +38,6 @@ class User extends \Spot\Entity
             "first_name" => ["type" => "string", "length" => 32],
             "last_name" => ["type" => "string", "length" => 32],
             "password" => ["type" => "string", "length" => 255],
-            "phone" => ["type" => "string", "length" => 255],
             "cc_number" => ["type" => "string", "length" => 255],
             "cc_exp_date" => ["type" => "string", "length" => 255],
             "cc_entity" => ["type" => "string", "length" => 255],
