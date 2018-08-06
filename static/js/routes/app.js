@@ -436,17 +436,18 @@ const app = new Vue({ router: router,
       $('.navbar-end').append($.templates('#navitems').render(res))  
 
       $('.is-cat-link').hover(function(){
-        var visible = $('.is-cat').is(':visible')
         $('.is-cat').css({display:'none'})
         if(location.pathname!=$(this).attr('href')){
-          $('.is-cat-' + $(this).attr('cat')).fadeIn('fast')
+          $('.is-cat-' + $(this).attr('cat')).addClass('scaleIn').fadeIn(250)
         }
       },function(){
       });
 
       $('.is-cat').hover(function(){
       },function(){
-        $(this).slideUp('fast')
+        $(this).slideUp(150,function(){
+          $(this).removeClass('scaleIn')
+        })
       });  
 
       $('.services .item-pic').hover(function(){

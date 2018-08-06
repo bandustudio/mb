@@ -279,6 +279,12 @@ body {
   display: none; 
 }
 
+.scaleIn {
+  opacity:0;
+  animation:1s cubic-bezier(1, -0.5, 0.5, 1) .0001s normal forwards 1 scaleIn;
+  text-rendering: optimizeSpeed;  
+}
+
 .fadeIn {
   opacity:0;
   animation:1s cubic-bezier(1, -0.5, 0.5, 1) .1s normal forwards 1 fadeIn;
@@ -319,6 +325,18 @@ body {
 .growUp {
   -webkit-animation-name:growUp;
   animation:growUp 1.5s cubic-bezier(1, -0.5, 0.5, 1);
+}
+
+@keyframes scaleIn{
+  from{
+    opacity: 0;
+    transform: scale(0.1);
+    /*transform: scale(1.3) rotate(-1deg) skew(-1deg);*/
+  }
+  to{
+    opacity: 1;
+    transform: scale(0.85);
+  }
 }
 
 @keyframes fadeIn{
@@ -1200,7 +1218,7 @@ a:hover {
   height: 200px;
   padding: 1em;
   background-color: #f8f8f8;
-  
+
   /*filter: invert(100%);
   -webkit-filter: invert(100%);
   background-image: url(/img/s-l300.jpg);
