@@ -198,30 +198,30 @@
           <h1 v-if="data.title && data.title.length"><span v-html="data.title"></span></h1>
           <div class="post" v-html="data.content"></div>
         </div>
-        <div class="notification is-warning">
-          <button class="delete"></button>
-          Consulta recibida. Nos pondremos en contacto en cuanto nos sea posible. Muchas gracias por su tiempo.
-        </div>
-        
+       
         <div class="container">
-          <h2>Opciones para este producto</h2>
-          <div class="">
+          <div class="product_options">
+          <h1>Opciones para <strong v-html="data.title"></strong></h1>
+          <div class="has-text-centered tile is-ancestor">
             <input type="hidden" name="product_id" :value="data.id">
-            <button class="button is-primary is-medium modal-button" data-capture="lead" data-target="modal-testdrive" aria-haspopup="true">Test Drive
+            <button class="button tile is-white is-medium modal-button" data-capture="lead" data-target="modal-testdrive" aria-haspopup="true">
+              Test Drive
             </button>
-            <button class="button is-primary is-medium modal-button" data-capture="lead" data-target="modal-repuestos" aria-haspopup="true">Repuestos
+            <button class="button tile is-white is-medium modal-button" data-capture="lead" data-target="modal-repuestos" aria-haspopup="true">
+              Repuestos
             </button>
-            <button class="button is-primary is-medium modal-button" data-capture="lead" data-target="modal-accesorios" aria-haspopup="true">Accesorios
+            <button class="button tile is-white is-medium modal-button" data-capture="lead" data-target="modal-accesorios" aria-haspopup="true">
+              Accesorios
             </button>
-            <button class="button is-primary is-medium modal-button" data-capture="lead" data-target="modal-seguros" aria-haspopup="true">Seguros
+            <button class="button tile is-white is-medium modal-button" data-capture="lead" data-target="modal-seguros" aria-haspopup="true">
+            Seguros
             </button>
           </div>
-          <div class="form-container">
-            <div class="form-screen">
-              <h2><span>Opciones de servicio para </span><span v-html="data.title"></span></h2>
-              <h4><span>Por favor seleccione una opción arriba para continuar</span>
-            </div>
-          </div>
+
+          <div class="notification is-warning">
+            <button class="delete"></button>
+            Consulta recibida. Nos pondremos en contacto en cuanto nos sea posible. Muchas gracias por su tiempo.
+          </div>          
         </div>
 
         <div id="modal-testdrive" class="modal lead">

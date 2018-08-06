@@ -6409,8 +6409,8 @@ a.dropdown-item.is-active {
 
 .modal-card-head {
   border-bottom: 1px solid #dbdbdb;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
 }
 
 .modal-card-title {
@@ -6425,9 +6425,9 @@ a.dropdown-item.is-active {
 }
 
 .modal-card-foot {
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-  border-top: 1px solid #dbdbdb;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-top: 1px solid #f9f9f9;
 }
 
 .modal-card-foot .button:not(:last-child) {
