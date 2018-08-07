@@ -473,6 +473,9 @@ $(document).on('click',"a:not([href*='://'])",function(event){
   const target = this
   // handle only links that do not reference external resources
   if (target && target.href) {
+    if (/mailto\:/i.test(target.href)) return
+
+    if (/call\:/i.test(target.href)) return
     // some sanity checks taken from vue-router:
     // https://github.com/vuejs/vue-router/blob/dev/src/components/link.js#L106
     const { altKey, ctrlKey, metaKey, shiftKey, button, defaultPrevented } = event

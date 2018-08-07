@@ -1219,7 +1219,7 @@ a:hover {
   padding: 1em;
   border: 1px solid #f1f1f1;
   border-radius: 3px;
-  background-color: transparent;
+  background-color: #fbfbfb;
 
   /*filter: invert(100%);
   -webkit-filter: invert(100%);
@@ -1231,6 +1231,11 @@ a:hover {
 
 .product_options h1 {
   margin-bottom: 2em;
+}
+
+.product_options a {
+  margin: 0;
+  padding: 25px;
 }
 
 .product_options .is-ancestor .tile {
