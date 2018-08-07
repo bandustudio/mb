@@ -468,17 +468,15 @@ $(document).on('click','.notification .delete',function(){
   $(this).parents('.notification').fadeOut();
 })
 
-$(document).on('click',"a:not([href*='://'])",function(event){
+$(document).on('click',"a:not([href*=':'])",function(event){
 
   const target = this
   // handle only links that do not reference external resources
   if (target && target.href) {
-    if (/mailto\:/i.test(target.href)) return
 
-    if (/call\:/i.test(target.href)) return
     // some sanity checks taken from vue-router:
     // https://github.com/vuejs/vue-router/blob/dev/src/components/link.js#L106
-    const { altKey, ctrlKey, metaKey, shiftKey, button, defaultPrevented } = event
+    const { altKey, ctrlKey, metaKey, shiftKey, button, defaultPrevented } = this
     // don't handle with control keys
     if (metaKey || altKey || ctrlKey || shiftKey) return
     // don't handle when preventDefault called
