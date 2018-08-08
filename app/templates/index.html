@@ -266,7 +266,7 @@
           <div class="modal-background"></div>
           <div class="modal-card">
             <header class="modal-card-head">
-              <p class="modal-card-title">Solicitar Test Drive para <strong v-html="data.title"></strong></p>
+              <p class="modal-card-title"><strong v-html="data.title"></strong></p>
               <button class="delete" aria-label="close"></button>
             </header>
             <section class="modal-card-body">
@@ -331,8 +331,8 @@
               </div>  
             </section>
             <footer class="modal-card-foot">
-              <button class="button is-success">Solicitar Test Drive</button>
               <button class="button">Cancelar</button>
+              <button class="button is-success">Solicitar Test Drive</button>
             </footer>
           </div>
         </div>   
@@ -341,7 +341,7 @@
           <div class="modal-background"></div>
           <div class="modal-card">
             <header class="modal-card-head">
-              <p class="modal-card-title">Solicitar Repuestos para <strong v-html="data.title"></strong></p>
+              <p class="modal-card-title"><strong v-html="data.title"></strong></p>
               <button class="delete" aria-label="close"></button>
             </header>
             <section class="modal-card-body">
@@ -406,8 +406,9 @@
               </div>          
             </section>
             <footer class="modal-card-foot">
-              <button class="button is-success">Solicitar Repuestos</button>
+              
               <button class="button">Cancelar</button>
+              <button class="button is-success">Solicitar Repuestos</button>
             </footer>
           </div>
         </div>
@@ -416,7 +417,7 @@
           <div class="modal-background"></div>
           <div class="modal-card">
             <header class="modal-card-head">
-              <p class="modal-card-title">Solicitar Accesorios para <strong v-html="data.title"></strong></p>
+              <p class="modal-card-title"><strong v-html="data.title"></strong></p>
               <button class="delete" aria-label="close"></button>
             </header>
             <section class="modal-card-body">
@@ -481,8 +482,8 @@
               </div>          
             </section>
             <footer class="modal-card-foot">
-              <button class="button is-success">Solicitar Accesorios</button>
               <button class="button">Cancelar</button>
+              <button class="button is-success">Solicitar Accesorios</button>           
             </footer>
           </div>
         </div> 
@@ -491,7 +492,7 @@
           <div class="modal-background"></div>
           <div class="modal-card">
             <header class="modal-card-head">
-              <p class="modal-card-title">Solicitar Seguro para <strong v-html="data.title"></strong></p>
+              <p class="modal-card-title"><strong v-html="data.title"></strong></p>
               <button class="delete" aria-label="close"></button>
             </header>
             <section class="modal-card-body">
@@ -556,8 +557,9 @@
               </div>          
             </section>
             <footer class="modal-card-foot">
-              <button class="button is-success">Solicitar Seguros</button>
+              
               <button class="button">Cancelar</button>
+              <button class="button is-success">Solicitar Seguros</button>
             </footer>
           </div>
         </div>
@@ -605,22 +607,24 @@
   
   <script type="text/x-template" id="dealers">
     <div class="section">
-      <div class="columns">
-        <div class="column is-one-quarter">
-          <div class="dealers">
-            <div v-for="dealer, index in dealers" class="dealer">
-              <h4 v-html="dealer.title"></h4>
-              <p v-html="dealer.formatted_address"></p>
-              <p><em v-if="dealer.vicinity" v-html="dealer.vicinity"></em> <em v-if="dealer.administrative_area_level_1" v-html="dealer.administrative_area_level_1"></em></p>
-              <a @click="flyTo(dealer)">Mostrar</a>&nbsp;
-              <router-link :to="'/dealers/'+dealer.slug">Explorar</router-link>
+      <div class="container">
+        <div class="columns">
+          <div class="column is-one-quarter">
+            <div class="dealers">
+              <div v-for="dealer, index in dealers" class="dealer">
+                <h4 v-html="dealer.title"></h4>
+                <p v-html="dealer.formatted_address"></p>
+                <p><em v-if="dealer.vicinity" v-html="dealer.vicinity"></em> <em v-if="dealer.administrative_area_level_1" v-html="dealer.administrative_area_level_1"></em></p>
+                <a @click="flyTo(dealer)">Mostrar</a>&nbsp;
+                <router-link :to="'/dealers/'+dealer.slug">Explorar</router-link>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="column">
-          <div id="map"></div>
-        </div>
-      </div>      
+          <div class="column">
+            <div id="map"></div>
+          </div>
+        </div>      
+      </div>
     </div>
   </script>
 
@@ -785,8 +789,9 @@
             </div>          
           </section>
           <footer class="modal-card-foot">
-            <button class="button is-success">Solicitar <span v-html="data.title"></span></button>
             <button class="button">Cancelar</button>
+            <button class="button is-success">Solicitar <span v-html="data.title"></span></button>
+
           </footer>
         </div>
       </div>        
