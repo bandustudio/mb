@@ -524,8 +524,7 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
   }
-
-  $('.footer__partners').before($.templates('#backtotop').render())  
+  //$('.footer__partners').before($.templates('#backtotop').render())  
   $('.backtotop').click(function(){
     var body = $("html, body");
     body.stop().animate({scrollTop:0}, 500, 'swing', function() { 
@@ -552,7 +551,7 @@ $.extend({
   }
 });
 
-
+/*
 var lastscrollpos = 0;
 $(window).scroll(function(){
   clearTimeout($.data(this, 'scrollTimer'));
@@ -571,6 +570,7 @@ $(window).scroll(function(){
       lastscrollpos = scrollpos;
   }, 250));
 });
+*/
 
 $.ajaxSetup({
   dataType : "json",

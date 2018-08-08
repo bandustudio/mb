@@ -97,14 +97,49 @@
     </keep-alive>
 
     <div class="footer__partners hidden-loading fadeIn">
-      <div class="footer__partners--row">
-        <p>
-          <router-link to="/call" tag="a">Atención</router-link> &mdash; 
-          <router-link to="/dealers" tag="a">Sucursales</router-link> &mdash; 
-          <router-link to="/tos" tag="a">Términos y condiciones</router-link> &nbsp;
-          &copy; 2018 Mercedes-Benz &mdash; Cigliutti-Guerini.</p>
+      <div class="has-text-right has-text-white">
+        <a href="javascript:void(0)" class="backtotop">Volver arriba <span class="fa fa-chevron-up"></span></a>
       </div>
+      <div class="footer__menu">
+        <div class="footer__menu--inner">
+          <div class="columns has-text-left">
+            <div class="column">
+              <strong>Asesoramiento para la compra</strong>
+            </div>
+            <div class="column">
+              <strong>Servicios online</strong>
+            </div>
+            <div class="column">
+              <strong>Acerca de nosotros</strong>
+            </div>
+            <div class="column"></div>
+            <div class="column"></div>
+            <div class="column"></div>
+          </div>
+
+          <div class="columns has-text-left">
+            <div class="column">
+              <a href="/products">Asesoramiento para la compra</a>
+            </div>
+            <div class="column">
+              <a href="/dealers">Localizador de concesionarios</a>
+            </div>
+            <div class="column">
+              <a href="/posts/empresa">Empresa</a>
+              <a href="/contact">Contacto</a>
+            </div>
+            <div class="column"></div>
+            <div class="column"></div>
+            <div class="column"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer__partners--row">
+        <p>&copy; 2018 Mercedes-Benz &mdash; Cigliutti-Guerini Reservados todos los derechos (proveedor)</p> | <router-link to="/call" tag="a">Atención</router-link> | <router-link to="/dealers" tag="a">Sucursales</router-link> | <router-link to="/tos" tag="a">Términos y condiciones</router-link>
+      </div>  
     </div> 
+
   </div>
   
   <script type="text/x-template" id="splash">
