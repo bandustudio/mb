@@ -231,10 +231,11 @@
           <div class="modal-background"></div>
           <div class="modal-card">
             <header class="modal-card-head">
-              <p class="modal-card-title"><strong v-html="data.title"></strong></p>
+              <p class="modal-card-title">Solicitar Test Drive para <strong v-html="data.title"></strong></p>
               <button class="delete" aria-label="close"></button>
             </header>
             <section class="modal-card-body">
+              <div class="card" class="item-pic" :style="'background-image: url('+data.picture+')'"></div>
               <div class="tabs">
                 <ul>
                   <li class="is-active"><a>Test Drive</a></li>
@@ -243,61 +244,56 @@
                   <li><a class="modal-button" data-capture="lead" data-target="modal-seguros" aria-haspopup="true">Seguros</a></li>
                 </ul>
               </div>            
-              <div class="content">
-                <div class="card" class="item-pic" :style="'background-image: url('+data.picture+')'">
+              <div class="columns">
+                <div class="column">
+                  <p class="control is-expanded has-icons-left">
+                    <input class="input rounded-input " type="text" name="full_name"  placeholder="Nombre" autofocus>
+                    <span class="icon  is-left">
+                      <i class="fas fa-user"></i>
+                    </span>
+                  </p>
                 </div>
-                <h1>Test Drive para <em v-html="data.title"></em></h1>
-                <div class="columns">
-                  <div class="column">
-                    <p class="control is-expanded has-icons-left">
-                      <input class="input rounded-input is-medium" type="text" name="full_name"  placeholder="Nombre" autofocus>
-                      <span class="icon is-medium is-left">
-                        <i class="fas fa-user"></i>
-                      </span>
-                    </p>
-                  </div>
-                  <div class="column">
-                    <p class="control is-expanded has-icons-left has-icons-right">
-                      <input class="input rounded-input is-medium is-success" name="email" type="email"  placeholder="Email">
-                      <span class="icon is-medium is-left">
-                        <i class="fas fa-envelope"></i>
-                      </span>
-                      <!--span class="icon is-medium is-right">
-                        <i class="fas fa-check"></i>
-                      </span-->
-                    </p>
-                  </div>
+                <div class="column">
+                  <p class="control is-expanded has-icons-left has-icons-right">
+                    <input class="input rounded-input  is-success" name="email" type="email"  placeholder="Email">
+                    <span class="icon  is-left">
+                      <i class="fas fa-envelope"></i>
+                    </span>
+                    <!--span class="icon  is-right">
+                      <i class="fas fa-check"></i>
+                    </span-->
+                  </p>
                 </div>
-                <div class="columns">
-                  <div class="column">
-                    <p class="control is-expanded has-icons-left">
-                      <input class="input rounded-input is-medium" type="tel" name="tel"  placeholder="Teléfono">
-                      <span class="icon is-medium is-left">
-                        <i class="fas fa-phone"></i>
-                      </span>
-                    </p>
-                  </div>                
-                  <div class="column">
-                    <div class="control">
-                      <div class="select rounded-select is-medium is-fullwidth">
-                        <select name="dealer_id" >
-                          <option value="" selected>Sucursal</option>
-                          [[for dealers]]
-                          <option value="[[:id]]">[[:formatted_address]]</option>
-                          [[/for]]
-                        </select>
-                      </div>
+              </div>
+              <div class="columns">
+                <div class="column">
+                  <p class="control is-expanded has-icons-left">
+                    <input class="input rounded-input " type="tel" name="tel"  placeholder="Teléfono">
+                    <span class="icon  is-left">
+                      <i class="fas fa-phone"></i>
+                    </span>
+                  </p>
+                </div>                
+                <div class="column">
+                  <div class="control">
+                    <div class="select rounded-select  is-fullwidth">
+                      <select name="dealer_id" >
+                        <option value="" selected>Sucursal</option>
+                        [[for dealers]]
+                        <option value="[[:id]]">[[:formatted_address]]</option>
+                        [[/for]]
+                      </select>
                     </div>
                   </div>
                 </div>
-                <div class="columns">
-                  <div class="column">
-                    <div class="control">
-                      <textarea name="comment" class="textarea rounded-input"  placeholder="Explain how we can help you"></textarea>
-                    </div>
+              </div>
+              <div class="columns">
+                <div class="column">
+                  <div class="control">
+                    <textarea name="comment" class="textarea rounded-input"  placeholder="Explain how we can help you"></textarea>
                   </div>
-                </div>  
-              </div>        
+                </div>
+              </div>  
             </section>
             <footer class="modal-card-foot">
               <button class="button is-success">Solicitar Test Drive</button>
@@ -310,10 +306,11 @@
           <div class="modal-background"></div>
           <div class="modal-card">
             <header class="modal-card-head">
-              <p class="modal-card-title"><strong v-html="data.title"></strong></p>
+              <p class="modal-card-title">Solicitar Repuestos para <strong v-html="data.title"></strong></p>
               <button class="delete" aria-label="close"></button>
             </header>
             <section class="modal-card-body">
+              <div class="card" class="item-pic" :style="'background-image: url('+data.picture+')'"></div>
               <div class="tabs">
                 <ul>
                   <li><a class="modal-button" data-capture="lead" data-target="modal-testdrive" aria-haspopup="true">Test Drive</a></li>
@@ -322,41 +319,39 @@
                   <li><a class="modal-button" data-capture="lead" data-target="modal-seguros" aria-haspopup="true">Seguros</a></li>
                 </ul>
               </div>              
-              <h2>Quiero solicitar repuesto para</h2>
-              <h4><em v-html="data.title"></em></h4>
               <div class="columns">
                 <div class="column">
                   <p class="control is-expanded has-icons-left">
-                    <input class="input rounded-input is-medium" type="text" name="full_name"  placeholder="Nombre" autofocus>
-                    <span class="icon is-medium is-left">
+                    <input class="input rounded-input " type="text" name="full_name"  placeholder="Nombre" autofocus>
+                    <span class="icon  is-left">
                       <i class="fas fa-user"></i>
                     </span>
                   </p>
                 </div>
                 <div class="column">
                   <p class="control is-expanded has-icons-left has-icons-right">
-                    <input class="input rounded-input is-medium is-success" name="email" type="email"  placeholder="Email">
-                    <span class="icon is-medium is-left">
+                    <input class="input rounded-input  is-success" name="email" type="email"  placeholder="Email">
+                    <span class="icon  is-left">
                       <i class="fas fa-envelope"></i>
                     </span>
-                    <!--span class="icon is-medium is-right">
+                    <!--span class="icon  is-right">
                       <i class="fas fa-check"></i>
                     </span-->
                   </p>
                 </div>
+              </div>
+              <div class="columns">
                 <div class="column">
                   <p class="control is-expanded has-icons-left">
-                    <input class="input rounded-input is-medium" type="tel" name="tel"  placeholder="Teléfono">
-                    <span class="icon is-medium is-left">
+                    <input class="input rounded-input " type="tel" name="tel"  placeholder="Teléfono">
+                    <span class="icon  is-left">
                       <i class="fas fa-phone"></i>
                     </span>
                   </p>
-                </div>
-              </div>
-              <div class="columns">
-                <div class="column is-one-third">
+                </div>              
+                <div class="column">
                   <div class="control">
-                    <div class="select rounded-select is-medium is-fullwidth">
+                    <div class="select rounded-select  is-fullwidth">
                       <select name="dealer_id" >
                         <option value="" selected>Sucursal</option>
                         [[for dealers]]
@@ -366,6 +361,8 @@
                     </div>
                   </div>
                 </div>
+              </div>
+              <div class="columns">                
                 <div class="column">
                   <div class="control">
                     <textarea name="comment" class="textarea rounded-input"  placeholder="Explain how we can help you"></textarea>
@@ -380,15 +377,15 @@
           </div>
         </div>
 
-
         <div id="modal-accesorios" class="modal lead">
           <div class="modal-background"></div>
           <div class="modal-card">
             <header class="modal-card-head">
-              <p class="modal-card-title"><strong v-html="data.title"></strong></p>
+              <p class="modal-card-title">Solicitar Accesorios para <strong v-html="data.title"></strong></p>
               <button class="delete" aria-label="close"></button>
             </header>
             <section class="modal-card-body">
+              <div class="card" class="item-pic" :style="'background-image: url('+data.picture+')'"></div>
               <div class="tabs">
                 <ul>
                   <li><a class="modal-button" data-capture="lead" data-target="modal-testdrive" aria-haspopup="true">Test Drive</a></li>
@@ -397,41 +394,39 @@
                   <li><a class="modal-button" data-capture="lead" data-target="modal-seguros" aria-haspopup="true">Seguros</a></li>
                 </ul>
               </div>             
-              <h2>Quiero solicitar accesorio para</h2>
-              <h4><em v-html="data.title"></em></h4>
               <div class="columns">
                 <div class="column">
                   <p class="control is-expanded has-icons-left">
-                    <input class="input rounded-input is-medium" type="text" name="full_name"  placeholder="Nombre" autofocus>
-                    <span class="icon is-medium is-left">
+                    <input class="input rounded-input " type="text" name="full_name"  placeholder="Nombre" autofocus>
+                    <span class="icon  is-left">
                       <i class="fas fa-user"></i>
                     </span>
                   </p>
                 </div>
                 <div class="column">
                   <p class="control is-expanded has-icons-left has-icons-right">
-                    <input class="input rounded-input is-medium is-success" name="email" type="email"  placeholder="Email">
-                    <span class="icon is-medium is-left">
+                    <input class="input rounded-input  is-success" name="email" type="email"  placeholder="Email">
+                    <span class="icon  is-left">
                       <i class="fas fa-envelope"></i>
                     </span>
-                    <!--span class="icon is-medium is-right">
+                    <!--span class="icon  is-right">
                       <i class="fas fa-check"></i>
                     </span-->
                   </p>
                 </div>
+              </div>
+              <div class="columns">
                 <div class="column">
                   <p class="control is-expanded has-icons-left">
-                    <input class="input rounded-input is-medium" type="tel" name="tel"  placeholder="Teléfono">
-                    <span class="icon is-medium is-left">
+                    <input class="input rounded-input " type="tel" name="tel"  placeholder="Teléfono">
+                    <span class="icon  is-left">
                       <i class="fas fa-phone"></i>
                     </span>
                   </p>
-                </div>
-              </div>
-              <div class="columns">
-                <div class="column is-one-third">
+                </div>              
+                <div class="column">
                   <div class="control">
-                    <div class="select rounded-select is-medium is-fullwidth">
+                    <div class="select rounded-select  is-fullwidth">
                       <select name="dealer_id" >
                         <option value="" selected>Sucursal</option>
                         [[for dealers]]
@@ -441,6 +436,8 @@
                     </div>
                   </div>
                 </div>
+              </div>
+              <div class="columns">                
                 <div class="column">
                   <div class="control">
                     <textarea name="comment" class="textarea rounded-input"  placeholder="Explain how we can help you"></textarea>
@@ -459,10 +456,11 @@
           <div class="modal-background"></div>
           <div class="modal-card">
             <header class="modal-card-head">
-              <p class="modal-card-title"><strong v-html="data.title"></strong></p>
+              <p class="modal-card-title">Solicitar Seguro para <strong v-html="data.title"></strong></p>
               <button class="delete" aria-label="close"></button>
             </header>
             <section class="modal-card-body">
+              <div class="card" class="item-pic" :style="'background-image: url('+data.picture+')'"></div>            
               <div class="tabs">
                 <ul>
                   <li><a class="modal-button" data-capture="lead" data-target="modal-testdrive" aria-haspopup="true">Test Drive</a></li>
@@ -471,41 +469,39 @@
                   <li class="is-active"><a>Seguros</a></li>
                 </ul>
               </div>               
-              <h2>Quiero solicitar un cotización de seguro para</h2>
-              <h4><em v-html="data.title"></em></h4>
               <div class="columns">
                 <div class="column">
                   <p class="control is-expanded has-icons-left">
-                    <input class="input rounded-input is-medium" type="text" name="full_name"  placeholder="Nombre" autofocus>
-                    <span class="icon is-medium is-left">
+                    <input class="input rounded-input " type="text" name="full_name"  placeholder="Nombre" autofocus>
+                    <span class="icon  is-left">
                       <i class="fas fa-user"></i>
                     </span>
                   </p>
                 </div>
                 <div class="column">
                   <p class="control is-expanded has-icons-left has-icons-right">
-                    <input class="input rounded-input is-medium is-success" name="email" type="email"  placeholder="Email">
-                    <span class="icon is-medium is-left">
+                    <input class="input rounded-input  is-success" name="email" type="email"  placeholder="Email">
+                    <span class="icon  is-left">
                       <i class="fas fa-envelope"></i>
                     </span>
-                    <!--span class="icon is-medium is-right">
+                    <!--span class="icon  is-right">
                       <i class="fas fa-check"></i>
                     </span-->
                   </p>
                 </div>
+              </div>
+              <div class="columns">
                 <div class="column">
                   <p class="control is-expanded has-icons-left">
-                    <input class="input rounded-input is-medium" type="tel" name="tel"  placeholder="Teléfono">
-                    <span class="icon is-medium is-left">
+                    <input class="input rounded-input " type="tel" name="tel"  placeholder="Teléfono">
+                    <span class="icon  is-left">
                       <i class="fas fa-phone"></i>
                     </span>
                   </p>
-                </div>
-              </div>
-              <div class="columns">
-                <div class="column is-one-third">
+                </div>              
+                <div class="column">
                   <div class="control">
-                    <div class="select rounded-select is-medium is-fullwidth">
+                    <div class="select rounded-select  is-fullwidth">
                       <select name="dealer_id" >
                         <option value="" selected>Sucursal</option>
                         [[for dealers]]
@@ -515,6 +511,8 @@
                     </div>
                   </div>
                 </div>
+              </div>
+              <div class="columns">                
                 <div class="column">
                   <div class="control">
                     <textarea name="comment" class="textarea rounded-input"  placeholder="Explain how we can help you"></textarea>
@@ -527,8 +525,7 @@
               <button class="button">Cancelar</button>
             </footer>
           </div>
-        </div>   
-
+        </div>
       </div>
     </div>
   </script>
