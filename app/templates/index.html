@@ -119,6 +119,22 @@
         </div>
       </div>
 
+      <div class="container is-striped services">
+        <div class="content">
+          <!--h1 class="is-capitalized fixed-hero__heading">Servicios</h1-->
+          <div class="columns">
+            <div v-for="item in services"  class="column is-one-quarter">
+              <a :href="'/services/'+item.slug">
+              <div class="item-pic" :pic-on="item.pic_on" :pic-off="item.pic_off" :style="'background-image: url('+item.pic_off+')'"></div>
+              </a>
+              <h2><span v-html="item.title"></span></h2>
+              <h4><span v-html="item.intro"></span></h4>
+              <a :href="'/services/'+item.slug">Explorar</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div v-if="posts.body" class="container is-striped is-spaced-desktop">
         <div class="content">
           <div class="columns">
@@ -133,7 +149,7 @@
           </div>
         </div>
       </div>
-
+      
       <div v-for="(item, index) in posts.featured" class="posts fadeIn">
         <div class="slick-pane has-text-left" v-if="index%2!=0" :style="'background-image:url(' + item.picture + ')'">
           <div class="hero__heading">
@@ -147,22 +163,6 @@
             <h1 v-if="item.title && item.title.length"><span v-html="item.title"></span></h1>
             <h4 v-if="item.intro && item.intro.length"><span v-html="item.intro"></span></h4>
             <router-link class="button is-white is-medium" :to="'/posts/'+item.slug" tag="a">Continuar leyendo</router-link>
-          </div>
-        </div>
-      </div>
-
-      <div class="container is-striped services">
-        <div class="content">
-          <!--h1 class="is-capitalized fixed-hero__heading">Servicios</h1-->
-          <div class="columns">
-            <div v-for="item in services"  class="column is-one-quarter">
-              <a :href="'/services/'+item.slug">
-              <div class="item-pic" :pic-on="item.pic_on" :pic-off="item.pic_off" :style="'background-image: url('+item.pic_off+')'"></div>
-              </a>
-              <h2><span v-html="item.title"></span></h2>
-              <h4><span v-html="item.intro"></span></h4>
-              <a :href="'/services/'+item.slug">Explorar</a>
-            </div>
           </div>
         </div>
       </div>
