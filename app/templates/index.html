@@ -109,17 +109,18 @@
   
   <script type="text/x-template" id="splash">
     <div class="section">
-      <div class="slick slick-main opacity0">
-        <div v-for="item in posts.slide" class="slick-pane has-text-left" :style="'background-image:url(' + item.picture + ')'">
-          <div class="hero__heading">
-            <h1 v-if="item.title && item.title.length"><span v-html="item.title"></span></h1>
-            <h4 v-if="item.intro && item.intro.length"><span v-html="item.intro"></span></h4>
-            <router-link class="button is-white is-medium" :to="'/posts/'+item.slug" tag="a">Continuar leyendo</router-link>
-          </div>          
-        </div>
-      </div>
-
       <div class="container is-striped services">
+
+        <div class="slick slick-main opacity0">
+          <div v-for="item in posts.slide" class="slick-pane has-text-left" :style="'background-image:url(' + item.picture + ')'">
+            <div class="hero__heading">
+              <h1 v-if="item.title && item.title.length"><span v-html="item.title"></span></h1>
+              <h4 v-if="item.intro && item.intro.length"><span v-html="item.intro"></span></h4>
+              <router-link class="button is-white is-medium" :to="'/posts/'+item.slug" tag="a">Continuar leyendo</router-link>
+            </div>          
+          </div>
+        </div>
+
         <div class="content">
           <!--h1 class="is-capitalized fixed-hero__heading">Servicios</h1-->
           <div class="columns">
@@ -186,14 +187,15 @@
   
   <script type="text/x-template" id="product">
     <div class="section">
-      <div class="slick-pane has-text-left" :style="'background-image:url(' + data.picture + ')'">
-        <div class="hero__heading">
-          <h1 v-if="data.title && data.title.length"><span v-html="data.title"></span></h1>
-          <h4 v-if="data.intro && data.intro.length"><span v-html="data.intro"></span></h4>
-          <a class="button is-white is-medium" href="#" v-on:click="showLead()">Me interesa</a>
-        </div>
-      </div>
       <div class="container">
+        <div class="slick-pane has-text-left" :style="'background-image:url(' + data.picture + ')'">
+          <div class="hero__heading">
+            <h1 v-if="data.title && data.title.length"><span v-html="data.title"></span></h1>
+            <h4 v-if="data.intro && data.intro.length"><span v-html="data.intro"></span></h4>
+            <a class="button is-white is-medium" href="#" v-on:click="showLead()">Me interesa</a>
+          </div>
+        </div>
+
         <div class="content hero">
           <h1 v-if="data.title && data.title.length"><span v-html="data.title"></span></h1>
           <div class="post" v-html="data.content"></div>
@@ -241,56 +243,61 @@
                   <li><a class="modal-button" data-capture="lead" data-target="modal-seguros" aria-haspopup="true">Seguros</a></li>
                 </ul>
               </div>            
-              <h2>Quiero solicitar un Test Drive para</h2>
-              <h4><em v-html="data.title"></em></h4>
-              <div class="columns">
-                <div class="column">
-                  <p class="control is-expanded has-icons-left">
-                    <input class="input rounded-input is-medium" type="text" name="full_name"  placeholder="Nombre" autofocus>
-                    <span class="icon is-medium is-left">
-                      <i class="fas fa-user"></i>
-                    </span>
-                  </p>
+              <div class="content">
+                <div class="card" class="item-pic" :style="'background-image: url('+data.picture+')'">
                 </div>
-                <div class="column">
-                  <p class="control is-expanded has-icons-left has-icons-right">
-                    <input class="input rounded-input is-medium is-success" name="email" type="email"  placeholder="Email">
-                    <span class="icon is-medium is-left">
-                      <i class="fas fa-envelope"></i>
-                    </span>
-                    <!--span class="icon is-medium is-right">
-                      <i class="fas fa-check"></i>
-                    </span-->
-                  </p>
+                <h1>Test Drive para <em v-html="data.title"></em></h1>
+                <div class="columns">
+                  <div class="column">
+                    <p class="control is-expanded has-icons-left">
+                      <input class="input rounded-input is-medium" type="text" name="full_name"  placeholder="Nombre" autofocus>
+                      <span class="icon is-medium is-left">
+                        <i class="fas fa-user"></i>
+                      </span>
+                    </p>
+                  </div>
+                  <div class="column">
+                    <p class="control is-expanded has-icons-left has-icons-right">
+                      <input class="input rounded-input is-medium is-success" name="email" type="email"  placeholder="Email">
+                      <span class="icon is-medium is-left">
+                        <i class="fas fa-envelope"></i>
+                      </span>
+                      <!--span class="icon is-medium is-right">
+                        <i class="fas fa-check"></i>
+                      </span-->
+                    </p>
+                  </div>
                 </div>
-                <div class="column">
-                  <p class="control is-expanded has-icons-left">
-                    <input class="input rounded-input is-medium" type="tel" name="tel"  placeholder="Teléfono">
-                    <span class="icon is-medium is-left">
-                      <i class="fas fa-phone"></i>
-                    </span>
-                  </p>
-                </div>
-              </div>
-              <div class="columns">
-                <div class="column is-one-third">
-                  <div class="control">
-                    <div class="select rounded-select is-medium is-fullwidth">
-                      <select name="dealer_id" >
-                        <option value="" selected>Sucursal</option>
-                        [[for dealers]]
-                        <option value="[[:id]]">[[:formatted_address]]</option>
-                        [[/for]]
-                      </select>
+                <div class="columns">
+                  <div class="column">
+                    <p class="control is-expanded has-icons-left">
+                      <input class="input rounded-input is-medium" type="tel" name="tel"  placeholder="Teléfono">
+                      <span class="icon is-medium is-left">
+                        <i class="fas fa-phone"></i>
+                      </span>
+                    </p>
+                  </div>                
+                  <div class="column">
+                    <div class="control">
+                      <div class="select rounded-select is-medium is-fullwidth">
+                        <select name="dealer_id" >
+                          <option value="" selected>Sucursal</option>
+                          [[for dealers]]
+                          <option value="[[:id]]">[[:formatted_address]]</option>
+                          [[/for]]
+                        </select>
+                      </div>
                     </div>
                   </div>
                 </div>
-                <div class="column">
-                  <div class="control">
-                    <textarea name="comment" class="textarea rounded-input"  placeholder="Explain how we can help you"></textarea>
+                <div class="columns">
+                  <div class="column">
+                    <div class="control">
+                      <textarea name="comment" class="textarea rounded-input"  placeholder="Explain how we can help you"></textarea>
+                    </div>
                   </div>
-                </div>
-              </div>          
+                </div>  
+              </div>        
             </section>
             <footer class="modal-card-foot">
               <button class="button is-success">Solicitar Test Drive</button>
@@ -548,14 +555,14 @@
 
   <script type="text/x-template" id="post">
     <div class="section">
-      <div class="slick-pane has-text-left" :style="'background-image:url(' + data.picture + ')'">
-        <div class="hero__heading">
-          <h1 v-if="data.title && data.title.length"><span v-html="data.title"></span></h1>
-          <h4 v-if="data.intro && data.intro.length"><span v-html="data.intro"></span></h4>
-          <router-link v-if="data.button_value" class="button is-white is-medium" :to="data.button_link" v-html="data.button_value" tag="a">Explorar</router-link>
-        </div>
-      </div>  
       <div class="container">
+        <div class="slick-pane has-text-left" :style="'background-image:url(' + data.picture + ')'">
+          <div class="hero__heading">
+            <h1 v-if="data.title && data.title.length"><span v-html="data.title"></span></h1>
+            <h4 v-if="data.intro && data.intro.length"><span v-html="data.intro"></span></h4>
+            <router-link v-if="data.button_value" class="button is-white is-medium" :to="data.button_link" v-html="data.button_value" tag="a">Explorar</router-link>
+          </div>
+        </div>  
         <div class="content hero">
           <h1 class="fixed-hero__heading has-text-black" v-html="data.title"></h1>
           <div class="post" v-html="data.content"></div>
@@ -587,13 +594,13 @@
 
   <script type="text/x-template" id="dealer">
     <div class="section">
-      <div class="slick-pane has-text-left" :style="'background-image:url(' + data.picture + ')'">
-        <div class="hero__heading">
-          <h1 v-if="data.title && data.title.length"><span v-html="data.title"></span></h1>
-          <h4 v-if="data.intro && data.intro.length"><span v-html="data.intro"></span></h4>
-        </div>
-      </div>
       <div class="container">
+        <div class="slick-pane has-text-left" :style="'background-image:url(' + data.picture + ')'">
+          <div class="hero__heading">
+            <h1 v-if="data.title && data.title.length"><span v-html="data.title"></span></h1>
+            <h4 v-if="data.intro && data.intro.length"><span v-html="data.intro"></span></h4>
+          </div>
+        </div>
         <div class="content hero">
           <h1 class="fixed-hero__heading has-text-black" v-html="data.title"></h1>
           <div class="post" v-html="data.content"></div>
@@ -657,13 +664,14 @@
 
   <script type="text/x-template" id="service">
     <div class="section">
-      <div class="slick-pane has-text-left" :style="'background-image:url(' + data.picture + ')'">
-        <div class="hero__heading">
-          <h1 v-if="data.title && data.title.length"><span v-html="data.title"></span></h1>
-          <h4 v-if="data.intro && data.intro.length"><span v-html="data.intro"></span></h4>
-        </div>
-      </div>  
       <div class="container">
+        <div class="slick-pane has-text-left" :style="'background-image:url(' + data.picture + ')'">
+          <div class="hero__heading">
+            <h1 v-if="data.title && data.title.length"><span v-html="data.title"></span></h1>
+            <h4 v-if="data.intro && data.intro.length"><span v-html="data.intro"></span></h4>
+          </div>
+        </div>  
+
         <div class="content hero">
           <h1 class="fixed-hero__heading has-text-black" v-html="data.title"></h1>
           <div class="post" v-html="data.content"></div>

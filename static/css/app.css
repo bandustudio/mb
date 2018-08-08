@@ -1,10 +1,11 @@
 html {
-  background-color: black;
+  background: -webkit-linear-gradient(#000 0%, #2e2e2e 300px, #000 1000px);
+  background: -o-linear-gradient(#000 0%, #2e2e2e 300px, #000 1000px);
+  background: linear-gradient(#000 0%, #2e2e2e 300px, #000 1000px);
 }
 body {
   font-family:"corporateacondpro",Helvetica,Arial,sans-serif;
   transition: all 0.5 linear;
-  background-color: black;
   color: black;
 }
 @font-face{
@@ -714,7 +715,8 @@ body {
 
 .rounded-input, .rounded-textarea, .rounded-select select {
   border: 1px solid white;
-  border-radius: 7px;
+  background-color: #f8f8f8;
+  border-radius: 3px;
 }
 
 /* Bulma overriding */
@@ -1026,6 +1028,7 @@ a:hover {
 	max-width: 1040px;
 	margin: 0 auto;
   width: auto;
+  background-color: white;
 }
 
 .corpos {
@@ -1038,8 +1041,8 @@ a:hover {
   padding: 0;
   margin:0;
   padding-bottom: 50px;
-  background-color: white;
-  box-shadow: 0 4px 0 #d8d8d8 inset;
+  background-color: transparent;
+  /*box-shadow: 0 4px 0 #d8d8d8 inset;*/
   background-position: bottom center;
   background-repeat: no-repeat;
 }
