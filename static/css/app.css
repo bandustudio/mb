@@ -1750,6 +1750,10 @@ a:hover {
 
 /* transforms and animations */
 
+.p1em {
+  padding: 1em!important;
+}
+
 .rotate-90 {
   -moz-transform: rotate(90deg);
   -webkit-transform: rotate(90deg);
@@ -2000,7 +2004,7 @@ a:hover {
   background: #000;
   color: #fff;
   padding: 0 15px;
-  font-size: 44px;
+  font-size: 35px;
   font-weight: 700;
   font-style: italic;
   line-height: 1.35em;
@@ -2011,7 +2015,7 @@ a:hover {
   padding: 5px 10px;
   background-color: black;
   color: white;
-  font-size: 20px;
+  font-size: 18px;
   margin-bottom: 10px;
 }
 

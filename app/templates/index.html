@@ -136,7 +136,7 @@
       </div>
 
       <div class="footer__partners--row">
-        <p>&copy; 2018 Mercedes-Benz &mdash; Cigliutti-Guerini Reservados todos los derechos (proveedor)</p> | <router-link to="/call" tag="a">Atención</router-link> | <router-link to="/dealers" tag="a">Sucursales</router-link> | <router-link to="/tos" tag="a">Términos y condiciones</router-link>
+        <p>&copy; 2018 Cigliutti-Guerini &mdash; Reservados todos los derechos (proveedor)</p> | <router-link to="/call" tag="a">Atención</router-link> | <router-link to="/dealers" tag="a">Sucursales</router-link> | <router-link to="/tos" tag="a">Términos y condiciones</router-link>
       </div>  
     </div> 
 
@@ -557,7 +557,6 @@
               </div>          
             </section>
             <footer class="modal-card-foot">
-              
               <button class="button">Cancelar</button>
               <button class="button is-success">Solicitar Seguros</button>
             </footer>
@@ -570,17 +569,13 @@
   <script type="text/x-template" id="products">
     <div class="section">
       <div class="container is-striped">
-        <div class="content hero">
-          <h1 v-html="title" class="is-capitalized fixed-hero__heading"></h1>
-          <div class="columns">
-            <div v-for="item,index in items" class="column">
-              <router-link :to="'/'+item.slug">
-                <div class="item-pic" :style="'background-image: url('+item.pic+')'"></div>
-              </router-link>
-              <h2 v-if="item.title && item.title.length"><span v-html="item.title"></span></h2>
+        <div class="slick slick-main opacity0">
+          <div v-for="item in items" class="slick-pane p1em has-text-left" :style="'background-image:url(' + item.picture + ')'">
+            <div class="hero__heading">
+              <h1 v-if="item.title && item.title.length"><span v-html="item.title"></span></h1>
               <h4 v-if="item.intro && item.intro.length"><span v-html="item.intro"></span></h4>
-              <router-link :to="'/'+item.slug">Explorar</router-link>
-            </div>
+              <router-link class="button is-white is-medium" :to="'/'+item.slug" tag="a">Explorar</router-link>
+            </div>          
           </div>
         </div>
       </div>

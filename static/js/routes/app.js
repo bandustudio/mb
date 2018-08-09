@@ -206,6 +206,43 @@ const Products = {
     this.title = this.$route.params.slug||"Nuestros vehículos"
     this.$http.post(helper.getAttributes($('html')).endpoint + '/app'+location.pathname, {}, {emulateJSON:true}).then(function(res){
       this.items = res.data.data
+
+      setTimeout(function(){
+        $('.slick').slick({
+          centerMode: true,
+          centerPadding: '60px',
+          slidesToShow: 3,
+          responsive: [
+            {
+              breakpoint: 1024,
+              settings: {
+                arrows: false,
+                centerMode: true,
+                centerPadding: '40px',
+                slidesToShow: 2
+              }
+            },
+            {
+              breakpoint: 480,
+              settings: {
+                arrows: false,
+                centerMode: true,
+                centerPadding: '40px',
+                slidesToShow: 1
+              }
+            }
+          ]/*       
+          dots: true,
+          arrows:true,
+          infinite: true,
+          speed: 500,
+          fade: true,
+          cssEase: 'linear',
+          accessibility: true,
+          adaptiveHeight: true*/
+        }).addClass('fadeIn')
+        $('.slick-pane').css({'height':($(window).height()-$('.navbar').height())+'px'})
+      },100);      
       helper.is_loaded()
     }, function(error){
       console.log(error.statusText)
