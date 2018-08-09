@@ -269,8 +269,8 @@
               <p class="modal-card-title"><strong v-html="data.title"></strong></p>
               <button class="delete" aria-label="close"></button>
             </header>
+            <div class="card" class="item-pic" :style="'background-image: url('+data.picture+')'"></div>
             <section class="modal-card-body">
-              <div class="card" class="item-pic" :style="'background-image: url('+data.picture+')'"></div>
               <div class="tabs">
                 <ul>
                   <li class="is-active"><a>Test Drive</a></li>
@@ -344,8 +344,8 @@
               <p class="modal-card-title"><strong v-html="data.title"></strong></p>
               <button class="delete" aria-label="close"></button>
             </header>
+            <div class="card" class="item-pic" :style="'background-image: url('+data.picture+')'"></div>
             <section class="modal-card-body">
-              <div class="card" class="item-pic" :style="'background-image: url('+data.picture+')'"></div>
               <div class="tabs">
                 <ul>
                   <li><a class="modal-button" data-capture="lead" data-target="modal-testdrive" aria-haspopup="true">Test Drive</a></li>
@@ -420,8 +420,8 @@
               <p class="modal-card-title"><strong v-html="data.title"></strong></p>
               <button class="delete" aria-label="close"></button>
             </header>
+            <div class="card" class="item-pic" :style="'background-image: url('+data.picture+')'"></div>
             <section class="modal-card-body">
-              <div class="card" class="item-pic" :style="'background-image: url('+data.picture+')'"></div>
               <div class="tabs">
                 <ul>
                   <li><a class="modal-button" data-capture="lead" data-target="modal-testdrive" aria-haspopup="true">Test Drive</a></li>
@@ -495,8 +495,8 @@
               <p class="modal-card-title"><strong v-html="data.title"></strong></p>
               <button class="delete" aria-label="close"></button>
             </header>
+            <div class="card" class="item-pic" :style="'background-image: url('+data.picture+')'"></div>
             <section class="modal-card-body">
-              <div class="card" class="item-pic" :style="'background-image: url('+data.picture+')'"></div>            
               <div class="tabs">
                 <ul>
                   <li><a class="modal-button" data-capture="lead" data-target="modal-testdrive" aria-haspopup="true">Test Drive</a></li>
@@ -558,7 +558,7 @@
             </section>
             <footer class="modal-card-foot">
               <button class="button">Cancelar</button>
-              <button class="button is-success">Solicitar Seguros</button>
+              <button class="button is-success" @click="sendLead()">Solicitar Seguros</button>
             </footer>
           </div>
         </div>

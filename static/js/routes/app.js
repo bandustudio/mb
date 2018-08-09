@@ -262,6 +262,7 @@ const Product = {
   template: '#product',
   mounted : function(){
     helper.is_loading()
+    helper.capture('lead')
     this.$http.post(helper.getAttributes($('html')).endpoint + '/app'+location.pathname, {}, {emulateJSON:true}).then(function(res){
       this.data = res.data.data
       document.title = this.data.title
@@ -287,6 +288,9 @@ const Product = {
     },
     showLead: function(){
       $('.modal-button').first().click()
+    },
+    sendLead: function(){
+      helper.send('lead')
     }
   },
   data: function() {
