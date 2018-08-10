@@ -1676,7 +1676,6 @@ a:hover {
   max-width: 1680px;
   margin: 0 auto;
   z-index: 1;
-  padding-bottom: 5em;
   text-align: center;
 }
 
@@ -1729,7 +1728,8 @@ a:hover {
 .footer__partners--row {
   text-align: right;
   font-family: corpos;
-  padding-right: 1em;
+  padding: 0 1em;
+  padding-bottom: 2em;  
   background: linear-gradient(180deg,#000 0,#2e2e2e 300px,#000 1000px);
 }
 

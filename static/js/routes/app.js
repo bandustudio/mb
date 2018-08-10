@@ -465,7 +465,7 @@ router.beforeEach(function (to, from, next) {
 router.afterEach(function (to, from, next) {
   setTimeout(function() {
     $('.navbar-menu, .navbar-burger').removeClass('is-active')
-    $('.is-cat').slideUp('fast')
+    $('.is-cat').slideUp(250)
   }, 1)
 })
 
@@ -479,16 +479,14 @@ const app = new Vue({ router: router,
       $('.is-cat-link').hover(function(){
         $('.is-cat').css({display:'none'})
         if(location.pathname!=$(this).attr('href')){
-          $('.is-cat-' + $(this).attr('cat')).addClass('fadeInFast').fadeIn(250)
+          $('.is-cat-' + $(this).attr('cat')).slideDown(350)
         }
       },function(){
       });
 
       $('.is-cat').hover(function(){
       },function(){
-        $(this).slideUp(150,function(){
-          $(this).removeClass('fadeInFast')
-        })
+        $(this).slideUp(250)
       });  
 
       $('.services .item-pic').hover(function(){
