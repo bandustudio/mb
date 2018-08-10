@@ -479,14 +479,14 @@ const app = new Vue({ router: router,
       $('.is-cat-link').hover(function(){
         $('.is-cat').css({display:'none'})
         if(location.pathname!=$(this).attr('href')){
-          $('.is-cat-' + $(this).attr('cat')).slideDown(350)
+          $('.is-cat-' + $(this).attr('cat')).addClass('fadeIn').fadeIn(350)
         }
       },function(){
       });
 
       $('.is-cat').hover(function(){
       },function(){
-        $(this).slideUp(250)
+        $(this).removeClass('fadeIn').slideUp(250)
       });  
 
       $('.services .item-pic').hover(function(){

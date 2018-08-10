@@ -701,15 +701,19 @@ body {
 .item-pic {
   display: inline-block;
   width: 100%;
-  min-height: 100px;
+  min-height: 150px;
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: cover;
+  background-size: contain;
   -webkit-transition: background-image 0.2s ease-in-out;
   transition: background-image 0.2s ease-in-out;
 }
 
-.services .-pic {
+.services .column {
+  min-height: auto !important;
+}
+
+.services .item-pic {
   min-height: 220px;
 }
 

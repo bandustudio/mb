@@ -136,7 +136,6 @@
   <script type="text/x-template" id="splash">
     <div class="section">
       <div class="container is-striped services">
-
         <div class="slick slick-main opacity0">
           <div v-for="item in posts.slide" class="slick-pane has-text-left" :style="'background-image:url(' + item.picture + ')'">
             <div class="hero__heading">
@@ -146,7 +145,6 @@
             </div>          
           </div>
         </div>
-
         <div class="content">
           <!--h1 class="is-capitalized fixed-hero__heading">Servicios</h1-->
           <div class="columns">
@@ -154,9 +152,9 @@
               <a :href="'/services/'+item.slug">
               <div class="item-pic" :pic-on="item.pic_on" :pic-off="item.pic_off" :style="'background-image: url('+item.pic_off+')'"></div>
               </a>
-              <h2><span v-html="item.title"></span></h2>
-              <h4><span v-html="item.intro"></span></h4>
-              <a :href="'/services/'+item.slug">Explorar</a>
+              <h2 class="has-text-centered"><span v-html="item.title"></span></h2>
+              <!--h4><span v-html="item.intro"></span></h4>
+              <a :href="'/services/'+item.slug">Explorar</a-->
             </div>
           </div>
         </div>
@@ -973,12 +971,16 @@
   </script>
 
   <script type="text/x-jsrender" id="notfound">
-    <div class="container inline-background pagenotfound fadeIn">
-      <h2><span class="icon has-text-danger fa fa-times-circle"></span> No pudimos hallar la página</h2> 
-      <p>Por favor revisa la url. Si creés que es un error por favor contactanos.</p>
-      <div class="container has-text-centered">
-        <a href="/" class="button is-medium">Volver al inicio</a>
-      </div>        
+    <div class="container">
+      <div class="inline-background pagenotfound fadeIn">
+        <div class="content hero">
+          <h2><span class="icon has-text-danger fa fa-times-circle"></span> No pudimos hallar la página</h2> 
+          <p>Por favor revisa la url. Si creés que es un error por favor contactanos.</p>
+          <div class="container has-text-centered">
+            <a href="/" class="button is-medium">Volver al inicio</a>
+          </div>        
+        </div>
+      </div>
     </div>
   </script>
 
@@ -1019,8 +1021,8 @@
             <div class="item-pic" pic-on="[[:prop.pic_on]]" pic-off="[[:prop.pic_off]]" style="background-image: url([[:prop.pic_off]])"></div>
             </a>
             <h2><span>[[:prop.title]]</span></h2>
-            <!--h4><span>[[:prop.intro]]</span></h4-->
-            <a href="/services/[[:prop.slug]]">Explorar</a>
+            <!--h4><span>[[:prop.intro]]</span></h4>
+            <a href="/services/[[:prop.slug]]">Explorar</a-->
           </div>
         [[/props]]
         </div>
@@ -1037,8 +1039,8 @@
             <div class="item-pic" style="background-image: url([[:pic]])"></div>
             </a>
             <h2><span>[[:title]]</span></h2>
-            <!--h4><span>[[:intro]]</span></h4-->
-            <a href="/dealers/[[:slug]]">Explorar</a>
+            <!--h4><span>[[:intro]]</span></h4>
+            <a href="/dealers/[[:slug]]">Explorar</a-->
           </div>
         [[/for]]
         </div>
