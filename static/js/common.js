@@ -315,12 +315,14 @@ var helper = {
     }
     localStorage.setItem("champ", JSON.stringify(champ));
   },
+  update : function( form ){
+    $('.' + form).find('input, select, textarea').trigger("change")
+  },
   capture : function( form ){
-
     var champ = this.champ();
-    var parent = $("."+form);
+    var parent = $("."+form+":visible");
     var elements = parent.find('input, select, textarea');
-    var button = parent.find('a.disabled');
+    var button = parent.find('.disabled');
     var that = this
 
     button.on('click',function(e){
@@ -330,10 +332,9 @@ var helper = {
       }
     });
 
-    elements.on('change keyup',function(){
+    elements.on('change keyup click',function(){
       var complete = true;
       helper.fill($(this),form);
-
       elements.each(function(){
         if(!$(this).attr('optional')){
           if(!$(this).val() || $(this).val() === ''){
@@ -344,13 +345,13 @@ var helper = {
           }
         }
       })
+
       if(complete) {
         button.attr('disabled',false).removeClass('disabled');
       }
     });
 
-    $('input[type="hidden"]').trigger("change")
-
+    helper.update(form)
     elements.first().trigger('change');
     elements.first().focus()
   }
@@ -371,7 +372,9 @@ $(document).on('click','.modal-button',function(e){
   $('html').addClass('is-clipped');
   $('.modal').removeClass('is-active');
   $('#'+$(this).data('target')).addClass('is-active');
-  if($(this).data('capture')) helper.capture($(this).data('capture'))
+  if($(this).data('capture')) {
+    helper.capture($(this).data('capture'))
+  }
 })
 
 $(document).on('click','.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button',function(e){

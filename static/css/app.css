@@ -682,7 +682,17 @@ body {
   padding: 5rem 1.5rem;
 }
 
+.modal-card-head {
+  background-color: black;
+  border-bottom: none;
+}
+
+.modal-card-title {
+  color: white;
+}
+
 .modal-card-foot {
+  background-color: white;
   -webkit-box-pack: end;
   -ms-flex-pack: end;
   justify-content: flex-end;
@@ -699,8 +709,12 @@ body {
   transition: background-image 0.2s ease-in-out;
 }
 
-.services .item-pic {
+.services .-pic {
   min-height: 220px;
+}
+
+.modal-card .item-pic {
+  min-height: 260px;
 }
 
 .subnav {
@@ -912,9 +926,13 @@ body {
   background-color: transparent;
   position: relative!important;
   left: 40px !important;
-  top: 16px !important;
+  top: 17px !important;
   font-size: 12px;
   font-weight: 400;
+}
+
+.navbar-burger span:nth-child(2) {
+  width: 15px;
 }
 
 .navbar-button {
@@ -1234,8 +1252,9 @@ a:hover {
   background-position: left center;
   background-repeat: no-repeat;
   background-size: 25px 25px;
+  margin-left: 5px;
   padding-left: 30px;
-  filter: grayscale(100%);
+  display: inline-block;
 }
 
 .product_options {
@@ -1293,8 +1312,7 @@ a:hover {
 }
 
 .rounded {
-  background-color: #f6f6f6;
-  border: solid 1px white;
+  background-color: transparent;
   padding: 40px 30px;
   margin-top: 80px;
 }
@@ -1663,7 +1681,7 @@ a:hover {
 }
 
 .footer__menu{
-  padding: 2em;
+  padding: 2em 4em;
   font-family: "corpos";
   background: linear-gradient(180deg,#262626,#171717 280px);
 }
@@ -1675,6 +1693,13 @@ a:hover {
 .footer__menu--inner a {
   display: block;
   font-color: #999!important;
+}
+.footer__menu--inner .column {
+  padding: 0 1.2em;
+}
+.footer__menu--inner .column:nth-child(2), 
+.footer__menu--inner .column:nth-child(3) {
+  border-left: 1px solid #333;
 }
 
 .footer__partners h6 {
@@ -2015,7 +2040,7 @@ a:hover {
   padding: 5px 10px;
   background-color: black;
   color: white;
-  font-size: 18px;
+  font-size: 16px;
   margin-bottom: 10px;
 }
 
@@ -2055,8 +2080,7 @@ a:hover {
 
 .is-cat {
   /*transform: scale(0.7) rotate(-1deg) skew(-1deg);*/
-  transform: scale(0.7);
-  /*padding: 2em 0;*/
+  padding: 2em;
   display: none;
 }
 

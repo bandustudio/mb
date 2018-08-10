@@ -34,7 +34,7 @@ $app->group('/v1', function() {
                 ->where(['enabled' => 1])
                 ->order(['title' => "ASC"]);
 
-            $featured_row_count = 4;
+            $featured_row_count = 5;
 
             // featured
             foreach($items as $item){

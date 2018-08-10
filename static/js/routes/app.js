@@ -219,7 +219,7 @@ const Products = {
                 arrows: false,
                 centerMode: true,
                 centerPadding: '40px',
-                slidesToShow: 2
+                slidesToShow: 1
               }
             },
             {
@@ -363,24 +363,24 @@ const ConsultaExito = {
   }
 }
 
-const Contacto = {
-  template: '#contact',
+const Turnos = {
+  template: '#turnos',
   mounted: function() {
-    helper.collect('contact');
+    helper.capture('turnos');
     //helper.send('item')
   },
   methods : {
     enviar : function(){
-      console.log("enviar Contacto!");
+      console.log("enviar Turno!");
       var button = $('.item .button.rounded-button-grey')
       if(!button.hasClass('disabled')){
         button.addClass('is-loading')  
         setTimeout(function(){
           helper.setFlash({
-            title:"Felicitaciones " + helper.champ().contact.first_name,
-            text:"Nuestro asesor se pondrá en contacto con vos para ayudarte a ahorrar."
+            title:"Felicitaciones " + helper.champ().turnos.first_name,
+            text:"Nuestro asesor se pondrá en turnoso con vos para ayudarte a ahorrar."
           })
-          helper.send('contact', {redirect:"/"})
+          helper.send('turnos', {redirect:"/"})
         },1000)   
       }
     }
@@ -388,7 +388,7 @@ const Contacto = {
   data: function() {
     return{
       item : helper.champ().item||{},
-      contact : helper.champ().contact||{},
+      turnos : helper.champ().turnos||{},
       settings : helper.getAttributes($('html')),
       hash : location.hash.replace('#','')
     }
@@ -446,7 +446,7 @@ const router = new VueRouter({
     {path: '/dealers/:slug', component: Dealer,  meta : { title: 'Dealer'}},
     {path: '/services', component: Services,  meta : { title: 'Servicios'}},
     {path: '/services/:slug', component: Service,  meta : { title: 'Servicio'}},
-    {path: '/contact', component: Contacto, meta : { title: 'Contacto'}},
+    {path: '/turnos', component: Turnos, meta : { title: 'Turno online'}},
     {path: '/tos', component: Terminos, meta : { title: 'Términos y condiciones'}},
     {path: '/call', component: Atencion, meta : { title: 'Atención'}},
     {path: '/opener', component: Opener, meta : { title: 'Redirigiendo...'}},
@@ -479,7 +479,7 @@ const app = new Vue({ router: router,
       $('.is-cat-link').hover(function(){
         $('.is-cat').css({display:'none'})
         if(location.pathname!=$(this).attr('href')){
-          $('.is-cat-' + $(this).attr('cat')).addClass('scaleIn').fadeIn(250)
+          $('.is-cat-' + $(this).attr('cat')).addClass('fadeInFast').fadeIn(250)
         }
       },function(){
       });
@@ -487,7 +487,7 @@ const app = new Vue({ router: router,
       $('.is-cat').hover(function(){
       },function(){
         $(this).slideUp(150,function(){
-          $(this).removeClass('scaleIn')
+          $(this).removeClass('fadeInFast')
         })
       });  
 

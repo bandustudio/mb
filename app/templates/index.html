@@ -54,6 +54,7 @@
   </script-->
 </head>
 <body>
+
   <div id="app">
     <nav class="navbar hidden-loading fadeIn" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
@@ -86,12 +87,17 @@
         </div>
         <!--div class="navbar-end"></div-->
       </div>
-      <div class="topright phone is-hidden-mobile">
-        <a href="tel:{{ app_phone }}">{{ app_phone }}</a>
+
+      <div class="topright is-hidden-mobile">
+        <router-link to="/turnos" class="text-link" tag="a">Turnos online</router-link>
+        <span class="phone">
+          <a href="tel:{{ app_phone }}">{{ app_phone }}</a>
+        </span>
       </div>
     </nav>
 
     <div class="subnav"></div>
+
     <keep-alive>
       <router-view :key="$route.fullPath"><div class="spinner-outer fadeIn"><div class="spinner" data-layer="4"><div class="spinner-container"><div class="spinner-rotator"><div class="spinner-left"><div class="spinner-circle"></div></div><div class="spinner-right"><div class="spinner-circle"></div></div></div></div><div class="spinner-message">Si la aplicación no empieza en breve, prueba a reiniciar el dispositivo.</div></div></div></router-view>
     </keep-alive>
@@ -104,42 +110,27 @@
         <div class="footer__menu--inner">
           <div class="columns has-text-left">
             <div class="column">
-              <strong>Asesoramiento para la compra</strong>
+              <dt><strong>Asesoramiento para la compra</strong></dt>
+              <dt><a href="/products">Lista de productos</a></dt>
             </div>
             <div class="column">
-              <strong>Servicios online</strong>
+              <dt><strong>Servicios online</strong></dt>
+              <dt><a href="/dealers">Localizador de concesionarios</a></dt>
             </div>
             <div class="column">
-              <strong>Acerca de nosotros</strong>
+              <dt><strong>Acerca de nosotros</strong></dt>
+              <dt><a href="/turnos">Turnos online</a></dt>
+              <dt><a href="/posts/empresa">Empresa</a></dt>
             </div>
-            <div class="column"></div>
-            <div class="column"></div>
-            <div class="column"></div>
-          </div>
-
-          <div class="columns has-text-left">
-            <div class="column">
-              <a href="/products">Asesoramiento para la compra</a>
-            </div>
-            <div class="column">
-              <a href="/dealers">Localizador de concesionarios</a>
-            </div>
-            <div class="column">
-              <a href="/posts/empresa">Empresa</a>
-              <a href="/contact">Contacto</a>
-            </div>
-            <div class="column"></div>
-            <div class="column"></div>
             <div class="column"></div>
           </div>
         </div>
       </div>
 
       <div class="footer__partners--row">
-        <p>&copy; 2018 Cigliutti-Guerini &mdash; Reservados todos los derechos (proveedor)</p> | <router-link to="/call" tag="a">Atención</router-link> | <router-link to="/dealers" tag="a">Sucursales</router-link> | <router-link to="/tos" tag="a">Términos y condiciones</router-link>
+        <p>&copy; 2018 Cigliutti-Guerini &mdash; Reservados todos los derechos (proveedor)</p> | <router-link to="/tos" tag="a">Términos y condiciones</router-link>
       </div>  
     </div> 
-
   </div>
   
   <script type="text/x-template" id="splash">
@@ -241,17 +232,17 @@
             <h1>Opciones para <strong v-html="data.title"></strong></h1>
             <div class="has-text-centered tile is-ancestor">
               <input type="hidden" name="product_id" :value="data.id">
-              <button class="button tile is-white is-medium modal-button" data-capture="lead" data-target="modal-testdrive" aria-haspopup="true">
-                Test Drive
+              <button class="button tile is-white is-medium modal-button" data-capture="lead" data-target="modal-atencion" aria-haspopup="true">
+                Atención al Cliente
               </button>
               <button class="button tile is-white is-medium modal-button" data-capture="lead" data-target="modal-repuestos" aria-haspopup="true">
-                Repuestos
+                Repuestos y Accesorios
               </button>
               <button class="button tile is-white is-medium modal-button" data-capture="lead" data-target="modal-accesorios" aria-haspopup="true">
-                Accesorios
+                Plan de Ahorro
               </button>
               <button class="button tile is-white is-medium modal-button" data-capture="lead" data-target="modal-seguros" aria-haspopup="true">
-              Seguros
+                Seguros
               </button>
             </div>
 
@@ -262,27 +253,28 @@
           </div>         
         </div>
 
-        <div id="modal-testdrive" class="modal lead">
+        <div id="modal-atencion" class="modal lead">
+          <input type="hidden" name="product_id" :value="data.id">
           <div class="modal-background"></div>
           <div class="modal-card">
             <header class="modal-card-head">
-              <p class="modal-card-title"><strong v-html="data.title"></strong></p>
+              <p class="modal-card-title"><span v-html="data.title"></span></p>
               <button class="delete" aria-label="close"></button>
             </header>
             <div class="card" class="item-pic" :style="'background-image: url('+data.picture+')'"></div>
             <section class="modal-card-body">
               <div class="tabs">
                 <ul>
-                  <li class="is-active"><a>Test Drive</a></li>
-                  <li><a class="modal-button" data-capture="lead" data-target="modal-repuestos" aria-haspopup="true">Repuestos</a></li>
-                  <li><a class="modal-button" data-capture="lead" data-target="modal-accesorios" aria-haspopup="true">Accesorios</a></li>
+                  <li class="is-active"><a>Atención al Cliente</a></li>
+                  <li><a class="modal-button" data-capture="lead" data-target="modal-repuestos" aria-haspopup="true">Repuestos y Accesorios</a></li>
+                  <li><a class="modal-button" data-capture="lead" data-target="modal-accesorios" aria-haspopup="true">Plan de Ahorro</a></li>
                   <li><a class="modal-button" data-capture="lead" data-target="modal-seguros" aria-haspopup="true">Seguros</a></li>
                 </ul>
               </div>            
               <div class="columns">
                 <div class="column">
                   <p class="control is-expanded has-icons-left">
-                    <input class="input rounded-input " type="text" name="full_name"  placeholder="Nombre" autofocus>
+                    <input class="input rounded-input" type="text" name="full_name"  placeholder="Nombre" autofocus>
                     <span class="icon  is-left">
                       <i class="fas fa-user"></i>
                     </span>
@@ -290,8 +282,8 @@
                 </div>
                 <div class="column">
                   <p class="control is-expanded has-icons-left has-icons-right">
-                    <input class="input rounded-input  is-success" name="email" type="email"  placeholder="Email">
-                    <span class="icon  is-left">
+                    <input class="input rounded-input is-success" name="email" type="email"  placeholder="Email">
+                    <span class="icon is-left">
                       <i class="fas fa-envelope"></i>
                     </span>
                     <!--span class="icon  is-right">
@@ -303,7 +295,7 @@
               <div class="columns">
                 <div class="column">
                   <p class="control is-expanded has-icons-left">
-                    <input class="input rounded-input " type="tel" name="tel"  placeholder="Teléfono">
+                    <input class="input rounded-input" type="tel" name="tel"  placeholder="Teléfono">
                     <span class="icon  is-left">
                       <i class="fas fa-phone"></i>
                     </span>
@@ -312,11 +304,12 @@
                 <div class="column">
                   <div class="control">
                     <div class="select rounded-select  is-fullwidth">
-                      <select name="dealer_id" >
-                        <option value="" selected>Sucursal</option>
-                        [[for dealers]]
-                        <option value="[[:id]]">[[:formatted_address]]</option>
-                        [[/for]]
+                      <select name="reason">
+                        <option value="" selected>Motivo de consulta</option>
+                          <option value="consulta">Consulta general</option>
+                          <option value="testdrive">Test Drive</option>
+                          <option value="financiacion">Financiación</option>
+                          <option value="otro">Otro</option>
                       </select>
                     </div>
                   </div>
@@ -325,39 +318,40 @@
               <div class="columns">
                 <div class="column">
                   <div class="control">
-                    <textarea name="comment" class="textarea rounded-input"  placeholder="Explain how we can help you"></textarea>
+                    <textarea name="comment" class="textarea rounded-input"  placeholder="Escriba su consulta aquí. Intente ser breve y concreto."></textarea>
                   </div>
                 </div>
               </div>  
             </section>
             <footer class="modal-card-foot">
               <button class="button">Cancelar</button>
-              <button class="button is-success">Solicitar Test Drive</button>
+              <button class="button is-success disabled submitable" @click="sendLead()" disabled>Solicitar Atención al Cliente</button>
             </footer>
           </div>
         </div>   
 
         <div id="modal-repuestos" class="modal lead">
+          <input type="hidden" name="product_id" :value="data.id">
           <div class="modal-background"></div>
           <div class="modal-card">
             <header class="modal-card-head">
-              <p class="modal-card-title"><strong v-html="data.title"></strong></p>
+              <p class="modal-card-title"><span v-html="data.title"></span></p>
               <button class="delete" aria-label="close"></button>
             </header>
             <div class="card" class="item-pic" :style="'background-image: url('+data.picture+')'"></div>
             <section class="modal-card-body">
               <div class="tabs">
                 <ul>
-                  <li><a class="modal-button" data-capture="lead" data-target="modal-testdrive" aria-haspopup="true">Test Drive</a></li>
-                  <li class="is-active"><a>Repuestos</a></li>
-                  <li><a class="modal-button" data-capture="lead" data-target="modal-accesorios" aria-haspopup="true">Accesorios</a></li>
+                  <li><a class="modal-button" data-capture="lead" data-target="modal-atencion" aria-haspopup="true">Atención al Cliente</a></li>
+                  <li class="is-active"><a>Repuestos y Accesorios</a></li>
+                  <li><a class="modal-button" data-capture="lead" data-target="modal-accesorios" aria-haspopup="true">Plan de Ahorro</a></li>
                   <li><a class="modal-button" data-capture="lead" data-target="modal-seguros" aria-haspopup="true">Seguros</a></li>
                 </ul>
               </div>              
               <div class="columns">
                 <div class="column">
                   <p class="control is-expanded has-icons-left">
-                    <input class="input rounded-input " type="text" name="full_name"  placeholder="Nombre" autofocus>
+                    <input class="input rounded-input" type="text" name="full_name"  placeholder="Nombre" autofocus>
                     <span class="icon  is-left">
                       <i class="fas fa-user"></i>
                     </span>
@@ -365,7 +359,7 @@
                 </div>
                 <div class="column">
                   <p class="control is-expanded has-icons-left has-icons-right">
-                    <input class="input rounded-input  is-success" name="email" type="email"  placeholder="Email">
+                    <input class="input rounded-input is-success" name="email" type="email"  placeholder="Email">
                     <span class="icon  is-left">
                       <i class="fas fa-envelope"></i>
                     </span>
@@ -378,7 +372,7 @@
               <div class="columns">
                 <div class="column">
                   <p class="control is-expanded has-icons-left">
-                    <input class="input rounded-input " type="tel" name="tel"  placeholder="Teléfono">
+                    <input class="input rounded-input" type="tel" name="tel"  placeholder="Teléfono">
                     <span class="icon  is-left">
                       <i class="fas fa-phone"></i>
                     </span>
@@ -387,7 +381,7 @@
                 <div class="column">
                   <div class="control">
                     <div class="select rounded-select  is-fullwidth">
-                      <select name="dealer_id" >
+                      <select name="dealer_id">
                         <option value="" selected>Sucursal</option>
                         [[for dealers]]
                         <option value="[[:id]]">[[:formatted_address]]</option>
@@ -408,32 +402,33 @@
             <footer class="modal-card-foot">
               
               <button class="button">Cancelar</button>
-              <button class="button is-success">Solicitar Repuestos</button>
+              <button class="button is-success">Solicitar Repuestos y Accesorios</button>
             </footer>
           </div>
         </div>
 
         <div id="modal-accesorios" class="modal lead">
+          <input type="hidden" name="product_id" :value="data.id">
           <div class="modal-background"></div>
           <div class="modal-card">
             <header class="modal-card-head">
-              <p class="modal-card-title"><strong v-html="data.title"></strong></p>
+              <p class="modal-card-title"><span v-html="data.title"></span></p>
               <button class="delete" aria-label="close"></button>
             </header>
             <div class="card" class="item-pic" :style="'background-image: url('+data.picture+')'"></div>
             <section class="modal-card-body">
               <div class="tabs">
                 <ul>
-                  <li><a class="modal-button" data-capture="lead" data-target="modal-testdrive" aria-haspopup="true">Test Drive</a></li>
-                  <li><a class="modal-button" data-capture="lead" data-target="modal-repuestos" aria-haspopup="true">Repuestos</a></li>
-                  <li class="is-active"><a>Accesorios</a></li>
+                  <li><a class="modal-button" data-capture="lead" data-target="modal-atencion" aria-haspopup="true">Atención al Cliente</a></li>
+                  <li><a class="modal-button" data-capture="lead" data-target="modal-repuestos" aria-haspopup="true">Repuestos y Accesorios</a></li>
+                  <li class="is-active"><a>Plan de Ahorro</a></li>
                   <li><a class="modal-button" data-capture="lead" data-target="modal-seguros" aria-haspopup="true">Seguros</a></li>
                 </ul>
               </div>             
               <div class="columns">
                 <div class="column">
                   <p class="control is-expanded has-icons-left">
-                    <input class="input rounded-input " type="text" name="full_name"  placeholder="Nombre" autofocus>
+                    <input class="input rounded-input" type="text" name="full_name"  placeholder="Nombre" autofocus>
                     <span class="icon  is-left">
                       <i class="fas fa-user"></i>
                     </span>
@@ -441,7 +436,7 @@
                 </div>
                 <div class="column">
                   <p class="control is-expanded has-icons-left has-icons-right">
-                    <input class="input rounded-input  is-success" name="email" type="email"  placeholder="Email">
+                    <input class="input rounded-input is-success" name="email" type="email"  placeholder="Email">
                     <span class="icon  is-left">
                       <i class="fas fa-envelope"></i>
                     </span>
@@ -454,7 +449,7 @@
               <div class="columns">
                 <div class="column">
                   <p class="control is-expanded has-icons-left">
-                    <input class="input rounded-input " type="tel" name="tel"  placeholder="Teléfono">
+                    <input class="input rounded-input" type="tel" name="tel"  placeholder="Teléfono">
                     <span class="icon  is-left">
                       <i class="fas fa-phone"></i>
                     </span>
@@ -463,7 +458,7 @@
                 <div class="column">
                   <div class="control">
                     <div class="select rounded-select  is-fullwidth">
-                      <select name="dealer_id" >
+                      <select name="dealer_id">
                         <option value="" selected>Sucursal</option>
                         [[for dealers]]
                         <option value="[[:id]]">[[:formatted_address]]</option>
@@ -483,32 +478,33 @@
             </section>
             <footer class="modal-card-foot">
               <button class="button">Cancelar</button>
-              <button class="button is-success">Solicitar Accesorios</button>           
+              <button class="button is-success">Solicitar Plan de Ahorro</button>           
             </footer>
           </div>
         </div> 
 
         <div id="modal-seguros" class="modal lead">
+          <input type="hidden" name="product_id" :value="data.id">
           <div class="modal-background"></div>
           <div class="modal-card">
             <header class="modal-card-head">
-              <p class="modal-card-title"><strong v-html="data.title"></strong></p>
+              <p class="modal-card-title"><span v-html="data.title"></span></p>
               <button class="delete" aria-label="close"></button>
             </header>
             <div class="card" class="item-pic" :style="'background-image: url('+data.picture+')'"></div>
             <section class="modal-card-body">
               <div class="tabs">
                 <ul>
-                  <li><a class="modal-button" data-capture="lead" data-target="modal-testdrive" aria-haspopup="true">Test Drive</a></li>
-                  <li><a class="modal-button" data-capture="lead" data-target="modal-repuestos" aria-haspopup="true">Repuestos</a></li>
-                  <li><a class="modal-button" data-capture="lead" data-target="modal-accesorios" aria-haspopup="true">Accesorios</a></li>
+                  <li><a class="modal-button" data-capture="lead" data-target="modal-atencion" aria-haspopup="true">Atención al Cliente</a></li>
+                  <li><a class="modal-button" data-capture="lead" data-target="modal-repuestos" aria-haspopup="true">Repuestos y Accesorios</a></li>
+                  <li><a class="modal-button" data-capture="lead" data-target="modal-accesorios" aria-haspopup="true">Plan de Ahorro</a></li>
                   <li class="is-active"><a>Seguros</a></li>
                 </ul>
               </div>               
               <div class="columns">
                 <div class="column">
                   <p class="control is-expanded has-icons-left">
-                    <input class="input rounded-input " type="text" name="full_name"  placeholder="Nombre" autofocus>
+                    <input class="input rounded-input" type="text" name="full_name"  placeholder="Nombre" autofocus>
                     <span class="icon  is-left">
                       <i class="fas fa-user"></i>
                     </span>
@@ -516,7 +512,7 @@
                 </div>
                 <div class="column">
                   <p class="control is-expanded has-icons-left has-icons-right">
-                    <input class="input rounded-input  is-success" name="email" type="email"  placeholder="Email">
+                    <input class="input rounded-input is-success" name="email" type="email"  placeholder="Email">
                     <span class="icon  is-left">
                       <i class="fas fa-envelope"></i>
                     </span>
@@ -529,7 +525,7 @@
               <div class="columns">
                 <div class="column">
                   <p class="control is-expanded has-icons-left">
-                    <input class="input rounded-input " type="tel" name="tel"  placeholder="Teléfono">
+                    <input class="input rounded-input" type="tel" name="tel"  placeholder="Teléfono">
                     <span class="icon  is-left">
                       <i class="fas fa-phone"></i>
                     </span>
@@ -538,7 +534,7 @@
                 <div class="column">
                   <div class="control">
                     <div class="select rounded-select  is-fullwidth">
-                      <select name="dealer_id" >
+                      <select name="dealer_id">
                         <option value="" selected>Sucursal</option>
                         [[for dealers]]
                         <option value="[[:id]]">[[:formatted_address]]</option>
@@ -728,7 +724,7 @@
         <div class="modal-background"></div>
         <div class="modal-card">
           <header class="modal-card-head">
-            <p class="modal-card-title"><strong v-html="data.title"></strong></p>
+            <p class="modal-card-title"><span v-html="data.title"></span></p>
             <button class="delete" aria-label="close"></button>
           </header>
           <section class="modal-card-body">
@@ -767,7 +763,7 @@
               <div class="column is-one-third">
                 <div class="control">
                   <div class="select rounded-select is-medium is-fullwidth">
-                    <select name="dealer_id" >
+                    <select name="dealer_id">
                       <option value="" selected>Sucursal</option>
                       [[for dealers]]
                       <option value="[[:id]]">[[:formatted_address]]</option>
@@ -820,7 +816,7 @@
     </div>
   </script>
 
-  <script type="text/x-template" id="contact">
+  <script type="text/x-template" id="turnos">
     <div class="section contact" ajax-prefix="app">
       <div class="container has-text-centered">
         <div class="content">
@@ -830,7 +826,7 @@
             </div>
             <h2 v-if="item.first_name">Hola {{ item.first_name }}, dejanos tu consulta</h2>
             <h2 v-if="!item.first_name">Dejanos tu consulta</h2>
-            <p>Quiero que me contacten</p>
+            <p>Solicitar turno online</p>
             <div class="columns">
               <div class="column">
                 <p class="control is-expanded has-icons-left">
@@ -864,10 +860,13 @@
               <div class="column is-one-third">
                 <div class="control">
                   <div class="select rounded-select is-medium is-fullwidth">
-                    <select name="use">
-                      <option value="">Elija Motivo</option>
-                      <option value="consulta" :selected="hash == 'consulta'">Consulta</option>
-                      <option value="concesionarios" :selected="hash == 'concesionarios'">Concesionarios</option>
+                    <select name="reason">
+                      <option value="" selected>Motivo de consulta</option>
+                      <option value="repuestos" :selected="hash == 'repuestos'">Repuestos y Accesorios</option>
+                      <option value="plan" :selected="hash == 'plan'">Plan de Ahorro</option>
+                      <option value="seguros" :selected="hash == 'seguros'">Seguros</option>
+                      <option value="financiacion" :selected="hash == 'financiacion'">Financiación</option>
+                      <option value="otro">Otro</option>
                     </select>
                   </div>
                 </div>
@@ -995,7 +994,7 @@
         <h1 class="is-capitalized">[[>key]]</h1>
         <div class="columns">
         [[for prop]]
-          <div class="column is-one-quarter">
+          <div class="column is-one-fifth">
             <a href="/[[:slug]]">
             <div class="item-pic" style="background-image: url([[:pic]])"></div>
             </a>
@@ -1033,7 +1032,7 @@
         <h1 class="is-capitalized">Sucursales</h1>
         <div class="columns">
         [[for dealers]]
-          <div class="column is-one-quarter">
+          <div class="column is-one-fifth">
             <a href="/dealers/[[:slug]]">
             <div class="item-pic" style="background-image: url([[:pic]])"></div>
             </a>
