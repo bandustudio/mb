@@ -270,8 +270,15 @@ var helper = {
     var champ = helper.champ();
     var atts = JSON.parse(JSON.stringify(atts))||{}
     var prefix = $('.'+form).attr('ajax-prefix')?"/"+$('.'+form).attr('ajax-prefix')+"/":"/app/"
+    var parent = $("."+form+":visible");
+    var button = parent.find('.submitable');
+
+    button.attr('disabled',true).addClass('disabled is-loading')
 
     return $.post( helper.getAttributes($('html')).endpoint + prefix + form, JSON.stringify(champ[form]), function(res){
+
+      button.removeClass('is-loading')
+
       if(res.status === 'success'){
         if(res.id){
           champ[form].id = res.id;
@@ -324,20 +331,20 @@ var helper = {
 
     var champ = this.champ();
     var parent = $("."+form+":visible");
+    var button = parent.find('.submitable');
     var elements = parent.find('input, select, textarea');
-    var button = parent.find('.disabled');
     var that = this
 
     button.on('click',function(e){
       e.preventDefault();
       if(!$(this).hasClass('disabled')){
-        router.push($(this).attr('to'));
+        router.push($(this).attr('to'))
       }
-    });
+    })
 
     elements.on('change keyup click',function(){
-      var complete = true;
-      helper.fill($(this),form);
+      var complete = true
+      helper.fill($(this),form)
       elements.each(function(){
         if(!$(this).attr('optional')){
           if(!$(this).val() || $(this).val() === ''){
@@ -375,8 +382,11 @@ $(document).on('click','.modal-button',function(e){
   $('html').addClass('is-clipped');
   $('.modal').removeClass('is-active');
   $('#'+$(this).data('target')).addClass('is-active');
-  if($(this).data('capture')) {
-    helper.capture($(this).data('capture'))
+  var capture = $(this).data('capture')
+  if(capture) {
+    setTimeout(function(){
+      helper.capture(capture)  
+    },100)
   }
 })
 

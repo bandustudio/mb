@@ -278,7 +278,6 @@ const Product = {
   template: '#product',
   mounted : function(){
     helper.is_loading()
-    helper.capture('lead')
     this.$http.post(helper.getAttributes($('html')).endpoint + '/app'+location.pathname, {}, {emulateJSON:true}).then(function(res){
       this.data = res.data
       document.title = this.data.item.data.title
@@ -308,7 +307,16 @@ const Product = {
     sendLead: function(){
       $('.lead-sending').fadeIn()
       helper.send('lead',null,function(){
-        $('.lead').find('input, select, textarea').val('')
+        $('.lead').find('input, select, textarea').each(function(){
+          if(!$(this).data('persist')){
+            $(this).val('')
+          }
+        })
+        $('html').removeClass('is-clipped');
+        $('.modal').each(function () {
+          $(this).removeClass('is-active');
+        });
+        
         $('.lead-sending').hide()
         $('.lead-sent').fadeIn()
       })

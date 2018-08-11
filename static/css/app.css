@@ -1710,6 +1710,7 @@ a:hover {
 }
 .footer__menu--inner .column {
   padding: 0 1.2em;
+  padding-bottom: 2em;
 }
 .footer__menu--inner .column:nth-child(2), 
 .footer__menu--inner .column:nth-child(3) {
@@ -2235,6 +2236,10 @@ a:hover {
   }  
   .rounded .badge {
     display: none;
+  }
+  .footer__menu--inner .column:nth-child(2),
+  .footer__menu--inner .column:nth-child(3){
+    border-left: none;
   }
 }
 

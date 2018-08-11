@@ -9,6 +9,26 @@ TRUNCATE TABLE `theme_sections`;
 TRUNCATE TABLE `theme_positions`;
 TRUNCATE TABLE `theme_types`;
 TRUNCATE TABLE `vehicles_models`;
+TRUNCATE TABLE `config`;
+
+INSERT INTO `config` (`id`, `config_key`, `config_value`, `enabled`, `created`, `updated`) VALUES
+(1,	'APP_TITLE',	'Mercedes-Benz',	1,	'2018-08-11 17:40:12',	'2018-08-11 17:40:12'),
+(2,	'APP_TEXT',	'Cigliutti-Guerini',	1,	'2018-08-11 17:40:21',	'2018-08-11 17:40:21'),
+(3,	'APP_PIC',	'https://mb-static.automovilshop.com/img/s-l300.jpg',	1,	'2018-08-11 17:40:52',	'2018-08-11 17:40:52'),
+(4,	'APP_WHATSAPP',	'+54 11 4087 3850',	1,	'2018-08-11 17:32:11',	'2018-08-11 17:32:11'),
+(5,	'APP_PHONE',	'1144510545',	1,	'2018-08-11 17:32:28',	'2018-08-11 17:32:28'),
+(6,	'MAIL_FROM',	'noreply@automovilshop.com',	1,	'2018-08-11 17:33:43',	'2018-08-11 17:33:43'),
+(7,	'MAIL_FROM_NAME',	'No responder',	1,	'2018-08-11 17:33:56',	'2018-08-11 17:33:56'),
+(8,	'MAIL_SMTP_ACCOUNT',	'devmetasoft@gmail.com',	1,	'2018-08-11 17:34:10',	'2018-08-11 17:34:10'),
+(9,	'MAIL_SMTP_PASSWORD',	'Zoala090!',	1,	'2018-08-11 17:34:27',	'2018-08-11 17:34:27'),
+(10,	'MAIL_SMTP_HOST',	'smtp.gmail.com',	1,	'2018-08-11 17:34:40',	'2018-08-11 17:34:40'),
+(11,	'MAIL_SMTP_AUTH',	'true',	1,	'2018-08-11 17:34:55',	'2018-08-11 17:34:55'),
+(12,	'MAIL_SMTP_SECURE',	'ssl',	1,	'2018-08-11 17:35:08',	'2018-08-11 17:35:08'),
+(13,	'MAIL_SMTP_DEBUG',	'0',	1,	'2018-08-11 17:35:17',	'2018-08-11 17:35:17'),
+(14,	'MAIL_SMTP_PORT',	'465',	1,	'2018-08-11 17:35:29',	'2018-08-11 17:35:29'),
+(15,	'APP_URL',	'https://mb.automovilshop.com',	1,	'2018-08-11 17:40:12',	'2018-08-11 17:40:12'),
+(16,	'STATIC_URL',	'https://mb-static.automovilshop.com',	1,	'2018-08-11 17:40:12',	'2018-08-11 17:40:12'),
+(17,	'API_URL',	'https://mb-api.automovilshop.com/v1',	1,	'2018-08-11 17:40:12',	'2018-08-11 17:40:12');
 
 INSERT INTO `dealers` (`id`, `title`, `enabled`, `created`, `updated`) VALUES
 (1,	'Default', 1,	'2018-07-17 11:26:31',	'2018-07-17 11:26:31');
