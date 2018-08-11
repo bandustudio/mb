@@ -456,16 +456,38 @@ $(document).on('unfocus blur','.sugest',function(e){
   return false  
 })
 
-$(document).on('change','.slick-search input[type="text"]',function(e){
-  var filterClass = getFilterValue();
-  $('.filter-class').text(filterClass);
-  $('.slick').slick('slickUnfilter');
-  $('.slick').slick('slickFilter', function(a,b,c){
-    console.log(a)
-    console.log(b)
-    console.log(c)
-  });
-});
+/*$(document).on('change keyup','.slick-search input[type="text"]',function(e){
+
+
+  clearTimeout($.data(this, 'scrollTimer'))
+  $.data(this, 'scrollTimer', setTimeout(function() {
+
+
+    var that = this
+    var value = $(this).val().trim()
+    console.log(value)
+
+    $('.slick').slick('slickUnfilter')
+    $('.slick').slick('slickFilter', function(a,b,c){
+
+      console.log($(b).find('.hero__heading h1').text())
+
+
+      if($('.slick').find('.hero__heading h1').text().indexOf(value) > -1 || 
+        $('.slick').find('.hero__heading h4').text().indexOf(value) > -1){
+        
+        //console.log(a)
+        //console.log(b)
+        //console.log(c)
+        console.log("true")
+        return true
+      }
+       console.log("false")
+      return false
+    })
+  }, 250))
+})*/
+
 
 $(document).on('click','.sugest-setv',function(e){
   e.preventDefault()

@@ -204,50 +204,65 @@ const Products = {
   mounted: function() {
     helper.is_loading()
     this.title = this.$route.params.slug||"Nuestros vehículos"
+    var that = this
     this.$http.post(helper.getAttributes($('html')).endpoint + '/app'+location.pathname, {}, {emulateJSON:true}).then(function(res){
       this.items = res.data.data
-
       setTimeout(function(){
-        $('.slick').slick({
-          centerMode: true,
-          centerPadding: '60px',
-          slidesToShow: 3,
-          responsive: [
-            {
-              breakpoint: 1024,
-              settings: {
-                arrows: false,
-                centerMode: true,
-                centerPadding: '40px',
-                slidesToShow: 1
-              }
-            },
-            {
-              breakpoint: 480,
-              settings: {
-                arrows: false,
-                centerMode: true,
-                centerPadding: '40px',
-                slidesToShow: 1
-              }
-            }
-          ]/*       
-          dots: true,
-          arrows:true,
-          infinite: true,
-          speed: 500,
-          fade: true,
-          cssEase: 'linear',
-          accessibility: true,
-          adaptiveHeight: true*/
-        }).addClass('fadeIn')
-        $('.slick-pane').css({'height':($(window).height()-$('.navbar').height()-50)+'px'})
-      },100);      
+        that.slick()
+      },100);
+
       helper.is_loaded()
     }, function(error){
       console.log(error.statusText)
     })    
   },    
+  methods: {
+    slick : function(){
+      $('.slick').slick({
+        centerMode: true,
+        centerPadding: '60px',
+        slidesToShow: 3,
+        responsive: [
+          {
+            breakpoint: 1024,
+            settings: {
+              arrows: false,
+              centerMode: true,
+              centerPadding: '40px',
+              slidesToShow: 1
+            }
+          },
+          {
+            breakpoint: 480,
+            settings: {
+              arrows: false,
+              centerMode: true,
+              centerPadding: '40px',
+              slidesToShow: 1
+            }
+          }
+        ]
+      }).removeClass('loading').addClass('fadeIn')
+      $('.slick-pane').css({'height':($(window).height()-$('.navbar').height()-50)+'px'})
+    },
+    filterSlick: function(){
+
+      $('.slick').slick('unslick');
+      $('.slick').addClass('loading').html('')
+      
+      var value = $('input[name="filter"]').val().trim()
+      
+      this.items.forEach(function(item){
+
+        if(item.title.indexOf(value) > -1 || 
+          item.intro.indexOf(value) > -1){
+          $('.slick').append($.templates('#slick_item').render(item))
+        }
+      })
+
+      this.slick()
+    }
+  },  
   data: function() {
     return{
       items:{},
