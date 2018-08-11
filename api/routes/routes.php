@@ -12,6 +12,16 @@ use League\Fractal\Resource\Collection;
 use League\Fractal\Serializer\DataArraySerializer;
 use Tuupola\Base62;
 use App\Email;
+use App\Config;
+
+$container = $app->getContainer();
+
+$env = $container['spot']->mapper("App\Config")
+    ->where(['enabled' => 1]);
+
+foreach($env as $config){
+    define($config->config_key,$config->config_value);
+}
 
 $app->get('/', function ($request, $response, $args) {
     print "<h1>MercedesBenz.com API</h1><font color='green'>Un & Runnin'</font>";

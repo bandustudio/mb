@@ -20,6 +20,13 @@ function words($str,$cut=10){
 
 $container = $app->getContainer();
 
+$env = $container['spot']->mapper("App\Config")
+    ->where(['enabled' => 1]);
+
+foreach($env as $config){
+    define($config->config_key,$config->config_value);
+}
+
 $container['view'] = function ($c) {
 
     $uriparts = array_values(array_filter(explode('/', $c->request->getUri()->getPath())));
@@ -61,7 +68,9 @@ $container['view'] = function ($c) {
     $view->offsetSet('share_pic', $share_pic);
 
     foreach(['app_title','app_text','app_url','api_url','static_url','app_phone','app_whatsapp','app_facebook'] as $tag){
-        $view->offsetSet($tag,getenv(strtoupper($tag)));
+        if(defined(strtoupper($tag))){
+            $view->offsetSet($tag,constant(strtoupper($tag)));
+        }
     }
 
     $view->addExtension(new Slim\Views\TwigExtension($c['router'], $basePath));

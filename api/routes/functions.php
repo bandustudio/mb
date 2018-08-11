@@ -216,14 +216,14 @@ function bucket_store($tmp_name,$res,$size = '',$folder = ''){
 
         $orig = $manager->make($tmp_name)
             ->orientate()
-            ->save(getenv('BUCKET_PATH') . '/' . $folder . $key, (int) getenv('APP_IMAGE_QUALITY'));
+            ->save(getenv('BUCKET_PATH') . '/' . $folder . $key, (int) getenv('UPLOADS_QUALITY'));
 
         foreach($resolutions as $res){
             $parts = explode('x',$res);
             $resized = $manager->make($tmp_name)
                 ->orientate()
                 ->fit((int) $parts[0],(int) $parts[1])
-                ->save(getenv('BUCKET_PATH') . '/' . $folder .  $parts[0] . 'x' . $parts[1] . $key, (int) getenv('APP_IMAGE_QUALITY'));
+                ->save(getenv('BUCKET_PATH') . '/' . $folder .  $parts[0] . 'x' . $parts[1] . $key, (int) getenv('UPLOADS_QUALITY'));
         }
 
         $data['url'] = $url;
