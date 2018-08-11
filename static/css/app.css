@@ -1143,10 +1143,6 @@ a:hover {
   padding: 20px;
 }
 
-.section .columns {
-  margin: 0;
-}
-
 .w--spacer {
   margin-top: 25px!important;
   margin-bottom: 25px!important;
@@ -1299,6 +1295,8 @@ a:hover {
   margin: 0;
   padding: 25px;
 }
+
+/* bulma hacks */
 
 .product_options .is-ancestor .tile {
   border-bottom: 5px solid #f1f1f1;
