@@ -269,7 +269,7 @@ var helper = {
     if(atts===undefined) atts = {}
     var champ = helper.champ();
     var atts = JSON.parse(JSON.stringify(atts))||{}
-    var prefix = $('.'+form).attr('ajax-prefix')?"/"+$('.'+form).attr('ajax-prefix')+"/":"/"
+    var prefix = $('.'+form).attr('ajax-prefix')?"/"+$('.'+form).attr('ajax-prefix')+"/":"/app/"
 
     return $.post( helper.getAttributes($('html')).endpoint + prefix + form, JSON.stringify(champ[form]), function(res){
       if(res.status === 'success'){
@@ -319,6 +319,9 @@ var helper = {
     $('.' + form).find('input, select, textarea').trigger("change")
   },
   capture : function( form ){
+
+    helper.clear(form)
+
     var champ = this.champ();
     var parent = $("."+form+":visible");
     var elements = parent.find('input, select, textarea');

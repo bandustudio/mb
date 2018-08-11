@@ -362,29 +362,16 @@ $app->group('/v1', function() {
                 throw new ForbiddenException("No parameters recieved.", 403);
             }
 
-            // an existent lead?
-            if(!empty($body['id'])){
-                $id = $body['id'];
-                $lead = $this->spot->mapper("App\Lead")->first(['id' => $id]);
-            }
+            $lead = new Lead($body);    
+            $code = strtolower(Base62::encode(random_bytes(6)));
 
-            if(!$lead){
-
-                // create new lead
-                $lead = new Lead($body);    
+            while($this->spot->mapper("App\Lead")->first(["code" => $code])){
                 $code = strtolower(Base62::encode(random_bytes(6)));
-
-                while($this->spot->mapper("App\Lead")->first(["code" => $code])){
-                    $code = strtolower(Base62::encode(random_bytes(6)));
-                }
-
-                $body['code'] = $code;
-                $lead->data([
-                    'code' => $code
-                ]);
-                
-                $id = $this->spot->mapper("App\Lead")->save($lead);
             }
+
+            $body['code'] = $code;
+            $lead->data($body);
+            $id = $this->spot->mapper("App\Lead")->save($lead);
 
             // register user if not exists, send him/her an email with his/her access data.
             if(!empty($body['email'])){
@@ -433,11 +420,11 @@ $app->group('/v1', function() {
                 $body['user_id'] = $user->id;
             }
 
-            if(!empty($body['brand_id']) && empty($lead->brand)){
-                $brand = $this->spot->mapper("App\Brand")->first([
-                    "id" => $body['brand_id']
+            if(!empty($body['model_id']) && empty($lead->model)){
+                $model = $this->spot->mapper("App\ProductModel")->first([
+                    "id" => $body['model_id']
                 ]);
-                $body['brand'] = $brand->title;
+                $body['model'] = $model->title;
             }
 
             if(!empty($body['version_id']) && (empty($lead->model_id) OR empty($lead->version) OR empty($lead->model))){
@@ -447,11 +434,6 @@ $app->group('/v1', function() {
                 $body['version'] = $version->title;
                 $body['model_id'] = $version->model_id;
                 $body['model'] = $version->model->title;            
-            }
-
-            if($lead){
-                $lead->data($body);
-                $this->spot->mapper("App\Lead")->save($lead);
             }
 
             return $response->withStatus(200)

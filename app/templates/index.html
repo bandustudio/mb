@@ -244,7 +244,6 @@
                 Seguros
               </button>
             </div>
-
             <div class="notification is-warning lead-sending">
               <button class="delete"></button>
               Estamos enviando su consulta por favor no cierre el navegador hasta completa, solo llevará unos segundos.
@@ -400,7 +399,7 @@
             </section>
             <footer class="modal-card-foot">              
               <button class="button">Cancelar</button>
-              <button class="button is-success">Solicitar Repuestos y Accesorios</button>
+              <button class="button is-success disabled submitable" @click="sendLead()" disabled>Solicitar Repuestos y Accesorios</button>
             </footer>
           </div>
         </div>
@@ -485,7 +484,7 @@
             </section>
             <footer class="modal-card-foot">
               <button class="button">Cancelar</button>
-              <button class="button is-success">Solicitar Plan de Ahorro</button>
+              <button class="button is-success disabled submitable" @click="sendLead()" disabled>Solicitar Plan de Ahorro</button>
             </footer>
           </div>
         </div> 
@@ -572,7 +571,7 @@
             </section>
             <footer class="modal-card-foot">
               <button class="button">Cancelar</button>
-              <button class="button is-success" @click="sendLead()">Solicitar Seguros</button>
+              <button class="button is-success disabled submitable" @click="sendLead()" disabled>Solicitar Seguros</button>
             </footer>
           </div>
         </div>
