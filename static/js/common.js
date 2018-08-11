@@ -456,6 +456,17 @@ $(document).on('unfocus blur','.sugest',function(e){
   return false  
 })
 
+$(document).on('change','.slick-search input[type="text"]',function(e){
+  var filterClass = getFilterValue();
+  $('.filter-class').text(filterClass);
+  $('.slick').slick('slickUnfilter');
+  $('.slick').slick('slickFilter', function(a,b,c){
+    console.log(a)
+    console.log(b)
+    console.log(c)
+  });
+});
+
 $(document).on('click','.sugest-setv',function(e){
   e.preventDefault()
   var $v = $(this).text()

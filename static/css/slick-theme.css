@@ -194,3 +194,37 @@
     opacity: .75;
     color: black;
 }
+
+.slick-search {
+    padding: 7px 14px;
+    background-color: rgba(0,0,0,0.5);
+    background-image: url('/img/magnifier-white.svg');
+    background-position: 22px 12px;
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+    height: 44px;
+    position: absolute;
+    z-index: 9999;
+    left: 0;
+    bottom: 0;
+    right: 0;  
+    cursor: pointer;  
+}
+
+.slick-search input[type="text"] {
+    padding: 5px 15px;
+    padding-left: 40px;
+    /*display: none;*/
+    background-color: transparent;
+    border:none;
+    border-bottom: 1px solid #a2a2a2;
+    height: 30px;
+    color:white;
+    font-weight: bold;
+}
+
+.slick-search input[type="image"] { 
+    position: relative;
+    top: 6px;
+    left:-35px;
+}

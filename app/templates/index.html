@@ -563,6 +563,9 @@
   <script type="text/x-template" id="products">
     <div class="section">
       <div class="container is-striped">
+        <div class="slick-search">
+          <input type="text" name="filter" />
+        </div>
         <div class="slick slick-main opacity0">
           <div v-for="item in items" class="slick-pane p1em has-text-left" :style="'background-image:url(' + item.picture + ')'">
             <div class="hero__heading">

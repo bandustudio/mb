@@ -241,7 +241,7 @@ const Products = {
           accessibility: true,
           adaptiveHeight: true*/
         }).addClass('fadeIn')
-        $('.slick-pane').css({'height':($(window).height()-$('.navbar').height())+'px'})
+        $('.slick-pane').css({'height':($(window).height()-$('.navbar').height()-50)+'px'})
       },100);      
       helper.is_loaded()
     }, function(error){
