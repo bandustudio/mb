@@ -308,6 +308,7 @@ const Product = {
     sendLead: function(){
       $('.lead-sending').fadeIn()
       helper.send('lead',null,function(){
+        $('.lead').find('input, select, textarea').val('')
         $('.lead-sending').hide()
         $('.lead-sent').fadeIn()
       })

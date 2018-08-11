@@ -1230,10 +1230,11 @@ a:hover {
   z-index: 99;
   bottom: 20px;
   left: 20px; 
+  width: 50px;
+  height: 50px;  
   transform: scale(1);  
   transition: all 0.1s ease-out;
 }
-
 
 .topright .profile {
   top: -10px;
@@ -1273,6 +1274,7 @@ a:hover {
 }
 
 .product_options {
+  font-family: corpos;
   display: inline-block;
   width: 100%;
   min-height: 200px;
@@ -2204,7 +2206,6 @@ a:hover {
     font-family: "corpos";
     font-size: 15px!important;
     line-height: 20px!important;
-    padding-bottom: 20px;
   }
   .rounded-button {
     font-size: 20px!important;
