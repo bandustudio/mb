@@ -719,6 +719,8 @@ body {
 
 .modal-card .item-pic {
   min-height: 260px;
+  background-size: cover;
+  background-color: black;
 }
 
 .subnav {
@@ -1780,7 +1782,7 @@ a:hover {
 /* transforms and animations */
 
 .p1em {
-  padding: 1em!important;
+  padding: 2em 1em!important;
 }
 
 .rotate-90 {

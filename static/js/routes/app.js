@@ -244,6 +244,7 @@ const Products = {
         ]
       }).removeClass('loading').addClass('fadeIn')
       $('.slick-pane').css({'height':($(window).height()-$('.navbar').height()-50)+'px'})
+      $('input[name="filter"]').focus()
     },
     filterSlick: function(){
 
@@ -279,8 +280,9 @@ const Product = {
     helper.is_loading()
     helper.capture('lead')
     this.$http.post(helper.getAttributes($('html')).endpoint + '/app'+location.pathname, {}, {emulateJSON:true}).then(function(res){
-      this.data = res.data.data
-      document.title = this.data.title
+      console.log(res.data)
+      this.data = res.data
+      document.title = this.data.item.data.title
       helper.is_loaded()
     }, function(error){
       helper.is_loaded()
@@ -310,8 +312,7 @@ const Product = {
   },
   data: function() {
     return{
-      lead:{},
-      data: {data:{}},
+      data: {item:{},models:{}},
       settings: helper.getAttributes($('html')),
       hash : location.hash.replace('#','')
     }
