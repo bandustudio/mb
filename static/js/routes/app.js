@@ -280,7 +280,6 @@ const Product = {
     helper.is_loading()
     helper.capture('lead')
     this.$http.post(helper.getAttributes($('html')).endpoint + '/app'+location.pathname, {}, {emulateJSON:true}).then(function(res){
-      console.log(res.data)
       this.data = res.data
       document.title = this.data.item.data.title
       helper.is_loaded()
@@ -307,12 +306,16 @@ const Product = {
       $('.modal-button').first().click()
     },
     sendLead: function(){
-      helper.send('lead')
+      $('.lead-sending').fadeIn()
+      helper.send('lead',null,function(){
+        $('.lead-sending').hide()
+        $('.lead-sent').fadeIn()
+      })
     }
   },
   data: function() {
     return{
-      data: {item:{},models:{}},
+      data: {item:{data:{}},models:{}},
       settings: helper.getAttributes($('html')),
       hash : location.hash.replace('#','')
     }
@@ -387,7 +390,6 @@ const Turnos = {
   },
   methods : {
     enviar : function(){
-      console.log("enviar Turno!");
       var button = $('.item .button.rounded-button-grey')
       if(!button.hasClass('disabled')){
         button.addClass('is-loading')  

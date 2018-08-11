@@ -245,9 +245,17 @@
               </button>
             </div>
 
-            <div class="notification is-warning">
+            <div class="notification is-warning lead-sending">
+              <button class="delete"></button>
+              Estamos enviando su consulta por favor no cierre el navegador hasta completa, solo llevará unos segundos.
+            </div>
+            <div class="notification is-success lead-sent">
               <button class="delete"></button>
               Consulta recibida. Nos pondremos en contacto en cuanto nos sea posible. Muchas gracias por su tiempo.
+            </div>
+            <div class="notification is-danger lead-err">
+              <button class="delete"></button>
+              Consulta no recibida. Algo sucedió en camino a enviar su consulta. Ya estamos trabajando en ello, intente por favor en unos instantes.
             </div>
           </div>         
         </div>
@@ -838,8 +846,8 @@
               <img :src="settings.assets + '/img/timer.svg'">
             </div>
             <h2 v-if="item.first_name">Hola {{ item.first_name }}, dejanos tu consulta</h2>
-            <h2 v-if="!item.first_name">Dejanos tu consulta</h2>
-            <p>Solicitar turno online</p>
+            <h2 v-if="!item.first_name">Solicitá tu turno online</h2>
+            <p>Elegí el horario y el concesionario que desees.</p>
             <div class="columns">
               <div class="column">
                 <p class="control is-expanded has-icons-left">
