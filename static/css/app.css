@@ -2021,6 +2021,10 @@ a:hover {
 
 /* slick hacks*/
 
+.slick-main {
+  min-height: 300px;
+}
+
 .hero {
   padding: 1em;
 }
