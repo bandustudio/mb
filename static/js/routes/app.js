@@ -178,22 +178,43 @@ const Service = {
   template: '#service',
   mounted : function(){
     if(cache.layout && cache.layout.services){
-      this.data = cache.layout.services[this.$route.params.slug]||{}
+      this.item = cache.layout.services[this.$route.params.slug]||{}
       document.title = this.data.title
     } else {
       helper.is_loading()
       this.$http.post(helper.getAttributes($('html')).endpoint + '/app'+location.pathname, {}, {emulateJSON:true}).then(function(res){
-        this.data = res.data.data
-        document.title = this.data.title
+        this.item = res.data.item.data
+        this.dealers = res.data.dealers.data
+        document.title = res.data.item.title
         helper.is_loaded()
       }, function(error){
         console.log(error.statusText)
       })  
     }    
   },
+  methods: {
+    sendLead: function(){
+      $('.lead-sending').fadeIn()
+      helper.send('lead',null,function(){
+        $('.lead').find('input, select, textarea').each(function(){
+          if(!$(this).data('persist')){
+            $(this).val('')
+          }
+        })
+        $('html').removeClass('is-clipped');
+        $('.modal').each(function () {
+          $(this).removeClass('is-active');
+        });
+        
+        $('.lead-sending').hide()
+        $('.lead-sent').fadeIn()
+      })
+    }
+  },
   data: function() {
     return{
-      data: {},
+      item: {data:{}},
+      dealers: {data:{}},
       settings: helper.getAttributes($('html'))
     }
   }

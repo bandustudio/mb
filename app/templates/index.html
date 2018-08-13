@@ -154,8 +154,8 @@
               <div class="item-pic" :pic-on="item.pic_on" :pic-off="item.pic_off" :style="'background-image: url('+item.pic_off+')'"></div>
               </a>
               <h2 class="has-text-centered"><span v-html="item.title"></span></h2>
-              <!--h4><span v-html="item.intro"></span></h4>
-              <a :href="'/services/'+item.slug">Explorar</a-->
+              <h4><span v-html="item.intro"></span></h4>
+              <!--a :href="'/services/'+item.slug">Explorar</a-->
             </div>
           </div>
         </div>
@@ -711,47 +711,57 @@
   <script type="text/x-template" id="service">
     <div class="section">
       <div class="container">
-        <div class="slick-pane has-text-left" :style="'background-image:url(' + data.picture + ')'">
+        <div class="slick-pane has-text-left" :style="'background-image:url(' + item.picture + ')'">
           <div class="hero__heading">
-            <h1 v-if="data.title && data.title.length"><span v-html="data.title"></span></h1>
-            <h4 v-if="data.intro && data.intro.length"><span v-html="data.intro"></span></h4>
+            <h1 v-if="item.title && item.title.length"><span v-html="item.title"></span></h1>
+            <h4 v-if="item.intro && item.intro.length"><span v-html="item.intro"></span></h4>
           </div>
         </div>  
 
         <div class="content hero">
-          <h1 class="fixed-hero__heading has-text-black" v-html="data.title"></h1>
-          <div class="post" v-html="data.content"></div>
+          <h1 class="fixed-hero__heading has-text-black" v-html="item.title"></h1>
+          <div class="post" v-html="item.content"></div>
         </div>
 
         <div class="product_options">
-          <h1>Opciones para <strong v-html="data.title"></strong></h1>
+          <h1>Opciones para <strong v-html="item.title"></strong></h1>
           <div class="has-text-centered tile is-ancestor">
-            <button class="button tile is-white is-medium modal-button" data-capture="lead" :data-target="'modal-'+data.slug" aria-haspopup="true">
-              Solicitar servicio de&nbsp;<span v-html="data.title"></span>
+            <button class="button tile is-white is-medium modal-button" data-capture="lead" :data-target="'modal-'+item.slug" aria-haspopup="true">
+              Solicitar servicio de&nbsp;<span v-html="item.title"></span>
             </button>
           </div>
+          <div class="notification is-warning lead-sending">
+            <button class="delete"></button>
+            Estamos enviando su consulta por favor no cierre el navegador hasta completa, solo llevará unos segundos.
+          </div>
+          <div class="notification is-success lead-sent">
+            <button class="delete"></button>
+            Consulta recibida. Nos pondremos en contacto en cuanto nos sea posible. Muchas gracias por su tiempo.
+          </div>
+          <div class="notification is-danger lead-err">
+            <button class="delete"></button>
+            Consulta no recibida. Algo sucedió en camino a enviar su consulta. Ya estamos trabajando en ello, intente por favor en unos instantes.
+          </div>
         </div>
-
-        <div class="notification is-warning">
-          <button class="delete"></button>
-          Consulta recibida. Nos pondremos en contacto en cuanto nos sea posible. Muchas gracias por su tiempo.
-        </div>          
       </div>
 
-      <div :id="'modal-'+data.slug" class="modal lead">
+      <div :id="'modal-'+item.slug" class="modal lead">
+        <div class="bottomleft fadeInUp is-block-touch">
+          <a :href="'https://wa.me/'+settings.whatsapp" target="_blank"><img :src="settings.assets + '/img/whatsapp2.svg'"></a>
+        </div>       
         <div class="modal-background"></div>
         <div class="modal-card">
           <header class="modal-card-head">
-            <p class="modal-card-title"><span v-html="data.title"></span></p>
+            <p class="modal-card-title"><span v-html="item.title"></span></p>
             <button class="delete" aria-label="close"></button>
           </header>
           <section class="modal-card-body">
-            <h2>Quiero solicitar servicio de <span v-html="data.title"></span></h2>
-            <h4><em v-html="data.title"></em></h4>
+            <h2>Quiero solicitar servicio de <span v-html="item.title"></span></h2>
+            <h4><em v-html="item.title"></em></h4>
             <div class="columns">
               <div class="column">
                 <p class="control is-expanded has-icons-left">
-                  <input class="input rounded-input is-medium" type="text" name="full_name"  placeholder="Nombre" autofocus>
+                  <input class="input rounded-input is-medium" type="text" name="full_name" placeholder="Nombre" autofocus>
                   <span class="icon is-medium is-left">
                     <i class="fas fa-user"></i>
                   </span>
@@ -759,7 +769,7 @@
               </div>
               <div class="column">
                 <p class="control is-expanded has-icons-left has-icons-right">
-                  <input class="input rounded-input is-medium is-success" name="email" type="email"  placeholder="Email">
+                  <input class="input rounded-input is-medium is-success" name="email" type="email" placeholder="Email">
                   <span class="icon is-medium is-left">
                     <i class="fas fa-envelope"></i>
                   </span>
@@ -770,7 +780,7 @@
               </div>
               <div class="column">
                 <p class="control is-expanded has-icons-left">
-                  <input class="input rounded-input is-medium" type="tel" name="tel"  placeholder="Teléfono">
+                  <input class="input rounded-input is-medium" type="tel" name="tel" placeholder="Teléfono">
                   <span class="icon is-medium is-left">
                     <i class="fas fa-phone"></i>
                   </span>
@@ -783,23 +793,21 @@
                   <div class="select rounded-select is-medium is-fullwidth">
                     <select name="dealer_id">
                       <option value="" selected>Sucursal</option>
-                      [[for dealers]]
-                      <option value="[[:id]]">[[:formatted_address]]</option>
-                      [[/for]]
+                      <option v-for="dealer in dealers" :value="dealer.id"><span v-html="dealer.formatted_address"></span></option>
                     </select>
                   </div>
                 </div>
               </div>
               <div class="column">
                 <div class="control">
-                  <textarea name="comment" class="textarea rounded-input"  placeholder="Explain how we can help you"></textarea>
+                  <textarea name="comment" class="textarea rounded-input"  placeholder="Ingrese detalles aquí."></textarea>
                 </div>
               </div>
             </div>          
           </section>
           <footer class="modal-card-foot">
             <button class="button">Cancelar</button>
-            <button class="button is-success">Solicitar <span v-html="data.title"></span></button>
+            <button class="button is-success submitable disabled"  @click="sendLead()" disabled>Solicitar</button>
           </footer>
         </div>
       </div>        

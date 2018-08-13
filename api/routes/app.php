@@ -176,7 +176,16 @@ $app->group('/v1', function() {
             $fractal = new Manager();
             $fractal->setSerializer(new DataArraySerializer);
             $resource = new Item($mapper, new Service);
-            $data = $fractal->createData($resource)->toArray();
+            $data['item'] = $fractal->createData($resource)->toArray();
+
+            $mapper = $this->spot->mapper("App\Dealer")
+                ->where(['enabled' => 1]);
+
+            /* Serialize the response data. */
+            $fractal = new Manager();
+            $fractal->setSerializer(new DataArraySerializer);
+            $resource = new Collection($mapper, new Dealer);
+            $data['dealers'] = $fractal->createData($resource)->toArray();
 
             return $response->withStatus(200)
                 ->withHeader("Content-Type", "application/json")
