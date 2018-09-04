@@ -142,7 +142,7 @@
             <div class="hero__heading">
               <h1 v-if="item.title && item.title.length"><span v-html="item.title"></span></h1>
               <h4 v-if="item.intro && item.intro.length"><span v-html="item.intro"></span></h4>
-              <router-link class="button is-white is-medium" :to="'/posts/'+item.slug" tag="a">Continuar leyendo</router-link>
+              <router-link class="button rounded-button is-white is-medium" :to="'/posts/'+item.slug" tag="a">Continuar leyendo</router-link>
             </div>          
           </div>
         </div>
@@ -181,14 +181,14 @@
           <div class="hero__heading">
             <h1 v-if="item.title && item.title.length"><span v-html="item.title"></span></h1>
             <h4 v-if="item.intro && item.intro.length"><span v-html="item.intro"></span></h4>
-            <router-link class="button is-white is-medium" :to="'/posts/'+item.slug" tag="a">Continuar leyendo</router-link>
+            <router-link class="button rounded-button is-white is-medium" :to="'/posts/'+item.slug" tag="a">Continuar leyendo</router-link>
           </div>
         </div>
         <div class="slick-pane has-text-right" v-if="index%2===0" :style="'background-image:url(' + item.picture + ')'">
           <div class="hero__heading">
             <h1 v-if="item.title && item.title.length"><span v-html="item.title"></span></h1>
             <h4 v-if="item.intro && item.intro.length"><span v-html="item.intro"></span></h4>
-            <router-link class="button is-white is-medium" :to="'/posts/'+item.slug" tag="a">Continuar leyendo</router-link>
+            <router-link class="button rounded-button is-white is-medium" :to="'/posts/'+item.slug" tag="a">Continuar leyendo</router-link>
           </div>
         </div>
       </div>
@@ -217,7 +217,7 @@
           <div class="hero__heading">
             <h1 v-if="data.item.data.title && data.item.data.title.length"><span v-html="data.item.data.title"></span></h1>
             <h4 v-if="data.item.data.intro && data.item.data.intro.length"><span v-html="data.item.data.intro"></span></h4>
-            <a class="button is-white is-medium" href="#" v-on:click="showLead()">Me interesa</a>
+            <a class="button rounded-button is-white is-medium" href="#" v-on:click="showLead()">Me interesa</a>
           </div>
         </div>
 
@@ -291,7 +291,7 @@
                 </div>
                 <div class="column">
                   <p class="control is-expanded has-icons-left has-icons-right">
-                    <input class="input rounded-input is-success" name="email" type="email"  placeholder="Email">
+                    <input class="input rounded-input" name="email" type="email"  placeholder="Email">
                     <span class="icon is-left">
                       <i class="fas fa-envelope"></i>
                     </span>
@@ -333,8 +333,8 @@
               </div>  
             </section>
             <footer class="modal-card-foot">
-              <button class="button">Cancelar</button>
-              <button class="button is-success disabled submitable" @click="sendLead()" disabled>Solicitar</button>
+              <button class="button rounded-button">Cancelar</button>
+              <button class="button rounded-button is-success disabled submitable" @click="sendLead()" disabled>Solicitar</button>
             </footer>
           </div>
         </div>   
@@ -371,7 +371,7 @@
                 </div>
                 <div class="column">
                   <p class="control is-expanded has-icons-left has-icons-right">
-                    <input class="input rounded-input is-success" name="email" type="email"  placeholder="Email">
+                    <input class="input rounded-input" name="email" type="email"  placeholder="Email">
                     <span class="icon is-left">
                       <i class="fas fa-envelope"></i>
                     </span>
@@ -398,8 +398,8 @@
               </div>       
             </section>
             <footer class="modal-card-foot">              
-              <button class="button">Cancelar</button>
-              <button class="button is-success disabled submitable" @click="sendLead()" disabled>Solicitar</button>
+              <button class="button rounded-button">Cancelar</button>
+              <button class="button rounded-button is-success disabled submitable" @click="sendLead()" disabled>Solicitar</button>
             </footer>
           </div>
         </div>
@@ -436,7 +436,7 @@
                 </div>
                 <div class="column">
                   <p class="control is-expanded has-icons-left has-icons-right">
-                    <input class="input rounded-input is-success" name="email" type="email"  placeholder="Email">
+                    <input class="input rounded-input" name="email" type="email"  placeholder="Email">
                     <span class="icon is-left">
                       <i class="fas fa-envelope"></i>
                     </span>
@@ -483,8 +483,8 @@
               </div>          
             </section>
             <footer class="modal-card-foot">
-              <button class="button">Cancelar</button>
-              <button class="button is-success disabled submitable" @click="sendLead()" disabled>Solicitar</button>
+              <button class="button rounded-button">Cancelar</button>
+              <button class="button rounded-button is-success disabled submitable" @click="sendLead()" disabled>Solicitar</button>
             </footer>
           </div>
         </div> 
@@ -521,7 +521,7 @@
                 </div>
                 <div class="column">
                   <p class="control is-expanded has-icons-left has-icons-right">
-                    <input class="input rounded-input is-success" name="email" type="email"  placeholder="Email">
+                    <input class="input rounded-input" name="email" type="email"  placeholder="Email">
                     <span class="icon  is-left">
                       <i class="fas fa-envelope"></i>
                     </span>
@@ -570,8 +570,8 @@
               </div>          
             </section>
             <footer class="modal-card-foot">
-              <button class="button">Cancelar</button>
-              <button class="button is-success disabled submitable" @click="sendLead()" disabled>Solicitar</button>
+              <button class="button rounded-button">Cancelar</button>
+              <button class="button rounded-button is-success disabled submitable" @click="sendLead()" disabled>Solicitar</button>
             </footer>
           </div>
         </div>
@@ -590,7 +590,7 @@
             <div class="hero__heading">
               <h1 v-if="item.title && item.title.length"><span v-html="item.title"></span></h1>
               <h4 v-if="item.intro && item.intro.length"><span v-html="item.intro"></span></h4>
-              <router-link class="button is-white is-medium" :to="'/'+item.slug" tag="a">Explorar</router-link>
+              <router-link class="button rounded-button is-white is-medium" :to="'/'+item.slug" tag="a">Explorar</router-link>
             </div>          
           </div>
         </div>
@@ -605,7 +605,7 @@
           <div class="hero__heading">
             <h1 v-if="data.title && data.title.length"><span v-html="data.title"></span></h1>
             <h4 v-if="data.intro && data.intro.length"><span v-html="data.intro"></span></h4>
-            <router-link v-if="data.button_value" class="button is-white is-medium" :to="data.button_link" v-html="data.button_value" tag="a">Explorar</router-link>
+            <router-link v-if="data.button_value" class="button rounded-button is-white is-medium" :to="data.button_link" v-html="data.button_value" tag="a">Explorar</router-link>
           </div>
         </div>  
         <div class="content hero">
@@ -665,16 +665,16 @@
         <div class="product_options">
           <h1>Vías de contacto para concesionario <strong v-html="data.title"></strong></h1>
           <div class="has-text-centered tile is-ancestor">
-            <a v-show="data.phone" :href="'call:'+data.phone" class="button tile is-white is-medium">
+            <a v-show="data.phone" :href="'call:'+data.phone" class="button rounded-button tile is-white is-medium">
               Llamar
             </a>
-            <a v-show="data.email" :href="'mailto:'+data.email" class="button tile is-white is-medium">
+            <a v-show="data.email" :href="'mailto:'+data.email" class="button rounded-button tile is-white is-medium">
               Email
             </a>
-            <a v-show="data.whatsapp" :href="'https://wa.me/'+data.whatsapp" class="button tile is-white is-medium" target="_blank">
+            <a v-show="data.whatsapp" :href="'https://wa.me/'+data.whatsapp" class="button rounded-button tile is-white is-medium" target="_blank">
               Whatsapp
             </a>
-            <a v-show="data.messenger" :href="'https://m.me/'+data.messenger" class="button tile is-white is-medium" target="_blank">
+            <a v-show="data.messenger" :href="'https://m.me/'+data.messenger" class="button rounded-button tile is-white is-medium" target="_blank">
               Messenger
             </a>
           </div>
@@ -726,7 +726,7 @@
         <div class="product_options">
           <h1>Opciones para <strong v-html="item.title"></strong></h1>
           <div class="has-text-centered tile is-ancestor">
-            <button class="button tile is-white is-medium modal-button" data-capture="lead" :data-target="'modal-'+item.slug" aria-haspopup="true">
+            <button class="button rounded-button tile is-white is-medium modal-button" data-capture="lead" :data-target="'modal-'+item.slug" aria-haspopup="true">
               Solicitar servicio de&nbsp;<span v-html="item.title"></span>
             </button>
           </div>
@@ -769,7 +769,7 @@
               </div>
               <div class="column">
                 <p class="control is-expanded has-icons-left has-icons-right">
-                  <input class="input rounded-input is-medium is-success" name="email" type="email" placeholder="Email">
+                  <input class="input rounded-input is-medium" name="email" type="email" placeholder="Email">
                   <span class="icon is-medium is-left">
                     <i class="fas fa-envelope"></i>
                   </span>
@@ -806,8 +806,8 @@
             </div>          
           </section>
           <footer class="modal-card-foot">
-            <button class="button">Cancelar</button>
-            <button class="button is-success submitable disabled"  @click="sendLead()" disabled>Solicitar</button>
+            <button class="button rounded-button">Cancelar</button>
+            <button class="button rounded-button is-success submitable disabled"  @click="sendLead()" disabled>Solicitar</button>
           </footer>
         </div>
       </div>        
@@ -823,18 +823,18 @@
             <div class="column option">
               <img :src="settings.assets + '/img/phone.svg'">
               <h2>Atención telefónica</h2>
-              <a href="tel:+59 9 11 1111 1111" class="button rounded-button rounded-button-success" v-on:click="cotizarAhora()">+59 9 11 1111 1111</a>
+              <a href="tel:+59 9 11 1111 1111" class="button big-button big-button-success" v-on:click="cotizarAhora()">+59 9 11 1111 1111</a>
             </div>
             <div class="column option option-main">
               <img :src="settings.assets + '/img/whatsapp.svg'">
               <h2>Whatsapp</h2>
               <p>La manera más rápida de comunicarse<br>elegida por nuestros clientes.</p>
-              <a href="https://api.whatsapp.com/send?phone={{app_whatsapp}}" class="button rounded-button rounded-button-success">Empezar chat</a>
+              <a href="https://api.whatsapp.com/send?phone={{app_whatsapp}}" class="button big-button big-button-success">Empezar chat</a>
             </div>
             <div class="column option">
               <img :src="settings.assets + '/img/email.svg'">
               <h2>Atención vía mail</h2>
-              <a href="/contact" class="button rounded-button rounded-button-success">Contactar</a>
+              <a href="/contact" class="button big-button big-button-success">Contactar</a>
             </div>
           </div>
         </div>
@@ -864,7 +864,7 @@
               </div>
               <div class="column">
                 <p class="control is-expanded has-icons-left has-icons-right">
-                  <input class="input rounded-input is-medium is-success" name="email" type="email" placeholder="Email">
+                  <input class="input rounded-input is-medium" name="email" type="email" placeholder="Email">
                   <span class="icon is-medium is-left">
                     <i class="fas fa-envelope"></i>
                   </span>
@@ -1005,7 +1005,7 @@
           <h2><span class="icon has-text-danger fa fa-times-circle"></span> No pudimos hallar la página</h2> 
           <p>Por favor revisa la url. Si creés que es un error por favor contactanos.</p>
           <div class="container has-text-centered">
-            <a href="/" class="button is-medium">Volver al inicio</a>
+            <a href="/" class="button rounded-button is-medium">Volver al inicio</a>
           </div>        
         </div>
       </div>
@@ -1017,7 +1017,7 @@
       <div class="hero__heading">
         <h1 v-if="item.title && item.title.length"><span>[[:title]]</span></h1>
         <h4 v-if="item.intro && item.intro.length"><span>[[:intro]]</span></h4>
-        <a class="button is-white is-medium" href="/[[:slug]]">Explorar</a>
+        <a class="button rounded-button is-white is-medium" href="/[[:slug]]">Explorar</a>
       </div>          
     </div>
   </script>

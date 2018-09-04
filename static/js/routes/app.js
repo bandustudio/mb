@@ -421,7 +421,7 @@ const Turnos = {
   },
   methods : {
     enviar : function(){
-      var button = $('.item .button.rounded-button-grey')
+      var button = $('.submitable')
       if(!button.hasClass('disabled')){
         button.addClass('is-loading')  
         setTimeout(function(){

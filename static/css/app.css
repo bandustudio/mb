@@ -739,13 +739,33 @@ body {
   padding-top: 1em;
 }
 
-.rounded-input, .rounded-textarea, .rounded-select select {
-  border: 1px solid white;
-  background-color: #f8f8f8;
-  border-radius: 3px;
+.rounded-button, .rounded-input, .rounded-textarea, .rounded-select select {
+  outline: none;
+  border: 2px solid #dce4ec;
+  color: #2c3e50;
+  height: 45px;
+  padding: 10px 15px;
+  border-radius: 4px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }
 
+.rounded-button {
+  padding: 6px 25px;
+  min-width: 150px;
+  font-weight: 500;
+}
+
+
 /* Bulma overriding */
+
+.control.has-icons-left .icon, .control.has-icons-right .icon {
+  width: 2.65em;
+  height: 2.65em;
+}
+.input:focus, .input.is-focused, .input:active, .input.is-active, .textarea:focus, .textarea.is-focused, .textarea:active, .textarea.is-active {
+  box-shadow: none;
+}
 
 .message.is-success .message-header {
   -webkit-border-top-left-radius: 10px;
@@ -1030,7 +1050,7 @@ a:hover {
   display: inline-block;
 }
 
-.splash .rounded-button {
+.splash .big-button {
   min-width:310px;
 }
 
@@ -1341,15 +1361,15 @@ a:hover {
   padding-bottom: 0.75rem;
 }
 
-.rounded .rounded-button {
+.rounded .big-button {
   min-width: 310px;
 }
 
-.rounded .rounded-button.disabled {
+.rounded .big-button.disabled {
   opacity: 0.9;
 }
 
-.rounded .rounded-button.disabled:hover {
+.rounded .big-button.disabled:hover {
   color: white;
 }
 
@@ -1448,17 +1468,18 @@ a:hover {
 
 .select:not(.is-multiple)::after {
   right: 0.8em;
+  top: 1.4em;
 }
 
 .select select:not([multiple]) {
-    padding-right: 1.5em;
+  padding-right: 1.5em;
 }
 
 .brand {
   font-family:"corporateacondpro";
 }
 
-.container .rounded-button + .rounded-button {
+.container .big-button + .big-button {
   margin-left: 10px;
 }
 
@@ -1509,7 +1530,7 @@ a:hover {
   color: white;
 }
 
-.rounded-button {
+.big-button {
   display: inline-block;
   padding: 10px 0;  
   height: 60px;
@@ -1527,7 +1548,7 @@ a:hover {
   color: #dbdbdb;
 }
 
-.rounded-button-success {
+.big-button-success {
   border-radius: 17px;
   height: auto;
   color: white;
@@ -1536,7 +1557,7 @@ a:hover {
   border: solid 2px #08d184;
 }
 
-.rounded-button-danger {
+.big-button-danger {
   border-radius: 17px;
   height: auto;
   color: white;
@@ -1545,36 +1566,36 @@ a:hover {
   border: solid 2px #ff3860;
 }
 
-.rounded-button-facebook {
+.big-button-facebook {
   width: 100%;
   color: white;
   background-color: #3b5998;
 }
 
-.rounded-button-google {
+.big-button-google {
   width: 100%;
   color: white;
   background-color: #ef4039;
 }
 
-.rounded-button-facebook:hover, .rounded-button-google:hover{
+.big-button-facebook:hover, .big-button-google:hover{
   color: white;
 }
 
-.rounded-button-success a {
+.big-button-success a {
   color: white;
 }
 
-.rounded-button-green {
+.big-button-green {
   border: solid 2px #08d184;
   color: #08d184;
 }
 
-.rounded-button-green a {
+.big-button-green a {
   color: #08d184;
 }
 
-.rounded-button-grey {
+.big-button-grey {
   border: solid 2px white;
   background-color: #f7f7f7;
 }
@@ -1632,7 +1653,7 @@ a:hover {
   height: 116px;
 }
 
-.option .rounded-button {
+.option .big-button {
   font-size: 18px;
   font-weight: 500;
   font-style: normal;
@@ -1647,7 +1668,7 @@ a:hover {
   margin-right: 0;  
 }
 
-.option-main .rounded-button {
+.option-main .big-button {
   font-size: 24px; 
   padding: 15px 30px; 
   min-width: 90%;
@@ -2215,11 +2236,11 @@ a:hover {
     font-size: 15px!important;
     line-height: 20px!important;
   }
-  .rounded-button {
+  .big-button {
     font-size: 20px!important;
     padding: 18px 25px;
   }
-  .splash .rounded-button {
+  .splash .big-button {
     margin-bottom: 10px;
   }
   .splash .brand {
@@ -2257,7 +2278,7 @@ a:hover {
     padding: 0;
   }
 
-  .container .rounded-button + .rounded-button {
+  .container .big-button + .big-button {
     margin-left: 0;
   }
   .splash .hero-body {
@@ -2276,11 +2297,11 @@ a:hover {
   .rounded {
     margin-top: 80px;
   }
-  .rounded .rounded-button {
+  .rounded .big-button {
     min-width: auto;
     width: 100%;
   }
-  .splash .rounded-button {
+  .splash .big-button {
     min-width: 270px;
   }
 }
