@@ -243,6 +243,7 @@ const Products = {
         centerMode: true,
         centerPadding: '60px',
         slidesToShow: 3,
+        adaptiveHeight: true,
         responsive: [
           {
             breakpoint: 1024,
@@ -264,7 +265,7 @@ const Products = {
           }
         ]
       }).removeClass('loading').addClass('fadeIn')
-      $('.slick-pane').css({'height':($(window).height()-$('.navbar').height()-50)+'px'})
+      //$('.slick-pane').css({'height':($(window).height()-$('.navbar').height()-50)+'px'})
       $('input[name="filter"]').focus()
     },
     filterSlick: function(){

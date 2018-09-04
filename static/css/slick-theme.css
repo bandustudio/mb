@@ -196,14 +196,14 @@
 }
 
 .slick-search {
-    padding: 7px 14px;
-    background-color: rgba(0,0,0,0.5);
+    padding: 0 10px;
+    background-color: black;
     background-image: url('/img/magnifier-white.svg');
-    background-position: 22px 12px;
+    background-position: 10px 6px;
     background-repeat: no-repeat;
     background-size: 20px 20px;
-    height: 44px;
-    position: absolute;
+    height: 32px;
+    /*position: absolute;*/
     z-index: 9999;
     left: 0;
     top: 0;
@@ -212,12 +212,12 @@
 }
 
 .slick-search input[type="text"] {
-    padding: 5px 15px;
-    padding-left: 40px;
+    padding: 3px 8px;
+    margin-left: 30px;
     /*display: none;*/
-    background-color: transparent;
+    background-color: #222;
     border:none;
-    border-bottom: 1px solid #a2a2a2;
+    border-bottom: 1px solid #fff;
     height: 30px;
     color:white;
     font-size: 15px;

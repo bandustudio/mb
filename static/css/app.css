@@ -2021,9 +2021,33 @@ a:hover {
 
 /* slick hacks*/
 
-.slick-main {
-  min-height: 300px;
+.slick-slider, .slick-track, .slick-slider .slick-list {
+  background-color: black;
 }
+
+.slick-main, .slick-pane{
+  height: 350px!important;
+}
+
+.slick-pane {
+  height: 350px!important;
+  padding: 2em 3em;
+  background-color: #000;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.slick-pane.left {
+  background-position: center left;
+  background-size: 85%;
+}
+
+.slick-pane.right {
+  background-position: center right;
+  background-size: 85%;
+}
+
 
 .hero {
   padding: 1em;
@@ -2062,25 +2086,6 @@ a:hover {
   color: white;
   font-size: 16px;
   margin-bottom: 10px;
-}
-
-.slick-pane {
-  min-height: 480px;
-  padding: 2em 3em;
-  background-color: #000;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-}
-
-.slick-pane.left {
-  background-position: center left;
-  background-size: 85%;
-}
-
-.slick-pane.right {
-  background-position: center right;
-  background-size: 85%;
 }
 
 .innerdarkshadow {
@@ -2162,11 +2167,11 @@ a:hover {
   }
 
   .hero__heading h1 span {
-    font-size: 32px;
+    font-size: 28px;
   }
 
   .hero__heading h4 span {
-    font-size: 20px;
+    font-size: 15px;
   }  
 
   .inline-background {
