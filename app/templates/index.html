@@ -142,7 +142,7 @@
             <div class="hero__heading">
               <h1 v-if="item.title && item.title.length"><span v-html="item.title"></span></h1>
               <h4 v-if="item.intro && item.intro.length"><span v-html="item.intro"></span></h4>
-              <router-link class="button rounded-button is-white is-medium" :to="'/posts/'+item.slug" tag="a">Continuar leyendo</router-link>
+              <router-link class="button rounded-button is-white" :to="'/posts/'+item.slug" tag="a">Continuar leyendo</router-link>
             </div>          
           </div>
         </div>
@@ -181,14 +181,14 @@
           <div class="hero__heading">
             <h1 v-if="item.title && item.title.length"><span v-html="item.title"></span></h1>
             <h4 v-if="item.intro && item.intro.length"><span v-html="item.intro"></span></h4>
-            <router-link class="button rounded-button is-white is-medium" :to="'/posts/'+item.slug" tag="a">Continuar leyendo</router-link>
+            <router-link class="button rounded-button is-white" :to="'/posts/'+item.slug" tag="a">Continuar leyendo</router-link>
           </div>
         </div>
         <div class="slick-pane has-text-right" v-if="index%2===0" :style="'background-image:url(' + item.picture + ')'">
           <div class="hero__heading">
             <h1 v-if="item.title && item.title.length"><span v-html="item.title"></span></h1>
             <h4 v-if="item.intro && item.intro.length"><span v-html="item.intro"></span></h4>
-            <router-link class="button rounded-button is-white is-medium" :to="'/posts/'+item.slug" tag="a">Continuar leyendo</router-link>
+            <router-link class="button rounded-button is-white" :to="'/posts/'+item.slug" tag="a">Continuar leyendo</router-link>
           </div>
         </div>
       </div>
@@ -217,7 +217,7 @@
           <div class="hero__heading">
             <h1 v-if="data.item.data.title && data.item.data.title.length"><span v-html="data.item.data.title"></span></h1>
             <h4 v-if="data.item.data.intro && data.item.data.intro.length"><span v-html="data.item.data.intro"></span></h4>
-            <a class="button rounded-button is-white is-medium" href="#" v-on:click="showLead()">Me interesa</a>
+            <a class="button rounded-button is-white" href="#" v-on:click="showLead()">Me interesa</a>
           </div>
         </div>
 
@@ -590,7 +590,7 @@
             <div class="hero__heading">
               <h1 v-if="item.title && item.title.length"><span v-html="item.title"></span></h1>
               <h4 v-if="item.intro && item.intro.length"><span v-html="item.intro"></span></h4>
-              <router-link class="button rounded-button is-white is-medium" :to="'/'+item.slug" tag="a">Explorar</router-link>
+              <router-link class="button rounded-button is-white" :to="'/'+item.slug" tag="a">Explorar</router-link>
             </div>          
           </div>
         </div>
@@ -605,7 +605,7 @@
           <div class="hero__heading">
             <h1 v-if="data.title && data.title.length"><span v-html="data.title"></span></h1>
             <h4 v-if="data.intro && data.intro.length"><span v-html="data.intro"></span></h4>
-            <router-link v-if="data.button_value" class="button rounded-button is-white is-medium" :to="data.button_link" v-html="data.button_value" tag="a">Explorar</router-link>
+            <router-link v-if="data.button_value" class="button rounded-button is-white" :to="data.button_link" v-html="data.button_value" tag="a">Explorar</router-link>
           </div>
         </div>  
         <div class="content hero">
@@ -761,27 +761,27 @@
             <div class="columns">
               <div class="column">
                 <p class="control is-expanded has-icons-left">
-                  <input class="input rounded-input is-medium" type="text" name="full_name" placeholder="Nombre" autofocus>
-                  <span class="icon is-medium is-left">
+                  <input class="input rounded-input" type="text" name="full_name" placeholder="Nombre" autofocus>
+                  <span class="icon is-left">
                     <i class="fas fa-user"></i>
                   </span>
                 </p>
               </div>
               <div class="column">
                 <p class="control is-expanded has-icons-left has-icons-right">
-                  <input class="input rounded-input is-medium" name="email" type="email" placeholder="Email">
-                  <span class="icon is-medium is-left">
+                  <input class="input rounded-input" name="email" type="email" placeholder="Email">
+                  <span class="icon is-left">
                     <i class="fas fa-envelope"></i>
                   </span>
-                  <!--span class="icon is-medium is-right">
+                  <!--span class="icon is-right">
                     <i class="fas fa-check"></i>
                   </span-->
                 </p>
               </div>
               <div class="column">
                 <p class="control is-expanded has-icons-left">
-                  <input class="input rounded-input is-medium" type="tel" name="tel" placeholder="Teléfono">
-                  <span class="icon is-medium is-left">
+                  <input class="input rounded-input" type="tel" name="tel" placeholder="Teléfono">
+                  <span class="icon is-left">
                     <i class="fas fa-phone"></i>
                   </span>
                 </p>
@@ -790,7 +790,7 @@
             <div class="columns">
               <div class="column is-one-third">
                 <div class="control">
-                  <div class="select rounded-select is-medium is-fullwidth">
+                  <div class="select rounded-select is-fullwidth">
                     <select name="dealer_id">
                       <option value="" selected>Sucursal</option>
                       <option v-for="dealer in dealers" :value="dealer.id"><span v-html="dealer.formatted_address"></span></option>
@@ -856,27 +856,27 @@
             <div class="columns">
               <div class="column">
                 <p class="control is-expanded has-icons-left">
-                  <input class="input rounded-input is-medium" type="text" name="full_name" placeholder="Nombre" autofocus>
-                  <span class="icon is-medium is-left">
+                  <input class="input rounded-input" type="text" name="full_name" placeholder="Nombre" autofocus>
+                  <span class="icon is-left">
                     <i class="fas fa-user"></i>
                   </span>
                 </p>
               </div>
               <div class="column">
                 <p class="control is-expanded has-icons-left has-icons-right">
-                  <input class="input rounded-input is-medium" name="email" type="email" placeholder="Email">
-                  <span class="icon is-medium is-left">
+                  <input class="input rounded-input" name="email" type="email" placeholder="Email">
+                  <span class="icon is-left">
                     <i class="fas fa-envelope"></i>
                   </span>
-                  <!--span class="icon is-medium is-right">
+                  <!--span class="icon is-right">
                     <i class="fas fa-check"></i>
                   </span-->
                 </p>
               </div>
               <div class="column">
                 <p class="control is-expanded has-icons-left">
-                  <input class="input rounded-input is-medium" type="tel" name="tel" placeholder="Teléfono">
-                  <span class="icon is-medium is-left">
+                  <input class="input rounded-input" type="tel" name="tel" placeholder="Teléfono">
+                  <span class="icon is-left">
                     <i class="fas fa-phone"></i>
                   </span>
                 </p>
@@ -885,7 +885,7 @@
             <div class="columns">
               <div class="column is-one-third">
                 <div class="control">
-                  <div class="select rounded-select is-medium is-fullwidth">
+                  <div class="select rounded-select is-fullwidth">
                     <select name="reason">
                       <option value="" selected>Motivo de consulta</option>
                       <option value="repuestos" :selected="hash == 'repuestos'">Repuestos y Accesorios</option>
@@ -1005,7 +1005,7 @@
           <h2><span class="icon has-text-danger fa fa-times-circle"></span> No pudimos hallar la página</h2> 
           <p>Por favor revisa la url. Si creés que es un error por favor contactanos.</p>
           <div class="container has-text-centered">
-            <a href="/" class="button rounded-button is-medium">Volver al inicio</a>
+            <a href="/" class="button rounded-button">Volver al inicio</a>
           </div>        
         </div>
       </div>
@@ -1017,7 +1017,7 @@
       <div class="hero__heading">
         <h1 v-if="item.title && item.title.length"><span>[[:title]]</span></h1>
         <h4 v-if="item.intro && item.intro.length"><span>[[:intro]]</span></h4>
-        <a class="button rounded-button is-white is-medium" href="/[[:slug]]">Explorar</a>
+        <a class="button rounded-button is-white" href="/[[:slug]]">Explorar</a>
       </div>          
     </div>
   </script>
