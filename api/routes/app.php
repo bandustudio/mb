@@ -16,13 +16,56 @@ use App\Dealer;
 use App\Service;
 use App\Product;
 use App\Email;
+use App\VisitSchedule;
 use App\ProductModel;
 use App\ThemePosition;
 use App\ThemeType;
 use App\ThemeSection;
 
 $app->group('/v1', function() {
+
     $this->group('/app', function() {
+
+        $this->post("/turnos", function ($request, $response, $arguments) {
+            //$body = $request->getParsedBody();
+            $body = $request->getParams();
+
+            $turno = null;
+
+            if(empty($body)){
+                throw new ForbiddenException("No parameters recieved.", 403);
+            }
+
+            $data['status'] = "error";
+            $turno = new VisitSchedule();   
+            $code = strtolower(Base62::encode(random_bytes(6)));
+
+            while($this->spot->mapper("App\VisitSchedule")->first(["code" => $code])){
+                $code = strtolower(Base62::encode(random_bytes(6)));
+            }
+
+            $parts = explode(' ',$body['full_name']);
+            $first_name = $parts[0];
+            unset($parts[0]);
+            $last_name = implode(' ',$parts);
+
+            $body['code'] = $code;
+            $body['first_name'] = $first_name;
+            $body['scheduled'] = new \DateTime(date('Y-m-d H:i:s',strtotime($body['scheduled'])));
+            $body['last_name'] = $last_name;
+
+            $turno->data($body);
+            $id = $this->spot->mapper("App\VisitSchedule")->save($turno);
+
+            if($id){
+                $data['status'] = "success";
+                $data['turno_id'] = $id;
+            }
+
+            return $response->withStatus(200)
+                ->withHeader("Content-Type", "application/json")
+                ->write(json_encode($data));
+        });
 
         $this->post("/subnav", function ($request, $response, $arguments) {
 

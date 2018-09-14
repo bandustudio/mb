@@ -411,17 +411,22 @@ const ConsultaExito = {
 const Turnos = {
   template: '#turnos',
   mounted: function() {
-    helper.capture('turnos');
-    //helper.send('item')
+    helper.capture('turnos')
+    $('#scheduled').scroller({ 
+      preset: 'datetime', 
+      dateFormat: "dd-mm-yy", 
+      timeFormat: 'H:ii', 
+      ampm: false, 
+      dateOrder: "ddmmyy" 
+    });    
   },
   methods : {
-    enviar : function(){
-      var button = $('.submitable')
-      if(!button.hasClass('disabled')){
-        button.addClass('is-loading')  
+    solicitarTurno : function(){
+      if(!this.loading){
+        this.loading = true
         setTimeout(function(){
           helper.setFlash({
-            title:"Felicitaciones " + helper.champ().turnos.first_name,
+            title:"Felicitaciones " + this.turnos.first_name,
             text:"Nuestro asesor se pondrá en turnoso con vos para ayudarte a ahorrar."
           })
           helper.send('turnos', {redirect:"/"})
@@ -431,6 +436,7 @@ const Turnos = {
   },  
   data: function() {
     return{
+      loading: false,
       item : helper.champ().item||{},
       turnos : helper.champ().turnos||{},
       settings : helper.getAttributes($('html')),

@@ -175,7 +175,10 @@ var helper = {
   },  
   cerrarMercedesBenz : function(){
     localStorage.removeItem("token");
-    helper.setFlash({title:"¡Hasta luego!",text:'Tu sesión se cerró correctamente. Saliste de tu MercedesBenz.'});
+    helper.setFlash({
+      title:"¡Hasta luego!",
+      text:'Tu sesión se cerró correctamente. Saliste de tu MercedesBenz.'
+    });
     setTimeout(function(){
       if(location.pathname === '/'){
         location.href = '/',true;
@@ -348,9 +351,14 @@ var helper = {
       elements.each(function(){
         if(!$(this).attr('optional')){
           if(!$(this).val() || $(this).val() === ''){
+            console.log("1")
+            console.log($(this).attr('name'))
             complete = false;
           }
           if($(this).attr('type')==='email' && !helper.validateEmail($(this).val())) {
+            console.log("2")
+            console.log($(this).attr('name'))
+
             complete = false;
           }
         }
