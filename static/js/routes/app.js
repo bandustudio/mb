@@ -177,20 +177,15 @@ const Services = {
 const Service = {
   template: '#service',
   mounted : function(){
-    if(cache.layout && cache.layout.services){
-      this.item = cache.layout.services[this.$route.params.slug]||{}
-      document.title = this.data.title
-    } else {
-      helper.is_loading()
-      this.$http.post(helper.getAttributes($('html')).endpoint + '/app'+location.pathname, {}, {emulateJSON:true}).then(function(res){
-        this.item = res.data.item.data
-        this.dealers = res.data.dealers.data
-        document.title = res.data.item.title
-        helper.is_loaded()
-      }, function(error){
-        console.log(error.statusText)
-      })  
-    }    
+    helper.is_loading()
+    this.$http.post(helper.getAttributes($('html')).endpoint + '/app'+location.pathname, {}, {emulateJSON:true}).then(function(res){
+      this.item = res.data.item.data
+      this.dealers = res.data.dealers.data
+      document.title = res.data.item.title
+      helper.is_loaded()
+    }, function(error){
+      console.log(error.statusText)
+    })  
   },
   methods: {
     sendLead: function(){
