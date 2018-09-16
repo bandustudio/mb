@@ -137,14 +137,12 @@
   
   <script type="text/x-template" id="splash">
     <div class="section fadeIn">
-
-
       <div class="container is-striped services">
         <div class="slick slick-main opacity0">
           <div v-for="item in posts.slide" class="slick-pane has-text-left" :style="'background-image:url(' + item.picture + ')'">
             <div class="hero__heading">
               <h1 v-if="item.title && item.title.length"><span v-html="item.title"></span></h1>
-              <h4 v-if="item.intro && item.intro.length"><span v-html="item.intro"></span></h4>
+              <h4 v-if="item.intro && item.intro.length"><span v-html="filters.sentence(item.intro)"></span></h4>
               <router-link class="button rounded-button is-white" :to="'/posts/'+item.slug" tag="a">Continuar leyendo</router-link>
             </div>          
           </div>
@@ -157,7 +155,7 @@
               <div class="item-pic" :pic-on="item.pic_on" :pic-off="item.pic_off" :style="'background-image: url('+item.pic_off+')'"></div>
               </a>
               <h2 class="has-text-centered"><span v-html="item.title"></span></h2>
-              <h4><span v-html="item.intro"></span></h4>
+              <h4><span v-html="filters.sentence(item.intro)"></span></h4>
               <!--a :href="'/services/'+item.slug">Explorar</a-->
             </div>
           </div>
@@ -172,7 +170,7 @@
                 <div class="item-pic" :style="'background-image: url('+item.picture+')'"></div>
               </router-link>
               <h2 v-if="item.title && item.title.length"><span v-html="item.title"></span></h2>
-              <h4 v-if="item.intro && item.intro.length"><span v-html="item.intro"></span></h4>
+              <h4 v-if="item.intro && item.intro.length"><span v-html="filters.sentence(item.intro)"></span></h4>
               <router-link :to="'/posts/'+item.slug">Continuar leyendo</router-link>
             </div>
           </div>
@@ -183,14 +181,14 @@
         <div class="slick-pane has-text-left" v-if="index%2!=0" :style="'background-image:url(' + item.picture + ')'">
           <div class="hero__heading">
             <h1 v-if="item.title && item.title.length"><span v-html="item.title"></span></h1>
-            <h4 v-if="item.intro && item.intro.length"><span v-html="item.intro"></span></h4>
+            <h4 v-if="item.intro && item.intro.length"><span v-html="filters.sentence(item.intro)"></span></h4>
             <router-link class="button rounded-button is-white" :to="'/posts/'+item.slug" tag="a">Continuar leyendo</router-link>
           </div>
         </div>
         <div class="slick-pane has-text-right" v-if="index%2===0" :style="'background-image:url(' + item.picture + ')'">
           <div class="hero__heading">
             <h1 v-if="item.title && item.title.length"><span v-html="item.title"></span></h1>
-            <h4 v-if="item.intro && item.intro.length"><span v-html="item.intro"></span></h4>
+            <h4 v-if="item.intro && item.intro.length"><span v-html="filters.sentence(item.intro)"></span></h4>
             <router-link class="button rounded-button is-white" :to="'/posts/'+item.slug" tag="a">Continuar leyendo</router-link>
           </div>
         </div>
@@ -204,7 +202,7 @@
                 <div class="item-pic" :style="'background-image: url('+item.picture+')'"></div>
               </router-link>
               <h2 v-if="item.title && item.title.length"><span v-html="item.title"></span></h2>
-              <h4 v-if="item.intro && item.intro.length"><span v-html="item.intro"></span></h4>
+              <h4 v-if="item.intro && item.intro.length"><span v-html="filters.sentence(item.intro)"></span></h4>
               <router-link :to="'/posts/'+item.slug">Continuar leyendo</router-link>
             </div>
           </div>
@@ -219,7 +217,7 @@
         <div class="slick-pane has-text-left" :style="'background-image:url(' + data.item.data.picture + ')'">
           <div class="hero__heading">
             <h1 v-if="data.item.data.title && data.item.data.title.length"><span v-html="data.item.data.title"></span></h1>
-            <h4 v-if="data.item.data.intro && data.item.data.intro.length"><span v-html="data.item.data.intro"></span></h4>
+            <h4 v-if="data.item.data.intro && data.item.data.intro.length"><span v-html="filters.sentence(data.item.data.intro)"></span></h4>
             <a class="button rounded-button is-white" href="#" v-on:click="showLead()">Me interesa</a>
           </div>
         </div>

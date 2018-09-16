@@ -42,7 +42,10 @@ var helper = {
       if(date > dayago)
         return moment.utc(date).format("D MMM YY HH:mm")
       return moment.utc(date).startOf('minute').fromNow()
-    }   
+    },
+    sentence: function(text){
+      return text.split('.')[0]
+    }
   },
   is_loading: function(){
     $('.navbar').after('<div class="spinner-outer fadeInFast"><div class="spinner" data-layer="4"><div class="spinner-container"><div class="spinner-rotator"><div class="spinner-left"><div class="spinner-circle"></div></div><div class="spinner-right"><div class="spinner-circle"></div></div></div></div><div class="spinner-message">Si la reproducción no empieza en breve, prueba a reiniciar el dispositivo.</div></div></div>')
