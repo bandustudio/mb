@@ -1112,6 +1112,7 @@ a:hover {
 .section .columns {
   padding-left: 0.75em;
   padding-right: 0.75em;
+  padding-bottom: 0.75em;
 }
 .section h2 .svg-inline--fa {
   position: relative;
@@ -2186,7 +2187,10 @@ a:hover {
 }
 
 @media screen and (max-width: 768px) {
-  
+  .section .column {
+    text-align: center!important;
+  }
+
   .hero__heading {
     padding-top: 10px;
   }
@@ -2281,7 +2285,12 @@ a:hover {
   .hero__heading {
     padding: 0;
   }
-
+  #navMenu.is-active .navbar-item {
+    text-align: center;
+  }
+  .footer__menu {
+    padding: 2em 1em;
+  }
   .container .big-button + .big-button {
     margin-left: 0;
   }
@@ -2300,6 +2309,8 @@ a:hover {
   }
   .rounded {
     margin-top: 80px;
+    margin-left: -1em;
+    margin-right: -1em;    
   }
   .rounded .big-button {
     min-width: auto;
