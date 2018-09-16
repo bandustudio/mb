@@ -190,21 +190,18 @@ const Service = {
   },
   methods: {
     sendLead: function(){
-      $('.lead-sending').fadeIn()
-      helper.send('lead',null,function(){
-        $('.lead').find('input, select, textarea').each(function(){
-          if(!$(this).data('persist')){
-            $(this).val('')
+      if(!this.loading){
+        this.loading = true
+        var lead = 
+        helper.send('lead',{redirect:"/datosrecibidos",dump:true},function(res){
+          if(res.status=='success'){
+            helper.setFlash({
+              title:"¡Recibimos tu solicitud!",
+              text:'Un asesor se va a contactar con vos por una de las vías que nos sugeriste.'
+            })
           }
         })
-        $('html').removeClass('is-clipped');
-        $('.modal').each(function () {
-          $(this).removeClass('is-active');
-        });
-        
-        $('.lead-sending').hide()
-        $('.lead-sent').fadeIn()
-      })
+      }
     }
   },
   data: function() {
@@ -294,6 +291,7 @@ const Products = {
 
 const Product = {
   template: '#product',
+  name: 'product',
   mounted : function(){
     helper.is_loading()
     this.$http.post(helper.getAttributes($('html')).endpoint + '/app'+location.pathname, {}, {emulateJSON:true}).then(function(res){
@@ -307,41 +305,27 @@ const Product = {
     })    
   },
   methods: {
-    consultar: function(){
-      if($('.submitable').hasClass('disabled')===false){
-        helper.send('lead',{},function(){
-          helper.clear('lead')
-          if($('.section .notification').is(':hidden')) {
-            $('.section .lead').slideUp(200,function(){
-              $('.section .notification').slideDown()
-            })          
-          }
-        })
-      }
-    },
     showLead: function(){
       $('.modal-button').first().click()
     },
     sendLead: function(){
-      $('.lead-sending').fadeIn()
-      helper.send('lead',null,function(){
-        $('.lead').find('input, select, textarea').each(function(){
-          if(!$(this).data('persist')){
-            $(this).val('')
+      if(!this.loading){
+        this.loading = true
+        var lead = 
+        helper.send('lead',{redirect:"/datosrecibidos",dump:true},function(res){
+          if(res.status=='success'){
+            helper.setFlash({
+              title:"¡Recibimos tu solicitud!",
+              text:'Un asesor se va a contactar con vos por una de las vías que nos sugeriste.'
+            })
           }
         })
-        $('html').removeClass('is-clipped');
-        $('.modal').each(function () {
-          $(this).removeClass('is-active');
-        });
-        
-        $('.lead-sending').hide()
-        $('.lead-sent').fadeIn()
-      })
+      }
     }
   },
   data: function() {
     return{
+      loading:false,
       data: {item:{data:{}},models:{}},
       settings: helper.getAttributes($('html')),
       hash : location.hash.replace('#','')
@@ -424,6 +408,7 @@ const DatosRecibidos = {
 
 const Turnos = {
   template: '#turnos',
+  name:'turnos',
   mounted: function() {
     helper.capture('turnos')
     $('#scheduled').scroller({ 
@@ -444,7 +429,7 @@ const Turnos = {
           text:"Un asesor se pondrá en contacto con vos."
         })
         setTimeout(function(){
-          helper.send('turnos', {redirect:"/datosrecibidos"})
+          helper.send('turnos', {redirect:"/datosrecibidos",dump:true})
         },1000)   
       }
     }

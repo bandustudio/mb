@@ -100,7 +100,7 @@
 
     <div class="subnav"></div>
 
-    <keep-alive exclude="datosrecibidos">
+    <keep-alive exclude="product,turnos,datosrecibidos">
       <router-view :key="$route.fullPath"><div class="spinner-outer fadeIn"><div class="spinner" data-layer="4"><div class="spinner-container"><div class="spinner-rotator"><div class="spinner-left"><div class="spinner-circle"></div></div><div class="spinner-right"><div class="spinner-circle"></div></div></div></div><div class="spinner-message">Si la aplicación no empieza en breve, prueba a reiniciar el dispositivo.</div></div></div></router-view>
     </keep-alive>
 
@@ -117,11 +117,11 @@
             </div>
             <div class="column">
               <dt><strong>Servicios online</strong></dt>
+              <dt><a href="/turnos">Turnos online</a></dt>
               <dt><a href="/dealers">Localizador de concesionarios</a></dt>
             </div>
             <div class="column">
               <dt><strong>Acerca de nosotros</strong></dt>
-              <dt><a href="/turnos">Turnos online</a></dt>
               <dt><a href="/posts/empresa">Empresa</a></dt>
             </div>
             <div class="column"></div>
@@ -263,7 +263,7 @@
         </div>
 
         <div id="modal-atencion" class="modal lead">
-          <input type="hidden" name="product_id" data-persist="true" :value="data.item.data.id">
+          <input type="hidden" name="origin" data-persist="true" value="Atención al cliente">
           <div class="bottomleft fadeInUp is-block-touch">
             <a :href="'https://wa.me/'+settings.whatsapp" target="_blank"><img :src="settings.assets + '/img/whatsapp2.svg'"></a>
           </div>       
@@ -337,13 +337,13 @@
             </section>
             <footer class="modal-card-foot">
               <button class="button rounded-button">Cancelar</button>
-              <button class="button rounded-button is-success disabled submitable" @click="sendLead()" disabled>Solicitar</button>
+              <button class="button rounded-button is-success disabled submitable" @click="sendLead()" :class="{'is-loading' : loading}" disabled>Solicitar</button>
             </footer>
           </div>
         </div>   
 
         <div id="modal-plan" class="modal lead">
-          <input type="hidden" name="product_id" data-persist="true" :value="data.item.data.id">
+          <input type="hidden" name="origin" data-persist="true" value="Plan de Ahorro">
           <div class="bottomleft fadeInUp is-block-touch">
             <a :href="'https://wa.me/'+settings.whatsapp" target="_blank"><img :src="settings.assets + '/img/whatsapp2.svg'"></a>
           </div>       
@@ -402,13 +402,13 @@
             </section>
             <footer class="modal-card-foot">              
               <button class="button rounded-button">Cancelar</button>
-              <button class="button rounded-button is-success disabled submitable" @click="sendLead()" disabled>Solicitar</button>
+              <button class="button rounded-button is-success disabled submitable" @click="sendLead()" :class="{'is-loading' : loading}" disabled>Solicitar</button>
             </footer>
           </div>
         </div>
 
         <div id="modal-repuestos" class="modal lead">
-          <input type="hidden" name="product_id" data-persist="true" :value="data.item.data.id">
+          <input type="hidden" name="origin" data-persist="true" value="Repuestos">
           <div class="bottomleft fadeInUp is-block-touch">
             <a :href="'https://wa.me/'+settings.whatsapp" target="_blank"><img :src="settings.assets + '/img/whatsapp2.svg'"></a>
           </div>       
@@ -487,13 +487,13 @@
             </section>
             <footer class="modal-card-foot">
               <button class="button rounded-button">Cancelar</button>
-              <button class="button rounded-button is-success disabled submitable" @click="sendLead()" disabled>Solicitar</button>
+              <button class="button rounded-button is-success disabled submitable" @click="sendLead()" :class="{'is-loading' : loading}" disabled>Solicitar</button>
             </footer>
           </div>
         </div> 
 
         <div id="modal-seguros" class="modal lead">
-          <input type="hidden" name="product_id" data-persist="true" :value="data.item.data.id">
+          <input type="hidden" name="origin" data-persist="true" value="Seguros">
           <div class="bottomleft fadeInUp is-block-touch">
             <a :href="'https://wa.me/'+settings.whatsapp" target="_blank"><img :src="settings.assets + '/img/whatsapp2.svg'"></a>
           </div>       
@@ -574,7 +574,7 @@
             </section>
             <footer class="modal-card-foot">
               <button class="button rounded-button">Cancelar</button>
-              <button class="button rounded-button is-success disabled submitable" @click="sendLead()" disabled>Solicitar</button>
+              <button class="button rounded-button is-success disabled submitable" @click="sendLead()" :class="{'is-loading' : loading}" disabled>Solicitar</button>
             </footer>
           </div>
         </div>
@@ -810,7 +810,7 @@
           </section>
           <footer class="modal-card-foot">
             <button class="button rounded-button">Cancelar</button>
-            <button class="button rounded-button is-success submitable disabled"  @click="sendLead()" disabled>Solicitar</button>
+            <button class="button rounded-button is-success submitable disabled"  @click="sendLead()" :class="{'is-loading' : loading}" disabled>Solicitar</button>
           </footer>
         </div>
       </div>        
@@ -859,7 +859,7 @@
             <div class="columns">
               <div class="column">
                 <p class="control is-expanded has-icons-left">
-                  <input class="input rounded-input" type="text" name="full_name" placeholder="Nombre" autofocus>
+                  <input class="input rounded-input" type="text" name="full_name" placeholder="Nombre" value="" autofocus>
                   <span class="icon is-left">
                     <i class="fas fa-user"></i>
                   </span>
@@ -867,7 +867,7 @@
               </div>
               <div class="column">
                 <p class="control is-expanded has-icons-left has-icons-right">
-                  <input class="input rounded-input" name="email" type="email" placeholder="Email">
+                  <input class="input rounded-input" name="email" type="email" value=""  placeholder="Email">
                   <span class="icon is-left">
                     <i class="fas fa-envelope"></i>
                   </span>

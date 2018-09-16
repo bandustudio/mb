@@ -147,7 +147,10 @@ var helper = {
   sessionExpired : function(){
     localStorage.removeItem("token")
     console.log("expired")
-    helper.setFlash({title:"Tu sesión expiró",text:"Este dispositivo tiene los datos de tu perfil pero pasó mucho tiempo desde tu última actividad así que por motivos de seguridad te solicitamos que ingreses nuevamente."})
+    helper.setFlash({
+      title:"Tu sesión expiró",
+      text:"Este dispositivo tiene los datos de tu perfil pero pasó mucho tiempo desde tu última actividad así que por motivos de seguridad te solicitamos que ingreses nuevamente."
+    })
     router.push("/ingresar")
   },
   refreshToken : function(event) {
@@ -286,11 +289,16 @@ var helper = {
 
         if(atts.dump){
           console.log("dumping " + form);
+          parent.find('input textarea select').not('.persist').each(function(){
+            $(this).val('')
+          })
           delete champ[form];
         }
 
         if(atts.redirect){
-          router.push(atts.redirect);
+          setTimeout(function(){
+            router.push(atts.redirect);
+          },500)          
         }
 
         localStorage.setItem("champ", JSON.stringify(champ));
