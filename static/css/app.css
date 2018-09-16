@@ -861,7 +861,7 @@ body {
   border-radius: 0;
 }
 
-.section .notification {
+.hidden {
   display: none;
 }
 
@@ -1346,6 +1346,7 @@ a:hover {
 }
 
 .rounded {
+  font-family: "corpos";
   background-color: transparent;
   padding: 40px 30px;
   margin-top: 80px;

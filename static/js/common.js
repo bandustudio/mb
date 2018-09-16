@@ -191,14 +191,11 @@ var helper = {
     localStorage.setItem("flash", JSON.stringify(flash));
   },
   getFlash : function(){
-    var flash = $.parseJSON(localStorage.getItem("flash"));
-    if(flash){
-      $('.section > .notification strong').html(flash.title);
-      $('.section > .notification span').html(flash.text);
-      $('.section > .notification').removeClass('is-hidden').hide().fadeIn(300);
-      localStorage.setItem("flash","");
-      localStorage.removeItem("flash");
-    }
+    var container = $.parseJSON(localStorage.getItem("flash"));
+    $(container).each(function(){
+      $('.section').prepend($.templates("#notification").render(this))
+    })
+    localStorage.removeItem("flash");
   },
   champ : function(a) {
     var b = localStorage.getItem(a?a:'champ');
@@ -351,14 +348,9 @@ var helper = {
       elements.each(function(){
         if(!$(this).attr('optional')){
           if(!$(this).val() || $(this).val() === ''){
-            console.log("1")
-            console.log($(this).attr('name'))
             complete = false;
           }
           if($(this).attr('type')==='email' && !helper.validateEmail($(this).val())) {
-            console.log("2")
-            console.log($(this).attr('name'))
-
             complete = false;
           }
         }

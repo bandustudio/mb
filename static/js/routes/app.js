@@ -1,6 +1,7 @@
 const Splash = {
   template: '#splash',
   mounted: function(){
+    helper.getFlash()
     if(cache.layout && cache.layout.services){
       this.services = cache.layout.services
     } else {
@@ -408,6 +409,19 @@ const ConsultaExito = {
   }
 }
 
+const DatosRecibidos = {
+  template: '#datosrecibidos',
+  name:'datosrecibidos',
+  mounted: function(){
+    helper.getFlash()
+  },
+  data: function() {
+    return{
+      settings: helper.getAttributes($('html'))
+    }
+  }  
+}
+
 const Turnos = {
   template: '#turnos',
   mounted: function() {
@@ -424,12 +438,13 @@ const Turnos = {
     solicitarTurno : function(){
       if(!this.loading){
         this.loading = true
+        var turnos = helper.champ().turnos
+        helper.setFlash({
+          title:"Felicitaciones " + turnos.full_name,
+          text:"Un asesor se pondrá en contacto con vos."
+        })
         setTimeout(function(){
-          helper.setFlash({
-            title:"Felicitaciones " + this.turnos.first_name,
-            text:"Nuestro asesor se pondrá en turnoso con vos para ayudarte a ahorrar."
-          })
-          helper.send('turnos', {redirect:"/"})
+          helper.send('turnos', {redirect:"/datosrecibidos"})
         },1000)   
       }
     }
@@ -497,6 +512,7 @@ const router = new VueRouter({
     {path: '/services', component: Services,  meta : { title: 'Servicios'}},
     {path: '/services/:slug', component: Service,  meta : { title: 'Servicio'}},
     {path: '/turnos', component: Turnos, meta : { title: 'Turno online'}},
+    {path: '/datosrecibidos', component: DatosRecibidos, meta : { title: 'Datos recibidos'}},
     {path: '/tos', component: Terminos, meta : { title: 'Términos y condiciones'}},
     {path: '/call', component: Atencion, meta : { title: 'Atención'}},
     {path: '/opener', component: Opener, meta : { title: 'Redirigiendo...'}},
@@ -519,19 +535,27 @@ router.afterEach(function (to, from, next) {
   }, 1)
 })
 
+var delay=700, setTimeoutConst;
+
 const app = new Vue({ router: router,
   created: function () {
     $.post(helper.getAttributes($('html')).endpoint + '/app/subnav',function(res){
       cache.layout = res
+      
       $('.subnav').html($.templates('#subnav').render(res))  
       $('.navbar-end').append($.templates('#navitems').render(res))  
 
       $('.is-cat-link').hover(function(){
-        $('.is-cat').css({display:'none'})
-        if(location.pathname!=$(this).attr('href')){
-          $('.is-cat-' + $(this).attr('cat')).addClass('fadeIn').fadeIn(350)
-        }
+        var self = this
+        setTimeoutConst = setTimeout(function(){
+          $('.is-cat').css({display:'none'})
+          if(location.pathname!=$(self).attr('href')){
+            $('.is-cat-' + $(self).attr('cat')).addClass('fadeIn').fadeIn(350)
+          }
+        }, delay);
+
       },function(){
+        clearTimeout(setTimeoutConst );
       });
 
       $('.is-cat').hover(function(){

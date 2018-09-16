@@ -100,7 +100,7 @@
 
     <div class="subnav"></div>
 
-    <keep-alive>
+    <keep-alive exclude="datosrecibidos">
       <router-view :key="$route.fullPath"><div class="spinner-outer fadeIn"><div class="spinner" data-layer="4"><div class="spinner-container"><div class="spinner-rotator"><div class="spinner-left"><div class="spinner-circle"></div></div><div class="spinner-right"><div class="spinner-circle"></div></div></div></div><div class="spinner-message">Si la aplicación no empieza en breve, prueba a reiniciar el dispositivo.</div></div></div></router-view>
     </keep-alive>
 
@@ -137,6 +137,8 @@
   
   <script type="text/x-template" id="splash">
     <div class="section fadeIn">
+
+
       <div class="container is-striped services">
         <div class="slick slick-main opacity0">
           <div v-for="item in posts.slide" class="slick-pane has-text-left" :style="'background-image:url(' + item.picture + ')'">
@@ -245,15 +247,15 @@
                 Seguros
               </button>
             </div>
-            <div class="notification is-warning lead-sending">
+            <div class="notification hidden is-warning lead-sending">
               <button class="delete"></button>
               Estamos enviando su consulta por favor no cierre el navegador hasta completa, solo llevará unos segundos.
             </div>
-            <div class="notification is-success lead-sent">
+            <div class="notification hidden is-success lead-sent">
               <button class="delete"></button>
               Consulta recibida. Nos pondremos en contacto en cuanto nos sea posible. Muchas gracias por su tiempo.
             </div>
-            <div class="notification is-danger lead-err">
+            <div class="notification hidden is-danger lead-err">
               <button class="delete"></button>
               Consulta no recibida. Algo sucedió en camino a enviar su consulta. Ya estamos trabajando en ello, intente por favor en unos instantes.
             </div>
@@ -731,15 +733,15 @@
               Solicitar servicio de&nbsp;<span v-html="item.title"></span>
             </button>
           </div>
-          <div class="notification is-warning lead-sending">
+          <div class="notification hidden is-warning lead-sending">
             <button class="delete"></button>
             Estamos enviando su consulta por favor no cierre el navegador hasta completa, solo llevará unos segundos.
           </div>
-          <div class="notification is-success lead-sent">
+          <div class="notification hidden is-success lead-sent">
             <button class="delete"></button>
             Consulta recibida. Nos pondremos en contacto en cuanto nos sea posible. Muchas gracias por su tiempo.
           </div>
-          <div class="notification is-danger lead-err">
+          <div class="notification hidden is-danger lead-err">
             <button class="delete"></button>
             Consulta no recibida. Algo sucedió en camino a enviar su consulta. Ya estamos trabajando en ello, intente por favor en unos instantes.
           </div>
@@ -922,6 +924,38 @@
     </div>
   </script>
 
+  <script type="text/x-template" id="datosrecibidos">
+    <div class="section contact turnos" ajax-prefix="app">
+      <div class="container has-text-centered">
+        <div class="content">
+          <div class="rounded">
+            <div class="badge">
+              <img :src="settings.assets + '/img/XMLID_1_.svg'">
+            </div>
+            <h2>Tus datos fueron recibidos</h2>
+            <p>Para mas información consultá la sección <a href="/tos"> Términos y condiciones</a></p>
+            <div class="columns">
+              <div class="column">
+                <div class="container has-text-right">
+                  <a onclick="javascript:history.go(-1)" class="button rounded-button is-primary disabled submitable">
+                    Volver atrás
+                  </a>
+                </div>
+              </div>
+              <div class="column">
+                <div class="container has-text-left">
+                  <a href="/" class="button rounded-button is-primary disabled submitable">
+                    Volver a inicio
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </script>
+
   <script type="text/x-template" id="tos">
     <div class="section corpos">
       <div class="container">
@@ -1094,6 +1128,14 @@
           <a href="/dealers">Explorar todo</a>
         </p>
       </div>         
+  </script>
+
+  <script type="text/x-jsrender" id="notification">  
+    <div class="notification is-[[if type]][[:type]][[else]]success[[/if]] fadeIn">
+      <button class="delete"></button>
+      <strong>[[:title]]</strong><br>
+      <span>[[:text]]</span>
+    </div>        
   </script>
 
   <script type="text/x-jsrender" id="breadcrumb">
