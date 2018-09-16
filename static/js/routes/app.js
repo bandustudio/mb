@@ -177,6 +177,7 @@ const Services = {
 
 const Service = {
   template: '#service',
+  name:'service',
   mounted : function(){
     helper.is_loading()
     this.$http.post(helper.getAttributes($('html')).endpoint + '/app'+location.pathname, {}, {emulateJSON:true}).then(function(res){
@@ -206,6 +207,7 @@ const Service = {
   },
   data: function() {
     return{
+      loading:false,
       item: {data:{}},
       dealers: {data:{}},
       settings: helper.getAttributes($('html'))

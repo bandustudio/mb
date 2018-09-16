@@ -100,7 +100,7 @@
 
     <div class="subnav"></div>
 
-    <keep-alive exclude="product,turnos,datosrecibidos">
+    <keep-alive exclude="product,service,turnos,datosrecibidos">
       <router-view :key="$route.fullPath"><div class="spinner-outer fadeIn"><div class="spinner" data-layer="4"><div class="spinner-container"><div class="spinner-rotator"><div class="spinner-left"><div class="spinner-circle"></div></div><div class="spinner-right"><div class="spinner-circle"></div></div></div></div><div class="spinner-message">Si la aplicación no empieza en breve, prueba a reiniciar el dispositivo.</div></div></div></router-view>
     </keep-alive>
 
