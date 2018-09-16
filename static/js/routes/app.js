@@ -328,6 +328,7 @@ const Product = {
   data: function() {
     return{
       loading:false,
+      filters : helper.filters,
       data: {item:{data:{}},models:{}},
       settings: helper.getAttributes($('html')),
       hash : location.hash.replace('#','')

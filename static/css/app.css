@@ -1109,6 +1109,10 @@ a:hover {
   background-repeat: no-repeat;
 }
 
+.section .columns {
+  padding-left: 0.75em;
+  padding-right: 0.75em;
+}
 .section h2 .svg-inline--fa {
   position: relative;
   top: -2px;
