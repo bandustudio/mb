@@ -8,7 +8,7 @@ body {
   transition: all 0.5 linear;
   color: black;
 }
-body, #app, .section {
+body, #app {
   overflow-x: hidden!important;
 }
 .call .columns {
