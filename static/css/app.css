@@ -2109,7 +2109,7 @@ a:hover {
   box-decoration-break: clone;
   background: #000;
   color: #fff;
-  padding: 0 15px;
+  padding: 0 10px;
   font-size: 35px;
   font-weight: 700;
   font-style: italic;
@@ -2118,7 +2118,7 @@ a:hover {
 
 .hero__heading h4 span {
   font-family:"corpos";
-  padding: 5px 10px;
+  padding: 5px 0px;
   background-color: black;
   color: white;
   font-size: 16px;
@@ -2146,6 +2146,9 @@ a:hover {
   display: none;
 }
 
+.is-striped {
+  font-family: "corporateacondpro",Helvetica,Arial,sans-serif;
+}
 .is-striped h1 {
   margin-top: 0!important;
   font-size: 30px;
@@ -2198,7 +2201,11 @@ a:hover {
 }
 
 @media screen and (max-width: 768px) {
-  .section .column {
+  #navMenu.is-active .navbar-item {
+    text-align: center;
+  }
+
+  .center-tablet .column {
     text-align: center!important;
   }
 
@@ -2295,9 +2302,6 @@ a:hover {
 @media screen and (max-width: 440px) {
   .hero__heading {
     padding: 0;
-  }
-  #navMenu.is-active .navbar-item {
-    text-align: center;
   }
   .footer__menu {
     padding: 2em 1em;
