@@ -1098,6 +1098,7 @@ a:hover {
 }
 
 .section {
+  font-family: "corpos";
   display: inline-block;
   width: 100%;  
   padding: 0;
@@ -2074,6 +2075,16 @@ a:hover {
   background-size: 85%;
 }
 
+.slick-main .slick-slide {
+  opacity: 0.5;
+  webkit-transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
+
+}
+
+.slick-main .slick-current {
+  opacity: 1;
+}
 
 .hero {
   padding: 1em;
@@ -2232,8 +2243,8 @@ a:hover {
     background-size: 150%;
   }
   .content h1, .section h1 {
-    font-size: 30px!important;
-    line-height: 30px!important;
+    font-size: 20px!important;
+    line-height: 20px!important;
   }
   .content h2,.section h2 {
     font-size: 24px!important;

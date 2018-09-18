@@ -198,10 +198,10 @@
 .slick-search {
     padding: 0 10px;
     background-color: black;
-    background-image: url('/img/magnifier-white.svg');
+    background-image: url('/img/magnifier-grey.svg');
     background-position: 10px 6px;
     background-repeat: no-repeat;
-    background-size: 20px 20px;
+    background-size: 18px 18px;
     height: 32px;
     /*position: absolute;*/
     z-index: 9999;
@@ -215,8 +215,11 @@
     padding: 3px 8px;
     margin-left: 30px;
     /*display: none;*/
+    max-width: 240px;
     background-color: #222;
-    border:none;
+    border-top:none!important;
+    border-left:none!important;
+    border-right:none!important;
     border-bottom: 1px solid #fff;
     height: 30px;
     color:white;

@@ -90,6 +90,7 @@ const Dealers = {
       }
 
       this.map.fitBounds(bounds, { padding: 50 })    
+      this.map.resize()
     },
     flyTo(feature){
       this.map.flyTo({
