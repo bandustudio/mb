@@ -6,7 +6,6 @@ html {
 }
 body {
   font-family:"corporateacondpro",Helvetica,Arial,sans-serif;
-  max-width: 100% !important;
   overflow-x: hidden !important;  
   transition: all 0.5 linear;
   color: black;
@@ -1111,6 +1110,7 @@ a:hover {
   /*box-shadow: 0 4px 0 #d8d8d8 inset;*/
   background-position: bottom center;
   background-repeat: no-repeat;
+  overflow-x: hidden !important; 
 }
 
 .section .columns {
