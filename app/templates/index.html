@@ -929,7 +929,7 @@
         <div class="content">
           <div class="rounded">
             <div class="badge">
-              <img :src="settings.assets + '/img/XMLID_1_.svg'">
+              <img :src="settings.assets + '/img/whatsapp2.svg'">
             </div>
             <h2>Tus datos fueron recibidos</h2>
             <p>Para mas información consultá la sección <a href="/tos"> Términos y condiciones</a></p>
@@ -1069,9 +1069,9 @@
     [[props featured]]
       <div class="container is-striped is-cat is-cat-[[>key]]">
         <h1 class="is-capitalized">[[>key]]</h1>
-        <div class="columns">
+        <div class="columns is-multiline">
         [[for prop]]
-          <div class="column is-one-fifth">
+          <div class="column is-one-quarter">
             <a href="/[[:slug]]">
             <div class="item-pic" style="background-image: url([[:pic]])"></div>
             </a>
@@ -1089,11 +1089,11 @@
     [[/props]]
       <div class="container is-striped is-cat is-cat-services services">
         <h1 class="is-capitalized">Servicios</h1>
-        <div class="columns">
+        <div class="columns is-multiline">
         [[props services]]
           <div class="column is-one-quarter">
             <a href="/services/[[>key]]">
-            <div class="item-pic" pic-on="[[:prop.pic_on]]" pic-off="[[:prop.pic_off]]" style="background-image: url([[:prop.pic_off]])"></div>
+              <div class="item-pic" pic-on="[[:prop.pic_on]]" pic-off="[[:prop.pic_off]]" style="background-image: url([[:prop.pic_off]])"></div>
             </a>
             <h2><span>[[:prop.title]]</span></h2>
             <!--h4><span>[[:prop.intro]]</span></h4>
@@ -1107,9 +1107,9 @@
       </div>      
       <div class="container is-striped is-cat is-cat-dealers">
         <h1 class="is-capitalized">Sucursales</h1>
-        <div class="columns">
+        <div class="columns is-multiline">
         [[for dealers]]
-          <div class="column is-one-fifth">
+          <div class="column is-one-quarter">
             <a href="/dealers/[[:slug]]">
             <div class="item-pic" style="background-image: url([[:pic]])"></div>
             </a>
