@@ -870,6 +870,7 @@ body, #app {
   font-family: corpos;
   margin-top: 1.5em;
   border-radius: 0;
+  margin:0!important;
 }
 
 .hidden {
