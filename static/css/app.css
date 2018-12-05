@@ -729,7 +729,7 @@ body, #app {
 }
 
 .modal-card .item-pic {
-  min-height: 260px;
+  min-height: 90px;
   background-size: cover;
   background-color: black;
 }
@@ -1956,7 +1956,6 @@ a:hover {
   background-position: bottom center;
   background-color: white;
   padding-bottom: 450px;
-  margin-top: -100px;
 }
 .inline-background h2, 
 .inline-background h3,
